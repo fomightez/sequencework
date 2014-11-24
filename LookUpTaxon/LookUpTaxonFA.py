@@ -866,3 +866,17 @@ sys.stderr.write(".")
 modifiedfastafileoutput.close()
  
 sys.stderr.write("\n")
+
+"""
+
+ 
+    Like to do:
+    -  add Integrated Taxonomic Information System (http://www.itis.gov/) which
+    # has an API described at http://www.itis.gov/web_service.html .
+    I'd have to add use if that site if I wanted it 100% automated. 
+    Presently PythonAnywhere doesn't have this on whitelist for free accounts.
+ 
+ 
+ 
+ 
+"""
