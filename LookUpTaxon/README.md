@@ -11,15 +11,17 @@ Taxon Lookup Scripts
 
 example of input and output:
 before:
+'''
 # >chicken |gi|45383616|ref|NP_989588.1| follitropin subunit beta [Gallus gallus]
 # ---------------------------------------M-----------KTLN-----
 # -CYV-L----------------------------------L--FCWKA-ICCYS-CELTN
 # I-TIAVERE-----ECELCITVNATWCSGYCFTRD-PVYKYPP--V------------SS
 # VQQICTFKEV--VY----ETVKIPGCGDHPE---SFYSYPVATECHCETCDTDSTDCTVR
 # GLGP--SYCSFSHNGSNQ------------------------------------------
-# -
-#
-# after:
+'''
+
+after:
+'''
 # >chicken |gi|45383616|ref|NP_989588.1| follitropin subunit beta [Gallus gallus]|Aves
 # ---------------------------------------M-----------KTLN-----
 # -CYV-L----------------------------------L--FCWKA-ICCYS-CELTN
@@ -27,3 +29,4 @@ before:
 # VQQICTFKEV--VY----ETVKIPGCGDHPE---SFYSYPVATECHCETCDTDSTDCTVR
 # GLGP--SYCSFSHNGSNQ------------------------------------------
 # -
+'''
