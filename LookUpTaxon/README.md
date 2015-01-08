@@ -9,29 +9,23 @@ Taxon Lookup Scripts
 
 before:
 ```
->chicken |gi|45383616|ref|NP_989588.1| follitropin subunit beta [Gallus gallus]
----------------------------------------M-----------KTLN-----
--CYV-L----------------------------------L--FCWKA-ICCYS-CELTN
-I-TIAVERE-----ECELCITVNATWCSGYCFTRD-PVYKYPP--V------------SS
-VQQICTFKEV--VY----ETVKIPGCGDHPE---SFYSYPVATECHCETCDTDSTDCTVR
-GLGP--SYCSFSHNGSNQ------------------------------------------
-
+>gi|45383616|ref|NP_989588.1| follitropin subunit beta [Gallus gallus]
+MKTLNCYVLLFCWKAICCYSCELTNITIAVEREECELCITVNATWCSGYCFTRDPVYKYPPVSSVQQICT
+FKEVVYETVKIPGCGDHPESFYSYPVATECHCETCDTDSTDCTVRGLGPSYCSFSHNGSNQ
 ```
 
 after:
 ```
->chicken |gi|45383616|ref|NP_989588.1| follitropin subunit beta [Gallus gallus]|Aves
----------------------------------------M-----------KTLN-----
--CYV-L----------------------------------L--FCWKA-ICCYS-CELTN
-I-TIAVERE-----ECELCITVNATWCSGYCFTRD-PVYKYPP--V------------SS
-VQQICTFKEV--VY----ETVKIPGCGDHPE---SFYSYPVATECHCETCDTDSTDCTVR
-GLGP--SYCSFSHNGSNQ------------------------------------------
--
+>gi|45383616|ref|NP_989588.1| follitropin subunit beta [Gallus gallus]|Aves
+MKTLNCYVLLFCWKAICCYSCELTNITIAVEREECELCITVNATWCSGYCFTRDPVYKYPPVSSVQQICT
+FKEVVYETVKIPGCGDHPESFYSYPVATECHCETCDTDSTDCTVRGLGPSYCSFSHNGSNQ
+
+
 ```
-Related report also produced not shown here.
+#####Related report also produced not shown here.
 
 
- 
+ ----------------------------------------------------------------------
  
 
 - LookUpTaxonFAComD.py   
@@ -61,4 +55,5 @@ VQQICTFKEV--VY----ETVKIPGCGDHPE---SFYSYPVATECHCETCDTDSTDCTVR
 GLGP--SYCSFSHNGSNQ------------------------------------------
 -
 ```
-Related report also produced not shown here.
+
+######Related report also produced not shown here.
