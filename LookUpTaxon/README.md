@@ -9,7 +9,7 @@ Taxon Lookup Scripts
 
 >LookUpTaxonFAComD.py takes as input a file of sequences in a modified FASTA format where my BioalignerNamer script has added the common name of the organisms and gives a report of the taxons involved. It also makes an output file with each taxon added to the description line of each FASTA record.
 
-####example of input and output for LookUpTaxonFAComD.py:
+#####example of input and output for LookUpTaxonFAComD.py:
 
 before:
 ```
