@@ -7,14 +7,14 @@ Taxon Lookup Scripts
 
 #####example of input and output for LookUpTaxonFA.py:
 
-before:
+original input:
 ```
 >gi|45383616|ref|NP_989588.1| follitropin subunit beta [Gallus gallus]
 MKTLNCYVLLFCWKAICCYSCELTNITIAVEREECELCITVNATWCSGYCFTRDPVYKYPPVSSVQQICT
 FKEVVYETVKIPGCGDHPESFYSYPVATECHCETCDTDSTDCTVRGLGPSYCSFSHNGSNQ
 ```
 
-after:
+ouput after:
 ```
 >gi|45383616|ref|NP_989588.1| follitropin subunit beta [Gallus gallus]|Aves
 MKTLNCYVLLFCWKAICCYSCELTNITIAVEREECELCITVNATWCSGYCFTRDPVYKYPPVSSVQQICT
@@ -42,7 +42,7 @@ FKEVVYETVKIPGCGDHPESFYSYPVATECHCETCDTDSTDCTVRGLGPSYCSFSHNGSNQ
 
 #####example of input and output for LookUpTaxonFAComD.py:
 
-before:
+original input:
 ```
 >chicken |gi|45383616|ref|NP_989588.1| follitropin subunit beta [Gallus gallus]
 ---------------------------------------M-----------KTLN-----
@@ -53,7 +53,7 @@ GLGP--SYCSFSHNGSNQ------------------------------------------
 
 ```
 
-after:
+output after:
 ```
 >chicken |gi|45383616|ref|NP_989588.1| follitropin subunit beta [Gallus gallus]|Aves
 ---------------------------------------M-----------KTLN-----
