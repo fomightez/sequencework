@@ -62,4 +62,13 @@ UGCGACAUGUGUCGCCUCUCACGCUACUAG
  `
  `
 
-- Another scipt?
+- In `Retrieveseq` folder is a script that takes a list of protein sequence records in FASTA format and gets the mRNA sequence correspoding to each. See `GetmRNAforProtein.py`.
+ ----------------------------------------------------------------------
+ ----------------------------------------------------------------------
+ ----------------------------------------------------------------------
+ `
+ `
+ `
+ `
+
+- In `Retrieveseq` folder is a script that takes a list of protein sequence records in FASTA format and gets the mRNA sequence or at least the coding sequence corresponding to each one. See `GetmRNAforProtein.py`.
