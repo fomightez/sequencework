@@ -102,7 +102,7 @@
 #  USER ADJUSTABLE VALUES        #
 ##################################
 #
-User_Email = "wdecatur@yahoo.com" #PUT YOUR E-MAIL HERE or NCBI's SERVER WILL COMPLAIN
+User_Email = "YOUR EMAIL HERE" #PUT YOUR E-MAIL HERE or NCBI's SERVER WILL COMPLAIN
 #
 #
 #*******************************************************************************
