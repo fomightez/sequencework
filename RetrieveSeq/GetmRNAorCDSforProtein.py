@@ -49,6 +49,27 @@
 # window by going to the the Dashboard on PythonAnywhere. I don't know if it was
 # a case of third time being the charm or not having the console window open
 # lowered demand. Just noting in case it helps later.)
+# Also fixed handling of gaps to handle bothe types listed in GG663364.1  GI:225561288
+# related to protein  EEH09737.1  GI:225561457
+# http://www.ncbi.nlm.nih.gov/protein/225561457 . It had the 'gap(629)' type I
+# knew of and originally designed for. But additionally, it has 'gap(unk100)'
+# instances. It has four of them and I assume since all numbered as 100 or the
+# overall counting of contig positions it assumes 100 bp for the unknown bp size.
+# Also added to function to try coded_by info handling examples like
+# http://www.ncbi.nlm.nih.gov/protein/226287726 where complement is first and
+# join inside like
+'''
+            /coded_by="complement(join(KN275970.1:36527..37040,
+                         KN275970.1:37237..37550))"
+'''
+# Under the function 'mine_the_cds_sequence_from_nuccore_seq' I added a try and
+# handling of a key error because found gi number 523422945 gives keyerror for
+# 'product' with line
+'''
+seq.id ="gi|"+ genbank_seq_to_mine + ":"+ str(start) + "-" + str(end
+    ) + strand + " " + record.description + feature.qualifiers['product'][0]
+'''
+# so rewrote to handle based on http://stackoverflow.com/questions/2247412/python-best-way-to-check-for-existing-key
 # v.0.7.5. Added improvements to handling of mining contigs but making all parts
 # before region containing start position of cds for protein as 'N's. This should
 # save time and decrease calls to NCBI Entrez server, drastically in some cases.
@@ -403,8 +424,20 @@ def mine_the_cds_sequence_from_nuccore_seq(protein_GI_number, genbank_seq_to_min
         # getting start and end easily.
         strand = (str(feature.location))[-3:]
 
+        #found gi number 523422945 gives keyerror for 'product' with line
+        '''
         seq.id ="gi|"+ genbank_seq_to_mine + ":"+ str(start) + "-" + str(end
             ) + strand + " " + record.description + feature.qualifiers['product'][0]
+        '''
+        # so rewrote to handle based on http://stackoverflow.com/questions/2247412/python-best-way-to-check-for-existing-key
+        # If the 'product' key throws an error, seq.id is just built without
+        # using it.
+        try:
+            seq.id ="gi|"+ genbank_seq_to_mine + ":"+ str(start) + "-" + str(end
+            ) + strand + " " + record.description + feature.qualifiers['product'][0]
+        except KeyError:
+            seq.id ="gi|"+ genbank_seq_to_mine + ":"+ str(start) + "-" + str(end
+            ) + strand + " " + record.description
         seq.description = ", corresponds to cds for protein sequence GI_number " + protein_GI_number
 
         cds_seq_fasta = seq.format("fasta")  #adapted from http://biopython.org/wiki/SeqRecord
@@ -483,13 +516,25 @@ def extract_number_of_Ns(the_part):
     '''
     takes something like 'gap(679)' that deals with a gap in a nucleotide sequence
     of a contig such as in entry gi=159122327
-    at http://www.ncbi.nlm.nih.gov/nuccore/159122327
-    and returns the integer number of Ns in the gap
+    at http://www.ncbi.nlm.nih.gov/nuccore/159122327 (related to protein
+    EDP47457.1  GI:159122336) and returns the integer number of Ns in the gap.
+    Also handles 'gap(unk100)' style gaps as found in entry gi=225561288,
+    # related to protein  EEH09737.1  GI:225561457. All are
+    100 so I assume it defaults to that when the size of gap not known. And that
+    for sake of listing contig internal positions, it gets treated as 100 bo even though
+    size not specifically known yet. Seems so because assuming that, the assembled
+    cds for GI:225561457 matched the amino acids.
     '''
     #split on '(' and then take part after that and string through to closing ')'
     parts_list = the_part.split('(')
     info_item_of_parts_list = parts_list[1]
-    return int(info_item_of_parts_list[:info_item_of_parts_list.index(')')])
+    if info_item_of_parts_list.startswith('unk'):
+        #extract number after 'unk'. Examples I found all were 100 but I don't want
+        # to assume all use that. I recall original mouse genome had 50 bp.
+        return int(info_item_of_parts_list[3:info_item_of_parts_list.index(')')])
+    else:
+        #extract number in parantheses
+        return int(info_item_of_parts_list[:info_item_of_parts_list.index(')')])
 
 
 
@@ -743,9 +788,41 @@ def try_coded_by_info_to_get_cds(protein_involved_gi_num):
             sys.stderr.write("\n***********END OF THIS WARNING NOTICE************")
         else:
             cds_is_on_complement = False
-        uid_of_nt_seq, start_pos, end_pos = split_and_grab_gi_num_and_start_and_end_loc(cds_info_to_parse)
-        #Now should have information needed to fetch sequence and format into a fasta record
-        cds_seq = get_nt_seq_using_defined_start_end(uid_of_nt_seq, start_pos,end_pos, cds_is_on_complement)
+        if cds_info_to_parse.startswith("join"):
+            #if join within complement need to handle
+            '''
+            example:
+            from http://www.ncbi.nlm.nih.gov/protein/226287726
+            /coded_by="complement(join(KN275970.1:36527..37040,
+                         KN275970.1:37237..37550))"
+            '''
+            sys.stderr.write("\n**********************WARNING***********************")
+            sys.stderr.write("\n************************************************")
+            sys.stderr.write("\nFASTA entry for protein with GI number " + protein_involved_gi_num + " involves encoding on multiple exons. Extracting this information is in development.")
+            sys.stderr.write("\nREVIEWING THE RESULTS FOR THIS ONE IS HIGHLY RECOMMENDED.")
+            sys.stderr.write("\n************************************************")
+            sys.stderr.write("\n***********END OF THIS WARNING NOTICE************")
+            #Step 1: remove "join("  at start and take off ')' at end
+            cds_info_to_parse = cds_info_to_parse[5:-1]
+            logging.debug("removing 'join(' at start and ')' at end")
+            logging.debug(cds_info_to_parse)
+            #step 2: split on comma
+            multi_exon_parts_to_parse = cds_info_to_parse.split(',')
+            logging.debug(multi_exon_parts_to_parse)
+            #step 3: step through produced list, and
+            # collect each gi number and position info and then get each part of the sequence, appending to previous
+            #exon_info_list = []
+            for part in multi_exon_parts_to_parse:
+                uid_of_nt_seq, start_pos, end_pos = split_and_grab_gi_num_and_start_and_end_loc(part.strip()) #strip method removes leading and trailing white space these will have
+                part_of_cds_seq = get_nt_seq_using_defined_start_end(uid_of_nt_seq, start_pos,end_pos, cds_is_on_complement)
+                logging.debug(part_of_cds_seq[0:200])
+                cds_seq = cds_seq + part_of_cds_seq
+                #exon_info = [uid_of_nt_seq, start_pos, end_pos]
+                #exon_info_list.append(exon_info)
+        else:
+            uid_of_nt_seq, start_pos, end_pos = split_and_grab_gi_num_and_start_and_end_loc(cds_info_to_parse)
+            #Now should have information needed to fetch sequence and format into a fasta record
+            cds_seq = get_nt_seq_using_defined_start_end(uid_of_nt_seq, start_pos,end_pos, cds_is_on_complement)
     logging.debug(cds_seq)
     #Need to set ID and description that will be in FASTA to be what I want
     if cds_is_on_complement:
