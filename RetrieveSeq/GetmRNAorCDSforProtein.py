@@ -385,7 +385,7 @@ def mine_the_cds_sequence_from_nuccore_seq(protein_GI_number, genbank_seq_to_min
     '''
     Takes two GI_numbers, one for a protein sequence of interest and one
     for a genbank nucleotide sequence that harbors the coding sequence for that
-    protein sequence and returns the coding sequence for the protein.
+    protein sequence and returns the coding sequence for the protein in fasta format.
     initially adapted from http://biopython.org/pipermail/biopython/2009-August/005471.html
     '''
     #pause program to avoid slamming NCBI Entrez server, see
@@ -443,8 +443,7 @@ def mine_the_cds_sequence_from_nuccore_seq(protein_GI_number, genbank_seq_to_min
         cds_seq_fasta = seq.format("fasta")  #adapted from http://biopython.org/wiki/SeqRecord
         logging.debug("cds sequence")
         logging.debug(cds_seq_fasta[0:100])
-
-        logging.debug(cds_seq_fasta)
+        return cds_seq_fasta
 
 
 def tsplit(string, delimiters):
