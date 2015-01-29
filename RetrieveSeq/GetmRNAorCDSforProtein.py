@@ -443,7 +443,7 @@ def mine_the_cds_sequence_from_nuccore_seq(protein_GI_number, genbank_seq_to_min
         cds_seq_fasta = seq.format("fasta")  #adapted from http://biopython.org/wiki/SeqRecord
         logging.debug("cds sequence")
         logging.debug(cds_seq_fasta[0:100])
-        return cds_seq_fasta
+        #return cds_seq_fasta
 
 
 def tsplit(string, delimiters):
