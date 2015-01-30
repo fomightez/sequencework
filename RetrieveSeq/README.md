@@ -3,7 +3,7 @@
 ## Running these scripts
 You to do two things to run these scripts:
 
-- These rely on the Biopython module to run. PythonAnywhere.com has this module [installed by default](https://www.pythonanywhere.com/batteries_included/). See [here](http://biopython.org/DIST/docs/install/Installation.html) otherwise.
+- These rely on the Biopython module to run. PythonAnywhere.com has this module [installed by default](https://www.pythonanywhere.com/batteries_included/). To install on Sourclair.com and many other places, type `pip install biopython` at the terminal. See [here](http://biopython.org/DIST/docs/install/Installation.html) otherwise.
 
 - Put your e-mail address in the User_Email variable under USER ADJUSTABLE VALUES. This is because NCBI needs a way to contact you if you violate their policies.  See [Frequency, Timing and Registration of E-utility URL Requests](http://www.ncbi.nlm.nih.gov/books/NBK25497/).
 
