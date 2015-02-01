@@ -1,5 +1,5 @@
 #GetmRNAorCDSforProtein.py  by Wayne Decatur
-#ver 0.8
+#ver 0.9
 #
 #
 # To GET HELP/MANUAL, enter on command line:
@@ -22,6 +22,68 @@
 #
 #
 #
+#
+#
+#
+# TO RUN:
+# For example, enter on the command line, the line
+#-----------------------------------
+# python GetmRNAorCDSforProtein.py
+#-----------------------------------
+#
+#
+# Note that I worked out the basic, first version of this script using my
+# IPython notebook entitled 'Using ELink to convert protein sequences to
+# mRNA.ipynb'. See that script for further documentation and links related
+# to substeps.
+#*************************************************************************
+
+
+
+
+##################################
+#  USER ADJUSTABLE VALUES        #
+##################################
+#
+User_Email = "YOUR EMAIL GOES HERE" #PUT YOUR E-MAIL HERE or NCBI's SERVER WILL COMPLAIN
+#
+#
+#*******************************************************************************
+#*******************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################################
+#  RECENT VERSION HISTORY AND TO DO LIST       #
+################################################
+#
+# v.0.9. Added checking that the cds produced for those that do not have 1:1
+# mRNA correspondences indeed give the protein sequence originally supplied.
+# Using the new validity checker, fixed function
+# `mine_the_cds_sequence_from_nuccore_seq` where it tries to mine the CDS from
+# associated nucleotide sequence features list so that it returns None unless
+# valid. This is better because if it returned any sequence before it was accepting
+# it as correct. I didn't notice it prior to v.0.9. because I was essentially
+# doing the work of this function but never returning the result and relying on
+# the more reliable but much less efficient function where I use the coded_by.
 # v.0.8. Added more improvements to handling of mining contigs to make much more
 # efficient. Did two things:
 # 1) I changed so instead of making a string representing parts proceeding those
@@ -91,43 +153,21 @@ seq.id ="gi|"+ genbank_seq_to_mine + ":"+ str(start) + "-" + str(end
 #
 #
 # To do:
+# - Make it so it counts the calls to the NCBI server as it progresses.
 # - add diaplay of warning if user tries to run during the non-allowed time a job
 # with  more than 25 sequences because need treat as 4 times that given possible
 # number of calls to NCBI for difficult sequences to obtain.
 #
-# - Possibly add a test to see if cds begins with ATG (or GTG?) and ends with
-# three nts corresponding to a stop codon. Print a warning for thoee that do not.
-# mRNAs obtained by the first method from NCBI should fine and won't necessarily
-# correspond to begining with ATG or ending with stop codon, since they are more
-# than ORF encoding part often.
-#
-#
-#
-# TO RUN:
-# For example, enter on the command line, the line
-#-----------------------------------
-# python GetmRNAorCDSforProtein.py
-#-----------------------------------
-#
-#
-# Note that I worked out the basic, first version of this script using my
-# IPython notebook entitled 'Using ELink to convert protein sequences to
-# mRNA.ipynb'. See that script for further documentation and links related
-# to substeps.
-#*************************************************************************
-
-
-
-
-##################################
-#  USER ADJUSTABLE VALUES        #
-##################################
-#
-User_Email = "YOUR EMAIL HERE" #PUT YOUR E-MAIL HERE or NCBI's SERVER WILL COMPLAIN
-#
 #
 #*******************************************************************************
 #*******************************************************************************
+
+
+
+
+
+
+
 
 
 
@@ -153,15 +193,20 @@ from argparse import RawTextHelpFormatter
 from Bio import Entrez
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
+from Bio.Seq import Seq
+from Bio.Alphabet import IUPAC
 import urllib
 import re
 import time
 #import gzip
 
 #DEBUG CONTROL
-#comment line below to turn off debug print statements
+#comment off both of the two line below to turn off debug print statements and log
 #logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
-
+#logging.FileHandler(filename='GetmRNAorCDSforProtein_Run.log',level=logging.DEBUG) #leave
+# this uncommented to send debug messages to file, add  `, filemode='w' ` to write
+# over old file instead of append to the file, see
+# https://docs.python.org/2/howto/logging.html
 
 #path_to_folder_with_file = "" # LEFT HERE FOR POSSIBLE USE IN DEBUGGING
 #FASTA_protein_sequence_records_file = "30test.faa" # LEFT HERE FOR USE IN DEBUGGING
@@ -181,8 +226,9 @@ def ExtractGI_numbers(a_FASTA_file):
     >gi|16580628|emb|CAC82173.1| FSH receptor [Podarcis siculus]
     >gi|37778925|gb|AAO72730.1| follicle-stimulating hormone receptor [Bothrops jararaca]
 
-    Returns total and the list of the GI_numbers:
-    2, [1658062, 37778925]
+    Returns total and the list of the GI_numbers, and a dictionary of the
+    GI_numbers and corresponding sequence (not fully represented in example below):
+    2, [1658062, 37778925], {gi_example: sequence example, gi_example2: sequence_example_2}
 
     Want GI number because ELink works with that. I'd have to add another step to get
     to work with accession.version identifier. I originally couldn't get it with
@@ -191,16 +237,28 @@ def ExtractGI_numbers(a_FASTA_file):
     (publically available at https://www.biostars.org/p/64078/) where
     I did it starting with the accession.version identifier. However, if have full
     Genbank FAST record, just easier to get from that.
+
+    Want the dictionary where G_numbers are keys and sequence is value for later
+    use to validate that any CDSs minded produce the expected output.
     '''
     #initialize values
     the_FASTA_file = open(a_FASTA_file , "r")
     FASTA_entries_tally = 0
     GI_numbers_list = []
+    GI_and_sequence_dictionary = {}
+    last_sequence_string = ""  # to intialize for collecting sequence for possible validating results later
     #step through file mining the information
     for line in the_FASTA_file:
         line = line.strip ();#this way I have better control of ends ultimately becaue I know there isn't any unless I add
         if len(line) > 0:
             if line.startswith('>'): # only need those that start with the greater-than symbol as they have the accessions and need to be modified
+                #this signals a new fasta entry so put the info from the last one
+                # , if there was one [there won't be one if first '>' in file],
+                # in the dictionary collecting keys and sequences for validating CDS results
+                if last_sequence_string != "":
+                    GI_and_sequence_dictionary[GI_number] = last_sequence_string
+                    last_sequence_string = ""  # to reset
+                # now to return to main focus of this function
                 FASTA_entries_tally += 1
                 sys.stderr.write(".")
                 words = line.split()    # In case I need words as I go through
@@ -209,9 +267,18 @@ def ExtractGI_numbers(a_FASTA_file):
                 GI_number = InfoAndUIDs[1]
                 if GI_number not in GI_numbers_list:  #Do not bother adding if already there because it will save us time later by avoiding repeating lookups
                     GI_numbers_list.append(GI_number) #this will later be submitted Entrez as at http://www.bio-cloud.info/Biopython/en/ch8.html
+            else:
+                last_sequence_string = last_sequence_string + line #this is for building
+                # sequence to be stored in dictionary for later possible use in validating
+                # mined CDS sequences produce expected protein sequences.
     #done with user file read in
     the_FASTA_file.close()
-    return (FASTA_entries_tally, GI_numbers_list)
+    # need the sequence_string to get added to the dictionary
+    # or won't have the last one encountered in dictionary to possible use in
+    # validating CDS mining
+    if last_sequence_string != "":
+        GI_and_sequence_dictionary[GI_number] = last_sequence_string
+    return (FASTA_entries_tally, GI_numbers_list, GI_and_sequence_dictionary )
 
 
 
@@ -342,7 +409,7 @@ def get_nuccore_uid_for_a_protein_GI_number(GI_number):
     http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=protein&db=nuccore&id=693903775
     Also returns a list of any that failed to have a nuc elink result. (Even
     though there's only ever be at the most one in the list, I kept as list
-    because easy to deal with methods exists for lists in Python.)
+    because helpful methods exist for lists in Python.)
     '''
     nuccore_uid = ""
     difficult_GI_mumbers = []
@@ -361,14 +428,14 @@ def get_nuccore_uid_for_a_protein_GI_number(GI_number):
         # enttries I should build in some error handliing
         if each_record["LinkSetDb"] == []:
             #it seems to return the same number for IdList if it finds nothing
-            # and so I can use that it the error information
+            # and so I can use that in the error information
             record_with_issue = each_record["IdList"][0]
-            sys.stderr.write("\n*********************ERROR**********************")
-            sys.stderr.write("\n************************************************")
-            sys.stderr.write("\nFASTA entry with GI number " + record_with_issue +
-             " failed to return an entry from the nuccore database.")
-            sys.stderr.write("\n************************************************")
-            sys.stderr.write("\n************END OF THIS ERROR NOTICE************")
+            # sys.stderr.write("\n*********************ERROR**********************")
+            # sys.stderr.write("\n************************************************")
+            # sys.stderr.write("\nFASTA entry with GI number " + record_with_issue +
+            #  " failed to return an entry from the nuccore database.")
+            # sys.stderr.write("\n************************************************")
+            # sys.stderr.write("\n************END OF THIS ERROR NOTICE************")
             difficult_GI_mumbers.append(record_with_issue)
         else:
             nuccore_uid = each_record["LinkSetDb"][0]["Link"][-1]["Id"] #protein
@@ -380,12 +447,164 @@ def get_nuccore_uid_for_a_protein_GI_number(GI_number):
     logging.debug(nuccore_uid)
     return nuccore_uid, difficult_GI_mumbers
 
+def GetTaxID(protein_GI_number):
+    '''
+    returns a Taxonmy ID for a protein GI number
+
+    Specifically, uses Entrez Esummary to get taxonmy id, based on
+    http://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESummary
+    under `Protein`
+    '''
+    the_retrieved_tax_id = ""
+    #ESummary
+    handle = Entrez.esummary(db="protein", id=protein_GI_number)
+    result = Entrez.read(handle)
+    handle.close()
+    #logging.debug(result)
+    try:
+        the_retrieved_tax_id = result[0]["TaxId"]
+    except KeyError:
+        logging.debug("KeyError getting Taxonomy ID")
+        logging.debug("Taxonomy ID is None")
+        return None
+    logging.debug("Taxonomy ID")
+    logging.debug(the_retrieved_tax_id)
+    return the_retrieved_tax_id
+
+def GetTranslationTable(taxonomy_id):
+    '''
+    returns a translation table for a taxonomy id
+
+    returns it as a NCBI translation table id number
+    There are 25 see http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi
+    And http://biopython.org/DIST/docs/tutorial/Tutorial.html#htoc25 .
+
+    Specifically, uses Entrez Esummary to get taxonmy id, based on
+    http://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESummary
+    under `Protein`
+    '''
+    NCBI_translation_table_id = ""
+    # I found after I upgraded Biopython on PythonAnywhere to version 1.65
+    # from 1.61, I got an error concerning integer.  The error:
+    '''
+     File "GetmRNAforProteinV0.9.py", line 488, in GetTranslationTable
+        handle = Entrez.efetch(db="Taxonomy", id=taxonomy_id)
+      File "/home/wayne461/.local/lib/python2.7/site-packages/Bio/Entrez/__init__.py", line 149, in efetch
+        if ids.count(",") >= 200:
+    AttributeError: 'IntegerElement' object has no attribute 'count'
+    '''
+    # Seemed taxonomy id is a special type of integer
+    # <class 'Bio.Entrez.Parser.IntegerElement'> and integer was having problems
+    # in version 1.65. I was able to fix it by type converting `taxonomy_id`
+    # to a string. The solution was based on my tests
+    # and https://www.biostars.org/p/16262/#120125 and the knowledge it was
+    # probably a simple fix because it had been working without error in
+    # Biopython module version 1.61 and then was broken in 1.65. Plus I knew
+    # id could be strings or lists of strings for the Entrez id commands.
+    taxonomy_id = str(taxonomy_id)
+    #EFetch
+    handle = Entrez.efetch(db="Taxonomy", id=taxonomy_id)
+    result = Entrez.read(handle)
+    handle.close()
+    #logging.debug(result)
+    try:
+        NCBI_translation_table_id = result[0]['GeneticCode']['GCId']
+    except KeyError:
+        return None
+    logging.debug("NCBI_translation_table_id")
+    logging.debug(NCBI_translation_table_id)
+    return NCBI_translation_table_id
+
+def validate_cds(protein_GI_number, cds_seq_mined, last_chance_so_alert_user_when_not_valid):
+    '''
+    takes a protein_GI_number and a CDS mined for it (as a SeqRecord object [
+    because that is what `feature.extract(record)` ouputs and that was the
+    first input I had to develop around and will be the most complicated])
+    and validate_cds checks whether that CDS would produce the protein sequence
+    expected using a computationally  translated version of the CDS.
+    Alerts to user if there appears to be a problem so they can make
+    assessement. For example, an issue would be expected if sournce protein
+    not standard genetic code.
+
+    Return true if valid and false otherwise.
+
+    By setting the third argument to `True`, it can be set to show a message in
+    stderr upon failure to validate. Don't want message on attempt to mine CDS
+    from feature list, because if not valid yet, will just try the next approach.
+    '''
+    logging.debug("\nRecord mined:")
+    logging.debug(cds_seq_mined)
+    #on next line need to take SeqRecord object, get the `.seq` property and
+    # translate that
+    protein_produced_by_CDS = cds_seq_mined.seq.translate()# see http://wilke.openwetware.org/Parsing_Genbank_files_with_Biopython.html#Getting_the_actual_coding_sequence
+    # or http://biopython.org/DIST/docs/tutorial/Tutorial.html#htoc25 about
+    # .translate() method. `seq` property from http://biopython.org/wiki/SeqRecord.
+
+    logging.debug("\nTranslated, mined CDS as a <class 'Bio.Seq.Seq'>` type:")
+    logging.debug(protein_produced_by_CDS[:-1])#don't want last character for check because
+    # fasta of protein doesn't include asterisk for stop codon, like of translate
+    # of CDS produces. Hence, the `[:-1]` slice.logging.debug("\nTranslated, mined CDS as a <class 'Bio.Seq.Seq'>` type:")
+    logging.debug("\nTranslated, mined CDS as a <class 'Bio.Seq.Seq'>` type:")
+
+    actual_protein_sequence = GI_and_sequence_dict[protein_GI_number]
+    logging.debug("\nActual protein sequence:")
+    logging.debug(actual_protein_sequence)
+
+    #Don't want last character for check of `protein_produced_by`_CDS because
+    # fasta of protein doesn't include asterisk for stop codon, like of translate
+    # of CDS produces. Hence, the `[:-1]` on next line.
+    # `protein_produced_by_CDS[:-1]` is converted to a string so can be compared
+    # to the string `actual_protein_sequence`. Otherwise
+    # `protein_produced_by_CDS[:-1]` is type `<class 'Bio.Seq.Seq'>` and won't
+    # match the string despite showing same sequence.
+    if str(protein_produced_by_CDS[:-1]) == actual_protein_sequence:
+        logging.debug("\n----VALID MATCH PRODUCED----\n")
+        return True
+    else:
+        if last_chance_so_alert_user_when_not_valid:
+            #if this is the last chance for getting a valid CDS and it
+            # failed with standard translation table, get what it should be
+            # and try with that genetic code before informing user it failed
+            # By only doing this with those that fail with standard, it saves
+            # on calls to the NCBI Entrez server.
+            # STEP 1: Use Esummary to get taxonmy id, based on
+            # http://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESummary
+            # under `Protein`
+            Taxonomy_ID = GetTaxID(protein_GI_number)
+            logging.debug("Taxonomy_ID")
+            logging.debug(Taxonomy_ID)
+            if Taxonomy_ID != None:
+                #STEP 2: Get taxonmy record and extract appropriate genetic table
+                translation_table_integer = GetTranslationTable(Taxonomy_ID)
+                #Now translate with that table if not the default already tried
+                # see http://biopython.org/DIST/docs/tutorial/Tutorial.html#htoc25
+                # about use of others
+                if translation_table_integer != 1:
+                    protein_produced_by_CDS = cds_seq_mined.seq.translate(
+                        table=translation_table_integer)
+                    if str(
+                        protein_produced_by_CDS[:-1]) == actual_protein_sequence:
+                        logging.debug("\n----VALID MATCH PRODUCED----\n")
+                        return True
+            logging.debug("\n----NOT A VALID MATCH----\n")
+            sys.stderr.write("\n*******************WARNING OF POSSIBLE ERROR*********************")
+            sys.stderr.write("\n*****************************************************************")
+            sys.stderr.write("\nCDS obtained for protein with GI number " + protein_GI_number + " does not produce\nthe expected protein if translated.")
+            sys.stderr.write("\nREVIEWING THE RESULTS FOR THIS ONE IS HIGHLY RECOMMENDED.")
+            sys.stderr.write("\nThe cause may simply be that this validation attempt uses the\nstandard genetic code and that may not be the case for the source.")
+            sys.stderr.write("\n*****************************************************************")
+            sys.stderr.write("\n*******************END OF THIS WARNING NOTICE********************")
+    return False
+
 
 def mine_the_cds_sequence_from_nuccore_seq(protein_GI_number, genbank_seq_to_mine):
     '''
     Takes two GI_numbers, one for a protein sequence of interest and one
     for a genbank nucleotide sequence that harbors the coding sequence for that
-    protein sequence and returns the coding sequence for the protein in fasta format.
+    protein sequence and returns, if possible, the coding sequence for the
+    protein in fasta format.
+    It mines the CDS from the features list if it can match the protein_GI_number
+    to a feature.
     initially adapted from http://biopython.org/pipermail/biopython/2009-August/005471.html
     '''
     #pause program to avoid slamming NCBI Entrez server, see
@@ -400,7 +619,7 @@ def mine_the_cds_sequence_from_nuccore_seq(protein_GI_number, genbank_seq_to_min
     # to write and so I thought it would work to get it in Python buffer without
     # needing to write a file.
     record = SeqIO.read(gb_get_handle, "gb") #After worked out above line, I realized
-    # SewIO had a read method that needed ot be used to parse so why not use
+    # SeqIO had a read method that needed ot be used to parse so why not use
     # that here and already be ready for next step.
     gb_get_handle.close()
 
@@ -417,6 +636,11 @@ def mine_the_cds_sequence_from_nuccore_seq(protein_GI_number, genbank_seq_to_min
         seq = feature.extract(record) #from http://wilke.openwetware.org/Parsing_Genbank_files_with_Biopython.html#Getting_the_actual_coding_sequence
         # 'feature.extract()' handles strandedness automatically
         logging.debug(seq)
+        # need to confirm it is correct because this function can mine incorrect
+        # sequence from nuccore entries like JH712140.1, related to
+        # protein GI 393909334 because the sequence isn't acutally there since
+        # not assembled in nuccore entry. See end of function for more info.
+        validated_cds = validate_cds(protein_GI_number, seq, False)
 
         #Need to set ID and description that will be in FASTA to be what I want
         start=feature.location.start.position + 1 # want +1 because this comes from the zero-index python slice but need adjust
@@ -443,7 +667,32 @@ def mine_the_cds_sequence_from_nuccore_seq(protein_GI_number, genbank_seq_to_min
         cds_seq_fasta = seq.format("fasta")  #adapted from http://biopython.org/wiki/SeqRecord
         logging.debug("cds sequence")
         logging.debug(cds_seq_fasta[0:100])
-        #return cds_seq_fasta
+        #The approach of the next four lines insures that anything returned is
+        # correct at this stage. Before if it returned anything but none, I was
+        # going to accept it as correct. But I can see where this could be a
+        # problem for instances such as protein GI 393909334, where although the
+        # the associated sequence JH712140.1 has the feature it isn't assembled
+        # and returns
+        '''
+        'UnknownSeq(441, alphabet = IUPACAmbiguousDNA(), character = 'N')
+        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+        '''
+        # which is not None and has length greater than zero and so would have
+        # been accepted. I can now use this method again given the validity check
+        # and save the less efficient, call demanding method where I extract
+        # from 'coded_by' for such instances as where assembly needed or other
+        # difficult cases. I had not noticed this problem earlier because for
+        # development I had set this function to return nothing and so it was
+        # doing the work but never returning anything so essentially while it
+        # did the work, it never used data mined and relied on more reliable
+        # but much less efficient method where I extract from 'coded_by' info.
+        if validated_cds:
+            return cds_seq_fasta
+        else:
+            return None
+     #otherwise return None if got through all features finding nothing matching
+     # protein GI number
+    return None
 
 
 def tsplit(string, delimiters):
@@ -744,12 +993,12 @@ def try_coded_by_info_to_get_cds(protein_involved_gi_num):
                              complement(AL031177.1:109978..110238))"
 
         '''
-        sys.stderr.write("\n**********************WARNING***********************")
-        sys.stderr.write("\n************************************************")
-        sys.stderr.write("\nFASTA entry for protein with GI number " + protein_involved_gi_num + " involves encoding on multiple exons. Extracting this information is in development.")
-        sys.stderr.write("\nREVIEWING THE RESULTS FOR THIS ONE IS HIGHLY RECOMMENDED.")
-        sys.stderr.write("\n************************************************")
-        sys.stderr.write("\n***********END OF THIS WARNING NOTICE************")
+        # sys.stderr.write("\n**********************WARNING***********************")
+        # sys.stderr.write("\n************************************************")
+        # sys.stderr.write("\nFASTA entry for protein with GI number " + protein_involved_gi_num + " involves encoding on multiple exons. Extracting this information is in development.")
+        # sys.stderr.write("\nREVIEWING THE RESULTS FOR THIS ONE IS HIGHLY RECOMMENDED.")
+        # sys.stderr.write("\n************************************************")
+        # sys.stderr.write("\n***********END OF THIS WARNING NOTICE************")
         #Step 1: remove "join("  at start and take off ')' at end
         cds_info_to_parse = cds_info_to_parse[5:-1]
         logging.debug("removing 'join(' at start and ')' at end")
@@ -779,12 +1028,12 @@ def try_coded_by_info_to_get_cds(protein_involved_gi_num):
         if cds_info_to_parse.startswith("complement"):
             cds_is_on_complement = True
             cds_info_to_parse = fix_cds_info_to_parse_for_rev(cds_info_to_parse)
-            sys.stderr.write("\n**********************WARNING***********************")
-            sys.stderr.write("\n************************************************")
-            sys.stderr.write("\nFASTA entry for protein with GI number " + protein_involved_gi_num + " involves encoding on complement. Extracting this information is in development.")
-            sys.stderr.write("\nREVIEWING THE RESULTS FOR THIS ONE IS HIGHLY RECOMMENDED.")
-            sys.stderr.write("\n************************************************")
-            sys.stderr.write("\n***********END OF THIS WARNING NOTICE************")
+            # sys.stderr.write("\n**********************WARNING***********************")
+            # sys.stderr.write("\n************************************************")
+            # sys.stderr.write("\nFASTA entry for protein with GI number " + protein_involved_gi_num + " involves encoding on complement. Extracting this information is in development.")
+            # sys.stderr.write("\nREVIEWING THE RESULTS FOR THIS ONE IS HIGHLY RECOMMENDED.")
+            # sys.stderr.write("\n************************************************")
+            # sys.stderr.write("\n***********END OF THIS WARNING NOTICE************")
         else:
             cds_is_on_complement = False
         if cds_info_to_parse.startswith("join"):
@@ -795,12 +1044,12 @@ def try_coded_by_info_to_get_cds(protein_involved_gi_num):
             /coded_by="complement(join(KN275970.1:36527..37040,
                          KN275970.1:37237..37550))"
             '''
-            sys.stderr.write("\n**********************WARNING***********************")
-            sys.stderr.write("\n************************************************")
-            sys.stderr.write("\nFASTA entry for protein with GI number " + protein_involved_gi_num + " involves encoding on multiple exons. Extracting this information is in development.")
-            sys.stderr.write("\nREVIEWING THE RESULTS FOR THIS ONE IS HIGHLY RECOMMENDED.")
-            sys.stderr.write("\n************************************************")
-            sys.stderr.write("\n***********END OF THIS WARNING NOTICE************")
+            # sys.stderr.write("\n**********************WARNING***********************")
+            # sys.stderr.write("\n************************************************")
+            # sys.stderr.write("\nFASTA entry for protein with GI number " + protein_involved_gi_num + " involves encoding on multiple exons. Extracting this information is in development.")
+            # sys.stderr.write("\nREVIEWING THE RESULTS FOR THIS ONE IS HIGHLY RECOMMENDED.")
+            # sys.stderr.write("\n************************************************")
+            # sys.stderr.write("\n***********END OF THIS WARNING NOTICE************")
             #Step 1: remove "join("  at start and take off ')' at end
             cds_info_to_parse = cds_info_to_parse[5:-1]
             logging.debug("removing 'join(' at start and ')' at end")
@@ -823,6 +1072,7 @@ def try_coded_by_info_to_get_cds(protein_involved_gi_num):
             #Now should have information needed to fetch sequence and format into a fasta record
             cds_seq = get_nt_seq_using_defined_start_end(uid_of_nt_seq, start_pos,end_pos, cds_is_on_complement)
     logging.debug(cds_seq)
+
     #Need to set ID and description that will be in FASTA to be what I want
     if cds_is_on_complement:
         strand='(-)'
@@ -843,7 +1093,16 @@ def try_coded_by_info_to_get_cds(protein_involved_gi_num):
     cds_seq_fasta = cds_seq_record.format("fasta")  #adapted from http://biopython.org/wiki/SeqRecord
     logging.debug("cds sequence first 200 characters")
     logging.debug(cds_seq_fasta[0:200])
-    return cds_seq_fasta
+
+    # Confirm it is correct by checking validity of CDS to translate to original
+    # protein sequence.
+    # Since it is the last effort that will be attempted to get CDS, alert user
+    # in stderr to potential issue with produced sequence by setting third
+    #  argument, `last_chance_so_alert_user_when_not_valid`, to `True`.
+    validated_cds = validate_cds(protein_involved_gi_num, cds_seq_record, True)
+
+
+    return cds_seq_fasta, validated_cds
 
 
 ###--------------------------END OF HELPER FUNCTIONS---------------------------###
@@ -882,9 +1141,13 @@ if os.path.isfile(args.InputFile):
 
 
     #Read FASTA entries, keeping track of total, and mine GI numbers
+    # also make a dictionay where GInumbers are keys and values sequence for using
+    # to proofread any sequences where direct mRNA didn't exist and other methods
+    # are used to obtain CDS.
     sys.stderr.write("Reading in your FASTA entries..")
     Entrez.email = User_Email     # Always tell NCBI who you are
-    number_of_FASTA_entries, list_of_GI_numbers  = ExtractGI_numbers(fasta_file_name)
+    number_of_FASTA_entries, list_of_GI_numbers,  GI_and_sequence_dict \
+        = ExtractGI_numbers(fasta_file_name)
 
     #FOR DEBUGGING
     logging.debug(number_of_FASTA_entries)
@@ -968,6 +1231,7 @@ if os.path.isfile(args.InputFile):
     # solo mRNA entry and rather have to be teased out of some larger sequences.
     # Return those found in a dictionary where the value of the uid is the key.
     gi_nums_resistant_to_even_thorough_methods = []
+    not_valid_cds_count = 0
     difficult_to_get_dictionary = {} #even if ends up empty, need to set as empty so can
     # empty so can have in lines like 'for key in difficult_to_get_dictionary:'
     # and NOT GET AN ERROR THROWN. -> NameError: name 'difficult_to_get_dictionary' is not defined
@@ -992,9 +1256,11 @@ if os.path.isfile(args.InputFile):
             #try method 2 which relies on 'coded_by' information. IT is the last line
             # of attempts because it several calls to the NCBI Entrez server each time
             # it is run.
-            mined_sequence = try_coded_by_info_to_get_cds(gi_num_id)
+            mined_sequence, validity_of_cds = try_coded_by_info_to_get_cds(gi_num_id)
         logging.debug("mined_sequence is "+ str(mined_sequence))
         difficult_to_get_dictionary[gi_num_id] = mined_sequence
+        if validity_of_cds == False:
+            not_valid_cds_count += 1
 
     # Now step through the dictionary containing the uids of those not directly
     # linkable and replace the placeholder text in the_records_string with
@@ -1031,6 +1297,12 @@ if os.path.isfile(args.InputFile):
         sys.stderr.write(
             "\n"+ str(len(re.findall("^>", the_records_string, flags=re.MULTILINE))
             )+ " mRNA and cds sequence records in FASTA format retrieved from NCBI's Entrez server.")
+        if not_valid_cds_count > 0:
+            sys.stderr.write(
+            "\nHowever, "+ str(not_valid_cds_count
+            )+ " of the CDSs do not result in expected protein sequence when translated.\
+            \nSpecfics of not valid CDSs were listed above.")
+
     else:
         sys.stderr.write(
             "\n"+ str(len(re.findall("^>", the_records_string, flags=re.MULTILINE))
@@ -1049,6 +1321,9 @@ if os.path.isfile(args.InputFile):
     fastafileoutput.write(the_records_string)
     sys.stderr.write("\nResults written to file '"+ OutputFileName +"'.")
     fastafileoutput.close()
+
+
+
 
     #some additional cleaning up
     #next line is just to clean up so stdout is on next line at end
