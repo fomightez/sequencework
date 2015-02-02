@@ -203,7 +203,7 @@ import time
 #DEBUG CONTROL
 #comment off both of the two line below to turn off debug print statements and log
 #logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
-#logging.FileHandler(filename='GetmRNAorCDSforProtein_Run.log',level=logging.DEBUG) #leave
+#logging.basicConfig(filename='GetmRNAorCDSforProtein_Run.log',level=logging.DEBUG) #leave
 # this uncommented to send debug messages to file, add  `, filemode='w' ` to write
 # over old file instead of append to the file, see
 # https://docs.python.org/2/howto/logging.html
@@ -473,7 +473,8 @@ def GetTaxID(protein_GI_number):
 
 def GetTranslationTable(taxonomy_id):
     '''
-    returns a translation table for a taxonomy id
+    returns a translation table id (officially type
+    `<class 'Bio.Entrez.Parser.StringElement'>`) for a taxonomy id as input.
 
     returns it as a NCBI translation table id number
     There are 25 see http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi
@@ -483,7 +484,7 @@ def GetTranslationTable(taxonomy_id):
     http://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESummary
     under `Protein`
     '''
-    NCBI_translation_table_id = ""
+    NCBI_translation_table_id_str = ""
     # I found after I upgraded Biopython on PythonAnywhere to version 1.65
     # from 1.61, I got an error concerning integer.  The error:
     '''
@@ -495,8 +496,8 @@ def GetTranslationTable(taxonomy_id):
     '''
     # Seemed taxonomy id is a special type of integer
     # <class 'Bio.Entrez.Parser.IntegerElement'> and integer was having problems
-    # in version 1.65. I was able to fix it by type converting `taxonomy_id`
-    # to a string. The solution was based on my tests
+    # in version 1.65. I was able to fix it by type casting/converting
+    # `taxonomy_id` to a string. The solution was based on my tests
     # and https://www.biostars.org/p/16262/#120125 and the knowledge it was
     # probably a simple fix because it had been working without error in
     # Biopython module version 1.61 and then was broken in 1.65. Plus I knew
@@ -508,12 +509,14 @@ def GetTranslationTable(taxonomy_id):
     handle.close()
     #logging.debug(result)
     try:
-        NCBI_translation_table_id = result[0]['GeneticCode']['GCId']
+        NCBI_translation_table_id_str = result[0]['GeneticCode']['GCId']
+        #note the type for the table_id is <class 'Bio.Entrez.Parser.StringElement'>
+        # so later need to treat as a string or type cast back to what I want.
     except KeyError:
         return None
-    logging.debug("NCBI_translation_table_id")
-    logging.debug(NCBI_translation_table_id)
-    return NCBI_translation_table_id
+    logging.debug("NCBI_translation_table_id_str")
+    logging.debug(NCBI_translation_table_id_str)
+    return NCBI_translation_table_id_str
 
 def validate_cds(protein_GI_number, cds_seq_mined, last_chance_so_alert_user_when_not_valid):
     '''
@@ -575,13 +578,13 @@ def validate_cds(protein_GI_number, cds_seq_mined, last_chance_so_alert_user_whe
             logging.debug(Taxonomy_ID)
             if Taxonomy_ID != None:
                 #STEP 2: Get taxonmy record and extract appropriate genetic table
-                translation_table_integer = GetTranslationTable(Taxonomy_ID)
+                translation_table_id_str = GetTranslationTable(Taxonomy_ID)
                 #Now translate with that table if not the default already tried
                 # see http://biopython.org/DIST/docs/tutorial/Tutorial.html#htoc25
                 # about use of others
-                if translation_table_integer != 1:
+                if translation_table_id_str != "1":
                     protein_produced_by_CDS = cds_seq_mined.seq.translate(
-                        table=translation_table_integer)
+                        table=translation_table_id_str)
                     if str(
                         protein_produced_by_CDS[:-1]) == actual_protein_sequence:
                         logging.debug("\n----VALID MATCH PRODUCED----\n")
@@ -589,9 +592,18 @@ def validate_cds(protein_GI_number, cds_seq_mined, last_chance_so_alert_user_whe
             logging.debug("\n----NOT A VALID MATCH----\n")
             sys.stderr.write("\n*******************WARNING OF POSSIBLE ERROR*********************")
             sys.stderr.write("\n*****************************************************************")
-            sys.stderr.write("\nCDS obtained for protein with GI number " + protein_GI_number + " does not produce\nthe expected protein if translated.")
+            sys.stderr.write("\nCDS obtained for protein with GI number " + protein_GI_number + \
+                " does not produce\nthe expected protein if translated.")
             sys.stderr.write("\nREVIEWING THE RESULTS FOR THIS ONE IS HIGHLY RECOMMENDED.")
-            sys.stderr.write("\nThe cause may simply be that this validation attempt uses the\nstandard genetic code and that may not be the case for the source.")
+            sys.stderr.write(
+                "\nThe cause may simply be that this validation attempt did not use the appropriate\ngenetic code.")
+            if translation_table_id_str != "1":
+                sys.stderr.write(
+                    "\nAttempts at validation with both the standard genetic code and\nthe one NCBI ("\
+                        + translation_table_id_str +") has on record were made.")
+            else:
+                sys.stderr.write("\nThe standard genetic code was used in the validation attempt.")
+
             sys.stderr.write("\n*****************************************************************")
             sys.stderr.write("\n*******************END OF THIS WARNING NOTICE********************")
     return False
@@ -1136,6 +1148,7 @@ if os.path.isfile(args.InputFile):
     #root_path = path_to_folder_with_file # LEFT HERE FOR USE IN DEBUGGING
     #fasta_file = open(root_path + FASTA_protein_sequence_records_file , "r")# LEFT HERE FOR USE IN DEBUGGING; JUST UNCOMMENT THIS AND ABOVE LINE AND COMMENTOUT NEXT LINE
     fasta_file_name = args.InputFile
+    logging.debug("Starting run of program...")
     logging.debug(fasta_file_name)
     number_of_FASTA_entries = 0 #initiate with zero as value of Number of FASTA entries identified
 
@@ -1300,8 +1313,12 @@ if os.path.isfile(args.InputFile):
         if not_valid_cds_count > 0:
             sys.stderr.write(
             "\nHowever, "+ str(not_valid_cds_count
-            )+ " of the CDSs do not result in expected protein sequence when translated.\
-            \nSpecfics of not valid CDSs were listed above.")
+            )+ \
+            " of the CDSs do not result in expected protein sequence when translated.")
+            sys.stderr.write("\nSpecfic IDs of CDSs that were not valid have been listed above.")
+        else:
+            sys.stderr.write(
+            "\nAll CDSs have been validated as yielding the expected\nprotein sequence when translated.")
 
     else:
         sys.stderr.write(
@@ -1312,7 +1329,8 @@ if os.path.isfile(args.InputFile):
     if gi_nums_resistant_to_even_thorough_methods != []:
         list_for_user_not_obtained_mRNAs(gi_nums_resistant_to_even_thorough_methods)
         Write2File_orPrint_Lines_Of_Output_List(gi_nums_resistant_to_even_thorough_methods,Issues_FileName)
-        sys.stderr.write("\nList of GI_numbers for which no mRNA was obtained written to file '"+ Issues_FileName +"'.\n")
+        sys.stderr.write(
+            "\nList of GI_numbers for which no mRNA was obtained written to file '"+ Issues_FileName +"'.\n")
 
 
     #Save the good results
