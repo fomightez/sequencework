@@ -45,7 +45,7 @@
 #  USER ADJUSTABLE VALUES        #
 ##################################
 #
-User_Email = "YOUR EMAIL GOES HERE" #PUT YOUR E-MAIL HERE or NCBI's SERVER WILL COMPLAIN
+User_Email = "YOUR EMAIL ADDRESS HERE" #PUT YOUR E-MAIL HERE or NCBI's SERVER WILL COMPLAIN.
 #
 #
 #*******************************************************************************
@@ -301,12 +301,12 @@ def GetmRNA_uids(protein_GI_numbers):
             #it seems to return the same number for IdList if it finds nothing
             # and so I can use that it the error information
             record_with_issue = each_record["IdList"][0]
-            sys.stderr.write("\n*********************NOTICE**********************")
-            sys.stderr.write("\n************************************************")
-            sys.stderr.write("\nFASTA entry with GI number " + record_with_issue +
+            logging.debug("\n*********************NOTICE**********************")
+            logging.debug("\n************************************************")
+            logging.debug("\nFASTA entry with GI number " + record_with_issue +
              " failed to return mRNA from the nuccore database.")
-            sys.stderr.write("\n************************************************")
-            sys.stderr.write("\n************END OF THIS NOTICE******************")
+            logging.debug("\n************************************************")
+            logging.debug("\n************END OF THIS NOTICE******************")
             difficult_GI_mumbers.append(record_with_issue)
         else:
             mrna_id = each_record["LinkSetDb"][0]["Link"][0]["Id"]
@@ -547,7 +547,6 @@ def validate_cds(protein_GI_number, cds_seq_mined, last_chance_so_alert_user_whe
     logging.debug(protein_produced_by_CDS[:-1])#don't want last character for check because
     # fasta of protein doesn't include asterisk for stop codon, like of translate
     # of CDS produces. Hence, the `[:-1]` slice.logging.debug("\nTranslated, mined CDS as a <class 'Bio.Seq.Seq'>` type:")
-    logging.debug("\nTranslated, mined CDS as a <class 'Bio.Seq.Seq'>` type:")
 
     actual_protein_sequence = GI_and_sequence_dict[protein_GI_number]
     logging.debug("\nActual protein sequence:")
@@ -589,7 +588,6 @@ def validate_cds(protein_GI_number, cds_seq_mined, last_chance_so_alert_user_whe
                         protein_produced_by_CDS[:-1]) == actual_protein_sequence:
                         logging.debug("\n----VALID MATCH PRODUCED----\n")
                         return True
-            logging.debug("\n----NOT A VALID MATCH----\n")
             sys.stderr.write("\n*******************WARNING OF POSSIBLE ERROR*********************")
             sys.stderr.write("\n*****************************************************************")
             sys.stderr.write("\nCDS obtained for protein with GI number " + protein_GI_number + \
@@ -606,6 +604,7 @@ def validate_cds(protein_GI_number, cds_seq_mined, last_chance_so_alert_user_whe
 
             sys.stderr.write("\n*****************************************************************")
             sys.stderr.write("\n*******************END OF THIS WARNING NOTICE********************")
+    logging.debug("\n----NOT A VALID MATCH----\n")
     return False
 
 
@@ -674,6 +673,7 @@ def mine_the_cds_sequence_from_nuccore_seq(protein_GI_number, genbank_seq_to_min
         except KeyError:
             seq.id ="gi|"+ genbank_seq_to_mine + ":"+ str(start) + "-" + str(end
             ) + strand + " " + record.description
+        seq.id = remove_space_blocks(seq.id) #see second insctance of use for reason for this step
         seq.description = ", corresponds to cds for protein sequence GI_number " + protein_GI_number
 
         cds_seq_fasta = seq.format("fasta")  #adapted from http://biopython.org/wiki/SeqRecord
@@ -898,6 +898,7 @@ def get_nt_seq_using_defined_start_end(record_uid, the_starting_point,
                     # QUESTION: wouldn't 'contig_seq = record.seq[0:1]' above have done that? Going to leave though since also lets me set up for adjusting start and end and shouldn't be a huge cost to efficiency unless first one is huge and part needed is very far away from it.
                     if part == multi_contig_parts_to_parse[0]:
                         contig_seq = get_nt_seq_using_defined_start_end(uid_of_nt_seq, sub_start_pos,sub_end_pos, cds_is_on_complement)
+                        logging.debug("First 200 of sequence:")
                         logging.debug(contig_seq[0:200])
                         # since this signals start it is a nice time to set what will be
                         # adjusted start and end to starting_point and ending_point
@@ -957,6 +958,18 @@ def get_nt_seq_using_defined_start_end(record_uid, the_starting_point,
         return record.seq[the_starting_point:the_ending_point].reverse_complement()
     else:
         return record.seq[the_starting_point:the_ending_point]
+
+
+def remove_space_blocks(a_string):
+    '''
+    takes a string and removes any large blocks of space like like '       '
+    that have crept in from where the string where extracted.
+    '''
+    a_string = a_string.replace ("       ", " ")
+    a_string = a_string.replace ("    ", " ")
+    a_string = a_string.replace ("   ", " ")
+    a_string = a_string.replace ("  ", " ")
+    return a_string
 
 
 def try_coded_by_info_to_get_cds(protein_involved_gi_num):
@@ -1076,7 +1089,12 @@ def try_coded_by_info_to_get_cds(protein_involved_gi_num):
                 uid_of_nt_seq, start_pos, end_pos = split_and_grab_gi_num_and_start_and_end_loc(part.strip()) #strip method removes leading and trailing white space these will have
                 part_of_cds_seq = get_nt_seq_using_defined_start_end(uid_of_nt_seq, start_pos,end_pos, cds_is_on_complement)
                 logging.debug(part_of_cds_seq[0:200])
-                cds_seq = cds_seq + part_of_cds_seq
+                #exons were geting placed in wrong order before I added check of
+                # whether complement
+                if cds_is_on_complement:
+                    cds_seq = part_of_cds_seq + cds_seq
+                else:
+                    cds_seq = cds_seq + part_of_cds_seq
                 #exon_info = [uid_of_nt_seq, start_pos, end_pos]
                 #exon_info_list.append(exon_info)
         else:
@@ -1096,6 +1114,12 @@ def try_coded_by_info_to_get_cds(protein_involved_gi_num):
     cds_seq.id ="gi|"+ uid_of_nt_seq + ":"+ str(start_pos) + "-" + str(end_pos
         ) + strand + " " + protein_description[:-1] + " " + "mRNA cds"
     cds_seq.description = ", corresponds to cds for protein sequence GI_number " + protein_involved_gi_num
+    # I have been getting cds_seq.id/protein_description[:-1] where large blocks
+    # of spaces occur like '       ' .For example `>gi|KN275970.1:37236-37550(-)
+    # hypothetical protein PADG_08059 [Paracoccidioides brasiliensis       Pb18] mRNA cds ,
+    # corresponds to cds for protein sequence GI_number 226287726`. Will fix
+    # by removing these unnecssary blocks of spaces.
+    cds_seq.id =  remove_space_blocks(cds_seq.id)
     #turns out '.format' is a SeqRecord function as described here, so need to make a record first
     # before I can use that to format, see http://biopython.org/wiki/SeqRecord
     cds_seq_record = SeqRecord(cds_seq,
@@ -1309,7 +1333,7 @@ if os.path.isfile(args.InputFile):
     if len(not_directly_linkable_uids) > 0:
         sys.stderr.write(
             "\n"+ str(len(re.findall("^>", the_records_string, flags=re.MULTILINE))
-            )+ " mRNA and cds sequence records in FASTA format retrieved from NCBI's Entrez server.")
+            )+ " mRNA and CDS records in FASTA format retrieved from NCBI's Entrez server.")
         if not_valid_cds_count > 0:
             sys.stderr.write(
             "\nHowever, "+ str(not_valid_cds_count
