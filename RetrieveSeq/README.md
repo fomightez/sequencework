@@ -3,9 +3,9 @@
 ## Running these scripts
 You need to do two things to run these scripts:
 
-- These rely on the Biopython module to run. PythonAnywhere.com has this module [installed by default](https://www.pythonanywhere.com/batteries_included/). To install on Sourclair.com and many other places, type `pip install biopython` at the terminal. Often ` easy_install biopython` will work at a terminal line as well. See [here](http://biopython.org/DIST/docs/install/Installation.html) otherwise.
+- These rely on the Biopython module to run. PythonAnywhere.com has this module [installed by default](https://www.pythonanywhere.com/batteries_included/). To install on [Sourcelair.com](https://www.sourcelair.com/) and many other places, type `pip install biopython` at the terminal. Often ` easy_install biopython` will work at a terminal line as well. See [here](http://biopython.org/DIST/docs/install/Installation.html) for further information about installing the module if the previous suggestion didn't work for your situation.
 
-- Put your e-mail address in the User_Email variable under USER ADJUSTABLE VALUES. This is because NCBI needs a way to contact you if you violate their policies.  See [Frequency, Timing and Registration of E-utility URL Requests](http://www.ncbi.nlm.nih.gov/books/NBK25497/).
+- Put your e-mail address in the User_Email variable under USER ADJUSTABLE VALUES. This is because NCBI wants a way to contact you if you are violating their policies.  See [Frequency, Timing and Registration of E-utility URL Requests](http://www.ncbi.nlm.nih.gov/books/NBK25497/).
 
 ## Description of each script
 - `GetmRNAforProtein.py`      protein --> mRNA
