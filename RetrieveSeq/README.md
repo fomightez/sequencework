@@ -1,7 +1,7 @@
 #Sequence Retrieval
 
 ## Running these scripts
-You to do two things to run these scripts:
+You need to do two things to run these scripts:
 
 - These rely on the Biopython module to run. PythonAnywhere.com has this module [installed by default](https://www.pythonanywhere.com/batteries_included/). To install on Sourclair.com and many other places, type `pip install biopython` at the terminal. Often ` easy_install biopython` will work at a terminal line as well. See [here](http://biopython.org/DIST/docs/install/Installation.html) otherwise.
 
