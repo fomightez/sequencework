@@ -12,10 +12,11 @@
 # (actually cDNAs as the Ts in the sequence indicate) in FASTA format. Producing
 # a file with those sequences.
 #
-# CAVEAT: This will not work for protein sequences from PDB files like those available
-# from PDBsum. The reason is that those files don't have Entrez uids that relate
-# to Genbank sequence entries. Therefore cannot get mRNA. Would need to get
-# same sequence from Genbank first.
+# CAVEAT: Limited to FASTA format from NCBI. This will not work for protein
+# sequences from PDBsum or direct from Sacchaomyces cerevisiae genome despite
+# those being in FASTA format. The reason is that those records don't contain
+# Entrez identifiers that relate to NCBI sequence entries. Therefore cannot get
+# mRNA. Would need to get same sequence from NCBI first.
 #
 #
 # v.0.6. This works for all cases where there is a one-to-one relationship
