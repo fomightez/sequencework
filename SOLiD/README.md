@@ -30,8 +30,8 @@ https://www.biostars.org/p/82513/ for examples that do.
 Nothing but the fairly standard modules such as os, sys, and argparse.
 
 
-#####example of input and output for split_SOLiD_reads.py:
-###### EXAMPLE RUN
+####Example of input and output for split_SOLiD_reads.py:
+##### EXAMPLE RUN
 Using Rhee and Pugh, 2011 data for SRR346368 at
 http://www.ncbi.nlm.nih.gov/sra/SRX098212[accn]
 
@@ -50,7 +50,7 @@ Specific example for Rhee and Pugh, 2011 Gal4 data,
 
 	python split_SOLiD_reads.py sraSRR34638.fastq TAGCGT 10
 
-###### INPUT
+##### INPUT
 
 	@SRR346368.1.1 0176_20090623_2_Specific_Factors_926_144_1410 length=35
 	ACATAACTAATTTACCGCTTTTTAAACATACCCCC
