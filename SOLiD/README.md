@@ -1,3 +1,7 @@
+#AB SOLiD scripts
+
+Python scripts by Wayne Decatur for working with AB SOLiD sequencing data.
+
 - split_SOLiD_reads.py
 
 >Separates out reads that match a barcode in Applied Biosystems SOLiD
