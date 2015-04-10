@@ -21,12 +21,12 @@ Cell. 2011 Dec 9;147(6):1408-19. doi: 10.1016/j.cell.2011.11.013.
 PMID: 22153082 http://www.ncbi.nlm.nih.gov/pubmed/22153082.
 
 
-###LIMITATIONS
+####Limitations
 Unlike other programs for demultiplexing read data, this one is rather naive and does not allow
 for mismatches or bp in front of the barcode. See
 https://www.biostars.org/p/82513/ for examples that do.
 
-###Dependencies
+####Dependencies
 Nothing but the fairly standard modules such as os, sys, and argparse.
 
 
