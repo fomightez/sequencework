@@ -8,7 +8,7 @@ Python scripts by Wayne Decatur for working with AB SOLiD sequencing data.
 data, such as that in Rhee HS and Pugh BF, 2011*.
 
 >For example, the metada associated with AB SOLiD System 3.0 reads for data
-SRR346368, run #1 at http://www.ncbi.nlm.nih.gov/sra/SRX098212[accn]),
+SRR346368, run #1 at http://www.ncbi.nlm.nih.gov/sra/SRX098212[accn],
 says the fastq file contains both Reb1 and Gal4 data, each having a diffferent
 barcode for  the  first 6  bp of the reverse mate of the paired-end reads.
 In the fastq file the pairs are interleaved and  so this program handles
@@ -33,7 +33,7 @@ Nothing but the fairly standard modules such as os, sys, and argparse.
 #####example of input and output for split_SOLiD_reads.py:
 ###### EXAMPLE RUN
 Using Rhee and Pugh, 2011 data for SRR346368 at
-http://www.ncbi.nlm.nih.gov/sra/SRX098212[accn])
+http://www.ncbi.nlm.nih.gov/sra/SRX098212[accn]
 
 TO RUN:
 Enter on the command line, the line
