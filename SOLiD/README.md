@@ -22,7 +22,7 @@ PMID: 22153082 http://www.ncbi.nlm.nih.gov/pubmed/22153082.
 
 
 ###LIMITATIONS
-Unlike other programs for demultiplexing read data, this one does not allow
+Unlike other programs for demultiplexing read data, this one is rather naive and does not allow
 for mismatches or bp in front of the barcode. See
 https://www.biostars.org/p/82513/ for examples that do.
 
