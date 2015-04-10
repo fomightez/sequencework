@@ -77,7 +77,7 @@ Specific example for Rhee and Pugh, 2011 Gal4 data,
 	+SRR346368.4889.2 0176_20090623_2_Specific_Factors_946_46_1420 length=10
 	9;6+8898<:
 
-###### OUTPUT
+##### OUTPUT
 
 	@SRR346368.4889.1 0176_20090623_2_Specific_Factors_946_46_1420 length=35
 	CAAAAGAGAAAGACAAAGGCCGGGGGAAAAGAAAA
