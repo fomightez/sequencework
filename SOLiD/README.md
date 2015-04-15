@@ -46,7 +46,7 @@ TAGCGT.) BARCODE_CONTAINING_READ_LENGTH is the length of
 the reverse read containing the barcode. (In the case of Rhee and Pugh, 2011
 this is 10.)
 
-Specific example for Rhee and Pugh, 2011 Gal4 data,
+Specific example for Rhee and Pugh 2011 Reb1- and Gal4-associated data downloaded [as fastq](http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?cmd=dload&run_list=SRR346368&format=fastq) empoloying [this approach](http://user.list.galaxyproject.org/does-Galaxy-have-a-tool-for-converting-sra-files-to-fastq-files-td4655179.html):
 
 	python split_SOLiD_reads.py sraSRR34638.fastq TAGCGT 10
 
