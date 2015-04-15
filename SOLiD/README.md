@@ -33,7 +33,7 @@ Nothing but the fairly standard modules such as os, sys, and argparse.
 ####Example of input and output for split_SOLiD_reads.py:
 ##### EXAMPLE RUN
 Using Rhee and Pugh, 2011 data for SRR346368 at
-http://www.ncbi.nlm.nih.gov/sra/SRX098212[accn]
+http://www.ncbi.nlm.nih.gov/sra/SRX098212[accn];
 Reb1- and Gal4-associated data downloaded [as fastq](http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?cmd=dload&run_list=SRR346368&format=fastq) empoloying [this approach](http://user.list.galaxyproject.org/does-Galaxy-have-a-tool-for-converting-sra-files-to-fastq-files-td4655179.html)
 
 TO RUN:
