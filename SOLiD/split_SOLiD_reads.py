@@ -23,6 +23,10 @@
 # interactions detected at single-nucleotide resolution.
 # Cell. 2011 Dec 9;147(6):1408-19. doi: 10.1016/j.cell.2011.11.013.
 # PMID: 22153082 http://www.ncbi.nlm.nih.gov/pubmed/22153082.
+# Reb1- and Gal4-associated data downloaded
+# http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?cmd=dload&run_list=SRR346368&format=fastq
+# empoloying this approach -->
+# http://user.list.galaxyproject.org/does-Galaxy-have-a-tool-for-converting-sra-files-to-fastq-files-td4655179.html
 #
 #
 # LIMITATIONS:
