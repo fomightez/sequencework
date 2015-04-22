@@ -41,6 +41,10 @@
 #
 # v.0.1. Started
 #
+# To Do: The -I option of SRA toolkit insures a read id is indicated after
+# each after spot id as `accession.spot.readid` on defline of the read infor and
+# I'd like to add checking that value matches so that doesn't collect any where
+# the sync got knocked off between the the tag and the proper genomic read mate.
 #
 #
 # TO RUN:
