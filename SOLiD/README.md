@@ -26,7 +26,7 @@ Unlike other programs for demultiplexing read data, this one is rather naive and
 for mismatches or bp in front of the barcode. See
 https://www.biostars.org/p/82513/ for examples that do.
 
-The validity check to see if the read pairs involved match up was developned using SRA-downloaded data from Rhee and Pugh, 2011 that used the `~/sratoolkit/bin/fastq-dump -B -I --split-spot --minReadLen 0 SRR346368` command to download and convert the data. The check used in this script is dependent on the information added by `-I` option. If the information about the spot id and read id in your fastq file don't match exactly the location and form as `accession.spot.readid` on defline of the read info, this script will not work poperly for you. The `_basic` version doesn't utilize such information to do a validity check and may prove more useful for you in this case.
+The validity check to see if the read pairs involved match up was developned using SRA-downloaded data from Rhee and Pugh, 2011 that used the `~/sratoolkit/bin/fastq-dump -B -I --split-spot --minReadLen 0 SRR346368` command to download and convert the data. The check used in this script is dependent on the information added by `-I` option. If the information about the spot id and read id in your fastq file don't match exactly the location and form as `accession.spot.readid` on defline of the read info, this script will not work poperly for you. The `_basic` version doesn't utilize that information becasue it does no such validity check and that version of the script may prove more useful for you in this case.
 
 ####Dependencies
 Nothing but the fairly standard modules such as os, sys, and argparse.
