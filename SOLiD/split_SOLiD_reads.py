@@ -1,5 +1,5 @@
 #split_SOLiD_reads.py  by Wayne Decatur
-#ver 0.1
+#ver 0.2
 #
 #
 # To GET HELP/MANUAL, enter on command line:
@@ -34,17 +34,23 @@
 # and does not allow for mismatches or bp in front of the barcode. See
 # https://www.biostars.org/p/82513/ for examples that do.
 #
+# The fastq-dump command needs to include the '-I' option as the validity check
+# to see if the read and spot id show they are related depends on this
+# information. The `split_SOLiD_reads_basic.py` version doesn't utilize such
+# information as it does not do such a validity check and that script may prove
+# more useful for general cases.
+#
 # Dependencies:
 # Nothing but the fairly standard modules such as os, sys, and argparse.
 #
 #
 #
 # v.0.1. Started
+# v.0.2. Added a validity check based on the spot and read ids to insure the
+# tag and the genomic read mate truely are associated. Not that this needs the
+# information added by the `-I` option of the `fastq-dump` command.
 #
-# To Do: The -I option of SRA toolkit insures a read id is indicated after
-# each after spot id as `accession.spot.readid` on defline of the read infor and
-# I'd like to add checking that value matches so that doesn't collect any where
-# the sync got knocked off between the the tag and the proper genomic read mate.
+# To Do:
 #
 #
 # TO RUN:
@@ -172,6 +178,62 @@ def devise_file_name(file_name, barcode):
         return file_name+"_" + barcode
 
 
+def extract_spot_read_ids(a_line):
+    '''
+    Takes a line of text as input and returns the spot and read id
+    numbers.
+
+    For example, if the line was
+
+        @SRR346368.4889.1 0176_20090623_2_Specific_Factors_946_46_1420 length=35
+
+    it will return
+        4889
+    and
+        1
+
+    '''
+    word_list = a_line.split()
+    split_on_dots_list = word_list[0].split(".")
+    return split_on_dots_list[1], split_on_dots_list[2]
+
+
+def spot_and_read_id_valid(previous_lines_list):
+    '''
+    Takes the previous few lines and checks if the
+    spot ids match up and the read ids are #1 and #2 in a set.
+
+    This will insure reads out of sync are not collected.
+
+    Specifically, if the last line starts
+
+        @SRR346368.4889.2
+
+    the beginning of the lines two and four lines back from that should both be
+
+        @SRR346368.4889.1
+
+    '''
+    # extract spot and read ids for the involved lines
+    last_line_spot_id, last_line_read_id = extract_spot_read_ids(
+        previous_lines_list[-1])
+    # last_line_read_id should be "2" or no point continuing
+    if last_line_read_id != "2":
+        return False
+    two_back_spot_id, two_back_read_id = extract_spot_read_ids(
+        previous_lines_list[-3])
+    four_back_spot_id, four_back_read_id = extract_spot_read_ids(
+        previous_lines_list[-5])
+    # those read_ids should be "1" or no point continuing
+    if two_back_read_id != "1" or four_back_read_id != "1":
+        return False
+    if (last_line_spot_id == two_back_spot_id) and (
+        two_back_spot_id == four_back_spot_id):
+        return True
+    else:
+        return False
+
+
 
 def extract_reads(fastq_input_file_name, the_barcode, the_barcode_seq_len):
     '''
@@ -207,10 +269,14 @@ def extract_reads(fastq_input_file_name, the_barcode, the_barcode_seq_len):
     # initialize the storage list with values so always has 5 strings in it
     # even at start of file reading
     previous_five_lines_storage_list = ["nada","zip","zero","nilch","zed"]
+    # initialize something for tracking line numbers to easily tell where start
+    # of fastq record is since each entry in a fastq file is exactly four lines.
+    current_file_line_number= 0
     #step through file mining the information
     for line in the_FASTQ_file:
+        current_file_line_number += 1
         line = line.strip ();#this way I have better control of ends ultimately
-        # ecaue I know there isn't any unless I add something.
+        # becaue I know there isn't any unless I add something.
 
         # Since want to tally paired-reads for feedback to user, I'll count
         # when I see the symbol '@' at the beginning of a line in the file
@@ -220,14 +286,28 @@ def extract_reads(fastq_input_file_name, the_barcode, the_barcode_seq_len):
         # Count as 0.5 since counting pairs. Concerned with pairs here because
         # in Rhee and Pugh, 2011 Gal4 data, the short read of the mate pairs is
         # is mainly for the barcode and the long read was used for mapping.
-        if line.startswith('@'):
+        # Oritingally I had `if line.startswith('@'):` but cannot do that since
+        # quality lines use that in codes, such as seen here:
+        # @SRR346368.46798614.1 0176_20090623_2_Specific_Factors_1836_2034_1925 length=35
+        # ACGTACATGAGGGCTATTTAGGGCTACCCGACCGG
+        # +SRR346368.46798614.1 0176_20090623_2_Specific_Factors_1836_2034_1925 length=35
+        # @@@@@@A:B=@?89<7)@966.1<1//,7/0<5+1
+        # (Would be so much easier if `@` not used outside of start of fastq record.)
+        # I realized this when I was getting results ending in `.5` and
+        # totalling more pairs than there were spots.
+        # `(current_file_line_number - 1)  % 4 == 0` means that the first then
+        # every fourth line after the first. I could avoided the `- 1` by leaving
+        # the line number pythonic but line 1 being line makes more sense and
+        # adding `+1` right at start also seems intuitively right.
+        if line.startswith('@') and ((current_file_line_number - 1)  % 4 == 0):
             paired_reads_tally += 0.5
 
         # Need to identify those starting with barcode but that aren't
         # the longer reads. So want the read to match size of the barcode
         # -contaning reads as provided by user.
         if (line.startswith(the_barcode)) and (
-            len(line) == the_barcode_seq_len) :
+            len(line) == the_barcode_seq_len) and (
+            spot_and_read_id_valid(previous_five_lines_storage_list)):
             # Now want to collect the read info from lines 1 through 4 of the
             # previous five lines & write it to file, plus
             # add 1 to the collected reads count collected count
