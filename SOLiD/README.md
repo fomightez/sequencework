@@ -10,7 +10,7 @@ data, such as that in Rhee HS and Pugh BF, 2011*.
 >For example, the metada associated with AB SOLiD System 3.0 reads for data
 SRR346368, run #1 at http://www.ncbi.nlm.nih.gov/sra/SRX098212[accn],
 says the fastq file contains both Reb1 and Gal4 data, each having a diffferent
-barcode for  the  first 6  bp of the reverse mate of the paired-end reads.
+barcode for  the  first 6 bp of the reverse mate of the paired-end reads.
 In the fastq file the pairs are interleaved and  so this program handles
 that type of data.
 
@@ -26,6 +26,8 @@ Unlike other programs for demultiplexing read data, this one is rather naive and
 for mismatches or bp in front of the barcode. See
 https://www.biostars.org/p/82513/ for examples that do.
 
+The validity check to see if the read pairs involved match up was developned using SRA-downloaded data from Rhee and Pugh, 2011 that used the `~/sratoolkit/bin/fastq-dump -B -I --split-spot --minReadLen 0 SRR346368` command to download and convert the data. The check used in this script is dependent on the information added by -I` option. If the information about the spot id and read id in your fastq file don't match exactly the location and form as `accession.spot.readid` on defline of the read info, this script will not work poperly for you. The `_basic` version doesn't utilize such information to do a validity check and may prove more useful for you in this case.
+
 ####Dependencies
 Nothing but the fairly standard modules such as os, sys, and argparse.
 
@@ -38,9 +40,9 @@ Enter on the command line, the line
 
 	python split_SOLiD_reads.py FASTQ_FILE_NAME BARCODE BARCODE_CONTAINING_READ_LENGTH
 
-where FASTQ_FILE_NAME is the name of the file of reads and BARCODE is
+where `FASTQ_FILE_NAME` is the name of the file of reads and BARCODE is
 the sequence of the barcode. (For the Gal4 data in Rhee and Pugh, 2011 this is
-TAGCGT.) BARCODE_CONTAINING_READ_LENGTH is the length of
+TAGCGT.) `BARCODE_CONTAINING_READ_LENGTH` is the length of
 the reverse read containing the barcode. (In the case of Rhee and Pugh, 2011
 this is 10.)
 
@@ -50,6 +52,93 @@ Reb1- and Gal4-associated data downloaded and converted to fastq using the
 SRA toolkit's fastq-dump:
 
 	python split_SOLiD_reads.py sraSRR34638.fastq TAGCGT 10
+
+##### INPUT
+
+	@SRR346368.1.1 0176_20090623_2_Specific_Factors_926_144_1410 length=35
+	ACATAACTAATTTACCGCTTTTTAAACATACCCCC
+	+SRR346368.1.1 0176_20090623_2_Specific_Factors_926_144_1410 length=35
+	#&&####+$*%#$##%##%$%$*'%#$)&#%%+#%
+	@SRR346368.1.2 0176_20090623_2_Specific_Factors_926_144_1410 length=0
+
+	+SRR346368.1.2 0176_20090623_2_Specific_Factors_926_144_1410 length=0
+
+	@SRR346368.122860.1 0176_20090623_2_Specific_Factors_947_1888_393 length=35
+	AGGGATGGCAAAAAAAGGGCAATCTAAAGATAAAG
+	+SRR346368.122860.1 0176_20090623_2_Specific_Factors_947_1888_393 length=35
+	(6<7<)?+-&')%,:-+551#+$3='-(%84,-2&
+	@SRR346368.122860.2 0176_20090623_2_Specific_Factors_947_1888_393 length=10
+	TGTTTCCCCC
+	+SRR346368.122860.2 0176_20090623_2_Specific_Factors_947_1888_393 length=10
+	'$.<4)<1;<
+	@SRR346368.4889.1 0176_20090623_2_Specific_Factors_946_46_1420 length=35
+	CAAAAGAGAAAGACAAAGGCCGGGGGAAAAGAAAA
+	+SRR346368.4889.1 0176_20090623_2_Specific_Factors_946_46_1420 length=35
+	=:59??;<8@?=7=1<<'8=<4.>52227;,<74;
+	@SRR346368.4889.2 0176_20090623_2_Specific_Factors_946_46_1420 length=10
+	TAGCGTTCTC
+	+SRR346368.4889.2 0176_20090623_2_Specific_Factors_946_46_1420 length=10
+	9;6+8898<:
+
+##### OUTPUT
+
+	@SRR346368.4889.1 0176_20090623_2_Specific_Factors_946_46_1420 length=35
+	CAAAAGAGAAAGACAAAGGCCGGGGGAAAAGAAAA
+	+SRR346368.4889.1 0176_20090623_2_Specific_Factors_946_46_1420 length=35
+	=:59??;<8@?=7=1<<'8=<4.>52227;,<74;
+
+
+
+- split_SOLiD_reads_basic.py
+
+>Separates out reads that match a barcode in Applied Biosystems SOLiD
+data, such as that in Rhee HS and Pugh BF, 2011*. Developed as part of developing `split_SOLiD_reads.py` and could be useful. A better version for dealing with the SRA software-downloaded Rhee and Pugh, 2011 data was developed but this could be a useful more general version and so kept separate still.
+
+>For example, the metada associated with AB SOLiD System 3.0 reads for data
+SRR346368, run #1 at http://www.ncbi.nlm.nih.gov/sra/SRX098212[accn],
+says the fastq file contains both Reb1 and Gal4 data, each having a diffferent
+barcode for  the  first 6 bp of the reverse mate of the paired-end reads.
+In the fastq file the pairs are interleaved and  so this program handles
+that type of data.
+
+>*Full Citation:
+Rhee HS and Pugh BF. 2011. Comprehensive genome-wide protein-DNA
+interactions detected at single-nucleotide resolution.
+Cell. 2011 Dec 9;147(6):1408-19. doi: 10.1016/j.cell.2011.11.013.
+PMID: 22153082 http://www.ncbi.nlm.nih.gov/pubmed/22153082.
+
+
+####Limitations
+Unlike other programs for demultiplexing read data, this one is rather naive and does not allow
+for mismatches or bp in front of the barcode. See
+https://www.biostars.org/p/82513/ for examples that do.
+
+Also doesn't check in any way to see if the read pairs involved match up.
+
+####Dependencies
+Nothing but the fairly standard modules such as os, sys, and argparse.
+
+
+####Example of input and output for split_SOLiD_reads.py:
+##### EXAMPLE RUN
+
+TO RUN:
+Enter on the command line, the line
+
+	python split_SOLiD_reads_basic.py FASTQ_FILE_NAME BARCODE BARCODE_CONTAINING_READ_LENGTH
+
+where `FASTQ_FILE_NAME` is the name of the file of reads and BARCODE is
+the sequence of the barcode. (For the Gal4 data in Rhee and Pugh, 2011 this is
+TAGCGT.) `BARCODE_CONTAINING_READ_LENGTH` is the length of
+the reverse read containing the barcode. (In the case of Rhee and Pugh, 2011
+this is 10.)
+
+Specific example using Rhee and Pugh, 2011 data for SRR346368 at
+http://www.ncbi.nlm.nih.gov/sra/SRX098212[accn];
+Reb1- and Gal4-associated data downloaded and converted to fastq using the
+SRA toolkit's fastq-dump:
+
+	python split_SOLiD_reads_basic.py sraSRR34638.fastq TAGCGT 10
 
 ##### INPUT
 
