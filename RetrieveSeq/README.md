@@ -10,7 +10,7 @@ You need to do two things to run these scripts:
 ## Description of each script
 - `GetmRNAforProtein.py`      protein --> mRNA
 
->`GetmRNAforProtein.py` takes a list of protein sequence records in FASTA format and gets the mRNA sequence correspoding to each.
+>`GetmRNAforProtein.py` takes a list of protein sequence records in FASTA format and gets the mRNA sequence corresponding to each.
 
 #####example of input and output for GetmRNAforProtein.py:
 
@@ -67,7 +67,7 @@ TAAATGAAAACATGCATCTTTATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 - `GetmRNAorCDSforProtein.py`      protein --> mRNA or CDS
 
->`GetmRNAorCDSforProtein.py` takes a list of protein sequence records in FASTA format and gets the mRNA sequence correspoding to each.
+>`GetmRNAorCDSforProtein.py` takes a list of protein sequence records in FASTA format and gets the mRNA or CDS sequence corresponding to each.
 
 #####example of input and output for GetmRNAorCDSforProtein.py:
 
