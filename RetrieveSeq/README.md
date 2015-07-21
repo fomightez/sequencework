@@ -134,5 +134,5 @@ TAAATGAAAACATGCATCTTTATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 ```
 
 ## Impending issues and to do
-- These scripts won't work as written once the GI sequence identifiers get phased out as described in section 1.4.1 of the [June 15 2015 Distribution Release Notes for NCBI-GenBank Flat File Release 208.0]    (ftp://ftp.ncbi.nih.gov/genbank/gbrel.txt ). The GI accession form will be phased out by mid 2016 according to those release notes.
+- These scripts won't work as written once the GI sequence identifiers get phased out as described in section 1.4.1 of the [June 15 2015 Distribution Release Notes for NCBI-GenBank Flat File Release 208.0](ftp://ftp.ncbi.nih.gov/genbank/gbrel.txt ). The GI accession form will be phased out by mid 2016 according to those release notes.
 - I should work on switching them over to the Accession.Version system 
