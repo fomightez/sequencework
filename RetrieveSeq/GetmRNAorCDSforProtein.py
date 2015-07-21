@@ -12,8 +12,8 @@
 # (actually cDNAs as the Ts in the sequence indicate) or at least the CDS
 # (coding sequence) in FASTA format. Producing a file with those sequences.
 # It will give the output in the same order with the exception of redudant entries.
-# For redundant entries, the mRNA or CDS will be listed as output in the same order as
-# the first instance in the input file.
+# For redundant entries, the mRNA or CDS will be listed as output in the same 
+# order as the first instance in the input file.
 #
 # CAVEAT: This will not work for protein sequences from PDB files like those available
 # from PDBsum. The reason is that those files don't have Entrez uids that relate
