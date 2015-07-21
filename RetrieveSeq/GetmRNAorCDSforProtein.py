@@ -231,14 +231,14 @@ def ExtractGI_numbers(a_FASTA_file):
     2, [1658062, 37778925], {gi_example: sequence example, gi_example2: sequence_example_2}
 
     Want GI number because ELink works with that. I'd have to add another step to get
-    to work with accession.version identifier. I originally couldn't get it with
-    the indentifier that has the letters like CAC82173.
+    it to work with accession.version identifier. I originally couldn't get it
+    with the indentifier that has the letters like CAC82173.
     See code block #3 of 'Using ELink to convert protein sequences to mRNA.ipynb'
     (publically available at https://www.biostars.org/p/64078/) where
     I did it starting with the accession.version identifier. However, if have full
-    Genbank FAST record, just easier to get from that.
+    Genbank FASTA record, just easier to get from that.
 
-    Want the dictionary where G_numbers are keys and sequence is value for later
+    Want the dictionary where GI_numbers are keys and sequence is value for later
     use to validate that any CDSs minded produce the expected output.
     '''
     #initialize values
