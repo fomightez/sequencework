@@ -9,7 +9,7 @@ My collection of files to deal with adjusting sequence annotation files
 and then gene length for use with NOISeq. See the User's Guide for NOISeq
 [here](http://www.bioconductor.org/packages/release/bioc/html/NOISeq.html) concerning this.  
 The provided file has the higher number always second, but I made the script so that it will work no matter the order the gene end or gene start is provided. It will be more robust this way.  
-For ease I'd suggest the `biomart_length.txt`, or your equivalent, be in the same directory with the script. Users can change the name of that file to suit their needs but must change a line under `USER ADJUSTABLE VALUES` in the script to correspond. 
+For ease I'd suggest the `biomart_length.txt`, or your equivalent, be in the same directory with the script. Users can change the name of that file to suit their needs, but must change a line under `USER ADJUSTABLE VALUES` in the script to correspond.  
 A file of the output will be saved in the same directory in which the script is run.  
 
 #####example of input and output for makes_length_annotation_file.py:
