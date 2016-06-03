@@ -70,3 +70,14 @@ In the `RetrieveSeq` folder is a script that takes a list of protein sequence re
  `
 
 In the `RetrieveSeq` folder is a script that takes a list of protein sequence records in FASTA format and gets the mRNA sequence or at least the coding sequence corresponding to each one. See `GetmRNAforProtein.py`.
+
+
+ ----------------------------------------------------------------------
+ ----------------------------------------------------------------------
+ ----------------------------------------------------------------------
+ `
+ `
+ `
+ `
+ 
+In the `UGENE_help` folder are some guidance and one script for converting between Unipro's UGENE sequence anysis software and Serial CLoner. See [here](https://github.com/fomightez/UGENE_help) for `UGENE help`.
