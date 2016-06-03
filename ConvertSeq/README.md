@@ -1,5 +1,6 @@
 Sequence Converters
 ===================
+####My collection of files to deal with converting sequences and sequence-related files
 
 - ConvertFASTAdnaSEQtoRNA.py      DNA --> mRNA
 
@@ -79,5 +80,23 @@ In the `RetrieveSeq` folder is a script that takes a list of protein sequence re
  `
  `
  `
- 
+ In the `Adjust_Annotation` folder are some scripts for dealing with converting annotation files to be more useful.
+
+ ----------------------------------------------------------------------
+ ----------------------------------------------------------------------
+ ----------------------------------------------------------------------
+ `
+ `
+ `
+ `
+ In the `SOLiD` folder are some scripts for dealing with converting Applied Biosystems SOLiD data from NCBI's Short Read Archive into a useful form.
+
+
+ ----------------------------------------------------------------------
+ ----------------------------------------------------------------------
+ ----------------------------------------------------------------------
+ `
+ `
+ `
+ `
 In the `UGENE_help` folder in a different repository is some guidance and one script for converting between Unipro's UGENE sequence anysis software and Serial CLoner. See [here](https://github.com/fomightez/UGENE_help) for `UGENE help`.
