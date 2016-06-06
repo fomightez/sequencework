@@ -3,9 +3,10 @@ Adjust Annotation Files
 
 ####My collection of files to deal with adjusting sequence annotation files  
 
-- makes_length_annotation_file.py      annotation file --> differently arranged annotation file
+- makes_length_annotation_file.py
 
->makes_length_annotation_file.py takes a file of `biomart_length.txt` obtained from from [here](http://useast.ensembl.org/info/data/biomart/index.html) and returns a file with gene_id
+>annotation file --> differently arranged annotation file  
+makes_length_annotation_file.py takes a file of `biomart_length.txt` obtained from from [here](http://useast.ensembl.org/info/data/biomart/index.html) and returns a file with gene_id
 and then gene length for use with NOISeq. See the User's Guide for NOISeq
 [here](http://www.bioconductor.org/packages/release/bioc/html/NOISeq.html) concerning this.  
 The provided file has the higher number always second, but I made the script so that it will work no matter the order the gene end or gene start is provided. It will be more robust this way.  
