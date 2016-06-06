@@ -3,7 +3,7 @@ Taxon Lookup Scripts
 
 - LookUpTaxonFA.py   
 
->LookUpTaxonFA.py takes as input a file of sequence records in FASTA format from NCBI and gives a report of the taxons involved. It laso makes an output file with each taxon added to the description line of each FASTA record.  The FASTA record can be modified, for example include alignment data, as the script only deals with the descriptor line and just duplicates the other lines.
+> `LookUpTaxonFA.py` takes as input a file of sequence records in FASTA format from NCBI and gives a report of the taxons involved. It laso makes an output file with each taxon added to the description line of each FASTA record.  The FASTA record can be modified, for example include alignment data, as the script only deals with the descriptor line and just duplicates the other lines.
 
 #####example of input and output for LookUpTaxonFA.py:
 
