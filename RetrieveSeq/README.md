@@ -8,9 +8,10 @@ You need to do two things to run these scripts:
 - Put your e-mail address in the User_Email variable under USER ADJUSTABLE VALUES. This is because NCBI wants a way to contact you if you are violating their policies.  See [Frequency, Timing and Registration of E-utility URL Requests](http://www.ncbi.nlm.nih.gov/books/NBK25497/).
 
 ## Description of each script
-- `GetmRNAforProtein.py`      protein --> mRNA
+- `GetmRNAforProtein.py`
 
->`GetmRNAforProtein.py` takes a list of protein sequence records in FASTA format and gets the mRNA sequence corresponding to each.
+> protein --> mRNA  
+`GetmRNAforProtein.py` takes a list of protein sequence records in FASTA format and gets the mRNA sequence corresponding to each.
 
 #####example of input and output for GetmRNAforProtein.py:
 
