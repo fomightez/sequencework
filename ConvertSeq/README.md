@@ -81,7 +81,7 @@ In the `RetrieveSeq` folder is a script that takes a list of protein sequence re
  `
  `
  `
- In the `Adjust_Annotation` folder are some scripts for dealing with converting annotation files to be more useful.
+ In the `Adjust_Annotation` folder are some scripts for dealing with converting sequence-associated annotation files to be more useful.
 
  ----------------------------------------------------------------------
  ----------------------------------------------------------------------
@@ -101,3 +101,15 @@ In the `RetrieveSeq` folder is a script that takes a list of protein sequence re
  `
  `
 In the `UGENE_help` folder in a different repository is some guidance and one script for converting between Unipro's UGENE sequence anysis software and Serial CLoner. See [here](https://github.com/fomightez/UGENE_help) for `UGENE help`.
+
+
+
+ ----------------------------------------------------------------------
+ ----------------------------------------------------------------------
+ ----------------------------------------------------------------------
+ `
+ `
+ `
+ `
+In the `yeastmine` folder in a different repository are some scripts used for converting identifiers of gene and protein identifiers to other useful forms. See [here](https://github.com/fomightez/yeastmine) for `yeastmine` work.
+
