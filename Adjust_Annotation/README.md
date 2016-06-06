@@ -5,7 +5,7 @@ Adjust Annotation Files
 
 - makes_length_annotation_file.py
 
-> annotation file --> differently arranged annotation file  
+> annotation file --> differently-arranged annotation file  
 The script `makes_length_annotation_file.py` takes a file of `biomart_length.txt` obtained from from [here](http://useast.ensembl.org/info/data/biomart/index.html) and returns a file with gene_id
 and then gene length for use with NOISeq. See the User's Guide for NOISeq
 [here](http://www.bioconductor.org/packages/release/bioc/html/NOISeq.html) concerning this.  
