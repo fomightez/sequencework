@@ -4,6 +4,9 @@ Sequence Converters
 **My collection of files to deal with converting sequences and sequence-related files.**
 
 ---
+
+**Description of each script**
+
 - ConvertFASTAdnaSEQtoRNA.py     
 
 > DNA --> mRNA  
