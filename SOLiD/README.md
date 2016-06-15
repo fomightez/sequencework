@@ -88,7 +88,7 @@ SRA toolkit's fastq-dump:
 	+SRR346368.4889.1 0176_20090623_2_Specific_Factors_946_46_1420 length=35
 	=:59??;<8@?=7=1<<'8=<4.>52227;,<74;
 
-
+---
 
 - split_SOLiD_reads_basic.py
 
