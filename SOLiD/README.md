@@ -22,6 +22,24 @@ interactions detected at single-nucleotide resolution.
 Cell. 2011 Dec 9;147(6):1408-19. doi: 10.1016/j.cell.2011.11.013.
 PMID: 22153082 http://www.ncbi.nlm.nih.gov/pubmed/22153082.
 
+**Usage**
+```
+usage: split_SOLiD_reads.py [-h] InputFile barcode barcode_seq_len
+split_SOLiD_reads.py is designed to demultiplex based on barcode AB SOLiD fastq
+files with interleaved paired-ends reads, such as from Rhee and Pugh, 2011.
+Written by Wayne Decatur --> Fomightez @ Github or Twitter.  
+
+Actual example what to enter on command line to run program:
+python split_SOLiD_reads.py sraSRR34638.fastq TAGCGT 10  
+ 
+positional arguments:
+  InputFile        name of file containing barcoded reads in fastq format. REQUIRED.
+  barcode          sequence of barcode of interest. REQUIRED.
+  barcode_seq_len  Length of sequence which contains barcode. REQUIRED.  
+  
+optional arguments:
+  -h, --help       show this help message and exit
+```
 
 ####Limitations
 Unlike other programs for demultiplexing read data, this one is rather naive and does not allow
@@ -110,6 +128,25 @@ interactions detected at single-nucleotide resolution.
 Cell. 2011 Dec 9;147(6):1408-19. doi: 10.1016/j.cell.2011.11.013.
 PMID: 22153082 http://www.ncbi.nlm.nih.gov/pubmed/22153082.
 
+**Usage**
+
+```
+usage: split_SOLiD_reads.py [-h] InputFile barcode barcode_seq_len
+split_SOLiD_reads.py is designed to demultiplex based on barcode AB SOLiD fastq
+files with interleaved paired-ends reads, such as from Rhee and Pugh, 2011.
+Written by Wayne Decatur --> Fomightez @ Github or Twitter.  
+
+Actual example what to enter on command line to run program:
+python split_SOLiD_reads.py sraSRR34638.fastq TAGCGT 10  
+ 
+positional arguments:
+  InputFile        name of file containing barcoded reads in fastq format. REQUIRED.
+  barcode          sequence of barcode of interest. REQUIRED.
+  barcode_seq_len  Length of sequence which contains barcode. REQUIRED.  
+  
+optional arguments:
+  -h, --help       show this help message and exit
+```
 
 ####Limitations
 Unlike other programs for demultiplexing read data, this one is rather naive and does not allow
