@@ -1,7 +1,8 @@
 Adjust Annotation Files
 =======================
 
-####My collection of files to deal with adjusting sequence annotation files  
+**My collection of files to deal with adjusting sequence annotation files.**
+---
 
 - makes_length_annotation_file.py
 
