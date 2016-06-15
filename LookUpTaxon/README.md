@@ -1,11 +1,19 @@
 Taxon Lookup Scripts
 ===================
 
+**My python scripts for dealing with taxon information.**
+
+---
+
+
+
+**Description of each script**
+
 - LookUpTaxonFA.py   
 
 > `LookUpTaxonFA.py` takes as input a file of sequence records in FASTA format from NCBI and gives a report of the taxons involved. It laso makes an output file with each taxon added to the description line of each FASTA record.  The FASTA record can be modified, for example include alignment data, as the script only deals with the descriptor line and just duplicates the other lines.
 
-#####example of input and output for LookUpTaxonFA.py:
+**example of input and output for `LookUpTaxonFA.py`:**
 
 original input:
 ```
@@ -22,25 +30,17 @@ FKEVVYETVKIPGCGDHPESFYSYPVATECHCETCDTDSTDCTVRGLGPSYCSFSHNGSNQ
 
 
 ```
-#####Related report also produced not shown here.
-`
-`
-`
-`
 
- ----------------------------------------------------------------------
- ----------------------------------------------------------------------
- ----------------------------------------------------------------------
- `
- `
- `
- `
+**Related report also produced not shown here.**
+
+
+---
 
 - LookUpTaxonFAComD.py   
 
 > `LookUpTaxonFAComD.py` takes as input a file of sequence records in a modified FASTA format where my BioalignerNamer script has added the common name of the organisms and gives a report of the taxons involved. It also makes an output file with each taxon added to the description line of each FASTA record.  The FASTA record can be modified, for example include alignment data, as shown below, as the script only deals with the descriptor line and just duplicates the other lines.
 
-#####example of input and output for LookUpTaxonFAComD.py:
+**example of input and output for `LookUpTaxonFAComD.py`:**
 
 original input:
 ```
@@ -64,4 +64,4 @@ GLGP--SYCSFSHNGSNQ------------------------------------------
 -
 ```
 
-######Related report also produced not shown here.
+**Related report also produced not shown here.**
