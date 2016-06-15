@@ -120,8 +120,9 @@ Also doesn't check in any way to see if the read pairs involved match up.
 Nothing but the fairly standard modules such as os, sys, and argparse.
 
 
-####Example of input and output for split_SOLiD_reads.py:
-##### EXAMPLE RUN
+**Example of input and output for `split_SOLiD_reads_basic.py`:**
+
+**EXAMPLE RUN**
 
 TO RUN:
 Enter on the command line, the line
