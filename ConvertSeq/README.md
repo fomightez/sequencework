@@ -74,8 +74,7 @@ Since sequence manipulations are at the heart of many of my computational endeav
 
 - In the `SOLiD` folder are some scripts for dealing with converting Applied Biosystems SOLiD data from NCBI's Short Read Archive into a useful form.
 
+- In the `UGENE_help` folder in a different repository is some guidance and one script for converting between Unipro's UGENE sequence anysis software and Serial CLoner. See [here](https://github.com/fomightez/UGENE_help) for `UGENE help`.
 
- - In the `UGENE_help` folder in a different repository is some guidance and one script for converting between Unipro's UGENE sequence anysis software and Serial CLoner. See [here](https://github.com/fomightez/UGENE_help) for `UGENE help`.
-
- - In the `yeastmine` folder in a different repository are some scripts, such as `geneID_list_to_systematic_names.py`, useful for converting identifiers of gene and protein identifiers to other useful forms. See [here](https://github.com/fomightez/yeastmine) for `yeastmine` work.
+- In the `yeastmine` folder in a different repository are some scripts, such as `geneID_list_to_systematic_names.py`, useful for converting identifiers of gene and protein identifiers to other useful forms. See [here](https://github.com/fomightez/yeastmine) for `yeastmine` work.
 
