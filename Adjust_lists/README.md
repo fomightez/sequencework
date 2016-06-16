@@ -7,15 +7,14 @@ Adjust Annotation Files
 **Description of each script**
 
 
-- makes_length_annotation_file.py
+- cufflinksIDs_list_to_systematic_names.py
 
-> annotation file --> differently-arranged annotation file  
-`makes_length_annotation_file.py` takes a file of `biomart_length.txt` obtained from from [here](http://useast.ensembl.org/info/data/biomart/index.html) and returns a file with gene_id
-and then gene length for use with NOISeq. See the User's Guide for NOISeq
-[here](http://www.bioconductor.org/packages/release/bioc/html/NOISeq.html) concerning this.  
-The provided file has the higher number always second, but I made the script so that it will work no matter the order the gene end or gene start is provided. It will be more robust this way.  
-For ease I'd suggest the `biomart_length.txt`, or your equivalent, be in the same directory with the script. Users can change the name of that file to suit their needs, but must change a line under `USER ADJUSTABLE VALUES` in the script to correspond.  
-A file of the output will be saved in the same directory in which the script is run.  
+> a file listing gene ids --> a file listing systematic gene ids
+`cufflinksIDs_list_to_systematic_names.py` uses a `gtf` file that is output from Cufflinks to convert a list of `XLOC_`-style gene ids in a file to systematic gene ids.  
+# The list should be gene ids each on a separate line of the file. 
+As written, it needs a `gtf` annotation file called `merged.gtf` but this can be changed within the script under `USER ADJUSTABLE VALUES `.  
+This script was written for use with yeast gene annotation file but should work with any `gtf` file from Cufflinks assuming it has entries for `oId`, `gene_id`, and (possibly) `nearest_ref`.   
+A file of the output will be saved in the same directory in which the provided gene list file occurs.  
 
 #####example of input and output for makes_length_annotation_file.py:
 
@@ -87,6 +86,8 @@ Related scripts
 
 Several other of my code repositories hold code related to the manipulation of gene lists. Here are some:
 
+- [My YeastMine repository](https://github.com/fomightez/yeastmine) has several useful scripts for comverting yeast gene lists, such as `geneID_list_to_systematic_names.py`.
+
 - [My text-mining/text manipulation code repository](https://github.com/fomightez/text_mining) has several useful scripts involving lists, such as, the `find_overlap_in_lists.py` script and related `find_overlap_in_lists_with_Venn.py`.
 
-- [My YeastMine repository](https://github.com/fomightez/yeastmine) has several useful scripts for comverting yeast gene lists, such as `geneID_list_to_systematic_names.py`.
+
