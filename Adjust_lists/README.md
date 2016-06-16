@@ -87,20 +87,26 @@ XLOC_006597
     cufflinksIDs_list_to_systematic_names.py gene_list.txt  
 
 **output after run:**  
-(text in a file, called `list1_and_2others_shared_items.txt` , with the contents below)
+(text in a file, called `gene_list_converted_to_sys_id.txt ` , with the contents below)
 ```
-lll
+YAR053W
+YBR250W
+YBR029C
+YCL055W
+YCR081W
+YDL154W
+YDR290W
+YDL159C-B
+YGL168W
+YGL053W
+YKR089C
+YOL083C-A
+YPR100W
 
 ```
  
-`
-`
-`
-`
-
- ----------------------------------------------------------------------
- ----------------------------------------------------------------------
- ----------------------------------------------------------------------
+ 
+ ------------------------
  
  
 Related scripts
