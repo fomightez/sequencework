@@ -17,7 +17,7 @@ The provided file has the higher number always second, but I made the script so 
 For ease I'd suggest the `biomart_length.txt`, or your equivalent, be in the same directory with the script. Users can change the name of that file to suit their needs, but must change a line under `USER ADJUSTABLE VALUES` in the script to correspond.  
 A file of the output will be saved in the same directory in which the script is run.  
 
-#####example of input and output for makes_length_annotation_file.py:
+#####example of input and output for `makes_length_annotation_file.py`:
 
 sample of original input in `biomart_length.txt`:
 ```
