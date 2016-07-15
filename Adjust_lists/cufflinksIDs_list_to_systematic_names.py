@@ -156,8 +156,8 @@ def list2text(a_list):
 parser = argparse.ArgumentParser(prog='cufflinksIDs_list_to_systematic_names.py',
     description=" cufflinksIDs_list_to_systematic_names.py uses a `gtf` file \
     that is output from Cufflinks to convert a list of `XLOC_` gene ids in a \
-    file to systematic yeast gene ids. The list should be gene ids each on a \
-    separate line of the file. \
+    file to systematic yeast gene ids. The provided list should be gene ids \
+    (`XLOC_` form) each on a separate line of the file. \
     **** Script by Wayne Decatur   \
     (fomightez @ github) ***")
 
