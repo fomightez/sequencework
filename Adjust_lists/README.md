@@ -110,7 +110,7 @@ YPR100W
  ------------------------
  - `systematic_names_to_standard_names_using_cufflinks_gtf.py`
 
-> a file listing gene ids in systematic for --> a file listing standard (common) gene names  
+> a file listing yeast gene ids in systematic form --> a file listing standard (common) gene names  
 `systematic_names_to_standard_names_using_cufflinks_gtf.py` uses a `gtf` file that is output from Cufflinks to convert a list of yeast systematic gene ids in a file to standard (common) gene names.  
 The list should be systematic gene ids each on a separate line of the file. 
 As written, it needs a `gtf` annotation file called `merged.gtf`, but this can be changed within the script under `USER ADJUSTABLE VALUES `.  
