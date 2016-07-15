@@ -116,6 +116,7 @@ The list should be systematic gene ids each on a separate line of the file.
 As written, it needs a `gtf` annotation file called `merged.gtf`, but this can be changed within the script under `USER ADJUSTABLE VALUES `.  
 This script was written for use with yeast gene annotation file but should work with any `gtf` file from Cufflinks assuming it has entries for `oId`, `gene_id`, `gene_name`, and (possibly) `nearest_ref`.   
 A file of the output will be saved in the same directory in which the provided gene list file occurs.  
+Since this is a standard conversion relying on SGD-specific data that just happens to also be already in the gtf file, I plan to make a version similar to this that doesn't require the gtf file but instead access data at YeastMine to allow the conversion.
 
  ```
  usage: systematic_names_to_standard_names_using_cufflinks_gtf [-h] FILE  
