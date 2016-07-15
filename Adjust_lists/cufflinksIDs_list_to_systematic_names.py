@@ -55,7 +55,7 @@ gtf_annotation_file_name = "merged.gtf"
 cleared_as_being_converted_properly = ["HRA1", "PWR1", "Q0045", "tA(AGC)K2", "snR51" ] #there were some issues with
 # some genes having 'CUFF.' as text being used for conversion and
 # I used `nearest_ref` for those, but several didn't look like systematic yeast
-# names even with using those. I checked and these ones confrimed converted fine
+# names even with using those. I checked and these ones confirmed converted fine
 # and they won't have systematic names that match most since are non-coding RNAs
 #  or on mitochondrial genome. YOU MAY NEED TO ADD MORE AS NEEDED IF GTF FILE
 # UPDATED OR REPLACED WITH ONE FROM A DIFFERENT SOURCE.
