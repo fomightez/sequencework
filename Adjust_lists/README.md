@@ -36,7 +36,7 @@ optional arguments:
 
 #####example of input and output for `cufflinksIDs_list_to_systematic_names.py`:
 
-first part of annotaiton file in `merged.gtf`:
+first part of annotation file in `merged.gtf`:
 ```
 I	Cufflinks	exon	335	649	.	+	.	gene_id "XLOC_000001"; transcript_id "TCONS_00000001"; exon_number "1"; gene_name "YAL069W"; oId "YAL069W"; nearest_ref "YAL069W"; class_code "="; tss_id "TSS1"; p_id "P2";
 I	Cufflinks	exon	538	792	.	+	.	gene_id "XLOC_000001"; transcript_id "TCONS_00000002"; exon_number "1"; gene_name "YAL068W-A"; oId "YAL068W-A"; nearest_ref "YAL068W-A"; class_code "="; tss_id "TSS2"; p_id "P1";
@@ -88,7 +88,7 @@ XLOC_006597
     cufflinksIDs_list_to_systematic_names.py gene_list.txt  
 
 **output after run:**  
-(text in a file, called `gene_list_converted_to_sys_id.txt ` , with the contents below)
+(text in a file, called `gene_list_converted_to_sys_id.txt `, with the contents below)
 ```
 YAR053W
 YBR250W
@@ -133,6 +133,40 @@ positional arguments:
 optional arguments:
   -h, --help  show this help message and exit
  ```
+ 
+ 
+ #####example of input and output for `cufflinksIDs_list_to_systematic_names.py`:
+ 
+see above about needed file `merged.gtf`.
+
+sample gene list (content in file to be specified when script called):
+```
+YAR053W
+YBR250W
+YBR029C
+YCL055W
+YCR081W
+YDL154W
+YDR290W
+YDL159C-B
+YGL168W
+YGL053W
+YKR089C
+YOL083C-A
+YPR100W
+```
+
+
+**command:**
+
+    systematic_names_to_standard_names_using_cufflinks_gtf.py gene_list.txt  
+
+**output after run:**  
+(text in a file, called `gene_list_converted_to_std_id.txt `, with the contents below)
+```
+
+
+```
  
  ------------------------
  
