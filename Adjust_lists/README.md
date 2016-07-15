@@ -9,7 +9,7 @@ Adjust Lists
 
 - `cufflinksIDs_list_to_systematic_names.py`
 
-> a file listing gene ids --> a file listing systematic gene ids
+> a file listing gene ids --> a file listing systematic gene ids  
 `cufflinksIDs_list_to_systematic_names.py` uses a `gtf` file that is output from Cufflinks to convert a list of `XLOC_`-style gene ids in a file to systematic gene ids.  
 The list should be gene ids each on a separate line of the file. 
 As written, it needs a `gtf` annotation file called `merged.gtf` but this can be changed within the script under `USER ADJUSTABLE VALUES `.  
@@ -110,7 +110,7 @@ YPR100W
  ------------------------
  - `systematic_names_to_standard_names_using_cufflinks_gtf.py`
 
-> a file listing gene ids in systematic for --> a file listing standard (common) gene names
+> a file listing gene ids in systematic for --> a file listing standard (common) gene names  
 `systematic_names_to_standard_names_using_cufflinks_gtf.py` uses a `gtf` file that is output from Cufflinks to convert a list of yeast systematic gene ids in a file to standard (common) gene names.  
 The list should be systematic gene ids each on a separate line of the file. 
 As written, it needs a `gtf` annotation file called `merged.gtf`, but this can be changed within the script under `USER ADJUSTABLE VALUES `.  
