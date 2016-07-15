@@ -34,7 +34,7 @@ optional arguments:
   -h, --help  show this help message and exit
 ```
 
-#####example of input and output for `cufflinksIDs_list_to_systematic_names.py`:
+##### example of input and output for `cufflinksIDs_list_to_systematic_names.py`:
 
 first part of annotation file in `merged.gtf`:
 ```
@@ -111,7 +111,7 @@ YPR100W
  - `systematic_names_to_standard_names_using_cufflinks_gtf.py`
 
 > a file listing yeast gene ids in systematic form --> a file listing standard (common) gene names  
-`systematic_names_to_standard_names_using_cufflinks_gtf.py` uses a `gtf` file that is output from Cufflinks to convert a list of yeast systematic gene ids in a file to standard (common) gene names.  
+`systematic_names_to_standard_names_using_cufflinks_gtf.py` uses a `gtf` file that is output from Cufflinks to convert a list of yeast systematic gene ids in a file to standard (common) gene names, where they exist.  
 The list should be systematic gene ids each on a separate line of the file. 
 As written, it needs a `gtf` annotation file called `merged.gtf`, but this can be changed within the script under `USER ADJUSTABLE VALUES `.  
 This script was written for use with yeast gene annotation file but should work with any `gtf` file from Cufflinks assuming it has entries for `oId`, `gene_id`, `gene_name`, and (possibly) `nearest_ref`.   
@@ -135,7 +135,7 @@ optional arguments:
  ```
  
  
- #####example of input and output for `cufflinksIDs_list_to_systematic_names.py`:
+##### example of input and output for `cufflinksIDs_list_to_systematic_names.py`:
  
 see above about needed file `merged.gtf`.
 
@@ -164,7 +164,19 @@ YPR100W
 **output after run:**  
 (text in a file, called `gene_list_converted_to_std_id.txt `, with the contents below)
 ```
-
+YAR053W
+SPO23
+CDS1
+KAR4
+SRB8
+MSH5
+YDR290W
+YDL159C-B
+HUR1
+PRM8
+TGL4
+YOL083C-A
+MRPL51
 
 ```
  
