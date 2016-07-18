@@ -157,7 +157,7 @@ parser = argparse.ArgumentParser(prog='cufflinksIDs_list_to_systematic_names.py'
     description=" cufflinksIDs_list_to_systematic_names.py uses a `gtf` file \
     that is output from Cufflinks to convert a list of `XLOC_` gene ids in a \
     file to systematic yeast gene ids. The provided list should be gene ids \
-    (`XLOC_` form) each on a separate line of the file. \
+    (`XLOC_` form) each on a separate line of the file.                     \
     **** Script by Wayne Decatur   \
     (fomightez @ github) ***")
 
@@ -259,6 +259,8 @@ lines_processed = 0
 
 # open input file and start reading
 sys.stderr.write("\nReading input file and converting...")
+input_file_stream = open(XLOC_list_file, "r")
+
 
 
 # make some lists to note some problem gene_ids
@@ -266,7 +268,7 @@ overlap_with_cuff_id_problem_list = []
 overlap_with_XLOC_doubles_problem_list = []
 
 
-for line in XLOC_list_file:
+for line in input_file_stream:
     lines_processed += 1
     id_to_convert = line.strip() # don't want line endings so I can easily
     # manipulate and compare later, hence the use of `.strip()`
@@ -289,6 +291,7 @@ for line in XLOC_list_file:
 # Completed scan of input file and therefore close file, alert user as to any
 # issues, and write new file.
 sys.stderr.write( "\n"+ str(lines_processed) + " lines read from '" + XLOC_list_file.name + "'.")
+input_file_stream.close()
 
 # alert user as to any potential issues
 if overlap_with_cuff_id_problem_list:
