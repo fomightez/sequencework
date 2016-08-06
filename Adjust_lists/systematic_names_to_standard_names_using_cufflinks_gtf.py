@@ -130,16 +130,6 @@ def generate_output_file_name(file_name):
     else:
         return file_name + "_converted_to_std_id"
 
-def generate_output_file(provided_text):
-    '''
-    function text and saves it as a text file
-    '''
-    name_of_file_to_save = generate_output_file_name(list_files_to_analyze_list[0])
-    data_file_stream = open(name_of_file_to_save , "w")
-    data_file_stream.write(provided_text.rstrip('\r\n')) #rstrip to remove trailing newline
-    # from http://stackoverflow.com/questions/275018/how-can-i-remove-chomp-a-newline-in-python
-    data_file_stream.close()
-    sys.stderr.write( "\nOverlap identified! Shared items list saved as '{0}'.\n".format(name_of_file_to_save))
 
 def list2text(a_list):
     '''
@@ -333,7 +323,8 @@ lines_processed = 0
 
 # open input file and start reading
 sys.stderr.write("\nReading input file and converting...")
-input_file_stream = open(sys_ids_list_file, "r")
+#input_file_stream = open(XLOC_list_file, "r") # Don't need separate open when use `type=argparse.FileType`. It sets everything up automatically and you will actually cause errors if try to open when already open.
+
 
 
 # make some lists to note some problem gene_ids
@@ -341,7 +332,7 @@ overlap_with_cuff_id_problem_list = []
 overlap_with_name_doubles_problem_list = []
 
 
-for line in input_file_stream:
+for line in sys_ids_list_file:
     lines_processed += 1
     id_to_convert = line.strip() # don't want line endings so I can easily
     # manipulate and compare later, hence the use of `.strip()`
@@ -376,7 +367,7 @@ for line in input_file_stream:
 # Completed scan of input file and therefore close file, alert user as to any
 # issues, and write new file.
 sys.stderr.write( "\n"+ str(lines_processed) + " lines read from '" + sys_ids_list_file.name + "'.")
-input_file_stream.close()
+#input_file_stream.close() # Don't need because argparse handles when use `type=argparse.FileType`.
 
 # alert user as to any potential issues
 if overlap_with_cuff_id_problem_list:
