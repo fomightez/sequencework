@@ -85,7 +85,7 @@ XLOC_006597
 
 **command:**
 
-    cufflinksIDs_list_to_systematic_names.py gene_list.txt  
+  python cufflinksIDs_list_to_systematic_names.py gene_list.txt  
 
 **output after run:**  
 (text in a file, called `gene_list_converted_to_sys_id.txt `, with the contents below)
@@ -160,7 +160,7 @@ YPR100W
 
 **command:**
 
-    systematic_names_to_standard_names_using_cufflinks_gtf.py gene_list.txt  
+  python  systematic_names_to_standard_names_using_cufflinks_gtf.py gene_list.txt  
 
 **output after run:**  
 (text in a file, called `gene_list_converted_to_std_id.txt `, with the contents below)
