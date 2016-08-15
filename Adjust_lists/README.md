@@ -116,7 +116,10 @@ The list should be systematic gene ids each on a separate line of the file.
 As written, it needs a `gtf` annotation file called `merged.gtf`, but this can be changed within the script under `USER ADJUSTABLE VALUES `.  
 This script was written for use with yeast gene annotation file but should work with any `gtf` file from Cufflinks assuming it has entries for `oId`, `gene_id`, `gene_name`, and (possibly) `nearest_ref`.   
 A file of the output will be saved in the same directory in which the provided gene list file occurs.  
-Since this is a standard conversion relying on SGD-specific data that just happens to also be already in the gtf file, I plan to make a version similar to this that doesn't require the gtf file but instead access data at YeastMine to allow the conversion.
+Since this is a standard conversion relying on SGD-specific data that just happens to also be already in the gtf file, I plan to make a version similar to this that doesn't require the gtf file but instead access data at YeastMine to allow the conversion.  
+Commonly you would use this script in conjunction with `cufflinksIDs_list_to_systematic_names.py` that is also in this repository and requires an associated gtf file.
+
+> A related script that **does not** need a gtf file and instead employs YeastMine data in order to convert systematic names to yeast standard (common) gene names is available, see `genes_in_list_with_SGD_Systematic_Name_to_standard_name.py` in the [YeastMine repository](https://github.com/fomightez/yeastmine). A script to aid in comparing results between the two, called `compare_results_systematic_to_std.py`, is found in the `Evaluation` subdirectory in the [YeastMine repository](https://github.com/fomightez/yeastmine).
 
  ```
  usage: systematic_names_to_standard_names_using_cufflinks_gtf [-h] FILE  
