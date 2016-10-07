@@ -152,7 +152,7 @@ parser = argparse.ArgumentParser(prog='cufflinksIDs_list_to_systematic_names.py'
     **** Script by Wayne Decatur   \
     (fomightez @ github) ***")
 
-parser.add_argument("List", help="Names of file containing `XLOC` list to fix. REQUIRED.", type=argparse.FileType('r'), metavar="FILE")
+parser.add_argument("List", help="Name of file containing `XLOC` list to fix. REQUIRED.", type=argparse.FileType('r'), metavar="FILE")
 
 #I would also like trigger help to display if no arguments provided because need at least one input file
 if len(sys.argv)==1:    #from http://stackoverflow.com/questions/4042452/display-help-message-with-python-argparse-when-script-is-called-without-any-argu
