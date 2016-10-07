@@ -28,7 +28,7 @@ separate line of the file.
 *** Script by Wayne Decatur (fomightez @ github) ***  
 
 positional arguments:
-  FILE        Names of file containing `XLOC` list to fix. REQUIRED.  
+  FILE        Name of file containing `XLOC` list to fix. REQUIRED.  
   
 optional arguments:
   -h, --help  show this help message and exit
