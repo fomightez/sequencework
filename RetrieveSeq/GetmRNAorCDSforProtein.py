@@ -94,7 +94,7 @@ User_Email = "YOUR EMAIL ADDRESS HERE" #PUT YOUR E-MAIL HERE or NCBI's SERVER WI
 # in excess of 9 million. Much easier to just not get that part and then account
 # for that in the part extracted later.
 # 2) Now if a contig or scaffold was assembled, it stores that as the next part of
-# of the cds super assembly coding region is checked. If that involveds the
+# of the cds super assembly coding region is checked. If that involves the
 # same previously assembled contig, it just recycles and uses that instead of
 # assembling the sub-components yet again. This also should greatly enhance such
 # instances as those protein 355751990, where for example via the old
@@ -135,8 +135,6 @@ seq.id ="gi|"+ genbank_seq_to_mine + ":"+ str(start) + "-" + str(end
 # v.0.7.5. Added improvements to handling of mining contigs but making all parts
 # before region containing start position of cds for protein as 'N's. This should
 # save time and decrease calls to NCBI Entrez server, drastically in some cases.
-# v.0.7. Added handling cases where there is not a direct mRNA under
-# the ' db="nuccore", LinkName="protein_nuccore_mrna"' part of an Entrez link.
 # v.0.7. Added handling cases where there is not a direct mRNA under
 # the ' db="nuccore", LinkName="protein_nuccore_mrna"' part of an Entrez link.
 # This goes beyond 'GetmmRNAforProtein.py' to get the mRNA or at least a
