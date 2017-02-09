@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 # extract_conserved_from_alignments.py by Damian Menning and Wayne Decatur
-# ver 0.1
+# ver 0.2
 #
 #*******************************************************************************
 # USES Python 2.7
@@ -14,7 +14,10 @@
 # Dependencies:
 # Biopython
 #
-# v.0.1. Started
+# v.0.1. Basics all in place.
+# v.0.2. Added a setting for a minimum requirement for the length of the
+# consensus in order for a block of consensus residues to get printed to
+# the output file.
 #
 # To do:
 #
@@ -30,7 +33,11 @@
 #*******************************************************************************
 ##################################
 #  USER ADJUSTABLE VALUES        #
-file_name = "test_alignment.fas"
+file_name = "Gomphonemataceae 18S cut.fas"
+
+minimum_length_of_consensus_block = 1 # won't add sequence ragment to the output
+# file unless matches in a series at least this length. Default is 1 so that
+# each block of matching sequences, no matter how short, are saved to output.
 
 ##################################
 #
@@ -78,9 +85,17 @@ def generate_output_file_name(file_name):
     main_part_of_name, file_extension = os.path.splitext(
         file_name) #from http://stackoverflow.com/questions/541390/extracting-extension-from-filename-in-python
     if '.' in file_name:  #I don't know if this is needed with the os.path.splitext method but I had it before so left it
-        return main_part_of_name + "_conserved" + file_extension
+        if minimum_length_of_consensus_block != 1:
+            return main_part_of_name + "_conserved_" + str(
+                minimum_length_of_consensus_block) +"bps" + file_extension
+        else:
+            return main_part_of_name + "_conserved" + file_extension
     else:
-        return file_name + "_conserved.fas"
+        if minimum_length_of_consensus_block != 1:
+            return file_name + "_conserved_" + str(
+                minimum_length_of_consensus_block) +"bps.fas"
+        else:
+            return file_name + "_conserved.fas"
 
 
 
@@ -132,9 +147,13 @@ sys.stderr.write("Reading in your file...")
 # default consensus.
 alignments_dict, representative_aligned_seq = make_dict_of_alignments(file_name)
 
+#initialize a string that will be the current sequence block
+current_sequence_for_possible_output = ""
+
 # initialize a string for storing the consensus. This is optional in addition to
 # the outout file being made
 consensus_string = ""
+
 
 # Iterate over the representative sequence string using each character for
 # comparison. Idx holds the current index position and will make calling each
@@ -145,14 +164,24 @@ consensus_string = ""
 for idx, extracted_residue in enumerate(representative_aligned_seq):
     for each_key in alignments_dict:
         if alignments_dict[each_key][idx] != extracted_residue:
-            # A blank line is written to the line output file
-            output_file_handler.write("\n")
+            # Now that chain of matches has ended, evaluate if chain series long
+            # enough to save to output file
+            if (len(current_sequence_for_possible_output) >= minimum_length_of_consensus_block):
+                #write conserved series to output file
+                output_file_handler.write(current_sequence_for_possible_output)
+                # A line break is written to the line output file
+                output_file_handler.write("\n")
+            #reset the string collection for blocks to save to the output file
+            current_sequence_for_possible_output = ""
             # consensus_string gets a blank character added to it
             consensus_string += " "
             break
     else:
-        #if matches in all sequences, write the residue
-        output_file_handler.write(extracted_residue)
+        # if matches in all sequences, save to a growing sequence that may possibly
+        # be written to output if length of sequence chunck meets minimum length
+        # when the chain of matches ends.
+        current_sequence_for_possible_output += extracted_residue
+        # consensus string gets this residue added to it
         consensus_string += extracted_residue
 
 # close the file handling stream
