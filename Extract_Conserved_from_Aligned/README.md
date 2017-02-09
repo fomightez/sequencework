@@ -1,16 +1,14 @@
 # Extract_Conserved_from_Aligned
+
 **My collection of Python scripts to handle extracting conserved patches from aligned sequences. The main impetus was that indentifying these would help in designing primers for PCR amplification.**
 
 ---
-
-
-
 **Description of each script**
 
-- `extract_conserved_from_alignments.py`
+- extract_conserved_from_alignments.py
 
 >  aligned sequences in fasta form --> file of sequences that are 100% conserved  
-Extracts conserved patches from aligned sequences.  
+`extract_conserved_from_alignments.py` extracts conserved patches from aligned sequences.  
 The main impetus was that indentifying these would help in designing primers for PCR amplification.
 Developped in collaboration with Damian Menning, who developped the original implementation. See Mon, 14 Dec 2015 post to the Biopython Mailing List and [this gist](https://gist.github.com/fomightez/abd953068a675f416ed3). 
 
@@ -22,8 +20,8 @@ Place the alignment file in a directory along with this script.
 
 As the options are hard-coded into this script for now. You need to edit the script to reflect your alignment file and the minimum cut-off of length for reporting of an extracted sequence. See `USER ADJUSTABLE VALUES` and edit these two values to reflect your.
 
-*`file_name`
-*`minimum_length_of_consensus_block`
+* `file_name`
+* `minimum_length_of_consensus_block`
 
 Then you can invoke the script
 
@@ -33,6 +31,7 @@ Then you can invoke the script
 **example of input and output for `extract_conserved_from_alignments.py`:**
 
 **original input:**  
+
 (sequences as text in FASTA format in a file; in example, file is named `test_align.fa.` Contents below.)  
 ```
 >gi|357578918|gb|JN739583.1|_Dilospomenia_genircus_strain_TCC717_18S_ribosomal_RNA_gene_partial_sequence
