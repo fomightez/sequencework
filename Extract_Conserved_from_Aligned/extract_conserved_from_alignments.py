@@ -33,7 +33,7 @@
 #*******************************************************************************
 ##################################
 #  USER ADJUSTABLE VALUES        #
-file_name = "Gomphonemataceae 18S cut.fas"
+file_name = "test_alignment.fas"
 
 minimum_length_of_consensus_block = 1 # won't add sequence ragment to the output
 # file unless matches in a series at least this length. Default is 1 so that
