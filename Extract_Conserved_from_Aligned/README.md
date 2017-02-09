@@ -15,18 +15,17 @@ Developped in collaboration with Damian Menning, who developped the original imp
 
 **Usage**  
 
-    Requires a text of previously aligned sequences in FASTA format. There are a number of resouces that can produce this, for example, the [Multiple Sequence Alignment Tools of EMBL-EBI](http://www.ebi.ac.uk/Tools/msa/).
+* Requires a text of previously aligned sequences in FASTA format. There are a number of resouces that can produce this, for example, the [Multiple Sequence Alignment Tools of EMBL-EBI](http://www.ebi.ac.uk/Tools/msa/).  
+Place the alignment file in a directory along with this script.
 
-    Place the alignment file in a directory along with this script.
+* As the options are hard-coded into this script for now. You need to edit the script to reflect your alignment file and the minimum cut-off of length for reporting of an extracted sequence. See `USER ADJUSTABLE VALUES` and edit these two values to reflect your.
 
-    As the options are hard-coded into this script for now. You need to edit the script to reflect your alignment file and the minimum cut-off of length for reporting of an extracted sequence. See `USER ADJUSTABLE VALUES` and edit these two values to reflect your.
+    * `file_name`
+    * `minimum_length_of_consensus_block`
 
-        * `file_name`
-        * `minimum_length_of_consensus_block`
+* Then you can invoke the script
 
-    Then you can invoke the script
-
-        python extract_conserved_from_alignments.py  
+    python extract_conserved_from_alignments.py  
 
   
   
