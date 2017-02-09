@@ -3,6 +3,7 @@
 **My collection of Python scripts to handle extracting conserved patches from aligned sequences. The main impetus was that indentifying these would help in designing primers for PCR amplification.**
 
 ---
+
 **Description of each script**
 
 - extract_conserved_from_alignments.py
