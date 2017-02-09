@@ -26,10 +26,12 @@ As the options are hard-coded into this script for now. You need to edit the scr
 
 Then you can invoke the script
 
-    python extract_conserved_from_alignments.py
+    python extract_conserved_from_alignments.py  
 
-
-**example of input and output for `extract_conserved_from_alignments.py`:**
+  
+  
+  
+**Example of input and output for `extract_conserved_from_alignments.py`:**
 
 **original input:**  
 
