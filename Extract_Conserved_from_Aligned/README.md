@@ -6,6 +6,10 @@
 
 **Description of each script**
 
+
+---
+
+
 - extract_conserved_from_alignments.py
 
 >  aligned sequences in fasta form --> file of sequences that are 100% conserved  
