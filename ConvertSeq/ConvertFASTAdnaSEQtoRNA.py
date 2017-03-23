@@ -21,8 +21,10 @@
 # TO RUN:
 # For example, enter on the command line, the line
 #-----------------------------------
-# python ConvertFASTAdnaSEQtoRNA.py
+# python ConvertFASTAdnaSEQtoRNA.py <your-FASTA-file>
 #-----------------------------------
+# replacing <your-FASTA-file> with your file name.
+# Easiest use is to put that file in same directory with script.
 #
 #
 #
@@ -146,8 +148,9 @@ if os.path.isfile(args.InputFile):
             # lower or upper case versions with line below.
             #output_line = (line.upper()).replace('T','U')
 
-            #However, maybe some information encoded in case by user? Maybe
-            # best just to leave alone. Easy in this case to handle both.
+            # However, to avoid altering maybe some meta information made by
+            # user, maybe best just to leave alone. Easy in this case to 
+            # handle both.
             output_line = line.replace('T','U')
             output_line = output_line.replace('t','u')
 
