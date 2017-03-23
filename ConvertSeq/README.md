@@ -33,8 +33,12 @@ AACATCACCTCCGTCTCTCAGTGCTGCACCATCAGCAGCCTGAGGAAGGTGAAGGTGCAG
 CTGCACTGTGGGGGGGACCGGAGGGAGGAGCTGGAGATCTTCACGGCCAGGGCCTGCCAG
 TGCGACATGTGTCGCCTCTCACGCTACTAG
 ```
+example command to run:
+`python ConvertFASTAdnaSEQtoRNA.py fasta_seq.txt`
 
-output after:
+stderr will report information as script runs.
+
+actual output to be found in new output file after running:
 ```
 >gi|392920960|ref|NM_073597.2| Caenorhabditis elegans Protein FLR-2 (flr-2) mRNA, complete cds
 AUGGGCUCCAAAGCACGAGCACGACGACGUUUAAGUUGUUUUUUAAGCGUUUUUGUUGUGACAUGCUUAU
@@ -55,7 +59,7 @@ UGCGACAUGUGUCGCCUCUCACGCUACUAG
 
 
 ```
- 
+Using the example command above, the output produced would be in the file `fasta_seq_mRNAconv.txt`.
 
 
 
