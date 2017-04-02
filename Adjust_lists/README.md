@@ -193,8 +193,8 @@ Related scripts
 
 Several other of my code repositories hold code related to the manipulation of gene lists. Here are some:
 
-- [My YeastMine repository](https://github.com/fomightez/yeastmine) has several useful scripts for comverting yeast gene lists, such as `geneID_list_to_systematic_names.py`.
+- [My YeastMine repository](https://github.com/fomightez/yeastmine) has several useful scripts for converting yeast gene lists, such as `geneID_list_to_systematic_names.py`.
 
-- [My text-mining/text manipulation code repository](https://github.com/fomightez/text_mining) has several useful scripts involving lists, such as, the `find_overlap_in_lists.py` script and related `find_overlap_in_lists_with_Venn.py`.
+- [My text-mining/text manipulation code repository](https://github.com/fomightez/text_mining) has several useful scripts involving lists, such as, the `find_overlap_in_lists.py` script (and related `find_overlap_in_lists_with_Venn.py`) and `extract_data_on_line_using_word_list.py`.
 
 
