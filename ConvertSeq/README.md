@@ -73,6 +73,9 @@ Since sequence manipulations are at the heart of many of my computational endeav
 
 - In the `RetrieveSeq` folder is a script that takes a list of protein sequence records in FASTA format and gets the mRNA sequence or at least the coding sequence corresponding to each one. See `GetmRNAorCDSforProtein.py`.
 
+- In the `AdjustFASTA_or_FASTQ` folder is a script that takes a list of sequence records in FASTA format and adds the source organism information to the description line for each entry. See `add_source_organism_info_to_FASTA.py`.
+
+- In the `CompareFASTA_or_FASTQ` folder is a script that takes two lists of sequence records in FASTA format and checks if the source organisms overlap. See `compare_organisms_in_two_files_of_fasta_entries.py`.
 
 - In the `Adjust_Annotation` folder are some scripts for dealing with converting sequence-associated annotation files to be more useful.
 
