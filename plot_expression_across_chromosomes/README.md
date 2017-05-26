@@ -1,6 +1,6 @@
 # plot_expression_across_chromosomes.py
 
-> placeholder for now
+> just a draft of documentation for now. Contact me if you need help until I better document this.
 
 Plot ratio of expression of experimental condition vs. wild-type (or 
 baseline state) for genes in sequential order across chromosomes in the genome. Requires two files: 1. a 
