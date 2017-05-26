@@ -1,3 +1,4 @@
+# about
 # plot_expression_across_chromosomes.py
 
 > just a draft of documentation for now.  
