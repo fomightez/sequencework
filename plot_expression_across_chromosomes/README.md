@@ -18,9 +18,8 @@ fairly straightforward to change to plotting ratio of sequencing coverage
 across chromosomes in a genome.
 
 The plotting approach and other aspects borrow from Brent Pedersen's awesome
-`manhattan-plot.py` script at the link below:
-https://github.com/brentp/bio-playground/blob/master/plots/manhattan-plot.py
+`manhattan-plot.py` script [here](https://github.com/brentp/bio-playground/blob/master/plots/manhattan-plot.py)
 This script should produce a plot similar to a combination of Brent Pedersen's
-`manhattan-plot`and Figure 5B from Thorburn et al. 2013 (PMID: 23468524), see 
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3639041/
+`manhattan-plot`and Figure 5B from Thorburn et al. 2013 (PMID: 23468524), (see [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3639041/)).
+
 
