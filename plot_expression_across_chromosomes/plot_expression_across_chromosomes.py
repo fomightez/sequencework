@@ -9,8 +9,8 @@
 # baseline state) for genes in sequential order across chromosomes in the genome. 
 # Requires two files: 1. a file of a genome annotation format in order to parse 
 # the locations of genes and (approximate) length of chromosomes; 2. a file of 
-# expression data to plot. The default is that the data is in a tab-delimited 
-# format.
+# expression data to plot. Currently, the data needs to be in a tab-delimited 
+# format, but this could easily be adjusted.
 #
 # There are several optional flags that can be supplied at the time of calling
 # the script to control options. These are shown if you invoke with `-help` 
@@ -102,8 +102,10 @@ y_cutoff = 4 # A limit was added to avoid extreme values compressing the
 # run with `--no_limits` flag enables. y_cutoff is not used when `no_log` flag 
 # used or values are with +/- this interval.
 
-plot_style = "ggplot" #try also `seaborn`,`default` or `grayscale`; use 
-# `print(plt.style.available)` to see others after appropriate imports
+
+plot_style = "seaborn" #try also `ggplot`,`default`, `bmh` or `grayscale`; use 
+# `print(plt.style.available)` after appropriate imports to see others; 
+# illustrated at https://matplotlib.org/examples/style_sheets/style_sheets_reference.html
 
 #colors = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9']
 # if using `ggplot` or `seaborn` style as coded in script than it has less than 
@@ -112,10 +114,10 @@ plot_style = "ggplot" #try also `seaborn`,`default` or `grayscale`; use
 # row when cycles again to `C0`. Options to fix current situation:
 colors = (['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'tab:orange','tab:gray', 
     'tab:pink'])  # for use with `seaborn` style
-colors = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6'] # for use with seaborn style
 colors = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7'] # for use with ggplot style
 colors = (['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'tab:orange','tab:pink', 
     'tab:cyan'])  # for use with `ggplot` style
+colors = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6'] # for use with seaborn style
 # see https://matplotlib.org/users/colors.html for other options
 
 
