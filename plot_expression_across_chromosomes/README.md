@@ -6,7 +6,7 @@ Plot ratio of expression of experimental condition vs. wild-type (or
 baseline state) for genes in sequential order across chromosomes in the genome. Requires two files: 1. a 
 file of a genome annotation format in order to parse the locations of genes 
 and (approximate) length of chromosomes; 2. a file of expression data to plot.
-The default is that the data is in a tab-delimited format.
+Currently, the script necessitates that the data is in a tab-delimited format.
 
 The plotting approach and other aspects borrow from Brent Pedersen's awesome
 `manhattan-plot.py` script [here](https://github.com/brentp/bio-playground/blob/master/plots/manhattan-plot.py). (Many thanks to him for sharing that!)
