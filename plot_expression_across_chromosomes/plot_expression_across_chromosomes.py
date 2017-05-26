@@ -42,7 +42,7 @@
 # - add to github with links to Brent's script
 # - add option for lowess on per chromosome bases (important that is on that basis so that ends not affected by x values not coming from same chrosome). Make settings for points or vertical lines are a little more transparent if that option is "on".
 # - add at least a link to my biostar's question answer (can link to current one for now even if I haven't mentioned script there yet) and mention of running this script to the documenation I have for additional plots for downstream analysis for Wang RNASeq pipeline. Start it with something like, "While not ideal for checking for aneuploidy, there have been several cases where additional copies of chromosomes can be seen by plotting across a genome a ratio of expression in order of genes on chromosomes..."
-# - make it so when using limit (currently `if no_log or no_limits or all(-y_cutoff <= n <= y_cutoff for n in ys)`), points outside bounds are represented at edge like DESeq2 plotMA does ---> "the lower bound for points on the plot, points beyond this are drawn as triangles at ymin" . Would be best if could color the triangles same colors as chromosome points and so probably necessary move checking if using limits earlier (and process then to a new dataframe or list) and toggle "on" a boolean to use later where checking in current code. Would be nice if the triangles pointed in direction they are off window (see section 1.5.1 of DESeq2 vigenettes) and unfilled like plotMA but as long as triangles, okay. (Direction looks possible, see Ffisegydd's answer at https://stackoverflow.com/questions/23345565/is-it-possible-to-control-matplotlib-marker-orientation . IF end up using that be sure to note source.) Keep current warning in std.err that I have too though.
+# - make it so when using limit (currently `if no_log or no_limits or all(-y_cutoff <= n <= y_cutoff for n in ys)`), points outside bounds are represented at edge like DESeq2 plotMA does ---> "the lower bound for points on the plot, points beyond this are drawn as triangles at ymin" . Would be best if could color the triangles same colors as chromosome points and so probably necessary move checking if using limits earlier (and process then to a new dataframe or list) and toggle "on" a boolean to use later where checking in current code. Would be nice if the triangles pointed in direction they are off window (see section 1.5.1 of DESeq2 vigenettes) and unfilled like plotMA but as long as triangles, okay. (Direction looks possible, see Ffisegydd's answer at https://stackoverflow.com/questions/23345565/is-it-possible-to-control-matplotlib-marker-orientation . IF end up using that be sure to note source.) Keep current notification in std.err that I have too though BUT CHANGE FROM WARNING TO 'NOTICE' WITH EXPLANATION LIKE "The # points beyond the bounds of y-axis are drawn as triangles at the edge...; rest about no_log, etc...".
 # - add to my post on Biostars about this issue and subject, make sure to point out the NoiseSeq implementation and the one described at https://www.bioconductor.org/help/workflows/rnaseqGene/#plotting-fold-changes-in-genomic-space tht requires reading in data with `summarizeOverlaps`  (see `Trying to figure out how to plot RNA-Seq data across chromosomes in R.md`). point out shortcomings of those, i.e, not software or data-handling aganostic and so need to run analysis with that software or again and then only plotting that new data. Possible to post demo image?
 # - add option to only plot for certain chromosomes (do before version for "raw" data created)
 # - use latex to make the y axis label fancier
@@ -610,9 +610,8 @@ for chr, data_per_chr in grouped:
 # where no expression plotted as contributing to position information to keep
 # width scale in plot closer to reality for each chromosome.
 genome_df.dropna(subset=["level_val"], inplace = True)
-# group by chromosomes and iterate making lists of x that increase across all
-# chromosomes and tracks midpoint of each chromosome using the first and last
-# gene (feature)
+# group by chromosomes and iterate making lists of x values that increase across
+# all chromosomes and fills in corresponding y values and arranges colors.
 # Note even though I iterated on a similar `grouped` by chromosome iterable 
 # earlier, I couldn't yet capture x & y values for plot b/c had not yet removed 
 # those with no expression values. Not DRY, but will better represent chromosome
@@ -640,6 +639,8 @@ for chr, data_per_chr in grouped_from_filtered:
     ys.extend([level_val for level_val in data_per_chr['level_val'].tolist()])
     cs.extend([color] * len(data_per_chr))
     previous_chr_last_x = previous_chr_last_x + chr_length
+
+
 
 
 
