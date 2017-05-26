@@ -1,10 +1,10 @@
-# about: plot_expression_across_chromosomes.py
+# plot_expression_across_chromosomes.py
 
 > just a draft of documentation for now.  
 > Contact me if you need help until I better document this.
 
-Plot ratio of expression of experimental condition vs. wild-type (or 
-baseline state) for genes in sequential order across chromosomes in the genome. Requires two files: 1. a 
+A python script to olot ratio of expression of experimental condition vs. wild-type (or 
+baseline state) for genes in sequential order across chromosomes in the genome. It requires two files: 1. a 
 file of a genome annotation format in order to parse the locations of genes 
 and (approximate) length of chromosomes; 2. a file of expression data to plot.
 Currently, the script necessitates that the data is in a tab-delimited format.
@@ -16,7 +16,7 @@ This script should produce a plot similar to a combination of Brent Pedersen's
 
 There are several optional flags that can be supplied at the time of calling
 the script to control options. These are shown if you invoke with `-help` 
-flag or simply call the script with no additional arguments. Additionally, 
+flag, i.e., type `python plot_expression_across_chromosomes.py --help` or simply call the script with no additional arguments. Additionally, 
 inside the script there are several `USER ADJUSTABLE VALUES` that can be 
 edited for easy customization.
 Built to be general enough to be easily modified. For example, should be 
