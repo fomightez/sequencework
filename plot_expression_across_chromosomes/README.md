@@ -1,5 +1,4 @@
-# about
-# plot_expression_across_chromosomes.py
+# about: plot_expression_across_chromosomes.py
 
 > just a draft of documentation for now.  
 > Contact me if you need help until I better document this.
