@@ -3,14 +3,21 @@
 # plot_expression_across_chromosomes.py by Wayne Decatur
 
 #*******************************************************************************
-# USES Python 2.7 but should be convertible via 2to3, see https://docs.python.org/3.0/library/2to3.html
+# Written in Python 2.7 to be compatible with Python 3.
 #
 # PURPOSE: Plot ratio of expression of experimental condition vs. wild-type (or 
 # baseline state) for genes in sequential order across chromosomes in the genome. 
 # Requires two files: 1. a file of a genome annotation format in order to parse 
 # the locations of genes and (approximate) length of chromosomes; 2. a file of 
 # expression data to plot. Currently, the data needs to be in a tab-delimited 
-# format, but this could easily be adjusted.
+# format, but this could easily be adjusted. At this point, to accomodate 
+# replicates data it is assumed you have in your data file for each gene the 
+# resulting (combined) level metric for the replicates, such as the mean TPM for
+# your "wild-type" samples and your mean TPM for your experimental samples. In 
+# the future there will be a related script for "raw" results produced by Salmon 
+# or HTSeq. The hope being you just need to point the script at the raw data 
+# files and it will automagically handle the combining and produce a plot 
+# showing the expression of genes across the chromosomes.
 #
 # There are several optional flags that can be supplied at the time of calling
 # the script to control options. These are shown if you invoke with `-help` 
@@ -37,9 +44,6 @@
 #
 # VERSION HISTORY:
 # v.0.1. basic working version
-#
-# to do:
-# - many things still
 #
 #
 #
@@ -82,7 +86,7 @@ limit_before_rotate = 3 # upper limit of max length of chromosome or scaffold
 y_cutoff = 4 # A limit was added to avoid extreme values compressing the 
 # typically important range when log2 used. Adjust that limit here or 
 # run with `--no_limits` flag enables. y_cutoff is not used when `no_log` flag 
-# used or values are with +/- this interval.
+# used or when values are within +/- this interval.
 
 
 plot_style = "seaborn" #try also `ggplot`,`default`, `bmh` or `grayscale`; use 
@@ -94,12 +98,15 @@ plot_style = "seaborn" #try also `ggplot`,`default`, `bmh` or `grayscale`; use
 # 10 colors in the `CN` group and begins cycling internally back to `C0` when 
 # hits `C7`(`C6` for seaborn), etc., & so same colors appear several times in 
 # row when cycles again to `C0`. Options to fix current situation:
-colors = (['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'tab:orange','tab:gray', 
-    'tab:pink'])  # for use with `seaborn` style
-colors = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7'] # for use with ggplot style
-colors = (['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'tab:orange','tab:pink', 
+colors = (['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'xkcd:magenta', 'xkcd:orange', 
+    'tab:gray','tab:pink'])  # for use with `seaborn` style
+colors = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6'] # for use with ggplot style
+colors = (['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'xkcd:orange','tab:pink', 
     'tab:cyan'])  # for use with `ggplot` style
-colors = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6'] # for use with seaborn style
+colors = (['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 
+    'tab:brown', 'tab:pink', 'tab:gray', 'tab:olive', 'tab:cyan']) 
+colors = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5'] # for use with seaborn style
+colors = (['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'xkcd:magenta'])# w/`seaborn`
 # see https://matplotlib.org/users/colors.html for other options
 
 
@@ -138,7 +145,7 @@ import pandas as pd
 import numpy as np
 from itertools import cycle
 import matplotlib # in order to use `matplotlib.use('Agg')`, need this first, see source of next line
-matplotlib.use('Agg') # Force matplotlib to not use any Xwindows backend. # from https://stackoverflow.com/questions/2801882/generating-a-png-with-matplotlib-when-display-is-undefined after searched error I was getting after upgrading matplolib in my pythonanywhere account
+matplotlib.use('Agg') # Force matplotlib to not use any Xwindows backend for running on PythonAnywhere. # from https://stackoverflow.com/questions/2801882/generating-a-png-with-matplotlib-when-display-is-undefined after searched error I was getting after upgrading matplolib in my Pythonanywhere account
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -200,10 +207,10 @@ def checkIfRomanNumeral(numeral):
     https://stackoverflow.com/questions/20973546/check-if-an-input-is-a-valid-roman-numeral
     """
     numeral = numeral.upper()
-    validRomanNumerals = ["M", "D", "C", "L", "X", "V", "I", "(", ")"]
+    valid_roman_numerals = ["M", "D", "C", "L", "X", "V", "I", "(", ")"]
     valid = True
     for letters in numeral:
-        if letters not in validRomanNumerals:
+        if letters not in valid_roman_numerals:
             #print("Sorry that is not a valid roman numeral")
             valid = False
             break
@@ -211,9 +218,9 @@ def checkIfRomanNumeral(numeral):
 
 def int_to_roman(input):
     """
-    from http://code.activestate.com/recipes/81611-roman-numerals/
+    from Paul Winkler's http://code.activestate.com/recipes/81611-roman-numerals/
     (had to reindent; was causing text editor to default to wrong spacing
-    otherwise)
+    otherwise. Plus updated some idioms too.)
     Convert an integer to Roman numerals.
 
     Examples:
@@ -257,24 +264,24 @@ def int_to_roman(input):
     MCMXCIX
     """
     if type(input) != type(1):
-        raise TypeError, "expected integer, got %s" % type(input)
+        raise TypeError ("expected integer, got {0}".format(type(input)))
     if not 0 < input < 4000:
-        raise ValueError, "Argument must be between 1 and 3999"
+        raise ValueError ("Argument must be between 1 and 3999")
     ints = (1000, 900,  500, 400, 100,  90, 50,  40, 10,  9,   5,  4,   1)
     nums = ('M',  'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I')
     result = ""
-    for i in range(len(ints)):
-        count = int(input / ints[i])
+    for i,e in enumerate(ints):       #formerly `for i in range(len(ints))`
+        count = int(input / e) #formerly `count = int(input / ints[i])`
         result += nums[i] * count
-        input -= ints[i] * count
+        input -= e * count #formerly `input -= ints[i] * count`
     return result
 
 def roman_to_int_if_possible(input):
     """
-    modified from roman_to_int at
+    modified from Paul Winkler's roman_to_int at
     http://code.activestate.com/recipes/81611-roman-numerals/
     (had to reindent; was causing text editor to default to wrong spacing
-    otherwise)
+    otherwise. Plus updated some idioms too.)
 
     Try to convert a roman numeral to an integer. 
     Return original input if not possible.
@@ -289,15 +296,15 @@ def roman_to_int_if_possible(input):
         if not c in nums:
             #raise ValueError, "input is not a valid roman numeral: %s" % input
             return input
-    for i in range(len(input)):
-        c = input[i]
+    for i,e in enumerate(input):  #formerly `for i in range(len(input)):`
+        c = e #formerly `c = input[i]`
         value = ints[nums.index(c)]
         # If the next place holds a larger number, this value is negative.
         try:
             nextvalue = ints[nums.index(input[i +1])]
             if nextvalue > value:
                 value *= -1
-        except IndexError:
+        except IndexError as e:
             # there is no next place.
             pass
         places.append(value)
@@ -331,7 +338,7 @@ def seqname_string_to_numeric(row):
     '''
     try:
         return int(row["seqname"])
-    except ValueError:
+    except ValueError as e:
         return row["seqname"]  
 
 ###--------------------------END OF HELPER FUNCTIONS---------------------------###
@@ -398,6 +405,12 @@ parser.add_argument("-nlim", "--no_limits",help=
      if all values are within +/- the cutoff interval or `--no_log` is used."
     .format(y_cutoff),
     action="store_true")
+parser.add_argument("-s", "--smooth",help=
+    "add this flag to display a smoothing curve fit to the data points \
+    (LOWESS) on a per chromosome basis. This option can enhance visualization \
+    of deviations characteristic of aneuploidy and copy number variation across \
+    the genome, both within and between chromosomes.",
+    action="store_true")
 parser.add_argument("-ndh", "--no_data_header",help=
     "add this flag if there is no data header or no first line of column names \
     in the data file. Otherwise, it is assumed there is and any item read as \
@@ -421,6 +434,7 @@ data_columns_to_grab = [int(item) for item in args.columns.split(',')]
 no_log = args.no_log
 no_data_header = args.no_data_header
 lines = args.lines
+smooth = args.smooth
 no_limits = args.no_limits
 
 
@@ -608,7 +622,7 @@ for chr, data_per_chr in grouped_from_filtered:
     chr_length = chr_specs[chr]["length"] # this may be larger than the final 
     # "end" position in the filtered group, & so would better reflect scale of 
     # each chromosome
-    color = colors.next()
+    color = next(colors)
     this_chromosomes_xs = [previous_chr_last_x + position for position in data_per_chr['position'].tolist()]
     assert min(this_chromosomes_xs) >= chr_specs[chr]["x_start"], (
     "x values for individual genes cannot be lower than the \
@@ -660,11 +674,37 @@ if no_log or no_limits or all(-y_cutoff <= n <= y_cutoff for n in ys):
     pass # see comment on above line
 else: 
     plt.ylim(ymin=-y_cutoff, ymax=y_cutoff)
-    if min(ys) < -y_cutoff:
-        print >>sys.stderr, "\n***Warning***You have values that are below cut-off for y-axis. A limit was imposed to avoid extreme values compressing the typically important range; run with `--no_limits` or `--no_log` to see these."
-    if max(ys) > y_cutoff:
-        print >>sys.stderr, "\n***Warning***You have values that are above cut-off for y-axis. A limit was imposed to avoid extreme values compressing the typically important range; run with  `--no_limits` or `--no_log` to see these."
-
+    # catch out of bounds points for plotting in a manner to indicate out of 
+    # bounds of limits used to avoid compressing important range. This approach
+    # is styled on how DESeq2 plotMA handles out of bounds points.  Found to 
+    # easily control rotation of the marker in plot call, best to split.
+    # prepare to catch points too high
+    xs_out_of_bounds_hi = []
+    ys_out_of_bounds_hi = []
+    cs_out_of_bounds_hi = []
+    # prepare catch points too low
+    xs_out_of_bounds_lo = []
+    ys_out_of_bounds_lo = []
+    cs_out_of_bounds_lo = []
+    offset = 0.055 #so not cut off at edge
+    for indx, pt in enumerate(ys):
+        if pt > y_cutoff:
+            ys_out_of_bounds_hi.append(y_cutoff - offset)
+            xs_out_of_bounds_hi.append(xs[indx])
+            cs_out_of_bounds_hi.append(cs[indx])
+        elif pt < -y_cutoff:
+            ys_out_of_bounds_lo.append(-y_cutoff + offset)
+            xs_out_of_bounds_lo.append(xs[indx])
+            cs_out_of_bounds_lo.append(cs[indx])
+    oobs_marker_sz = 25 # out of bounds marker size
+    oobs_width = 1 # out of bounds marker linewwidth
+    rotation_for_hi = 0
+    rotation_for_lo = 180
+    plt.scatter(xs_out_of_bounds_hi, ys_out_of_bounds_hi, marker=(3, 0, rotation_for_hi), s=oobs_marker_sz, linestyle='solid',linewidth=oobs_width, facecolors='None', edgecolors=cs_out_of_bounds_hi) # see https://stackoverflow.com/questions/4143502/how-to-do-a-scatter-plot-with-empty-circles-in-python; use `facecolors` for scatter and markerfacecolor for `plt.plot`
+    plt.scatter(xs_out_of_bounds_lo, ys_out_of_bounds_lo, marker=(3, 0, rotation_for_lo), s=oobs_marker_sz, linestyle='solid',linewidth=oobs_width, facecolors='None', edgecolors=cs_out_of_bounds_lo) # see https://stackoverflow.com/questions/4143502/how-to-do-a-scatter-plot-with-empty-circles-in-python; use `facecolors` for scatter and markerfacecolor for `plt.plot`
+    sys.stderr.write(
+        "\n***Notice:***The {} points beyond the bounds of y-axis are drawn as open triangles at the edge; a limit was imposed to avoid extreme values compressing the typically important range; run with `--no_limits` or `--no_log` to see these accurately."
+        .format(len(xs_out_of_bounds_hi) + len(xs_out_of_bounds_lo)))
 #if ymax is not None: plt.ylim(ymax=ymax)
 size_for_xlabels = 8.5
 longest_chr_or_scaffold = len(max(seqname_set, key=len))
@@ -675,7 +715,7 @@ if longest_chr_or_scaffold > limit_before_rotate:
 else:
     plt.xticks(
         [c[1] for c in xs_by_chr], [c[0] for c in xs_by_chr], size=size_for_xlabels)
-print >>sys.stderr, "\n\nPlot image saved to: {}".format(output_file_name)
+sys.stderr.write("\n\nPlot image saved to: {}".format(output_file_name))
 plt.savefig(output_file_name)
 #plt.show()
 
