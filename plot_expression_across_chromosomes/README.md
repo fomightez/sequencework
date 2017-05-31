@@ -7,7 +7,15 @@ A python script to olot ratio of expression of experimental condition vs. wild-t
 baseline state) for genes in sequential order across chromosomes in the genome. It requires two files: 1. a 
 file of a genome annotation format in order to parse the locations of genes 
 and (approximate) length of chromosomes; 2. a file of expression data to plot.
-Currently, the script necessitates that the data is in a tab-delimited format.
+Currently, the script necessitates that the data is in a tab-delimited format. 
+At this point to accomodate replicates, it is assumed you have in your data file for each gene the 
+resulting (combined) level metric for the replicates, such as the mean TPM for
+your "wild-type" samples and your mean TPM for your experimental samples. In 
+the future there will be a related script for "raw" results produced by Salmon 
+or HTSeq. The hope being you just need to point the script at the raw data 
+files and it will automagically handle the combining and produce a plot 
+showing the expression of genes across the chromosomes.
+
 
 The plotting approach and other aspects borrow from Brent Pedersen's awesome
 `manhattan-plot.py` script [here](https://github.com/brentp/bio-playground/blob/master/plots/manhattan-plot.py). (Many thanks to him for sharing that!)
