@@ -20,7 +20,7 @@ showing the expression of genes across the chromosomes.
 The plotting approach and other aspects borrow from Brent Pedersen's awesome
 `manhattan-plot.py` script [here](https://github.com/brentp/bio-playground/blob/master/plots/manhattan-plot.py). (Many thanks to him for sharing that!)
 This script should produce a plot similar to a combination of Brent Pedersen's
-`manhattan-plot`and Figure 5B from Thorburn et al. 2013 (PMID: 23468524), (see [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3639041/)).
+`manhattan-plot`and the plot in Figure 5B from Thorburn et al. 2013 (PMID: 23468524), see [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3639041/).
 
 There are several optional flags that can be supplied at the time of calling
 the script to control options. These are shown if you invoke with `-help` 
