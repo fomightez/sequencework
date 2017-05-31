@@ -3,7 +3,7 @@
 > just a draft of documentation for now.  
 > Contact me if you need help until I better document this.
 
-A python script to olot ratio of expression of experimental condition vs. wild-type (or 
+A python script to plot ratio of expression of experimental condition vs. wild-type (or 
 baseline state) for genes in sequential order across chromosomes in the genome. It requires two files: 1. a 
 file of a genome annotation format in order to parse the locations of genes 
 and (approximate) length of chromosomes; 2. a file of expression data to plot.
