@@ -12,7 +12,7 @@ At this point to accomodate replicates, it is assumed you have in your data file
 resulting (combined) level metric for the replicates, such as the mean TPM for
 your "wild-type" samples and your mean TPM for your experimental samples. In 
 the future there will be a related script for "raw" results produced by Salmon 
-or HTSeq. The hope being you just need to point the script at the raw data 
+or HTSeq-count. The hope being you just need to point the script at the raw data 
 files and it will automagically handle the combining and produce a plot 
 showing the expression of genes across the chromosomes.
 
