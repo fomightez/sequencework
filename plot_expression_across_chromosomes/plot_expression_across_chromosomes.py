@@ -39,7 +39,7 @@
 #
 #
 # Dependencies beyond the mostly standard libraries/modules:
-#
+# statsmodels, seaborn (although could easily be unneeded)
 #
 #
 # VERSION HISTORY:
@@ -78,10 +78,12 @@ genome_annotation_fields_for_bed = ("chrom", "chromStart", "chromEnd", "name",
 
 suffix_for_saving_result = "_across_chr.png"
 
-title = "Expression across genome"
+title_prefix = "Expression across " # Change to `None` to suppress title
 
 limit_before_rotate = 3 # upper limit of max length of chromosome or scaffold 
-# names before x axis labels are all rotated
+# names before x axis labels are all rotated when plotting all genome. Same 
+# number will be used as total number of chromosomes (or scaffold) to be 
+# plotting before considering length of name again.
 
 y_cutoff = 4 # A limit was added to avoid extreme values compressing the 
 # typically important range when log2 used. Adjust that limit here or 
@@ -148,6 +150,8 @@ import matplotlib # in order to use `matplotlib.use('Agg')`, need this first, se
 matplotlib.use('Agg') # Force matplotlib to not use any Xwindows backend for running on PythonAnywhere. # from https://stackoverflow.com/questions/2801882/generating-a-png-with-matplotlib-when-display-is-undefined after searched error I was getting after upgrading matplolib in my Pythonanywhere account
 import matplotlib.pyplot as plt
 import seaborn as sns
+from statsmodels.nonparametric.smoothers_lowess import lowess
+
 
 
 ###---------------------------HELPER FUNCTIONS---------------------------------###
@@ -159,15 +163,29 @@ def generate_output_file_name(file_name, suffix):
     output file. The generated name is based on the original file
     name.
 
+    It also indicates in resulting file name name specific chromsomes or 
+    scaffolds if plotting was limited to those.
+
     Specific example
     ================
     Calling function with
-        ("file1.txt", "_redudant_alleles.txt")
+        ("data1.txt", "_across_chr.png")
     returns
-        "file1_redudant_alleles.txt"
+        "data1_across_chr.png"
+    
+    if `limit_to_chrs = ["II","IV"]`,
+    Calling function with
+        ("data1.txt", "_across_chr.png")
+    returns
+        "data1_across_chr_II_IV.png"
     '''
     main_part_of_name, file_extension = os.path.splitext(
         file_name) #from http://stackoverflow.com/questions/541390/extracting-extension-from-filename-in-python
+    if limit_to_chrs:
+        main_part_of_suffix, suffix_file_extension = os.path.splitext(
+        suffix)
+        suffix = main_part_of_suffix + "_" + "_".join(
+            limit_to_chrs) + suffix_file_extension 
     return main_part_of_name + suffix
 
 
@@ -382,18 +400,27 @@ parser.add_argument("data", help="Name of file containing the summarized data \
     sample &/or replicate.", 
     type=argparse.FileType('r'), metavar="DATA_FILE")
 parser.add_argument('-cols', '--columns', action='store', type=str, 
-    default= '1, 2, 3', help="columns for gene, wild-type (baseline state) \
+    default= '1,2,3', help="columns for gene, wild-type (baseline state) \
     expression value, experimental condition expression value, in that order. \
     This flag is used to specify the data in the summary file to be plotted. \
-    Default is `1, 2 ,3`, where `1` equals first column, i.e., how you'd refer \
-    to the columns in natural language (no zero-indexing). ") # based on
+    Separate the column identifiers by commas, without spaces. \
+    Default is `1,2,3`, where `1` indicates the first column, i.e., how \
+    you'd refer to the columns in natural language (no zero-indexing). ") 
+    # based on
     # https://stackoverflow.com/questions/15753701/argparse-option-for-passing-a-list-as-option
 parser.add_argument("-l", "--lines",help=
-    "add this flag to plot the expression level ration value as lines \
+    "add this flag to plot the expression level ratio value as lines \
     extending from the x-axis rather than points in space. (The resulting \
     aesthetic may resemble a city skyline for which the `manhattan plot` is \
     named.)",
     action="store_true")
+parser.add_argument('-chr', '--chrs', action='store', type=str, 
+    help="use this flag to limit plotting of the data to particular \
+    chromosomes or scaffolds you specify immediately following this flag. \
+    Separate the chromosome or scaffold identifiers by commas, without spaces. \
+    Default when this optional flag is not called is to plot that data for all \
+    chromosomes or scaffolds. ") # based on
+    # https://stackoverflow.com/questions/15753701/argparse-option-for-passing-a-list-as-option
 parser.add_argument("-nl", "--no_log",help=
     "add this flag to keep the expression level ratio to be plotted in the \
     common base 10 instead of converting to log2.",
@@ -411,6 +438,14 @@ parser.add_argument("-s", "--smooth",help=
     of deviations characteristic of aneuploidy and copy number variation across \
     the genome, both within and between chromosomes.",
     action="store_true")
+parser.add_argument('-ed', '--exp_desig', action='store', type=str, 
+    default= 'experimental', help="Allows changing the text used in y-axis \
+    label to reference experimental sample. Following `--exp_desig` type what \
+    you'd like to read there instead of `experimental`.") 
+parser.add_argument('-bd', '--base_desig', action='store', type=str, 
+    default= 'wild\mathrm{-}type', help="Allows changing the text used in y-axis \
+    label to reference wild-type or baseline sample. Following `--base_desig` \
+    type what you'd like to read there instead of `wild-type`.") 
 parser.add_argument("-ndh", "--no_data_header",help=
     "add this flag if there is no data header or no first line of column names \
     in the data file. Otherwise, it is assumed there is and any item read as \
@@ -422,6 +457,13 @@ parser.add_argument("-ndh", "--no_data_header",help=
     from your summary data file on the off-chance this causes issues in your \
     resulting plot.",
     action="store_true")
+parser.add_argument('-ac', '--advance_color', action='store', type=int, 
+    default= '0', help="**FOR ADVANCED USE.*** Allows for advancing the color \
+    selection iterator the specified number of times. The idea is it allows \
+    the ability to control the color of the chromosome when specifying \
+    a chromosome or scaffolds to plot so you could make the color match the \
+    one used when all chromsome plotted if needed. Supply the number to \
+    advance after the flag on the command line.") 
 
 #I would also like trigger help to display if no arguments provided because need at least one input file
 if len(sys.argv)==1:    #from http://stackoverflow.com/questions/4042452/display-help-message-with-python-argparse-when-script-is-called-without-any-argu
@@ -434,9 +476,19 @@ data_columns_to_grab = [int(item) for item in args.columns.split(',')]
 no_log = args.no_log
 no_data_header = args.no_data_header
 lines = args.lines
-smooth = args.smooth
+if args.chrs:
+    if "," in args.chrs:
+        limit_to_chrs = args.chrs.split(',')
+    else:
+        # means only one item
+        limit_to_chrs = [args.chrs] #has to be a list for passing to Pandas `isin()` 
+else:
+    limit_to_chrs = args.chrs # will make `limit_to_chrs` as `None`
+advance_color_increments = args.advance_color
+display_smooth = args.smooth
 no_limits = args.no_limits
-
+exp_designation = args.exp_desig
+baseline_designation = args.base_desig
 
 
 
@@ -572,6 +624,9 @@ if cause_div_by_zero:
 
 
 # PREPARE GENOME DATAFRAME NOW HARBORING EXPRESSION DATA FOR PLOTTING
+# if limiting to specific chromosomes or scaffolds, discard any other data
+if limit_to_chrs:
+    genome_df = genome_df.loc[genome_df["seqname"].isin(limit_to_chrs)]
 # sort by position on chromosome
 genome_df.sort_values(["position"], inplace=True, ascending=True) 
 # sort by chromosome
@@ -587,9 +642,9 @@ xs_by_chr = [] #ported over from https://github.com/brentp/bio-playground/blob/m
 # sorting just above makes it easy to get last entry for each chromosome
 grouped = genome_df.groupby('seqname')
 previous_chr_last_x = 0
-for chr, data_per_chr in grouped:
+for chr, data_per_chr_df in grouped:
     chr_specs[chr] = {}
-    chr_length = data_per_chr['end'].tolist()[-1]
+    chr_length = data_per_chr_df['end'].tolist()[-1]
     chr_midpoint = chr_length/2
     chr_specs[chr]["length"] = chr_length
     chr_specs[chr]["midpoint"] = chr_midpoint
@@ -616,14 +671,22 @@ grouped_from_filtered = genome_df.groupby('seqname')
 xs = []
 ys = []
 cs = []
+
 colors = cycle(colors)
+# handle advancing colors if adjusting based on user provided info
+if advance_color_increments:
+    for i in range(advance_color_increments): color = next(colors)
+# prepare to collect data on per chromosome basis if lowess smoothing flag on
+if display_smooth:
+    data_by_chr = {}
 previous_chr_last_x = 0
-for chr, data_per_chr in grouped_from_filtered:
+for chr, data_per_chr_df in grouped_from_filtered:
     chr_length = chr_specs[chr]["length"] # this may be larger than the final 
     # "end" position in the filtered group, & so would better reflect scale of 
     # each chromosome
     color = next(colors)
-    this_chromosomes_xs = [previous_chr_last_x + position for position in data_per_chr['position'].tolist()]
+    this_chromosomes_xs = [previous_chr_last_x + position for position in data_per_chr_df['position'].tolist()]
+    this_chromosomes_ys = [level_val for level_val in data_per_chr_df['level_val'].tolist()]
     assert min(this_chromosomes_xs) >= chr_specs[chr]["x_start"], (
     "x values for individual genes cannot be lower than the \
     `starting x value` for that chromosome.")
@@ -632,8 +695,13 @@ for chr, data_per_chr in grouped_from_filtered:
         individual genes cannot be greater than the sum of the `starting x \
         value` for that chromosome plus the length of that chromosome.")
     xs.extend(this_chromosomes_xs)
-    ys.extend([level_val for level_val in data_per_chr['level_val'].tolist()])
-    cs.extend([color] * len(data_per_chr))
+    ys.extend(this_chromosomes_ys)
+    cs.extend([color] * len(data_per_chr_df))
+    # collect pertinent data on per chromosome basis if lowess smoothing flag
+    if display_smooth:
+        data_by_chr[chr] = {}
+        data_by_chr[chr]["xs"] = this_chromosomes_xs
+        data_by_chr[chr]["ys"] = this_chromosomes_ys
     previous_chr_last_x = previous_chr_last_x + chr_length
 
 
@@ -654,12 +722,35 @@ f = plt.figure()
 #ax = f.add_axes((0.1, 0.09, 0.88, 0.85))
 ax = plt.axes()
 
-if title is not None:
-    plt.title(title)
+if title_prefix is not None:
+    if limit_to_chrs:
+        title = title_prefix + " ".join(limit_to_chrs)
+    else:
+        title = title_prefix + "genome"
+    plt.title(title, fontsize=18)
+# At first I could not get LATeX to work with the y-axis labels even though what I have in the commented out lines below between `$` works in both Jupyter notebooks markdown cells (put between `$$`) and inserted in place of the LATeX code from the tex_demo.py script at https://matplotlib.org/users/usetex.html that use `plt.plot()`
+
+'''
 if no_log:
-    ax.set_ylabel('experimental level/wild-typle level')
+    ax.set_ylabel('$\frac{\text{experimental\ level}}{\text{wild-type\ level}}$')
 else:
-    ax.set_ylabel('log2(experimental level/wild-typle level)')
+    ax.set_ylabel('$\log 2\left(\frac{\text{experimental\ level}}{\text{wild-type\ level}}\right)$',
+          fontsize=16)
+'''
+# Then I found https://stackoverflow.com/questions/23824687/text-does-not-work-in-a-matplotlib-label says that the issue is that matplotlib uses a different rendering engine, MathText. Seems for `\text{}` want obscure `\mathrm{}`. Plus if concatenating variable, need `r` again in front of string after the final plus sign in a concatenation command.
+if no_log:
+    ax.set_ylabel(r'$\frac{\mathrm{'+ exp_designation +r'\ level}}{\mathrm{'+ baseline_designation +r'\ level}}$',
+          fontsize=16)
+else:
+    ax.set_ylabel(r'$\log 2 \left(\frac{\mathrm{'+ exp_designation +r'\ level}}{\mathrm{'+ baseline_designation +r'\ level}}\right)$',
+          fontsize=16)
+# Below keeps ylabels plain for if LATeX failing
+'''
+if no_log:
+    ax.set_ylabel('experimental level/wild-type level')
+else:
+    ax.set_ylabel('log2(experimental level/wild-type level)')
+'''
 if lines:
     ax.vlines(xs, [0], ys, colors=cs, alpha=0.5) # Despite change noted here still doesn't work when log2 used because of the `divide by zero encountered in log2` issue that makes infinites===> `0` to `[0]` based on example at http://matplotlib.org/1.2.1/examples/pylab_examples/vline_demo.html
 else:
@@ -708,14 +799,41 @@ else:
 #if ymax is not None: plt.ylim(ymax=ymax)
 size_for_xlabels = 8.5
 longest_chr_or_scaffold = len(max(seqname_set, key=len))
-if longest_chr_or_scaffold > limit_before_rotate:
-    plt.xticks(
-        [c[1] for c in xs_by_chr], [c[0] for c in xs_by_chr], 
-        rotation=-90, size=size_for_xlabels)
+if limit_to_chrs == None:
+    if longest_chr_or_scaffold > limit_before_rotate:
+        plt.xticks(
+            [c[1] for c in xs_by_chr], [c[0] for c in xs_by_chr], 
+            rotation=-90, size=size_for_xlabels)
+    else:
+        plt.xticks(
+            [c[1] for c in xs_by_chr], [c[0] for c in xs_by_chr], size=size_for_xlabels)
 else:
-    plt.xticks(
-        [c[1] for c in xs_by_chr], [c[0] for c in xs_by_chr], size=size_for_xlabels)
-sys.stderr.write("\n\nPlot image saved to: {}".format(output_file_name))
+    # If only handling a few chromosomes or scaffolds don't bother checking if name exceeds the length. 
+    # Deciding what is "few" there will be the same integer used to decide what length of characters
+    # is too great to not rotate. This is done just to make it so another variable isn't needed.
+    if (len(limit_to_chrs) > limit_before_rotate) and (longest_chr_or_scaffold > limit_before_rotate):
+         plt.xticks(
+            [c[1] for c in xs_by_chr], [c[0] for c in xs_by_chr], 
+            rotation=-90, size=size_for_xlabels)
+    else:
+        plt.xticks(
+            [c[1] for c in xs_by_chr], [c[0] for c in xs_by_chr], size=size_for_xlabels)
+
+
+
+# add lowess curve fit to each chromosome if `smooth` flag
+if display_smooth:
+    for chr in data_by_chr:
+        lowess_ys = lowess(
+            data_by_chr[chr]["ys"], data_by_chr[chr]["xs"], 
+            return_sorted=False) if no_log else lowess(
+            np.log2(data_by_chr[chr]["ys"]), data_by_chr[chr]["xs"], 
+            return_sorted=False)
+        plt.plot(
+            data_by_chr[chr]["xs"],lowess_ys,'gray',linewidth=12, alpha=0.55)
+
+
+sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name))
 plt.savefig(output_file_name)
 #plt.show()
 
