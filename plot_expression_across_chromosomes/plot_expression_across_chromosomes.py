@@ -799,7 +799,7 @@ else:
 #if ymax is not None: plt.ylim(ymax=ymax)
 size_for_xlabels = 8.5
 longest_chr_or_scaffold = len(max(seqname_set, key=len))
-if limit_to_chrs == None:
+if limit_to_chrs is None:
     if longest_chr_or_scaffold > limit_before_rotate:
         plt.xticks(
             [c[1] for c in xs_by_chr], [c[0] for c in xs_by_chr], 
