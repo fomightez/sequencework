@@ -40,4 +40,4 @@ I have made a script that will run the plot across the entire yeast genome as we
 * [sheperds_chr_thru_plot_expression_across_chromosomes.py](https://github.com/fomightez/mini-pipelines)
 * [generate_reports_for_genome_and_all_chromosomes_various_samples.py](https://github.com/fomightez/mini-pipelines)  
 
-They can both be found [here](https://github.com/fomightez/mini-pipelines) in my mini-pipelines repository.
+They can both be found [here](https://github.com/fomightez/mini-pipelines) in my [mini-pipelines repository](https://github.com/fomightez/mini-pipelines).
