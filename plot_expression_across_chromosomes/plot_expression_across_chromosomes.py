@@ -503,13 +503,13 @@ sys.stderr.write("\n\
     Reading annotation file and getting data on genes and chromosomes...")
 #determine if annotation is gff or gtf
 if "gff" in annotaton_file.name.lower():
-    col_names_tp_apply = genome_annotation_fields_for_gff 
+    col_names_to_apply = genome_annotation_fields_for_gff 
 if "gtf" in annotaton_file.name.lower():
-    col_names_tp_apply = genome_annotation_fields_for_gtf 
+    col_names_to_apply = genome_annotation_fields_for_gtf 
 
 # read in annotation file
 init_genome_df = pd.read_table(
-    annotaton_file, header=None, names=col_names_tp_apply, comment='#')
+    annotaton_file, header=None, names=col_names_to_apply, comment='#')
 # comment handling added because I came across gtfs with a header that had `#` 
 # at start of each line. Others must have seen same because I saw someone 
 # dealing with it at https://github.com/shenlab-sinai/ngsplotdb/pull/2/files. I 
