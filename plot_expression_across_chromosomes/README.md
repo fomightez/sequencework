@@ -111,8 +111,43 @@ optional arguments:
                         scaffolds to plot so you could make the color match
                         the one used when all chromsome plotted if needed.
                         Supply the number to advance after the flag on the
-                        command line.
+                        command line. For example, `-ac 4`.
 ```
+
+
+## EXAMPLE COMMANDS AND PLOTS PRODUCED
+
+**Command**
+
+  python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv
+	
+Minimum example plotting points along chromosomes for genome
+
+**Command**
+
+  python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4
+	
+Special addition: specify columns in data to use other than default.
+
+**Command**
+
+  python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --lines
+	
+Special additions: specify columns other than default and plot with vertical lines from zero.
+
+python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --no_log
+	
+	specify columns other than default and don't convert ratio to log2 value.
+
+python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --smooth
+
+	specify columns other than default and add a line indicating a smooth curve fit to the data points
+
+python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --chrs IV,VIII,XII 
+
+	specify columns other than default and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note no spaces between chromosome identifiers.
+
+
 
 ## DETAILS
 
@@ -131,10 +166,6 @@ fairly straightforward to change to plotting ratio of sequencing coverage
 across chromosomes in a genome.
 
 To avoid compressing the typically important range, by default the y-axis is limited to a range that emphasizes the alterations characteristic of aneuploidy or segmental duplication. In that case, points beyond those limits are plotted at the edge of the plot in a manner that distinguishes them from the other data points, i.e., they are represented as open triangles at the edge pointing in an up-or-down direction. This approach is styled on how DESeq2 plotMA handles out of bounds points, see section 1.5.1 of [the DESeq2 vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#ma-plot). Depending on your needs, run with the optional `--no_limits` or `--no_log` flags to see the full plot.
-
-
-## EXAMPLE COMMANDS AND PLOTS
-
 
 Related
 -------
