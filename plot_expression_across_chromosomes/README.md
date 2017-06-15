@@ -117,23 +117,23 @@ optional arguments:
 
 ## EXAMPLE COMMANDS AND PLOTS PRODUCED
 
-**Command**
+**Command:**
 
   	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv
 	
-Minimum example plotting points along chromosomes for genome
+Explanation: minimum example plotting points along chromosomes for genome
 
-**Command**
+**Command:**
 
   	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4
 	
-Special addition: specify columns in data to use other than default.
+Explanation: specify columns in data to use other than default.
 
-**Command**
+**Command:**
 
   	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --lines
 	
-Special additions: specify columns other than default and plot with vertical lines from zero.
+Explanation: specify columns other than default and plot with vertical lines from zero.
 
 	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --no_log
 	
