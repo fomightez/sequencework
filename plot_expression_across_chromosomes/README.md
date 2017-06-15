@@ -1,7 +1,6 @@
 # plot_expression_across_chromosomes.py
 
-> just a draft of documentation for now.  
-> Contact me if you need help until I better document this.
+> plots a ratio of expression values across chromosomes or scaffolds of a genome to highlight regions of deviation.
 
 A python script to plot ratio of expression of experimental condition vs. wild-type (or 
 baseline state) for genes in sequential order across chromosomes in the genome. It requires two files: 1. a 
@@ -16,6 +15,106 @@ or HTSeq-count. The hope being you just need to point the script at the raw data
 files and it will automagically handle the combining and produce a plot 
 showing the expression of genes across the chromosomes.
 
+## USAGE SUMMARY
+
+'''
+usage: plot_expression_across_chromosomes.py [-h] [-cols COLUMNS] [-l]
+                                             [-chr CHRS] [-nl] [-nlim] [-s]
+                                             [-ed EXP_DESIG] [-bd BASE_DESIG]
+                                             [-ndh] [-ac ADVANCE_COLOR]
+                                             ANNOTATION_FILE DATA_FILE
+
+plot_expression_across_chromosomes.py plots a ratio of expression values
+across chromosomes or scaffolds of a genome to highlight regions of deviation.
+Besides the options listed here, there are several `USER ADJUSTABLE VALUES`
+inside the script that can be edited for easy customization. A similar plot is
+called a Manhattan plot and this implementation borrows the plotting approach
+and some of the features from Brent Pedersen's awesome `manhattan-plot.py`
+script. **** Script by Wayne Decatur (fomightez @ github) ***
+
+positional arguments:
+  ANNOTATION_FILE       Name of file containing the genome annotation.
+                        REQUIRED. This is needed to determine the order of
+                        individual data points along the chromosome and how to
+                        display the data across chromosomes or scaffolds.
+  DATA_FILE             Name of file containing the summarized data to plot,
+                        such as mean TPM or RPKM, etc. in tab-delimited form.
+                        REQUIRED. See my script
+                        `plot_expression_across_chromosomes_from_raw.py` if
+                        you want supply the individual `raw` data files with
+                        the level metric for each sample &/or replicate.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -cols COLUMNS, --columns COLUMNS
+                        columns for gene, wild-type (baseline state)
+                        expression value, experimental condition expression
+                        value, in that order. This flag is used to specify the
+                        data in the summary file to be plotted. Separate the
+                        column identifiers by commas, without spaces. Default
+                        is `1,2,3`, where `1` indicates the first column,
+                        i.e., how you'd refer to the columns in natural
+                        language (no zero-indexing).
+  -l, --lines           add this flag to plot the expression level ratio value
+                        as lines extending from the x-axis rather than points
+                        in space. (The resulting aesthetic may resemble a city
+                        skyline for which the `manhattan plot` is named.)
+  -chr CHRS, --chrs CHRS
+                        use this flag to limit plotting of the data to
+                        particular chromosomes or scaffolds you specify
+                        immediately following this flag. Separate the
+                        chromosome or scaffold identifiers by commas, without
+                        spaces. Default when this optional flag is not called
+                        is to plot that data for all chromosomes or scaffolds.
+  -nl, --no_log         add this flag to keep the expression level ratio to be
+                        plotted in the common base 10 instead of converting to
+                        log2.
+  -nlim, --no_limits    add this flag to not impose a limit of above and below
+                        4 in plot window when converting to log2. The cutoff
+                        can also be adjusted under `user-adjustable settings`
+                        in the script. Issuing this flag has no effect if all
+                        values are within +/- the cutoff interval or
+                        `--no_log` is used.
+  -s, --smooth          add this flag to display a smoothing curve fit to the
+                        data points (LOWESS) on a per chromosome basis. This
+                        option can enhance visualization of deviations
+                        characteristic of aneuploidy and copy number variation
+                        across the genome, both within and between
+                        chromosomes.
+  -ed EXP_DESIG, --exp_desig EXP_DESIG
+                        Allows changing the text used in y-axis label to
+                        reference experimental sample. Following `--exp_desig`
+                        type what you'd like to read there instead of
+                        `experimental`.
+  -bd BASE_DESIG, --base_desig BASE_DESIG
+                        Allows changing the text used in y-axis label to
+                        reference wild-type or baseline sample. Following
+                        `--base_desig` type what you'd like to read there
+                        instead of `wild-type`.
+  -ndh, --no_data_header
+                        add this flag if there is no data header or no first
+                        line of column names in the data file. Otherwise, it
+                        is assumed there is and any item read as the first
+                        gene identifier from the first line won't be
+                        highlighted as missing from annotation. IMPORTANTLY,
+                        this only affects feedback provided as script is run.
+                        If the first line resembles data, i.e., numbers in
+                        specified columns, it will be automagically parsed as
+                        if data. Remove the header or column labels line from
+                        your summary data file on the off-chance this causes
+                        issues in your resulting plot.
+  -ac ADVANCE_COLOR, --advance_color ADVANCE_COLOR
+                        **FOR ADVANCED USE.*** Allows for advancing the color
+                        selection iterator the specified number of times. The
+                        idea is it allows the ability to control the color of
+                        the chromosome when specifying a chromosome or
+                        scaffolds to plot so you could make the color match
+                        the one used when all chromsome plotted if needed.
+                        Supply the number to advance after the flag on the
+                        command line.
+'''
+
+## DETAILS
 
 The implemented plotting approach and other aspects borrow from Brent Pedersen's awesome
 `manhattan-plot.py` script [here](https://github.com/brentp/bio-playground/blob/master/plots/manhattan-plot.py). (Many thanks to him for sharing that!)
@@ -23,7 +122,7 @@ This script should produce a plot similar to a combination of Brent Pedersen's
 `manhattan-plot` that can be seen [here](https://github.com/brentp/bio-playground/tree/master/plots) and the plot in Figure 5B from Thorburn et al. 2013 (PMID: 23468524) that can be seen [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3639041/).
 
 There are several optional flags that can be supplied at the time of calling
-the script to control options. These are shown if you invoke with `-help` 
+the script to control options. These are shown if you invoke with `help` 
 flag, i.e., type `python plot_expression_across_chromosomes.py --help` or simply call the script with no additional arguments. Additionally, 
 inside the script there are several `USER ADJUSTABLE VALUES` that can be 
 edited for easy customization.
@@ -33,6 +132,10 @@ across chromosomes in a genome.
 
 To avoid compressing the typically important range, by default the y-axis is limited to a range that emphasizes the alterations characteristic of aneuploidy or segmental duplication. In that case, points beyond those limits are plotted at the edge of the plot in a manner that distinguishes them from the other data points, i.e., they are represented as open triangles at the edge pointing in an up-or-down direction. This approach is styled on how DESeq2 plotMA handles out of bounds points, see section 1.5.1 of [the DESeq2 vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#ma-plot). Depending on your needs, run with the optional `--no_limits` or `--no_log` flags to see the full plot.
 
+
+## EXAMPLE COMMANDS AND PLOTS
+
+
 Related
 -------
 
@@ -41,3 +144,5 @@ I have made a script that will run the plot across the entire yeast genome as we
 * [generate_reports_for_genome_and_all_chromosomes_various_samples.py](https://github.com/fomightez/mini-pipelines)  
 
 They can both be found [here](https://github.com/fomightez/mini-pipelines) in my [mini-pipelines repository](https://github.com/fomightez/mini-pipelines).
+
+Additionally, I have made a script for generating simulated data files where you can designate what chromosomes or scaffolds differ from the baseline and by what fold. That script, called `mock_expression_ratio_generator.py`, can be found [here](https://github.com/fomightez/simulated_data/tree/master/gene_expression).
