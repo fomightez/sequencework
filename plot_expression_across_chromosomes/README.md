@@ -17,7 +17,7 @@ showing the expression of genes across the chromosomes.
 
 ## USAGE SUMMARY
 
-'''
+```
 usage: plot_expression_across_chromosomes.py [-h] [-cols COLUMNS] [-l]
                                              [-chr CHRS] [-nl] [-nlim] [-s]
                                              [-ed EXP_DESIG] [-bd BASE_DESIG]
@@ -112,7 +112,7 @@ optional arguments:
                         the one used when all chromsome plotted if needed.
                         Supply the number to advance after the flag on the
                         command line.
-'''
+```
 
 ## DETAILS
 
