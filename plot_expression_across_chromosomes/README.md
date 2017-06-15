@@ -119,33 +119,32 @@ optional arguments:
 
 **Command**
 
-  python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv
+  	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv
 	
 Minimum example plotting points along chromosomes for genome
 
 **Command**
 
-  python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4
+  	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4
 	
 Special addition: specify columns in data to use other than default.
 
 **Command**
 
-  python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --lines
+  	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --lines
 	
 Special additions: specify columns other than default and plot with vertical lines from zero.
 
-python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --no_log
+	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --no_log
 	
-	specify columns other than default and don't convert ratio to log2 value.
+specify columns other than default and don't convert ratio to log2 value.
 
-python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --smooth
+	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --smooth
 
-	specify columns other than default and add a line indicating a smooth curve fit to the data points
+specify columns other than default and add a line indicating a smooth curve fit to the data points
 
-python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --chrs IV,VIII,XII 
-
-	specify columns other than default and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note no spaces between chromosome identifiers.
+	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --chrs IV,VIII,XII 
+specify columns other than default and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note no spaces between chromosome identifiers.
 
 
 
