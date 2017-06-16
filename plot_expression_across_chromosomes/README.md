@@ -1,6 +1,6 @@
 # plot_expression_across_chromosomes.py
 
-> plots a ratio of expression values across chromosomes or scaffolds of a genome to highlight regions of deviation.
+> plots a ratio of expression values across chromosomes or scaffolds of a genome to highlight regions of deviation characteristic of aneuploidy or segmental duplication/deletion.
 
 A python script to plot ratio of expression of experimental condition vs. wild-type (or 
 baseline state) for genes in sequential order across chromosomes in the genome. It requires two files: 1. a 
