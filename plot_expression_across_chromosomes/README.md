@@ -178,6 +178,10 @@ You can generate chromosome profiles for individual chromosomes or only a few ch
 
 The non-parametric strategy used to fit the curve to the data points is LOWESS (Locally Weighted Scatterplot Smoothing). It highlights deviations in the scatterplots better than one could estimate just by eye given so many points.
 
+
+to do for documentation:
+add an exmaple of at least the first few lines of a `data file`
+
 Related
 -------
 
