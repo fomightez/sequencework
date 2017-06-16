@@ -161,7 +161,7 @@ This script should produce a plot similar to a combination of Brent Pedersen's
 
 There are several optional flags that can be supplied at the time of calling
 the script to control options. These are shown if you invoke with `help` 
-flag, i.e., type `python plot_expression_across_chromosomes.py --help` or simply call the script with no additional arguments. For example, you can generate chromosome profiles for individual chromosomes or only a few chromosomes or scaffolds by using the `--chrs` flag to limit the analysis to specific chromosomes or scaffolds. After the flag you supply the chromosomes or scaffolds to be examined, indicating multiple ones with a comma in between **WITHOUT ANY SPACE**. Additionally, 
+flag, i.e., type `python plot_expression_across_chromosomes.py --help` or simply call the script with no additional arguments. For example, you can generate chromosome profiles for individual chromosomes or only a few chromosomes or scaffolds by using the `--chrs` flag to limit the analysis to specific chromosomes or scaffolds. After the flag you supply the chromosomes or scaffolds to be examined, indicating multiple ones with a comma in between them **WITHOUT ANY SPACES**. Additionally, 
 inside the script there are several `USER ADJUSTABLE VALUES` that can be 
 edited for easy customization.
 Built to be general enough to be easily modified. For example, should be 
