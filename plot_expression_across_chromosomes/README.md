@@ -161,7 +161,7 @@ This script should produce a plot similar to a combination of Brent Pedersen's
 
 There are several optional flags that can be supplied at the time of calling
 the script to control options. These are shown if you invoke with `help` 
-flag, i.e., type `python plot_expression_across_chromosomes.py --help` or simply call the script with no additional arguments. Additionally, 
+flag, i.e., type `python plot_expression_across_chromosomes.py --help` or simply call the script with no additional arguments. For example, you can generate chromosome profiles for individual chromosomes or only a few chromosomes or scaffolds by using the `--chrs` flag to limit the analysis to specific chromosomes or scaffolds. After the flag you supply the chromosomes or scaffolds to be examined, indicating multiple ones with a comma in between **WITHOUT ANY SPACE**. Additionally, 
 inside the script there are several `USER ADJUSTABLE VALUES` that can be 
 edited for easy customization.
 Built to be general enough to be easily modified. For example, should be 
@@ -174,7 +174,7 @@ Importantly, the plot script provided here is meant to be pipeline-agnostic. By 
 
 The highest value for `end` found in the annotation file (typically the `gtf` or `gff` format file) for a feature residing on a chromosome is used to determine the approximate length of each chromosome. You can add a "dummy" entry for a non-existent gene to your annotation file if you find the features in the file don't adequately reflect length of the chromosome.
 
-You can generate chromosome profiles for individual chromosomes or only a few chromosomes or scaffolds by using the `--chrs` flag to limit the analysis to specific chromosomes or scaffolds.
+
 
 The non-parametric strategy used to fit the curve to the data points is LOWESS (Locally Weighted Scatterplot Smoothing). It highlights deviations in the scatterplots better than one could estimate just by eye given so many points.
 
