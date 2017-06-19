@@ -156,7 +156,7 @@ specify columns other than default and add a line indicating a smooth curve fit 
 specify columns other than default and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note no spaces between chromosome identifiers.
 
 **Command:**
-	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --base_desig LabStrain --exp_desig MutantA
+	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM_info_wihoutP6A.tsv --columns 1,2,8 --base_desig LabStrain --exp_desig MutantA
 
 specify columns other than default and add custom designations for baseline ("wild-type") and experimental strain in labels for plot.
 
