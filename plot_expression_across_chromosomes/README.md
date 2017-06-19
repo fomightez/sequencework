@@ -148,7 +148,7 @@ specify columns other than default and don't convert ratio to log2 value.
 **Command:**
 	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --smooth
 
-specify columns other than default and add a line indicating a smooth curve fit to the data points
+specify columns other than default and add a line indicating a smooth curve fit to the data points.
 
 **Command:**
 	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --chrs IV,VIII,XII 
@@ -156,9 +156,9 @@ specify columns other than default and add a line indicating a smooth curve fit 
 specify columns other than default and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note no spaces between chromosome identifiers.
 
 **Command:**
-	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM_info_wihoutP6A.tsv --columns 1,2,8 --base_desig LabStrain --exp_desig MutantA
+	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM_info_wihoutP6A.tsv --columns 1,2,8 --base_desig LabStrain --exp_desig MutantA --smooth
 
-specify columns other than default and add custom designations for baseline ("wild-type") and experimental strain in labels for plot.
+specify columns other than default and add custom designations for baseline ("wild-type") and experimental strain in labels for plot and add a line indicating a smooth curve fit to the data points.
 
 See [here](https://github.com/fomightez/simulated_data/blob/master/gene_expression/README.md) for additional commands and resulting plot examples, albeit from simulated data.
 
