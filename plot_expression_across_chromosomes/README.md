@@ -19,7 +19,7 @@ Importantly, the plot script provided here is meant to be pipeline-agnostic. Thi
 
 You can generate chromosome profiles for individual chromosomes or only a few chromosomes or scaffolds by using the `--chrs` flag to limit the analysis to specific chromosomes or scaffolds.
 
-## USAGE SUMMARY
+### USAGE SUMMARY
 
 ```
 usage: plot_expression_across_chromosomes.py [-h] [-cols COLUMNS] [-l]
@@ -120,7 +120,7 @@ optional arguments:
 ```
 
 
-## EXAMPLE COMMANDS AND PLOTS PRODUCED
+### EXAMPLE COMMANDS AND PLOTS PRODUCED
 
 **Command:**
 
@@ -153,7 +153,7 @@ specify columns other than default and only plot for chromsomes IV, VIII, and XI
 
 See [here](https://github.com/fomightez/simulated_data/blob/master/gene_expression/README.md) for additional commands and resulting plot examples, albeit from simulated data.
 
-## DETAILS
+### DETAILS
 
 The implemented plotting approach and other aspects borrow from Brent Pedersen's awesome
 `manhattan-plot.py` script [here](https://github.com/brentp/bio-playground/blob/master/plots/manhattan-plot.py). (Many thanks to him for sharing that!)
