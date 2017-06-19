@@ -68,7 +68,8 @@ optional arguments:
                         particular chromosomes or scaffolds you specify
                         immediately following this flag. Separate the
                         chromosome or scaffold identifiers by commas, without
-                        spaces. Default when this optional flag is not called
+                        spaces. Example use in a command is `--chrs I,IV,XVI`. 
+			Default when this optional flag is not called
                         is to plot that data for all chromosomes or scaffolds.
   -nl, --no_log         add this flag to keep the expression level ratio to be
                         plotted in the common base 10 instead of converting to
