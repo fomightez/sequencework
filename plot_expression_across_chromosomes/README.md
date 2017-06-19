@@ -151,7 +151,7 @@ specify columns other than default and add a line indicating a smooth curve fit 
 	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --chrs IV,VIII,XII 
 specify columns other than default and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note no spaces between chromosome identifiers.
 
-See [here](https://github.com/fomightez/simulated_data/blob/master/gene_expression/README.md) for additional commands and resulting plot examples.
+See [here](https://github.com/fomightez/simulated_data/blob/master/gene_expression/README.md) for additional commands and resulting plot examples, albeit from simulated data.
 
 ## DETAILS
 
