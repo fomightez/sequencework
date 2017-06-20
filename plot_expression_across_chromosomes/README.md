@@ -182,7 +182,7 @@ Resulting plot produced:
 
 	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv--columns 1,2,4 --chrs IV,VIII,XII --smooth
 	
-Explanation: specify columns other than default, add a line for a smooth fit to data points, and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note the lack of spaces between chromosome identifiers.  
+Explanation: specify columns other than default, add a line for a smooth fit to data points, and only plot for chromsomes IV, VIII, and XII. **IMPORTANTLY, note the lack of spaces between chromosome identifiers.**  
 Resulting plot produced:  
 ![example](example_imgs/genes_mean_TPM_across_chr_IV_VIII_XII.png)  
 
@@ -231,6 +231,12 @@ When the `--smooth` flag is employed, the non-parametric strategy used to fit th
 
 to do for documentation:
 add an example of at least the first few lines of a `data file`
+
+Running Environment
+-------------------
+
+The script should work wherever you run Python with modern Pandas and Matplotlib modules. In particular, I can recommend [PythonAnywhere.com](https://www.pythonanywhere.com) for an environment that will go where you do without requiring additional installs for each computer you use. I have an older account to the service, and so I needed to `pip install --user` those two modules to get updated versions; you may not need to do this. Parsing the genome annotation file will tax compute time for PythonAnywhere's free tier, but it will eventually work (at least for yeast), even if you get yourself in the tarpit. You may need to simply rerun the last command if your job is 'killed'.
+
 
 Related
 -------
