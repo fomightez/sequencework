@@ -176,9 +176,9 @@ Explanation: specify columns other than default and add a line indicating a smoo
 
 **Command:**
 
-	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv--columns 1,2,4 --chrs IV,VIII,XII 
+	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv--columns 1,2,4 --chrs IV,VIII,XII --smooth
 	
-Explanation: specify columns other than default and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note no spaces between chromosome identifiers.
+Explanation: specify columns other than default, add a line for a smooth fit to data points, and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note the lack of spaces between chromosome identifiers.
 
 **Command:**
 
