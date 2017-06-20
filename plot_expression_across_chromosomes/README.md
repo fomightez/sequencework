@@ -124,9 +124,11 @@ optional arguments:
 
 **Command:**
 
-  	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv
+  	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv
 	
-Explanation: minimum example plotting points along chromosomes for genome
+Explanation: bare-bones, default example plotting points along chromosomes for genome.  
+Resulting plot file,`genes_mean_TPM_across_chr.png`, produced:  
+![default example](example_imgs/genes_mean_TPM_across_chr.png)
 
 **Command:**
 
@@ -144,25 +146,25 @@ Explanation: specify columns other than default and plot with vertical lines fro
 
 	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --no_log
 	
-specify columns other than default and don't convert ratio to log2 value.
+Explanation: specify columns other than default and don't convert ratio to log2 value.
 
 **Command:**
 
 	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --smooth
 
-specify columns other than default and add a line indicating a smooth curve fit to the data points.
+Explanation: specify columns other than default and add a line indicating a smooth curve fit to the data points.
 
 **Command:**
 
 	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --chrs IV,VIII,XII 
 	
-specify columns other than default and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note no spaces between chromosome identifiers.
+Explanation: specify columns other than default and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note no spaces between chromosome identifiers.
 
 **Command:**
 
 	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,8 --base_desig LabStrain --exp_desig MutantA
 
-specify columns other than default and add custom labels for baseline ("wild-type") and experimental strain in plot.  
+Explanation: specify columns other than default and add custom labels for baseline ("wild-type") and experimental strain in plot.  
 Resulting plot:  
 ![label change example](example_imgs/real_data_no_anueploidy.png)  
 (The mutant strain in this real data example does not exhibit chromosome aneuploidy.)
