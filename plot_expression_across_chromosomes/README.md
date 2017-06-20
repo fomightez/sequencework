@@ -167,7 +167,7 @@ Resulting plot:
 ![label change example](example_imgs/real_data_no_anueploidy.png)  
 (The mutant strain in this real data example does not exhibit chromosome aneuploidy.)
 
-See [here](https://github.com/fomightez/simulated_data/blob/master/gene_expression/README.md) for additional commands and resulting plot examples, albeit from simulated data.
+See example section [here](https://github.com/fomightez/simulated_data/tree/master/gene_expression#mock_expression_ratio_generatorpy) for additional commands and resulting plot examples, albeit from simulated data.
 
 ### DETAILS
 
