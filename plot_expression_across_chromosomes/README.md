@@ -27,7 +27,7 @@ Place the script in a directory with your genome annoation file and your summary
 
   	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,4
 	
-Explanation of command: in the call to the script, provide the (1) genome annotation file, (2) the data file of values, and (3, optionally) specify columns in data to use for gene identifiers, baseline values, and experimental sample values, respectively. You don't need to specify the column numbers if those happen to be the first three columns in the data file.
+Explanation of command: in the call to the script, provide the (1) genome annotation file, (2) the data file of values, and (3, optionally) specify columns in data to use for gene identifiers, baseline values, and experimental sample values, respectively. You don't need to specify the column numbers if those happen to be the first three columns in the data file.  
 Resulting plot file, `genes_mean_TPM_across_chr.png`, produced:  
 ![example](example_imgs/genes_mean_TPM_across_chr.png)  
 (The mutant strain in this real data example shows aneuploidy, specifically disomy of chromosome IV.)
