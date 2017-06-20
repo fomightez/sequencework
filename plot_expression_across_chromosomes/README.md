@@ -272,9 +272,6 @@ To avoid compressing the typically important range, by default the y-axis is lim
 When the `--smooth` flag is employed, the non-parametric strategy used to fit the curve to the data points is LOWESS (Locally Weighted Scatterplot Smoothing). It highlights deviations in the scatterplots better than one could estimate just by eye given so many points.
 
 
-to do for documentation:
-add an example of at least the first few lines of a `data file`
-
 Running Environment Suggestion
 -----------------------------
 
