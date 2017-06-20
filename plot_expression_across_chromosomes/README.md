@@ -136,6 +136,8 @@ optional arguments:
 
 ### EXAMPLE COMMANDS AND PLOTS PRODUCED
 
+*Not all options are illustrated.*
+
 **Command:**
 
   	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv
