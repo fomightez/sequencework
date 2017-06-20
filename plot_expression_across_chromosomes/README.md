@@ -149,7 +149,7 @@ Explanation: bare-bones, default example command for plotting points along chrom
 
   	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,4
 	
-Explanation: specify columns in data to use other than default.
+Explanation: specify columns in data to use other than default.  
 Resulting plot file, `genes_mean_TPM_across_chr.png`, produced:  
 ![example](example_imgs/genes_mean_TPM_across_chr.png)  
 (The mutant strain in this real data example shows aneuploidy, specifically disomy of chromosome IV.)
@@ -158,7 +158,7 @@ Resulting plot file, `genes_mean_TPM_across_chr.png`, produced:
 
   	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,4 --lines
 	
-Explanation: specify columns other than default and plot with vertical lines from zero.
+Explanation: specify columns other than default and plot with vertical lines from zero.  
 Resulting plot produced:  
 ![example](example_imgs/genes_mean_TPM_across_chrlines.png)  
 
@@ -166,19 +166,25 @@ Resulting plot produced:
 
 	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,4 --no_log
 	
-Explanation: specify columns other than default and don't convert ratio to log2 value.
+Explanation: specify columns other than default and don't convert ratio to log2 value.  
+Resulting plot produced:  
+![example](example_imgs/genes_mean_TPM_across_chrnolog.png)  
 
 **Command:**
 
 	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,4 --smooth
 
-Explanation: specify columns other than default and add a line indicating a smooth curve fit to the data points.
+Explanation: specify columns other than default and add a line indicating a smooth curve fit to the data points.  
+Resulting plot produced:  
+![example](example_imgs/genes_mean_TPM_across_chr_smooth.png)  
 
 **Command:**
 
 	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv--columns 1,2,4 --chrs IV,VIII,XII --smooth
 	
-Explanation: specify columns other than default, add a line for a smooth fit to data points, and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note the lack of spaces between chromosome identifiers.
+Explanation: specify columns other than default, add a line for a smooth fit to data points, and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note the lack of spaces between chromosome identifiers.  
+Resulting plot produced:  
+![example](example_imgs/genes_mean_TPM_across_chr_IV_VIII_XII.png)  
 
 **Command:**
 
