@@ -133,6 +133,48 @@ optional arguments:
                         command line. For example, `-ac 4`.
 ```
 
+### EXAMPLE INPUT
+
+The script requires a genome annotation file, typicall `GTF` or `GFF` format in addition to the data. A good source of such files for several organisms is Illumina's iGenomes page described [here in the documentation for mock_expression_ratio_generator.py](https://github.com/fomightez/simulated_data/tree/master/gene_expression). Below is the first few lines of the yeast file:
+```
+I	ensembl	CDS	335	646	.	+	0	exon_number "1"; gene_biotype "protein_coding"; gene_id "YAL069W"; gene_name "YAL069W"; gene_source "ensembl"; gene_version "1"; p_id "P3634"; protein_id "YAL069W"; protein_version "1"; transcript_biotype "protein_coding"; transcript_id "YAL069W"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS1129";
+I	ensembl	exon	335	649	.	+	.	exon_id "YAL069W.1"; exon_number "1"; exon_version "1"; gene_biotype "protein_coding"; gene_id "YAL069W"; gene_name "YAL069W"; gene_source "ensembl"; gene_version "1"; p_id "P3634"; transcript_biotype "protein_coding"; transcript_id "YAL069W"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS1129";
+I	ensembl	start_codon	335	337	.	+	0	exon_number "1"; gene_biotype "protein_coding"; gene_id "YAL069W"; gene_name "YAL069W"; gene_source "ensembl"; gene_version "1"; p_id "P3634"; transcript_biotype "protein_coding"; transcript_id "YAL069W"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS1129";
+I	ensembl	transcript	335	649	.	+	.	gene_biotype "protein_coding"; gene_id "YAL069W"; gene_name "YAL069W"; gene_source "ensembl"; gene_version "1"; p_id "P3634"; transcript_biotype "protein_coding"; transcript_id "YAL069W"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS1129";
+I	ensembl	CDS	538	789	.	+	0	exon_number "1"; gene_biotype "protein_coding"; gene_id "YAL068W-A"; gene_name "YAL068W-A"; gene_source "ensembl"; gene_version "1"; p_id "P5379"; protein_id "YAL068W-A"; protein_version "1"; transcript_biotype "protein_coding"; transcript_id "YAL068W-A"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS5441";
+I	ensembl	exon	538	792	.	+	.	exon_id "YAL068W-A.1"; exon_number "1"; exon_version "1"; gene_biotype "protein_coding"; gene_id "YAL068W-A"; gene_name "YAL068W-A"; gene_source "ensembl"; gene_version "1"; p_id "P5379"; transcript_biotype "protein_coding"; transcript_id "YAL068W-A"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS5441";
+I	ensembl	start_codon	538	540	.	+	0	exon_number "1"; gene_biotype "protein_coding"; gene_id "YAL068W-A"; gene_name "YAL068W-A"; gene_source "ensembl"; gene_version "1"; p_id "P5379"; transcript_biotype "protein_coding"; transcript_id "YAL068W-A"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS5441";
+I	ensembl	transcript	538	792	.	+	.	gene_biotype "protein_coding"; gene_id "YAL068W-A"; gene_name "YAL068W-A"; gene_source "ensembl"; gene_version "1"; p_id "P5379"; transcript_biotype "protein_coding"; transcript_id "YAL068W-A"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS5441";
+I	ensembl	stop_codon	647	649	.	+	0	exon_number "1"; gene_biotype "protein_coding"; gene_id "YAL069W"; gene_name "YAL069W"; gene_source "ensembl"; gene_version "1"; p_id "P3634"; transcript_biotype "protein_coding"; transcript_id "YAL069W"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS1129";
+I	ensembl	stop_codon	790	792	.	+	0	exon_number "1"; gene_biotype "protein_coding"; gene_id "YAL068W-A"; gene_name "YAL068W-A"; gene_source "ensembl"; gene_version "1"; p_id "P5379"; transcript_biotype "protein_coding"; transcript_id "YAL068W-A"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS5441";
+I	ensembl	exon	1807	2169	.	-	.	exon_id "YAL068C.1"; exon_number "1"; exon_version "1"; gene_biotype "protein_coding"; gene_id "YAL068C"; gene_name "PAU8"; gene_source "ensembl"; gene_version "1"; p_id "P6019"; transcript_biotype "protein_coding"; transcript_id "YAL068C"; transcript_name "PAU8"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS251";
+```
+
+The other requirment is a tab-separated values data file with summarized data for the samples. Below is an example of the first few lines of one where each mean is the summary of three replicates; the range info had been generated just for convenience and is not used by this script:
+```
+gene	wt-mean	wt-range	exp1-mean	exp1-range	exp2-mean	exp2-range	exp3-mean	exp3-range
+YCL050C	1934385.0	2031250.0—1837520.0	1980105.0	2241900.0—1718310.0	2291990.0	2338030.0—2245950.0	1929255.0	1948330.0—1910180.0
+YAL069W	1487.3	1894.91—1079.75	3933.1	6052.86—1813.43	5379.6	5995.31—4763.8	8981.4	11689.9—6272.84
+YCR101C	94676.5	95954.6—93398.4	135975.0	147361.0—124589.0	258703.0	264463.0—252943.0	231692.5	243090.0—220295.0
+YBL095W	173002.0	186483.0—159521.0	89116.3	102525.0—75707.6	181074.0	196082.0—166066.0	143912.5	159024.0—128801.0
+YBR252W	503598.0	549247.0—457949.0	326448.0	500957.0—151939.0	352356.5	439505.0—265208.0	740821.5	786769.0—694874.0
+YBR050C	16822.3	19039.0—14605.6	10555.7	12993.3—8118.01	42378.5	47592.6—37164.4	45650.0	49513.2—41786.8
+YBL049W	235924.5	242369.0—229480.0	305798.5	337907.0—273690.0	717022.0	730218.0—703826.0	716906.0	736337.0—697475.0
+YCR061W	77743.6	89538.1—65949.2	151798.5	187690.0—115907.0	165490.0	179296.0—151684.0	105931.5	106644.0—105219.0
+YBR206W	641524.5	711176.0—571873.0	525011.5	716450.0—333573.0	587209.0	661592.0—512826.0	566202.5	598600.0—533805.0
+YBR292C	95053.9	105547.0—84560.8	71192.6	82512.1—59873.0	140236.5	146515.0—133958.0	169961.5	181390.0—158533.0
+YBR063C	262637.5	275152.0—250123.0	280926.5	301261.0—260592.0	360739.0	367091.0—354387.0	364270.5	366100.0—362441.0
+YBR122C	1026205.0	1046810.0—1005600.0	550934.0	596731.0—505137.0	1029225.0	1037420.0—1021030.0	898065.0	934471.0—861659.0
+YBR271W	260899.5	266977.0—254822.0	224864.5	256225.0—193504.0	265945.0	283000.0—248890.0	303511.0	303605.0—303417.0
+YBR279W	393835.0	395668.0—392002.0	306296.0	345034.0—267558.0	341899.5	389016.0—294783.0	368937.5	384419.0—353456.0
+YBR155W	403514.0	407384.0—399644.0	361139.0	415079.0—307199.0	321550.5	375694.0—267407.0	427849.0	449817.0—405881.0
+YBR067C	2770080.0	3065130.0—2475030.0	2294995.0	3163550.0—1426440.0	1411640.0	1704550.0—1118730.0	2613000.0	2912650.0—2313350.0
+YCL008C	101020.4	124939.0—77101.8	73059.3	80640.8—65477.8	110608.5	112216.0—109001.0	99231.8	111501.0—86962.7
+YBR270C	63764.2	65068.0—62460.3	57684.0	60022.5—55345.6	187334.5	192329.0—182340.0	187033.5	190934.0—183133.0
+YAL068W-A	32028.8	35454.4—28603.2	100572.5	132746.0—68399.0	81218.4	102873.0—59563.7	90530.8	90665.3—90396.3
+...
+```
+
 
 ### EXAMPLE COMMANDS AND PLOTS PRODUCED
 
@@ -213,7 +255,7 @@ Built to be general enough to be easily modified. For example, should be
 fairly straightforward to change to plotting ratio of sequencing coverage 
 across chromosomes in a genome.
 
-The script requires a genome annotation file, typicall `GTF` or `GFF` format in addition to the data. A good source of such files for several organisms is described in the [documentation for mock_expression_ratio_generator.py here](https://github.com/fomightez/simulated_data/tree/master/gene_expression).  
+The script requires a genome annotation file, typicall `GTF` or `GFF` format in addition to the data. A good source of such files for several organisms is Illumina's iGenomes page described [here in the documentation for mock_expression_ratio_generator.py](https://github.com/fomightez/simulated_data/tree/master/gene_expression).  
 The highest value for `end` found in the annotation file (typically the `gtf` or `gff` format file) for a feature residing on a chromosome is used to determine the approximate length of each chromosome. You can add a "dummy" entry for a non-existent gene to your annotation file if you find the features in the file don't adequately reflect length of the chromosome.
 
 
@@ -232,10 +274,10 @@ When the `--smooth` flag is employed, the non-parametric strategy used to fit th
 to do for documentation:
 add an example of at least the first few lines of a `data file`
 
-Running Environment
--------------------
+Running Environment Suggestion
+-----------------------------
 
-The script should work wherever you run Python with modern Pandas and Matplotlib modules. In particular, I can recommend [PythonAnywhere.com](https://www.pythonanywhere.com) for an environment that will go where you do without requiring additional installs for each computer you use. I have an older account to the service, and so I needed to `pip install --user` those two modules to get updated versions; you may not need to do this. Parsing the genome annotation file will tax compute time for PythonAnywhere's free tier, but it will eventually work (at least for yeast), even if you get yourself in the tarpit. You may need to simply rerun the last command if your job is 'killed'.
+The script should work wherever you run Python with modern Pandas and Matplotlib modules. In particular, I can recommend [PythonAnywhere.com](https://www.pythonanywhere.com) for an environment that will go where you do without requiring additional installs for each computer you use. I have an older account to the cloud-based service, and so I needed to `pip install --user` those two modules to get updated versions; you may not need to do this. Parsing the genome annotation file will tax compute time for PythonAnywhere's free tier, but it will eventually work (at least for yeast), even if you get yourself in [their tarpit](https://www.pythonanywhere.com/tarpit/). You may need to simply rerun the last command if your job is 'killed'. In fact, I developped all these related scripts and made all the plots on this page and [this one](https://github.com/fomightez/simulated_data/tree/master/gene_expression#mock_expression_ratio_generatorpy) on [PythonAnywhere.com](https://www.pythonanywhere.com).
 
 
 Related
