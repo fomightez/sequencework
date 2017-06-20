@@ -141,7 +141,7 @@ optional arguments:
   	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv
 	
 Explanation: bare-bones, default example command for plotting points along chromosomes for genome.  
-(This actually won't produce meaningful results because in my example summary data, the experimental data is in the fourth tab-separated column and not the third that the default settings assume.)
+(This actually won't produce meaningful results from my example summary data because the experimental data is in the fourth tab-separated column and not the third that the default settings assume.)
 
 **Command:**
 
