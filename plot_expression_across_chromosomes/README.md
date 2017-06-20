@@ -160,9 +160,10 @@ specify columns other than default and only plot for chromsomes IV, VIII, and XI
 
 **Command:**
 
-	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM_info_wihoutP6A.tsv --columns 1,2,8 --base_desig LabStrain --exp_desig MutantA
+	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,8 --base_desig LabStrain --exp_desig MutantA
 
-specify columns other than default and add custom designations for baseline ("wild-type") and experimental strain in labels for plot.    Results:  
+specify columns other than default and add custom labels for baseline ("wild-type") and experimental strain in plot.  
+Resulting plot:  
 ![label change example](example_imgs/real_data_no_anueploidy.png)  
 (The mutant strain in this real data example does not exhibit chromosome aneuploidy.)
 
