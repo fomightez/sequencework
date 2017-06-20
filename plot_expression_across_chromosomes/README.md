@@ -19,6 +19,20 @@ Importantly, the plot script provided here is meant to be pipeline-agnostic. Thi
 
 You can generate chromosome profiles for individual chromosomes or only a few chromosomes or scaffolds by using the `--chrs` flag to limit the analysis to specific chromosomes or scaffolds.
 
+### QUICK-START GUIDE
+
+Place the script in a directory with your genome annoation file and your summary data file.
+
+**Command to issue:**
+
+  	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,4
+	
+Explanation of command: in the call to the script, provide the (1) genome annotation file, (2) the data file of values, and (3, optionally) specify columns in data to use for gene identifiers, baseline values, and experimental sample values, respectively. You don't need to specify the column numbers if those happen to be the first three columns in the data file.
+Resulting plot file, `genes_mean_TPM_across_chr.png`, produced:  
+![example](example_imgs/genes_mean_TPM_across_chr.png)  
+(The mutant strain in this real data example shows aneuploidy, specifically disomy of chromosome IV.)
+
+
 ### USAGE SUMMARY
 
 ```
@@ -131,7 +145,7 @@ Explanation: bare-bones, default example command for plotting points along chrom
 
 **Command:**
 
-  	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4
+  	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,4
 	
 Explanation: specify columns in data to use other than default.
 Resulting plot file, `genes_mean_TPM_across_chr.png`, produced:  
@@ -140,7 +154,7 @@ Resulting plot file, `genes_mean_TPM_across_chr.png`, produced:
 
 **Command:**
 
-  	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --lines
+  	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,4 --lines
 	
 Explanation: specify columns other than default and plot with vertical lines from zero.
 
