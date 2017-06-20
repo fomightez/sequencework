@@ -126,15 +126,17 @@ optional arguments:
 
   	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv
 	
-Explanation: bare-bones, default example plotting points along chromosomes for genome.  
-Resulting plot file,`genes_mean_TPM_across_chr.png`, produced:  
-![default example](example_imgs/genes_mean_TPM_across_chr.png)
+Explanation: bare-bones, default example command for plotting points along chromosomes for genome.  
+(This actually won't produce meaningful results because in my example summary data, the experimental data is in the fourth tab-separated column and not the third that the default settings assume.)
 
 **Command:**
 
   	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4
 	
 Explanation: specify columns in data to use other than default.
+Resulting plot file,`genes_mean_TPM_across_chr.png`, produced:
+![example](example_imgs/genes_mean_TPM_across_chr.png)  
+(The mutant strain in this real data example shows aneuploidy, specifically disomy of chromosome IV.)
 
 **Command:**
 
