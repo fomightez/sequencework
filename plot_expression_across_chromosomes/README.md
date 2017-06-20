@@ -134,7 +134,7 @@ Explanation: bare-bones, default example command for plotting points along chrom
   	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4
 	
 Explanation: specify columns in data to use other than default.
-Resulting plot file,`genes_mean_TPM_across_chr.png`, produced:
+Resulting plot file, `genes_mean_TPM_across_chr.png`, produced:  
 ![example](example_imgs/genes_mean_TPM_across_chr.png)  
 (The mutant strain in this real data example shows aneuploidy, specifically disomy of chromosome IV.)
 
@@ -194,6 +194,8 @@ The highest value for `end` found in the annotation file (typically the `gtf` or
 
 
 Importantly, the plot script provided here is meant to be pipeline-agnostic. By way of contrast, DESeq2 can be used to plot fold changes in genomic space; however, it requires reading in data with `summarizeOverlaps`, as described [here](https://www.bioconductor.org/help/workflows/rnaseqGene/#plotting-fold-changes-in-genomic-space). Reading in data with `summarizeOverlaps` is just one of many of the routes to supplying count matrices into DESeq2. Additionally, you need to define gene models from GTF files by also constructing a TxDb object in DESeq2 prior to even being able to use `summarizeOverlaps` to generate count matrices. The plot_expression_across_chromosomes.py script provide here obviates many of those preparatory steps and makes it possible to take any route to generating such a plot. You can still use DESeq2 if you choose but with this script you aren't tied to using `summarizeOverlaps` and have the option to use any method, say tximport, to bring in counts. Similarly, NOISeq produces Manhattan plots for chromosomes as shown in [Figure 3 here](http://bioinfo.cipf.es/noiseq/lib/exe/fetch.php?media=noiseqbio_techreport.pdf), but then you are tied to NOISeq or have to do the analysis with at leat two different packages to get such a plot. Again, this script is meant to eliminate such additional steps, but still allow producing such plots.
+
+The script will automatically make a name for the output file based on the name data file provided and whether covering whole genome or certain chromosomes.
 
 **Additional Details For Options**
 
