@@ -157,22 +157,24 @@ Resulting plot file, `genes_mean_TPM_across_chr.png`, produced:
   	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,4 --lines
 	
 Explanation: specify columns other than default and plot with vertical lines from zero.
+Resulting plot produced:  
+![example](example_imgs/genes_mean_TPM_across_chrlines.png)  
 
 **Command:**
 
-	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --no_log
+	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,4 --no_log
 	
 Explanation: specify columns other than default and don't convert ratio to log2 value.
 
 **Command:**
 
-	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --smooth
+	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,4 --smooth
 
 Explanation: specify columns other than default and add a line indicating a smooth curve fit to the data points.
 
 **Command:**
 
-	python plot_expression_across_chromosomes.py part_of_sacena_for_test.gtf test_data.tsv --columns 1,2,4 --chrs IV,VIII,XII 
+	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv--columns 1,2,4 --chrs IV,VIII,XII 
 	
 Explanation: specify columns other than default and only plot for chromsomes IV, VIII, and XII. IMPORTANTLY, note no spaces between chromosome identifiers.
 
