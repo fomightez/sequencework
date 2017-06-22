@@ -283,7 +283,7 @@ When the `--smooth` flag is employed, the non-parametric strategy used to fit th
 
 
 ## plot_expression_across_chromosomes_direct.py
-> plots directly from Salmon-quantified data files, i.e. `quant.sf` files, or other raw output from RNA-Seq quantification software a ratio of expression values across chromosomes or scaffolds of a genome to highlight regions of deviation characteristic of aneuploidy or segmental duplication/deletion.
+> plots directly from Salmon-quantified data files, i.e. `quant.sf` files, ratios of gene expression values across chromosomes or scaffolds of a genome to highlight regions of deviation characteristic of aneuploidy or segmental duplication/deletion. **It has options that should allow the use of almost any raw output from RNA-Seq quantification software.**
 
 ### QUICK-START GUIDE
 
