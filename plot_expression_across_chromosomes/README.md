@@ -17,9 +17,9 @@ and (approximate) length of chromosomes; 2. a file of expression data to plot.
 Currently, the script necessitates that the data is in a tab-delimited format. 
 At this point to accomodate replicates, it is assumed you have in your data file for each gene the 
 resulting (combined) level metric for the replicates, such as the mean TPM for
-your "wild-type" samples and your mean TPM for your experimental samples. In 
-the future there will be a related script for "raw" results produced by Salmon 
-or HTSeq-count. The hope being you just need to point the script at the raw data 
+your "wild-type" samples and your mean TPM for your experimental samples. There 
+is a related script for "raw" results produced by Salmon 
+or HTSeq-count, see `plot_expression_across_chromosomes_direct.py` below. For that one you just need to point the script at the raw data 
 files and it will automagically handle the combining and produce a plot 
 showing the expression of genes across the chromosomes.
 
@@ -284,8 +284,6 @@ When the `--smooth` flag is employed, the non-parametric strategy used to fit th
 
 ## plot_expression_across_chromosomes_direct.py
 > plots directly from Salmon-quantified data files, i.e. `quant.sf` files, or other raw output from RNA-Seq quantification software a ratio of expression values across chromosomes or scaffolds of a genome to highlight regions of deviation characteristic of aneuploidy or segmental duplication/deletion.
-
-Note that except for source and format of the input data, this script is like `plot_expression_across_chromosomes.py` script. I am just going to address the features that differ here. See that script above for further details.
 
 ### QUICK-START GUIDE
 
