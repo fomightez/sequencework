@@ -2,8 +2,8 @@
 
 At this time, there are two related plotting scripts:
 
-* One called, `plot_expression_across_chromosomes.py`, is for summarized or combined data.   
-* The other, called `plot_expression_across_chromosomes_direct.py`, is for directly using quantified RNA-Seq data output generated from [Salmon](https://combine-lab.github.io/salmon/) or other quantifying software.
+* One called, [`plot_expression_across_chromosomes.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomespy), is for summarized or combined data.   
+* The other, called [`plot_expression_across_chromosomes_direct.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomes_directpy), is for directly using quantified RNA-Seq data output generated from [Salmon](https://combine-lab.github.io/salmon/) or other quantifying software.
 
 Descriptions of these scripts are below:
 
