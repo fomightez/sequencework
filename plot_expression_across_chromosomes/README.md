@@ -1,5 +1,8 @@
-# plot_expression_across_chromosomes.py
+# plot_expression_across_chromosomes
 
+At this time, there are two versions of the script. One called, `plot_expression_across_chromosomes.py`, for summarized or combined data and one, called `plot_expression_across_chromosomes_direct.py` for directly using quantified RNA-Seq data output from [Salmon](https://combine-lab.github.io/salmon/) or other quantifying software.
+
+## plot_expression_across_chromosomes.py
 > plots a ratio of expression values across chromosomes or scaffolds of a genome to highlight regions of deviation characteristic of aneuploidy or segmental duplication/deletion.
 
 A python script to plot ratio of expression of experimental condition vs. wild-type (or 
@@ -15,7 +18,7 @@ or HTSeq-count. The hope being you just need to point the script at the raw data
 files and it will automagically handle the combining and produce a plot 
 showing the expression of genes across the chromosomes.
 
-Importantly, the plot script provided here is meant to be pipeline-agnostic. This means you should be able to take output from analysis of almost any RNA-Seq and generate such a plot. Every effort was made to make it not depend on what upstream or downstream analyses you used. See more about this under details. 
+Importantly, the plot script provided here is meant to be pipeline-agnostic. This means you should be able to take output from analysis of almost any RNA-Seq and generate such a plot. Every effort was made to make it not depend on what upstream or downstream analyses you used. See more about this under details. The script may even be applicable to expresion ratios made from microarray data.  
 
 You can generate chromosome profiles for individual chromosomes or only a few chromosomes or scaffolds by using the `--chrs` flag to limit the analysis to specific chromosomes or scaffolds.
 
@@ -261,7 +264,7 @@ The highest value for `end` found in the annotation file (typically the `gtf` or
 The information extracted from the genome annotation file could easily be obtained from other sources, such as [YeastMine](http://yeastmine.yeastgenome.org/yeastmine/begin.do) in the case of yeast, but I choose to have the script parse the genome annotation file to try to keep it more broadly useable since one usually has such a file handy if performing RNA-Seq. This better allows use beyond what organisms are found exisitng mines using the [Intermine](http://intermine.org/) platform.
 
 
-Importantly, the plot script provided here is meant to be pipeline-agnostic. By way of contrast, DESeq2 can be used to plot fold changes in genomic space; however, it requires reading in data with `summarizeOverlaps`, as described [here](https://www.bioconductor.org/help/workflows/rnaseqGene/#plotting-fold-changes-in-genomic-space). Reading in data with `summarizeOverlaps` is just one of many of the routes to supplying count matrices into DESeq2. Additionally, you need to define gene models from GTF files by also constructing a TxDb object in DESeq2 prior to even being able to use `summarizeOverlaps` to generate count matrices. The plot_expression_across_chromosomes.py script provide here obviates many of those preparatory steps and makes it possible to take any route to generating such a plot. You can still use DESeq2 if you choose but with this script you aren't tied to using `summarizeOverlaps` and have the option to use any method, say tximport, to bring in counts. Similarly, NOISeq produces Manhattan plots for chromosomes as shown in [Figure 3 here](http://bioinfo.cipf.es/noiseq/lib/exe/fetch.php?media=noiseqbio_techreport.pdf), but then you are tied to NOISeq or have to do the analysis with at leat two different packages to get such a plot. Again, this script is meant to eliminate such additional steps, but still allow producing such plots.
+Importantly, the plot script provided here is meant to be pipeline-agnostic. By way of contrast, DESeq2 can be used to plot fold changes in genomic space; however, it requires reading in data with `summarizeOverlaps`, as described [here](https://www.bioconductor.org/help/workflows/rnaseqGene/#plotting-fold-changes-in-genomic-space). Reading in data with `summarizeOverlaps` is just one of many of the routes to supplying count matrices into DESeq2. Additionally, you need to define gene models from GTF files by also constructing a TxDb object in DESeq2 prior to even being able to use `summarizeOverlaps` to generate count matrices. The plot_expression_across_chromosomes.py script provide here obviates many of those preparatory steps and makes it possible to take any route to generating such a plot. You can still use DESeq2 if you choose but with this script you aren't tied to using `summarizeOverlaps` and have the option to use any method, say tximport, to bring in counts. Similarly, NOISeq produces Manhattan plots for chromosomes as shown in [Figure 3 here](http://bioinfo.cipf.es/noiseq/lib/exe/fetch.php?media=noiseqbio_techreport.pdf), but then you are tied to NOISeq or have to do the analysis with at leat two different packages to get such a plot. Again, this script is meant to eliminate such additional steps, but still allow producing such plots. In fact, any method to produce a ratio of expression for a sample realtive a baseline sample should work to be able to plot and the script may even be applicable to expresion ratios made from microarray data. 
 
 The script will automatically make a name for the output file based on the name data file provided and whether covering whole genome or certain chromosomes.
 
@@ -271,6 +274,23 @@ To avoid compressing the typically important range, by default the y-axis is lim
 
 
 When the `--smooth` flag is employed, the non-parametric strategy used to fit the curve to the data points is LOWESS (Locally Weighted Scatterplot Smoothing). It highlights deviations in the scatterplots better than one could estimate just by eye given so many points.
+
+
+
+## plot_expression_across_chromosomes_direct.py
+> plots directly from Salmon-quantified data files, i.e. `quant.sf` files, or other raw output from RNA-Seq quantification software a ratio of expression values across chromosomes or scaffolds of a genome to highlight regions of deviation characteristic of aneuploidy or segmental duplication/deletion.
+
+Note that except for source and format of the input data, this script is like `plot_expression_across_chromosomes.py` script. I am just going to address the features that differ here. See that script above for further details.
+
+### QUICK-START GUIDE
+
+Place the script in a directory with your genome annoation file and your summary data file.
+
+**Command to issue:**
+
+  	python plot_expression_across_chromosomes_direct.py genes.gtf 140a/quant.sf 140b/quant.sf mut_a/quant.sf mut_b/quant.sf
+	
+Explanation of command: in the call to the script, provide the (1) genome annotation file, (2) the list of data files of values. Here each data file is a `quant.sf` file generated by [Salmon](https://combine-lab.github.io/salmon/), and are in subfolders for each replicate sample to distinguish. The TPM value, fourth column in the tab-separated output file, is used by default. Optionally you can use output from other quantifying software; you'll just need to specify the data column with the `--data_column` flag, such as `--data_column 3` when calling the script. If the number of data files is odd or the ratio of wild-type(baseline) data files to experimental is not evenly split, you can use the `--wt_num` flag to specify a number that is to be used from the beginning of the file list as wild-type(baseline). For example if you have a total of 6 data files and the first two are replicates for wild-type, you would call the script with `--wt_num 2`.
 
 
 Running Environment Suggestion
