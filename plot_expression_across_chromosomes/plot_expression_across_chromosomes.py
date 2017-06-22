@@ -7,6 +7,8 @@
 #
 # PURPOSE: Plot ratio of expression of experimental condition vs. wild-type (or 
 # baseline state) for genes in sequential order across chromosomes in the genome. 
+# Should serve to highlight regions of deviation characteristic of aneuploidy 
+# or segmental duplication/deletion.
 # Requires two files: 1. a file of a genome annotation format in order to parse 
 # the locations of genes and (approximate) length of chromosomes; 2. a file of 
 # expression data to plot. Currently, the data needs to be in a tab-delimited 
@@ -39,11 +41,12 @@
 #
 #
 # Dependencies beyond the mostly standard libraries/modules:
-# statsmodels, seaborn (although could easily be unneeded)
+# statsmodels, seaborn (although could easily be altered to make unneeded)
 #
 #
 # VERSION HISTORY:
 # v.0.1. basic working version
+#
 #
 #
 #
@@ -397,7 +400,7 @@ parser.add_argument("data", help="Name of file containing the summarized data \
     to plot, such as mean TPM or RPKM, etc. in tab-delimited form. REQUIRED. \
     See my script `plot_expression_across_chromosomes_from_raw.py` if you want \
     supply the individual `raw` data files with the level metric for each \
-    sample &/or replicate.", 
+    sample and/or replicate.", 
     type=argparse.FileType('r'), metavar="DATA_FILE")
 parser.add_argument('-cols', '--columns', action='store', type=str, 
     default= '1,2,3', help="columns for gene, wild-type (baseline state) \
@@ -418,6 +421,7 @@ parser.add_argument('-chr', '--chrs', action='store', type=str,
     help="use this flag to limit plotting of the data to particular \
     chromosomes or scaffolds you specify immediately following this flag. \
     Separate the chromosome or scaffold identifiers by commas, without spaces. \
+    Example use in a command is `--chrs I,IV,XVI`. \
     Default when this optional flag is not called is to plot that data for all \
     chromosomes or scaffolds. ") # based on
     # https://stackoverflow.com/questions/15753701/argparse-option-for-passing-a-list-as-option
@@ -463,7 +467,7 @@ parser.add_argument('-ac', '--advance_color', action='store', type=int,
     the ability to control the color of the chromosome when specifying \
     a chromosome or scaffolds to plot so you could make the color match the \
     one used when all chromsome plotted if needed. Supply the number to \
-    advance after the flag on the command line.") 
+    advance after the flag on the command line. For example, `-ac 4`.") 
 
 #I would also like trigger help to display if no arguments provided because need at least one input file
 if len(sys.argv)==1:    #from http://stackoverflow.com/questions/4042452/display-help-message-with-python-argparse-when-script-is-called-without-any-argu
@@ -519,7 +523,7 @@ init_genome_df = pd.read_table(
 init_genome_df["gene_id"] = init_genome_df.apply(extract_gene_ids, axis=1)
 
 # copy each row to a new dataframe, unless gene already present. 
-# This wil give me unique gene_ids for each and I can make that index.
+# This will give me unique gene_ids for each and I can make that index.
 # Because it takes first occurence of each gene, it only has that as start and
 # end. Then to get the full range of data for start and end for each gene, I can
 # subset the initial dataframe on each gene_id and get the min and max and use
