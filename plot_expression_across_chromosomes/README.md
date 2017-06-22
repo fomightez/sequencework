@@ -303,7 +303,7 @@ See the [`plot_expression_across_chromosomes.py`](https://github.com/fomightez/s
 
 ### EXAMPLE INPUT
 
-See above for the frist few lines of the example gene annotation file, `genes.gtf`.
+See [here](https://github.com/fomightez/sequencework/blob/master/plot_expression_across_chromosomes/README.md#example-input) for the first few lines of the example gene annotation file, `genes.gtf`.
 
 Example RNA-Seq quantified data from Salmon -- below are the first few lines from a single `quant.sf` file:
 ```
