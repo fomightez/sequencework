@@ -109,7 +109,8 @@ y_cutoff = 4 # A limit was added to avoid extreme values compressing the
 # used or when values are within +/- this interval.
 
 deviation_factor = 0.25 #measure of degree of discrepancy to use when suggesting 
-# aneuploidy at a chromosome or scaffold level when using `--smooth` flag
+# aneuploidy at a chromosome or scaffold level when using `--smooth` flag; 0.5
+# seems better but keeping at 0.25 for now to be sure to cast wide net
 deviation_fraction = 0.51 #fraction of values for a chromosome or scaffold that 
 # need to deviate from baseline by deviation_factor before aneuploidy is 
 # suggested when using `--smooth` flag
