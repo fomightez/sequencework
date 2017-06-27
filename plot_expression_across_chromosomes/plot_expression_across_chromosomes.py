@@ -47,6 +47,18 @@
 # VERSION HISTORY:
 # v.0.1. basic working version
 #
+# to do:
+# - make jupyter nb version (display mock data in it so don't need to have our real data out there?) which should be easy using the ipython based testing code version to get a hard coded one fast.(sort of did with little change needed) BUT NEED BETTER WAY FOR HANDLING HARDCODING OF FILENAMES STILL.
+# - add supplying arguments to basic jupyter nb one where first hardcoded
+# - make a static ipython notebook version with image stored. (display mock data so don't need to have our real data out there?)
+# - make a jupyter nb version with working binder demo (new beta.mybinder.org)(display mock data so don't need to have our real data out there?)
+# - fix so that `chr IX` shows up in sequential order in plot? Probably not important since chromsomes don't relate to arbitrary designations we have them anyway.
+# - dream feature for jupyter nb version: interactive plot where gene id shows 
+# up when hover (and see 
+# https://moderndata.plot.ly/bioinformatics-plots-made-in-python-and-r/ for 
+# other? inspiration)
+# - add ability to supply chromsome data as BEd format? But then where does gene
+# location get supplied???
 #
 #
 #
@@ -362,6 +374,26 @@ def seqname_string_to_numeric(row):
     except ValueError as e:
         return row["seqname"]  
 
+def deviates_from_baseline(values):
+    '''
+    Determines if values for a chromosome or scaffold suggest aneuploidy.
+
+    Specifically, the function assess if a substantial fraction of lowess ys 
+    for a chromosome differ from baseline, i.e., are a good fraction greater 
+    than 0.25 or below 0.25 whenlog2 is used (default) or greater than 1.25 and
+    less than 0.75 when no_log.
+    This degree can be adjusted with deviation_factor setting under 
+    "USER ADJUSTABLE VALUES". Default setting provided in script is 0.25.
+
+    Returns a boolean value indicating if chromosome or scaffold shows 
+    aneuploidy based on a simplistic assessment. Your mileage may vary.
+    '''
+    baseline = 1.0 if no_log else 0.0
+    return float(len([value for value in values if value > baseline
+             + deviation_factor or value < baseline
+             - deviation_factor])) / float(len(values)) \
+    > deviation_fraction
+
 ###--------------------------END OF HELPER FUNCTIONS---------------------------###
 ###--------------------------END OF HELPER FUNCTIONS---------------------------###
 
@@ -440,7 +472,12 @@ parser.add_argument("-s", "--smooth",help=
     "add this flag to display a smoothing curve fit to the data points \
     (LOWESS) on a per chromosome basis. This option can enhance visualization \
     of deviations characteristic of aneuploidy and copy number variation across \
-    the genome, both within and between chromosomes.",
+    the genome, both within and between chromosomes. Additionally, a \
+    simplistically-based assesment will be made for aneuploidy at the \
+    chromosome or scaffold level and a notice will be made as the program is \
+    running if aneuploidy at the chromosome or scaffold level seems indicated \
+    by this simple metric. Further examination is warranted regardless of \
+    the result this automated assessment.",
     action="store_true")
 parser.add_argument('-ed', '--exp_desig', action='store', type=str, 
     default= 'experimental', help="Allows changing the text used in y-axis \
@@ -732,8 +769,8 @@ if title_prefix is not None:
     else:
         title = title_prefix + "genome"
     plt.title(title, fontsize=18)
-# At first I could not get LATeX to work with the y-axis labels even though what I have in the commented out lines below between `$` works in both Jupyter notebooks markdown cells (put between `$$`) and inserted in place of the LATeX code from the tex_demo.py script at https://matplotlib.org/users/usetex.html that use `plt.plot()`
 
+# At first I could not get LATeX to work with the y-axis labels even though what I have in the commented out lines below between `$` works in both Jupyter notebooks markdown cells (put between `$$`) and inserted in place of the LATeX code from the tex_demo.py script at https://matplotlib.org/users/usetex.html that use `plt.plot()`
 '''
 if no_log:
     ax.set_ylabel('$\frac{\text{experimental\ level}}{\text{wild-type\ level}}$')
@@ -827,6 +864,7 @@ else:
 
 # add lowess curve fit to each chromosome if `smooth` flag
 if display_smooth:
+    chr_deviating_from_baseline = []
     for chr in data_by_chr:
         lowess_ys = lowess(
             data_by_chr[chr]["ys"], data_by_chr[chr]["xs"], 
@@ -835,6 +873,13 @@ if display_smooth:
             return_sorted=False)
         plt.plot(
             data_by_chr[chr]["xs"],lowess_ys,'gray',linewidth=12, alpha=0.55)
+        # assess if chromosome/scaffold deviates from baseline
+        if deviates_from_baseline(lowess_ys):
+            chr_deviating_from_baseline.append(chr)
+    # provide feedback if deviation from norm noted
+    if chr_deviating_from_baseline:
+        sys.stderr.write(
+            "\nAneuploidy at the chromosome or scaffold level is suggested for {}; examine further.".format(" & ".join(chr_deviating_from_baseline)))
 
 
 sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name))
