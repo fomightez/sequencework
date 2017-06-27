@@ -394,10 +394,11 @@ def deviates_from_baseline(values):
     aneuploidy based on a simplistic assessment. Your mileage may vary.
     '''
     baseline = 1.0 if no_log else 0.0
-    return float(len([value for value in values if value > baseline
-             + deviation_factor or value < baseline
-             - deviation_factor])) / float(len(values)) \
+    return float(len([value for value in values if not (baseline
+         - deviation_factor < value < baseline
+         + deviation_factor)])) / float(len(values)) \
     > deviation_fraction
+
 
 ###--------------------------END OF HELPER FUNCTIONS---------------------------###
 ###--------------------------END OF HELPER FUNCTIONS---------------------------###
