@@ -60,6 +60,7 @@
 # VERSION HISTORY:
 # v.0.1. basic working version
 #
+# to do:
 # 
 #
 #
@@ -106,6 +107,12 @@ y_cutoff = 4 # A limit was added to avoid extreme values compressing the
 # typically important range when log2 used. Adjust that limit here or 
 # run with `--no_limits` flag enables. y_cutoff is not used when `no_log` flag 
 # used or when values are within +/- this interval.
+
+deviation_factor = 0.25 #measure of degree of discrepancy to use when suggesting 
+# aneuploidy at a chromosome or scaffold level when using `--smooth` flag
+deviation_fraction = 0.51 #fraction of values for a chromosome or scaffold that 
+# need to deviate from baseline by deviation_factor before aneuploidy is 
+# suggested when using `--smooth` flag
 
 
 plot_style = "seaborn" #try also `ggplot`,`default`, `bmh` or `grayscale`; use 
@@ -404,6 +411,27 @@ def get_gene_expression(file_list, the_dictionary):
     sys.stderr.write("{0} files parsed for expression data for {1} genes...".format(files_handled, len(the_dictionary)))
     return the_dictionary
 
+def deviates_from_baseline(values):
+    '''
+    Determines if values for a chromosome or scaffold suggest aneuploidy.
+
+    Specifically, the function assess if a substantial fraction of lowess ys 
+    for a chromosome differ from baseline, i.e., are a good fraction greater 
+    than 0.25 or below 0.25 whenlog2 is used (default) or greater than 1.25 and
+    less than 0.75 when no_log.
+    This degree can be adjusted with deviation_factor setting under 
+    "USER ADJUSTABLE VALUES". Default setting provided in script is 0.25.
+
+    Returns a boolean value indicating if chromosome or scaffold shows 
+    aneuploidy based on a simplistic assessment. Your mileage may vary.
+    '''
+    baseline = 1.0 if no_log else 0.0
+    return float(len([value for value in values if not (baseline
+         - deviation_factor < value < baseline
+         + deviation_factor)])) / float(len(values)) \
+    > deviation_fraction
+
+
 ###--------------------------END OF HELPER FUNCTIONS---------------------------###
 ###--------------------------END OF HELPER FUNCTIONS---------------------------###
 
@@ -489,7 +517,12 @@ parser.add_argument("-s", "--smooth",help=
     "add this flag to display a smoothing curve fit to the data points \
     (LOWESS) on a per chromosome basis. This option can enhance visualization \
     of deviations characteristic of aneuploidy and copy number variation across \
-    the genome, both within and between chromosomes.",
+    the genome, both within and between chromosomes. Additionally, a \
+    simplistically-based assesment will be made for aneuploidy at the \
+    chromosome or scaffold level and a notice will be made as the program is \
+    running if aneuploidy at the chromosome or scaffold level seems indicated \
+    by this simple metric. Further examination is warranted regardless of \
+    the result this automated assessment.",
     action="store_true")
 parser.add_argument('-ed', '--exp_desig', action='store', type=str, 
     default= 'experimental', help="Allows changing the text used in y-axis \
@@ -928,6 +961,7 @@ else:
 
 # add lowess curve fit to each chromosome if `smooth` flag
 if display_smooth:
+    chr_deviating_from_baseline = []
     for chr in data_by_chr:
         lowess_ys = lowess(
             data_by_chr[chr]["ys"], data_by_chr[chr]["xs"], 
@@ -936,6 +970,14 @@ if display_smooth:
             return_sorted=False)
         plt.plot(
             data_by_chr[chr]["xs"],lowess_ys,'gray',linewidth=12, alpha=0.55)
+        # assess if chromosome/scaffold deviates from baseline
+        if deviates_from_baseline(lowess_ys):
+            chr_deviating_from_baseline.append(chr)
+    # provide feedback if deviation from norm noted
+    if chr_deviating_from_baseline:
+        sys.stderr.write(
+            "\nAneuploidy at the chromosome or scaffold level is suggested for {}; examine further.".format(" & ".join(chr_deviating_from_baseline)))
+
 
 
 sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name))
