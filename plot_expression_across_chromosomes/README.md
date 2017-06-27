@@ -107,7 +107,13 @@ optional arguments:
                         option can enhance visualization of deviations
                         characteristic of aneuploidy and copy number variation
                         across the genome, both within and between
-                        chromosomes.
+                        chromosomes. Additionally, a simplistically-based
+                        assesment will be made for aneuploidy at the
+                        chromosome or scaffold level and a notice will be made
+                        as the program is running if aneuploidy at the
+                        chromosome or scaffold level seems indicated by this
+                        simple metric. Further examination is warranted
+                        regardless of the result this automated assessment.
   -ed EXP_DESIG, --exp_desig EXP_DESIG
                         Allows changing the text used in y-axis label to
                         reference experimental sample. Following `--exp_desig`
