@@ -10,7 +10,7 @@ Descriptions of these scripts are below:
 ## plot_expression_across_chromosomes.py
 > plots a ratio of expression values across chromosomes or scaffolds of a genome to highlight regions of deviation characteristic of aneuploidy or segmental duplication/deletion.
 
-A python script to plot ratio of expression of experimental condition vs. wild-type (or 
+A Python script to plot ratio of expression of experimental condition vs. wild-type (or 
 baseline state) for genes in sequential order across chromosomes in the genome. It requires two files: 1. a 
 file of a genome annotation format in order to parse the locations of genes 
 and (approximate) length of chromosomes; 2. a file of expression data to plot.
@@ -39,6 +39,7 @@ Explanation of command: in the call to the script, provide the (1) genome annota
 Resulting plot file, `genes_mean_TPM_across_chr.png`, produced:  
 ![example](example_imgs/genes_mean_TPM_across_chr.png)  
 (The mutant strain in this real data example shows aneuploidy, specifically a duplication of chromosome IV.)
+Additional feedback is reported in command line console when the script is run.
 
 
 ### USAGE SUMMARY
@@ -279,12 +280,14 @@ Importantly, the plot script provided here is meant to be pipeline-agnostic. By 
 
 The script will automatically make a name for the output file based on the name data file provided and whether covering whole genome or certain chromosomes.
 
+Feedback is given as the script is run. This information will be sent to the command line console (standard out) and includes genes not matched in the data and the genome annotation file, genes whose values are left out to avoid errors caused by values of zero, an indication of suggested aneuploidy when the `--smooth` flag is used, etc..
+
 **Additional Details For Options**
 
 To avoid compressing the typically important range, by default the y-axis is limited to a range that emphasizes the alterations characteristic of aneuploidy or segmental duplication. In that case, points beyond those limits are plotted at the edge of the plot in a manner that distinguishes them from the other data points, i.e., they are represented as open triangles at the edge pointing in an up-or-down direction. This approach is styled on how DESeq2 plotMA handles out of bounds points, see section 1.5.1 of [the DESeq2 vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#ma-plot). Depending on your needs, run with the optional `--no_limits` or `--no_log` flags to see the full plot.
 
 
-When the `--smooth` flag is employed, the non-parametric strategy used to fit the curve to the data points is LOWESS (Locally Weighted Scatterplot Smoothing). It highlights deviations in the scatterplots better than one could estimate just by eye given so many points.
+When the `--smooth` flag is employed, the non-parametric strategy used to fit the curve to the data points is LOWESS (Locally Weighted Scatterplot Smoothing). It highlights deviations in the scatterplots better than one could estimate just by eye given so many points. If the `--smooth` flag is used a simplistic, automated assessment will be made for aneuploidy at the chromosome-level (or per scaffold) and an notice will be included in the report as the script runs if anueploidy is suggested. You'll need to examime further no matter the outsome of that assessment. Right now the simplistic approach errs on the side of reporting more false positives but the settings used can be adjusted.
 
 
 
@@ -293,7 +296,7 @@ When the `--smooth` flag is employed, the non-parametric strategy used to fit th
 
 ### QUICK-START GUIDE
 
-Place the script in a directory with your genome annoation file, along with directories containing your raw data files.
+Place the Pyhton script in a directory with your genome annoation file, along with directories containing your raw data files.
 
 **Command to issue:**
 
