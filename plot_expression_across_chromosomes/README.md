@@ -354,7 +354,7 @@ Related
 -------
 
 I have made a script that will run the plot across the entire yeast genome as well as making plots for each chromosome individually, except mitochondrial one, automagically. It could probably by easily modified for any genome and set of data where [`plot_expression_across_chromosomes.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomespy) works. There is a separate script that combines the images from several samples into a report summary for each. The two related scripts are:
-* [`sheperds_chr_thru_plot_expression_across_chromosomes.py`](https://github.com/fomightez/mini-pipelines)
+* [`shepherds_chr_thru_plot_expression_across_chromosomes.py`](https://github.com/fomightez/mini-pipelines)
 * [`generate_reports_for_genome_and_all_chromosomes_various_samples.py`](https://github.com/fomightez/mini-pipelines)  
 
 They can both be found [here](https://github.com/fomightez/mini-pipelines) in my [mini-pipelines repository](https://github.com/fomightez/mini-pipelines).
