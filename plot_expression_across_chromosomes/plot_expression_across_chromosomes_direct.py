@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 # plot_expression_across_chromosomes_direct.py by Wayne Decatur
+__author__ = "Wayne Decatur"
+__license__ = "MIT"
 
 #*******************************************************************************
 # Written in Python 2.7 to be compatible with Python 3.
