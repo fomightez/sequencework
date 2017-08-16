@@ -852,7 +852,6 @@ for chr, data_per_chr_df in grouped_from_filtered:
 # MAKE THE PLOT
 # This follows the plotting approach of Brent Pedersen's `manhattan-plot.py`  
 # closely, see https://github.com/brentp/bio-playground/blob/master/plots/manhattan-plot.py .
-output_file_name = generate_output_file_name(exp_files[0], suffix_for_saving_result)
 
 xs = np.array(xs)
 ys = np.array(ys) if no_log else np.log2(ys)
@@ -982,7 +981,7 @@ if display_smooth:
             "\nAneuploidy at the chromosome or scaffold level is suggested for {}; examine further.".format(" & ".join(chr_deviating_from_baseline)))
 
 
-
+output_file_name = generate_output_file_name(exp_files[0], suffix_for_saving_result)
 sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name))
 plt.savefig(output_file_name)
 #plt.show()
