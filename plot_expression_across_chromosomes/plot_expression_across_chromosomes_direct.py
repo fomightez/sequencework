@@ -71,7 +71,7 @@ __license__ = "MIT"
 # Example,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# python plot_expression_across_chromosomes_direct.py genome_annotation.gtf data.tsv
+# python plot_expression_across_chromosomes_direct.py genome_annotation.gtf data1.quant.sf data2.quant.sf
 #-----------------------------------
 #
 #
