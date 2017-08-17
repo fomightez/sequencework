@@ -350,8 +350,8 @@ These scripts should work wherever you run Python with modern [Pandas](http://pa
 
 [`plot_expression_across_chromosomes_direct.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomes_directpy) and [`plot_expression_across_chromosomes.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomespy) are licensed under MIT.
 
-Related
--------
+Related items by me
+-------------------
 
 I have made a script that will run the plot across the entire yeast genome as well as making plots for each chromosome individually, except mitochondrial one, automagically. It could probably by easily modified for any genome and set of data where [`plot_expression_across_chromosomes.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomespy) works. There is a separate script that combines the images from several samples into a report summary for each. The two related scripts are:
 * [`shepherds_chr_thru_plot_expression_across_chromosomes.py`](https://github.com/fomightez/mini-pipelines)
@@ -360,3 +360,11 @@ I have made a script that will run the plot across the entire yeast genome as we
 They can both be found [here](https://github.com/fomightez/mini-pipelines) in my [mini-pipelines repository](https://github.com/fomightez/mini-pipelines).
 
 Additionally, I have made a script for generating simulated data files where you can designate what chromosomes or scaffolds differ from the baseline and by what fold. That script, called `mock_expression_ratio_generator.py`, can be found [here](https://github.com/fomightez/simulated_data/tree/master/gene_expression).
+
+
+Related items by others
+-----------------------
+
+R code to plot expression across chromosomes in Jupyter notebooks looks to be demonstrated [here](https://twitter.com/ODiogoSilva/status/898241229250605056) by Diogo Silva for an organism with 12 chromosomes, but I haven't found the actual code yet.
+
+I listed some other related resources [here](https://www.biostars.org/p/183822/#253097).
