@@ -931,6 +931,7 @@ else:
     oobs_width = 1 # out of bounds marker linewwidth
     rotation_for_hi = 0
     rotation_for_lo = 180
+    # "Plot" the out-of-bounds points
     plt.scatter(xs_out_of_bounds_hi, ys_out_of_bounds_hi, marker=(3, 0, rotation_for_hi), s=oobs_marker_sz, linestyle='solid',linewidth=oobs_width, facecolors='None', edgecolors=cs_out_of_bounds_hi) # see https://stackoverflow.com/questions/4143502/how-to-do-a-scatter-plot-with-empty-circles-in-python; use `facecolors` for scatter and markerfacecolor for `plt.plot`
     plt.scatter(xs_out_of_bounds_lo, ys_out_of_bounds_lo, marker=(3, 0, rotation_for_lo), s=oobs_marker_sz, linestyle='solid',linewidth=oobs_width, facecolors='None', edgecolors=cs_out_of_bounds_lo) # see https://stackoverflow.com/questions/4143502/how-to-do-a-scatter-plot-with-empty-circles-in-python; use `facecolors` for scatter and markerfacecolor for `plt.plot`
     sys.stderr.write(
