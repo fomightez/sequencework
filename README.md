@@ -11,7 +11,7 @@ Descriptions of the scripts are found within `README.md` files in the sub folder
 See also
 -------
 
-[My simulated data repo] has some useful scripts and resources for generating simulated (mock / fake) gene expression data or gene lists.
+[My simulated data repo](https://github.com/fomightez/simulated_data) has some useful scripts and resources for generating simulated (mock / fake) gene expression data or gene lists.
 
 
 
