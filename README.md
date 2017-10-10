@@ -8,4 +8,11 @@ I sorely need to put an index here with links to better guide to the appropriate
 
 Descriptions of the scripts are found within `README.md` files in the sub folders.
 
+See also
+-------
+
+[My simulated data repo] has some useful scripts and resources for generating simulated (mock / fake) gene expression data or gene lists.
+
+
+
 
