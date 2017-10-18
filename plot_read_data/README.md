@@ -13,15 +13,15 @@ Another Note for the two I intend to put here first --> Despite the names, they 
 Related items created by myself
 -------------------------------
 
-I have made a script that will utilize the `--export_data` option to run `plot_coverage_and_starts.py` to automate an effort:
+I have made a script that utilizes the `--export_data` option to run `plot_coverage_and_starts.py` to automate an effort:
 * [`shepherds_read_starts_at_start_of_origins_thru_to_plotting.py`](https://github.com/fomightez/mini-pipelines)
 
-Specifically, the script [`shepherds_read_starts_at_start_of_origins_thru_to_plotting.py`](https://github.com/fomightez/mini-pipelines) will utilize the `--export_data` option to run `plot_coverage_and_starts.py` in an automated manner and plot the starts in a subregion of the data using the script `plot_stacked_bar_plots_with_fit.py`. `plot_stacked_bar_plots_with_fit.py` is found [here](PUT URL HERE) as it is general and not specific to read data.
+Specifically, the script [`shepherds_read_starts_at_start_of_origins_thru_to_plotting.py`](https://github.com/fomightez/mini-pipelines) utilizes the `--export_data` option to run `plot_coverage_and_starts.py` in an automated manner and plot the starts in a subregion of the data using the script `plot_stacked_bar_plots_with_fit.py`. The associated script `plot_stacked_bar_plots_with_fit.py` is found [here](https://github.com/fomightez/general_scripted_plotting), as it is general and not specific to read data.
 
 
 Related items by others
 -----------------------
 
-This is not for high-throughput data, but for a different type of modern sequencing data:
+Not for high-throughput data, but for a different type of modern sequencing data:
 
 [NanoPack - NanoPlot and NanoStats and other Python scripts and modules for visualizing and processing Oxford Nanopore sequencing data](https://github.com/wdecoster/nanopack)
