@@ -1,5 +1,5 @@
-Scripts for plotting data associated with reads from high-throughput sequencing
-==============================================================================
+Scripts for processing and visualizing data associated with reads from high-throughput sequencing
+===============================================================================================
 
 placeholder for where I'll put:
 
