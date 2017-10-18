@@ -350,8 +350,8 @@ These scripts should work wherever you run Python with modern [Pandas](http://pa
 
 [`plot_expression_across_chromosomes_direct.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomes_directpy) and [`plot_expression_across_chromosomes.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomespy) are licensed under MIT.
 
-Related items by me
--------------------
+Related items by myself
+-------------------------
 
 I have made a script that will run the plot across the entire yeast genome as well as making plots for each chromosome individually, except mitochondrial one, automagically. It could probably by easily modified for any genome and set of data where [`plot_expression_across_chromosomes.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomespy) works. There is a separate script that combines the images from several samples into a report summary for each. The two related scripts are:
 * [`shepherds_chr_thru_plot_expression_across_chromosomes.py`](https://github.com/fomightez/mini-pipelines)
