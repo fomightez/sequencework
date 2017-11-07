@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
 # plot_expression_across_chromosomes.py by Wayne Decatur
-__author__ = "Wayne Decatur"
+__author__ = "Wayne Decatur" #fomightez on GitHub
 __license__ = "MIT"
+
 
 #*******************************************************************************
 # Written in Python 2.7 to be compatible with Python 3.
@@ -93,7 +94,7 @@ genome_annotation_fields_for_bed = ("chrom", "chromStart", "chromEnd", "name",
     "score", "strand", "thickStart", "thickEnd", "itemRgb", "blockCount", 
     "blockSizes", "blockStarts")
 
-suffix_for_saving_result = "_across_chr.png"
+suffix_for_saving_result = "_across_chr.svg"
 
 title_prefix = "Expression across " # Change to `None` to suppress title
 
@@ -109,7 +110,7 @@ y_cutoff = 4 # A limit was added to avoid extreme values compressing the
 
 deviation_factor = 0.25 #measure of degree of discrepancy to use when suggesting 
 # aneuploidy at a chromosome or scaffold level when using `--smooth` flag; 0.5
-# seems better but keeping at 0.25 for now to be sure to cast wide net.
+# seems better but keeping at 0.25 for now to be sure to cast wide net
 deviation_fraction = 0.51 #fraction of values for a chromosome or scaffold that 
 # need to deviate from baseline by deviation_factor before aneuploidy is 
 # suggested when using `--smooth` flag
@@ -401,7 +402,6 @@ def deviates_from_baseline(values):
          - deviation_factor < value < baseline
          + deviation_factor)])) / float(len(values)) \
     > deviation_fraction
-
 
 ###--------------------------END OF HELPER FUNCTIONS---------------------------###
 ###--------------------------END OF HELPER FUNCTIONS---------------------------###
@@ -890,10 +890,13 @@ if display_smooth:
         sys.stderr.write(
             "\nAneuploidy at the chromosome or scaffold level is suggested for {}; examine further.".format(" & ".join(chr_deviating_from_baseline)))
 
-        
+
 output_file_name = generate_output_file_name(data_file.name, suffix_for_saving_result)
 sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name))
 plt.savefig(output_file_name)
+plt.savefig(output_file_name[:-4]+".png")
+# plt.savefig(output_file_name[:-4]+".pdf", orientation='landscape') # UNFORTUNATELY DOES NOT PRODUCE VECTOR GRAPHICS, unlike ReportLab's pdf output; USE SVG for that and the make PDF later.
+# plt.savefig(output_file_name[:-4]+".svg", orientation='landscape') # FOR VECTOR GRAPHICS; useful if merging into Adobe Illustrator. Based on https://neuroscience.telenczuk.pl/?p=331 ; I think ReportLab also outputs SVG?
 #plt.show()
 
 
