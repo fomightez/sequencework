@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # plot_expression_across_chromosomes_direct.py by Wayne Decatur
-__author__ = "Wayne Decatur"
+__author__ = "Wayne Decatur" #fomightez on GitHub
 __license__ = "MIT"
 
 #*******************************************************************************
@@ -96,7 +96,7 @@ genome_annotation_fields_for_bed = ("chrom", "chromStart", "chromEnd", "name",
     "score", "strand", "thickStart", "thickEnd", "itemRgb", "blockCount", 
     "blockSizes", "blockStarts")
 
-suffix_for_saving_result = "_across_chr.png"
+suffix_for_saving_result = "_across_chr.svg"
 
 title_prefix = "Expression across " # Change to `None` to suppress title
 
@@ -985,6 +985,9 @@ if display_smooth:
 output_file_name = generate_output_file_name(exp_files[0], suffix_for_saving_result)
 sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name))
 plt.savefig(output_file_name)
+plt.savefig(output_file_name[:-4]+".png")
+# plt.savefig(output_file_name[:-4]+".pdf", orientation='landscape') # UNFORTUNATELY DOES NOT PRODUCE VECTOR GRAPHICS, unlike ReportLab's pdf output; USE SVG for that and the make PDF later.
+# plt.savefig(output_file_name[:-4]+".svg", orientation='landscape') # FOR VECTOR GRAPHICS; useful if merging into Adobe Illustrator. Based on https://neuroscience.telenczuk.pl/?p=331 ; I think ReportLab also outputs SVG?
 #plt.show()
 
 
