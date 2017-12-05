@@ -324,6 +324,121 @@ Unlike the [`plot_expression_across_chromosomes.py`](https://github.com/fomighte
 
 See the [`plot_expression_across_chromosomes.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomespy) script above for further details of some of the options.
 
+### USAGE SUMMARY
+
+```
+usage: plot_expression_across_chromosomes_direct.py [-h] [-wn WT_NUM]
+                                                    [-col COLUMN] [-l]
+                                                    [-chr CHRS] [-nl] [-nlim]
+                                                    [-s] [-ed EXP_DESIG]
+                                                    [-bd BASE_DESIG] [-svg]
+                                                    [-ac ADVANCE_COLOR]
+                                                    ANNOTATION_FILE DATA_FILES
+                                                    [DATA_FILES ...]
+
+plot_expression_across_chromosomes_direct.py uses raw quantified RNA-seq data
+(defaults to Salmon-generated data) to plot a ratio of expression values
+across chromosomes or scaffolds of a genome to highlight regions of deviation.
+Besides the options listed here, there are several `USER ADJUSTABLE VALUES`
+inside the script that can be edited for easy customization. A similar plot is
+called a Manhattan plot and this implementation borrows the plotting approach
+and some of the features from Brent Pedersen's awesome `manhattan-plot.py`
+script. **** Script by Wayne Decatur (fomightez @ github) ***
+
+positional arguments:
+  ANNOTATION_FILE       Name of file containing the genome annotation.
+                        REQUIRED. This is needed to determine the order of
+                        individual data points along the chromosome and how to
+                        display the data across chromosomes or scaffolds.
+  DATA_FILES            Names of files containing the data to plot, such as or
+                        RPKM, etc. in tab-delimited form for at least one
+                        wild-type(baseline) sample and one experimental
+                        sample. AT LEAST TWO TOTAL REQUIRED. Assumed that it
+                        is quantified by Salmon; specify column flag if level
+                        not in fourth column. Wild-type(baseline) samples are
+                        to be listed first. If number of files provided is
+                        even and no `--wt_num` provided then first half is
+                        considered wild-type set and the last half considered
+                        experimental set. Use `--wt_num` flag to specify
+                        number of wild-type base-line samples if not split
+                        evenly or total number of data samples are an odd
+                        number.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -wn WT_NUM, --wt_num WT_NUM
+                        use this flag followed by an integer to specify how
+                        many of the initial data files provided are wild-
+                        type(baseline) when samples not split evenly (e.g.,
+                        `--wt_num 2` in case of 2 wild-type and 4 experimental
+                        replicates) or using and odd number of total data
+                        files. In the example where not split evenly, flag to
+                        add to command call would be `--wt_num 2`.
+  -col COLUMN, --column COLUMN
+                        column for expression metric in data file. Assumes a
+                        value of four to match fourth tab-separated column in
+                        Salmon-quantified RNA-Seq data.
+  -l, --lines           add this flag to plot the expression level ratio value
+                        as lines extending from the x-axis rather than points
+                        in space. (The resulting aesthetic may resemble a city
+                        skyline for which the `manhattan plot` is named.)
+  -chr CHRS, --chrs CHRS
+                        use this flag to limit plotting of the data to
+                        particular chromosomes or scaffolds you specify
+                        immediately following this flag. Separate the
+                        chromosome or scaffold identifiers by commas, without
+                        spaces. Example use in a command is `--chrs I,IV,XVI`.
+                        Default when this optional flag is not called is to
+                        plot that data for all chromosomes or scaffolds.
+  -nl, --no_log         add this flag to keep the expression level ratio to be
+                        plotted in the common base 10 instead of converting to
+                        log2.
+  -nlim, --no_limits    add this flag to not impose a limit of above and below
+                        4 in plot window when converting to log2. The cutoff
+                        can also be adjusted under `user-adjustable settings`
+                        in the script. Issuing this flag has no effect if all
+                        values are within +/- the cutoff interval or
+                        `--no_log` is used.
+  -s, --smooth          add this flag to display a smoothing curve fit to the
+                        data points (LOWESS) on a per chromosome basis. This
+                        option can enhance visualization of deviations
+                        characteristic of aneuploidy and copy number variation
+                        across the genome, both within and between
+                        chromosomes. Additionally, a simplistically-based
+                        assesment will be made for aneuploidy at the
+                        chromosome or scaffold level and a notice will be made
+                        as the program is running if aneuploidy at the
+                        chromosome or scaffold level seems indicated by this
+                        simple metric. Further examination is warranted
+                        regardless of the result this automated assessment.
+  -ed EXP_DESIG, --exp_desig EXP_DESIG
+                        Allows changing the text used in y-axis label to
+                        reference experimental sample. Following `--exp_desig`
+                        type what you'd like to read there instead of
+                        `experimental`.
+  -bd BASE_DESIG, --base_desig BASE_DESIG
+                        Allows changing the text used in y-axis label to
+                        reference wild-type or baseline sample. Following
+                        `--base_desig` type what you'd like to read there
+                        instead of `wild-type`.
+  -svg, --save_vg       add this flag to save as vector graphics
+                        (**RECOMMENDED FOR PUBLICATION***) instead of default
+                        png. Not default or saved alongside default because
+                        file size can get large due to the large number of
+                        points.
+  -ac ADVANCE_COLOR, --advance_color ADVANCE_COLOR
+                        **FOR ADVANCED USE.*** Allows for advancing the color
+                        selection iterator the specified number of times. The
+                        idea is it allows the ability to control the color of
+                        the chromosome when specifying a chromosome or
+                        scaffolds to plot so you could make the color match
+                        the one used when all chromsome plotted if needed.
+                        Supply the number to advance after the flag on the
+                        command line. For example, `-ac 4`.
+```
+
+
+
 
 ### EXAMPLE INPUT
 
