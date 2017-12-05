@@ -896,7 +896,8 @@ sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name))
 plt.savefig(output_file_name)
 plt.savefig(output_file_name[:-4]+".png")
 # plt.savefig(output_file_name[:-4]+".pdf", orientation='landscape') # UNFORTUNATELY DOES NOT PRODUCE VECTOR GRAPHICS, unlike ReportLab's pdf output; USE SVG for that and the make PDF later.
-# plt.savefig(output_file_name[:-4]+".svg", orientation='landscape') # FOR VECTOR GRAPHICS; useful if merging into Adobe Illustrator. Based on https://neuroscience.telenczuk.pl/?p=331 ; I think ReportLab also outputs SVG?
+plt.savefig(output_file_name[:-4]+".svg", orientation='landscape') # FOR VECTOR GRAPHICS; useful if merging into Adobe Illustrator. Based on https://neuroscience.telenczuk.pl/?p=331 ; I think ReportLab also outputs SVG?
+sys.stderr.write("\nPlot image saved to: {}\n".format(output_file_name[:-4]+".svg"))
 #plt.show()
 
 
