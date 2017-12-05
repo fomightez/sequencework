@@ -125,6 +125,11 @@ optional arguments:
                         reference wild-type or baseline sample. Following
                         `--base_desig` type what you'd like to read there
                         instead of `wild-type`.
+  -svg, --save_vg       add this flag to save as vector graphics
+                        (**RECOMMENDED FOR PUBLICATION***) instead of default
+                        png. Not default or saved alongside default because
+                        file size can get large due to the large number of
+                        points.
   -ndh, --no_data_header
                         add this flag if there is no data header or no first
                         line of column names in the data file. Otherwise, it
