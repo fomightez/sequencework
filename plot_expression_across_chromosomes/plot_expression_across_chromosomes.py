@@ -496,6 +496,12 @@ parser.add_argument('-bd', '--base_desig', action='store', type=str,
     default= 'wild\mathrm{-}type', help="Allows changing the text used in y-axis \
     label to reference wild-type or baseline sample. Following `--base_desig` \
     type what you'd like to read there instead of `wild-type`.") 
+parser.add_argument("-svg", "--save_vg",help=
+    "add this flag to save as vector graphics \
+    (**RECOMENDED FOR PUBLICATION***) instead of default png. Not default or \
+    saved alongside default because file size can get large due to the large \
+    number of points.",
+    action="store_true")
 parser.add_argument("-ndh", "--no_data_header",help=
     "add this flag if there is no data header or no first line of column names \
     in the data file. Otherwise, it is assumed there is and any item read as \
@@ -539,7 +545,7 @@ display_smooth = args.smooth
 no_limits = args.no_limits
 exp_designation = args.exp_desig
 baseline_designation = args.base_desig
-
+save_vg = args.save_vg
 
 
 
@@ -892,13 +898,15 @@ if display_smooth:
 
 
 output_file_name = generate_output_file_name(data_file.name, suffix_for_saving_result)
-sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name))
-plt.savefig(output_file_name)
-plt.savefig(output_file_name[:-4]+".png")
-# plt.savefig(output_file_name[:-4]+".pdf", orientation='landscape') # UNFORTUNATELY DOES NOT PRODUCE VECTOR GRAPHICS, unlike ReportLab's pdf output; USE SVG for that and the make PDF later.
-plt.savefig(output_file_name[:-4]+".svg", orientation='landscape') # FOR VECTOR GRAPHICS; useful if merging into Adobe Illustrator. Based on https://neuroscience.telenczuk.pl/?p=331 ; I think ReportLab also outputs SVG?
-sys.stderr.write("Plot image saved to: {}\n".format(output_file_name[:-4]+".svg"))
-#plt.show()
+if save_vg:
+    plt.savefig(output_file_name[:-4]+".svg", orientation='landscape') # FOR VECTOR GRAPHICS; useful if merging into Adobe Illustrator. Based on https://neuroscience.telenczuk.pl/?p=331 ; I think ReportLab also outputs SVG?
+    sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name[:-4]+".svg"))
+else:
+    sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name))
+    plt.savefig(output_file_name)
+    plt.savefig(output_file_name[:-4]+".png")
+    # plt.savefig(output_file_name[:-4]+".pdf", orientation='landscape') # UNFORTUNATELY DOES NOT PRODUCE VECTOR GRAPHICS, unlike ReportLab's pdf output; USE SVG for that and the make PDF later.
+    #plt.show()
 
 
 #*******************************************************************************
