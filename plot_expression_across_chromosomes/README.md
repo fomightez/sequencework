@@ -289,6 +289,10 @@ To avoid compressing the typically important range, by default the y-axis is lim
 
 When the `--smooth` flag is employed, the non-parametric strategy used to fit the curve to the data points is LOWESS (Locally Weighted Scatterplot Smoothing). It highlights deviations in the scatterplots better than one could estimate just by eye given so many points. If the `--smooth` flag is used a simplistic, automated assessment will be made for aneuploidy at the chromosome-level (or per scaffold) and an notice will be included in the report as the script runs if anueploidy is suggested. You'll need to examime further no matter the outsome of that assessment. Right now the simplistic approach errs on the side of reporting more false positives but the settings used can be adjusted. In fact, I found a setting of `deviation_factor = 0.5` to work better in regards to almost eliminating false-postives, but I left it as `deviation_factor = 0.25` in the posted script for now.
 
+### Known Issues and Workarounds
+
+Running the script with a file of tab-separated values that looks good in text editors (and even on PythonAnywhere) may run with no noted error **YET** result in no plotted points because of issues with line endings. Be sure to convert MacOs line endings to Unix in your favorite text editor if you are using Mac Excel to save the summary table.
+
 
 
 ## plot_expression_across_chromosomes_direct.py
