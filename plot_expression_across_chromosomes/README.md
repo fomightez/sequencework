@@ -236,6 +236,8 @@ Explanation: specify columns other than default and add a line indicating a smoo
 Resulting plot produced:  
 ![example](example_imgs/genes_mean_TPM_across_chr_smooth.png)  
 
+The output will also include notice if aneuploidy is detected from a simplistic assessment using the smoothing data.
+
 **Command:**
 
 	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv--columns 1,2,4 --chrs IV,VIII,XII --smooth
@@ -243,6 +245,8 @@ Resulting plot produced:
 Explanation: specify columns other than default, add a line for a smooth fit to data points, and only plot for chromsomes IV, VIII, and XII. **IMPORTANTLY, note the lack of spaces between chromosome identifiers.**  
 Resulting plot produced:  
 ![example](example_imgs/genes_mean_TPM_across_chr_IV_VIII_XII.png)  
+
+The output will also include notice if aneuploidy is detected from a simplistic assessment using the smoothing data.
 
 **Command:**
 
