@@ -11,7 +11,7 @@ Adjust Lists
 
 > a file listing Salmon results --> a file listing transcript to gene names for tximport   
 `tx2gene_generator.py` Takes a `quant.sf` file from Salmon output & makes the `tx2gene.csv` (comma-separated values)
-file needed for using tximport to bring Salmon data into DESeq2. By default, the files read and saved will be those, respectively, but they can be specified as arguments when executing the script. See [here](https://www.bioconductor.org/help/workflows/rnaseqGene/) for information about tximport use with DESeq2.  
+file needed for using tximport to bring Salmon data into DESeq2. By default, the files read and saved will be those, respectively, but they can be specified as arguments when executing the script. See [here](https://www.bioconductor.org/help/workflows/rnaseqGene/) and [here](https://bioconductor.org/packages/release/bioc/vignettes/tximport/inst/doc/tximport.html) for information about tximport use with DESeq2.  
 In order to keep things simple with the argument parsing system, one has to specify both input and output file if looking to not use the standard default for output. 
 
  ```
