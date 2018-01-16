@@ -15,7 +15,8 @@ file needed for using tximport to bring Salmon data into DESeq2. By default, the
 In order to keep things simple with the argument parsing system, one has to specify both input and output file if looking to not use the standard default for output. 
 
  ```
-usage: tx2gene_generator.py [-h] [INPUT_FILE] [OUTPUT_FILE]
+usage: tx2gene_generator.py [-h] [INPUT_FILE] [OUTPUT_FILE]  
+
 tx2gene_generator.py takes a `quant.sf` file from Salmon output and makes the
 `tx2gene.csv` file needed for using tximport to bring Salmon data into DESeq2.
 By default, the files read and saved will be those, respectively, but they can
