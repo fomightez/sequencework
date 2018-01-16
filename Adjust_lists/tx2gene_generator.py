@@ -9,8 +9,10 @@
 # file needed for using tximport to bring Salmon data into DESeq2. By default,
 # the files read and saved will be those, respectively, but they can be 
 # specified as arguments when executing the script.
-# See the link below for information about tximport:
+# See the links below for information about tximport:
 # https://www.bioconductor.org/help/workflows/rnaseqGene/
+# and 
+# http://bioconductor.org/packages/release/bioc/vignettes/tximport/inst/doc/tximport.html
 #
 # In order to keep things simple with the argument parsing system, one has to 
 # specify both input and output file if looking to not use the standard 
