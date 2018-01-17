@@ -5,7 +5,8 @@
 #*******************************************************************************
 # USES Python 2.7 but should be convertable via 2to3, see https://docs.python.org/3.0/library/2to3.html
 #
-# PURPOSE: Takes a `quant.sf` file from Salmon output & makes the `tx2gene.csv`
+# PURPOSE: Takes a `quant.sf` file from Salmon output for a situation where
+# there is a 1:1 transcript: gene relationship & makes the `tx2gene.csv`
 # file needed for using tximport to bring Salmon data into DESeq2. By default,
 # the files read and saved will be those, respectively, but they can be 
 # specified as arguments when executing the script.
@@ -17,6 +18,16 @@
 # In order to keep things simple with the argument parsing system, one has to 
 # specify both input and output file if looking to not use the standard 
 # default for output. 
+#
+# Even though it is stated as being made to work with Salmon's `quant.sf`-type
+# output, it will actually work with any gene/transcript list where there is a
+# single header/column names line first and the gene/transcript designation is 
+# the first word or column (tab-separated) for pretty much anything,
+# but comma-separated input. It could be easily edited to work to take a comma-
+# separated list by editing the `split` command. The caveat here is this is made
+# to work where there is a 1:1 relationship with transcripts to genes as there
+# is generally assumed in practice with early branching eukaryotes, like for
+# baker's/budding yeast.
 #
 # (Note to self: See
 # `Downstream analysis of April 2017 data with tximport and DESeq2.md` and 
@@ -33,8 +44,10 @@
 # v.0.1. basic working version
 #
 #
-# To do:
-# -
+# To do yet:
+# - ?
+#
+#
 #
 # TO RUN:
 # Example,
@@ -42,6 +55,8 @@
 #-----------------------------------
 # tx2gene_generator.py [INPUT_FILE][OUTPUT_FILE]
 #-----------------------------------
+# Specifying the input and output files is optional, run 
+# `tx2gene_generator.py -h` for details.
 #
 #
 #*******************************************************************************
@@ -134,6 +149,9 @@ parser.add_argument("output", nargs='?', help="**OPTIONAL**Name of file to \
 # https://stackoverflow.com/questions/4480075/argparse-optional-positional-arguments#comment40460395_4480202
 # , but because placed under positional I added clarifying text to help 
 # description.
+# IF MODIFYING THIS SCRIPT FOR USE ELSEWHERE AND DON'T NEED/WANT THE INPUT AND
+# OUTPUT FILES TO BE OPTIONAL, remove `nargs` (& default?) BUT KEEP WHERE NOT
+# USING `argparse.FileType` AND USING `with open` AS CONISDERED MORE PYTHONIC.
 
 #Normally I like to trigger help to display if no arguments provided, but 
 # because both input and output file names optional, I won't do that here.
