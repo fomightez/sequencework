@@ -175,7 +175,7 @@ output_file_name = args.output
 
 
 # prepare output file for saving so it will be open and ready
-with open(output_file_name, 'a') as output_file:
+with open(output_file_name, 'w') as output_file:
 
     # add the header line to output file
     output_file.write('transcript,gene')
