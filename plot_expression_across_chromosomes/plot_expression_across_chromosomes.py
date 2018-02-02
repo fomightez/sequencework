@@ -6,7 +6,8 @@ __license__ = "MIT"
 
 
 #*******************************************************************************
-# Written in Python 2.7 to be compatible with Python 3.
+# Compatible with both Python 2.7 and Python 3.6 (verified); written initially 
+# in Python 2.7 to be compatible with Python 3.
 #
 # PURPOSE: Plot ratio of expression of experimental condition vs. wild-type (or 
 # baseline state) for genes in sequential order across chromosomes in the genome. 
