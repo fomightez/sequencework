@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # tx2gene_generator.py by Wayne Decatur
-# ver 0.1
+__author__ = "Wayne Decatur" #fomightez on GitHub
+__license__ = "MIT"
+__version__ = "0.1.0"
+#
 #
 #*******************************************************************************
 # USES Python 2.7 but should be convertable via 2to3, see https://docs.python.org/3.0/library/2to3.html
