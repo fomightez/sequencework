@@ -5,7 +5,8 @@ __license__ = "MIT"
 __version__ = "0.1.0"
 #
 #*******************************************************************************
-# USES Python 2.7 but should be convertable via 2to3, see https://docs.python.org/3.0/library/2to3.html
+# Compatible with both Python 2.7 and Python 3.6 (verified); written initially 
+# in Python 2.7 to be compatible with Python 3.
 #
 # PURPOSE: Takes a `quant.sf` file from Salmon output for a situation where
 # there is a 1:1 transcript: gene relationship & makes the `tx2gene.csv`
