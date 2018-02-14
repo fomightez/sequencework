@@ -56,7 +56,7 @@ __version__ = "0.1.0"
 # Example,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# tx2gene_generator.py [INPUT_FILE][OUTPUT_FILE]
+# python tx2gene_generator.py [INPUT_FILE][OUTPUT_FILE]
 #-----------------------------------
 # Specifying the input and output files is optional, run 
 # `tx2gene_generator.py -h` for details.
