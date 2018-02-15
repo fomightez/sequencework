@@ -163,7 +163,7 @@ def main():
 
 
         # Completed scan of input file and therefore close file and give feedback.
-        input_handler.close()
+        input_handler.close() #not actually necessary due to use of `with open`
         sys.stderr.write( "\n"+ str(lines_processed) + " transcripts listed in '" + input_file_name + "' have been processed to make a table of transcript to gene conversions.")
 
         
