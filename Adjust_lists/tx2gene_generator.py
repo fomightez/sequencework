@@ -179,8 +179,13 @@ def main():
 
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and '__file__' in globals():
     """ This is executed when run from the command line """
+    # Code with just `if __name__ == "__main__":` alone will be run if pasted
+    # into a notebook. The addition of ` and '__file__' in globals()` is based
+    # on https://stackoverflow.com/a/22923872/8508004
+    # See also https://stackoverflow.com/a/22424821/8508004 for an option to 
+    # provide arguments when prototyping a full script in the notebook.
     ###-----------------for parsing command line arguments-----------------------###
     import argparse
     parser = argparse.ArgumentParser(prog='tx2gene_generator.py',
