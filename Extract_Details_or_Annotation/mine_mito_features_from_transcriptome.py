@@ -45,12 +45,12 @@ __version__ = "0.1.0"
 # Example,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# pyhton mine_mito_features_from_transcriptome.py transcriptome_file.fa mito_df.pkl
+# python mine_mito_features_from_transcriptome.py transcriptome_file.fa mito_df.pkl
 #-----------------------------------
 # Where you replace `transcriptome_file.fa` with the specific file name of your
 # transcriptome. And replace `mito_df.pkl` with name of 
 # file for storing results.
-# Issue `mine_mito_features_from_transcriptome.py -h` for details.
+# Issue `python mine_mito_features_from_transcriptome.py -h` for details.
 #
 #
 #*******************************************************************************
@@ -439,7 +439,7 @@ if __name__ == "__main__" and '__file__' in globals():
     parser.add_argument("output", nargs='?', help="**OPTIONAL**Name of file \
         for storing the dataframe. If none is provided, the dataframe will be \
         stored as '"+output_file_name+"'. To force nothing to be saved, enter \
-        `no_output` without quotes as output file.", 
+        `no_output` without quotes as output file (ATYPICAL).", 
         default=output_file_name , metavar="OUTPUT_FILE")
     # Note see https://stackoverflow.com/questions/18862836/how-to-open-file-using-argparse#comment35222484_18863004
     # for why not using `argparse.FileType` approach here.
