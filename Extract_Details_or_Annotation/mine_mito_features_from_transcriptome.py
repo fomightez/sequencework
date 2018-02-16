@@ -65,9 +65,7 @@ __version__ = "0.1.0"
 
 ##################################
 #
-mito_chromosome_length = 84975 # use bps total 
 output_file_name = "mito_transcripts_dataframe.pkl"
-
 
 sort_on_midpoint = True # sort dataframe on gene midpoint location
 
@@ -205,7 +203,7 @@ def with_descriptor_mine_fasta_def_line(def_line, list_of_descriptors):
 
 
 
-def mine_mito_features(tx_file_name, mito_chr_length, pickle_df = True):
+def mine_mito_features(tx_file_name, pickle_df = True):
     '''
     Takes a transcriptome file of entries in FASTA format and mines the 
     mitochondrial details from definition lines like below:
@@ -213,7 +211,6 @@ def mine_mito_features(tx_file_name, mito_chr_length, pickle_df = True):
     >Q0065 cdna chromosome:R64-1-1:Mito:13818:21935:1 gene:Q0065 gene_biotype:protein_coding transcript_biotype:protein_coding gene_symbol:AI4 description:Endonuclease I-SceII; encoded by a mobile group I intron within the mitochondrial COX1 gene; intron is normally spliced by the BI4p maturase but AI4p can mutate to acquire the same maturase activity [Source:SGD;Acc:S000007264]
     >Q0143 cdna chromosome:R64-1-1:Mito:51277:51429:1 gene:Q0143 gene_biotype:protein_coding transcript_biotype:protein_coding description:Dubious open reading frame; unlikely to encode a functional protein, based on available experimental and comparative sequence data [Source:SGD;Acc:S000007277]
     --------------------------------------------------------
-    Also needs the exact length of the mitochondrial chromosome.
     Optionally you can tell it not to pickle the dataframe. Set 
     `pickle_df = False` when calling the script to not save the dataframe object.
 
@@ -411,11 +408,10 @@ def make_sure_has_extension(file_name):
 def main():
     """ Main entry point of the script """
     if output_file_name == 'no_output':
-        df = mine_mito_features(tx_file_name, mito_chromosome_length, 
-            pickle_df = False)
+        df = mine_mito_features(tx_file_name, pickle_df = False)
         sys.stderr.write("\n\nThe dataframe was not stored for use elsewhere because `no_output` was specified in place of the output file name.")
     else:
-        df = mine_mito_features(tx_file_name, mito_chromosome_length)
+        df = mine_mito_features(tx_file_name)
         
 
 
