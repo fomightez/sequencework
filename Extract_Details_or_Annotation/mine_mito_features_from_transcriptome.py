@@ -9,8 +9,6 @@ __version__ = "0.1.0"
 # ver 0.1
 #
 #*******************************************************************************
-# USES Python 2.7 but should be convertable via 2to3, see https://docs.python.org/3.0/library/2to3.html
-# -or-after tested, below lines
 # Compatible with both Python 2.7 and Python 3.6 (verified); written initially 
 # in Python 2.7 to hopefully be convertible to Python 3.
 #
