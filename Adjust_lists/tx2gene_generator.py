@@ -59,7 +59,7 @@ __version__ = "0.1.0"
 # python tx2gene_generator.py [INPUT_FILE][OUTPUT_FILE]
 #-----------------------------------
 # Specifying the input and output files is optional, run 
-# `tx2gene_generator.py -h` for details.
+# `python tx2gene_generator.py -h` for details.
 #
 #
 #*******************************************************************************
