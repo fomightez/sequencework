@@ -428,8 +428,8 @@ if __name__ == "__main__" and '__file__' in globals():
     ###-----------------for parsing command line arguments-----------------------###
     import argparse
     parser = argparse.ArgumentParser(prog='mine_mito_features_from_transcriptome.py',
-        description="mine_mito_features_from_transcriptome.py  takes a \
-        transcriptome and make a dataframe of the gene information for the \
+        description="mine_mito_features_from_transcriptome.py takes a \
+        transcriptome and makes a dataframe of the gene information for the \
         mitochondrial chromosome.      \
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
@@ -447,7 +447,7 @@ if __name__ == "__main__" and '__file__' in globals():
     # https://stackoverflow.com/questions/4480075/argparse-optional-positional-arguments 
     # and 
     # https://docs.python.org/2/library/argparse.html#nargs for use of `nargs='?'` 
-    # to make input and output file names optional. Note that the square brackets
+    # to make output file name optional. Note that the square brackets
     # shown in the usage out signify optional according to 
     # https://stackoverflow.com/questions/4480075/argparse-optional-positional-arguments#comment40460395_4480202
     # , but because placed under positional I added clarifying text to help 
