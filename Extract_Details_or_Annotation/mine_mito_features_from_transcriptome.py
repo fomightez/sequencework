@@ -429,7 +429,7 @@ if __name__ == "__main__" and '__file__' in globals():
     import argparse
     parser = argparse.ArgumentParser(prog='mine_mito_features_from_transcriptome.py',
         description="mine_mito_features_from_transcriptome.py  takes a \
-        transcriptome and make a datafram of the gene information for the \
+        transcriptome and make a dataframe of the gene information for the \
         mitochondrial chromosome.      \
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
