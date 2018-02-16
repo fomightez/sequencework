@@ -1,4 +1,4 @@
-#Sequence Retrieval
+# Sequence Retrieval
 
 ## Running these scripts
 You need to do two things to run these scripts:
