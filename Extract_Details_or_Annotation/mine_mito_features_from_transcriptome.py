@@ -51,6 +51,17 @@ __version__ = "0.1.0"
 # transcriptome. And replace `mito_df.pkl` with name of 
 # file for storing results.
 # Issue `python mine_mito_features_from_transcriptome.py -h` for details.
+# 
+#
+# To use this after pasting into a cell in a Jupyter notebook, define the 
+# `tx_file_name` first and then in a cell call the main function similar to 
+# below:
+# tx_file_name = "my_transcriptome.fa"
+# df = mine_mito_features(tx_file_name)
+# 
+# Add `pickle_df = False` like 
+# `df = mine_mito_features(tx_file_name,pickle_df = False)` to not produce a 
+# pickled dataframe file.
 #
 #
 #*******************************************************************************
@@ -330,6 +341,15 @@ def mine_mito_features(tx_file_name, pickle_df = True):
             df = df.reset_index(drop=True) # res the index to reflect re-order
 
 
+        # Document the full set of transcripts mined in ther terminal or 
+        # Jupyter notebook display in some manner. 
+        # Using `df.to_string()` because more universal than `print(df)` 
+        # or Jupyter's `display(df)`.
+        sys.stderr.write( "\nFor documenting purposes, the following lists the "
+        "transcripts that are in the produced dataframe:\n")
+        #with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+        #    display(df)
+        sys.stderr.write(df.to_string())
 
 
         # Pickle the dataframe unless `pickle_df` is False
