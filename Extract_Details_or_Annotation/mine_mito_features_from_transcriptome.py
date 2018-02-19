@@ -363,6 +363,9 @@ def mine_mito_features(tx_file_name, pickle_df = True):
                 "manner where other Python programs can access\nthe created "
                 "dataframe (pickled).\n"
                 "The dataframe is stored as '{}'".format(out_name))
+        else:
+            sys.stderr.write("\n\nThe dataframe was not stored for use elsewhere "
+            "because `no_output` was specified in place of the output file name.")
 
         return df
 
@@ -430,7 +433,6 @@ def main():
     # assigned multiple times depending how many scripts imported/pasted in.
     if output_file_name == 'no_output':
         df = mine_mito_features(tx_file_name, pickle_df = False)
-        sys.stderr.write("\n\nThe dataframe was not stored for use elsewhere because `no_output` was specified in place of the output file name.")
     else:
         df = mine_mito_features(tx_file_name)
         
