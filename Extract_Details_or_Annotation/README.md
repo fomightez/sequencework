@@ -18,11 +18,18 @@ Returns a dataframe with the details for the mito features.
 Specifically, in this case systematic_id, start, end, midpoint, gene_symbol
 (standard name) if there is one noted
 
-* mine_SUT_and merge_into_mito_transcripts_df.py 
+* mine_SUTs_and merge_into_mito_transcripts_df.py 
 > SUTs data and transcriptome data --->  dataframe of mitochdondrial chromsome genes/features
 
 Intended to be used in conjuction with `mine_mito_features_from_transcriptome.py`.  
 Returns a dataframe with the details for the mito features, now with yeast mitochondrial SUTs added.
+
+* mine_XUTs_and merge_into_mito_transcripts_df.py 
+> XUTs data and transcriptome/SUTs data --->  dataframe of mitochdondrial chromsome genes/features
+
+Intended to be used in conjuction with `mine_mito_features_from_transcriptome.py` and `mine_SUT_and merge_into_mito_transcripts_df.py`, specifically after `mine_SUT_and merge_into_mito_transcripts_df.py`.  
+Returns a dataframe with the details for the mito features, now with yeast mitochondrial XUTs added.
+
 
 # Related
 
