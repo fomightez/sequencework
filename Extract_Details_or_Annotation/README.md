@@ -18,6 +18,10 @@ Returns a dataframe with the details for the mito features.
 Specifically, in this case systematic_id, start, end, midpoint, gene_symbol
 (standard name) if there is one noted
 
+* mine_SUT_and merge_into_mito_transcripts_df.py 
+> SUTs data and transcriptome data --->  dataframe of mitochdondrial chromsome genes/features
+Intended to be used in conjuction with `mine_mito_features_from_transcriptome.py`.
+
 # Related
 
 Put some links here
