@@ -93,12 +93,13 @@ SUT2734.1       None        62601      62872         1
 # The data for SUT2729.1 through SUT2734.1  is from 
 # Lardenois_2011_noncoding_RNAs_V64      PMID: 1149693.  I
 # found it by adding tracks in jbrowse and exported the gff3.
+# JUST DEALING WITH THE MITOCHONDRIAL SUTs FOR NOW.
 
 
 
 
 previous_pickled_df = "mito_transcripts_dataframe.pkl"
-suffix_for_saving = "plusSUTS"
+suffix_for_saving = "plusSUTs"
 
 sort_on_midpoint = True # sort dataframe on gene midpoint location
 
@@ -258,7 +259,7 @@ def generate_output_file_name(file_name):
     Calling function with
         ("mito_transcripts_dataframe.pk1")
     returns
-        "mito_transcripts_dataframeplusSUTS.pkl"
+        "mito_transcripts_dataframeplusSUTs.pkl"
     '''
     main_part_of_name, file_extension = os.path.splitext(
         file_name) #from http://stackoverflow.com/questions/541390/extracting-extension-from-filename-in-python
