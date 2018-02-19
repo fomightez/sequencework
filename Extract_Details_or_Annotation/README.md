@@ -21,7 +21,7 @@ Specifically, in this case systematic_id, start, end, midpoint, gene_symbol
 * mine_SUT_and merge_into_mito_transcripts_df.py 
 > SUTs data and transcriptome data --->  dataframe of mitochdondrial chromsome genes/features
 
-Intended to be used in conjuction with `mine_mito_features_from_transcriptome.py`.
+Intended to be used in conjuction with `mine_mito_features_from_transcriptome.py`.  
 Returns a dataframe with the details for the mito features, now with yeast mitochondrial SUTS added.
 
 # Related
