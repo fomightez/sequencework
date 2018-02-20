@@ -25,8 +25,6 @@ __version__ = "0.1.0"
 #
 #
 #
-# To do:
-# see `POSSIBLE TO DO` about references when using a file as source of XUTs data.
 #
 #
 #
@@ -37,9 +35,10 @@ __version__ = "0.1.0"
 # VERSION HISTORY:
 # v.0.1. basic working version
 #
-#
 # To do:
-# -
+# - see `POSSIBLE TO DO` about references when using a file as source of XUTs data.
+#
+#
 #
 # TO RUN:
 # Example,
