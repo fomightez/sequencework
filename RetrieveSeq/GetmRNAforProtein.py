@@ -1,5 +1,5 @@
 #GetmRNAforProtein.py  by Wayne Decatur
-#ver 0.6
+#ver 0.7
 #
 #
 # To GET HELP/MANUAL, enter on command line:
@@ -18,7 +18,16 @@
 # Entrez identifiers that relate to NCBI sequence entries. Therefore cannot get
 # mRNA. Would need to get same sequence from NCBI first.
 #
-#
+# v.0..7. Added adding source organism in brackets to description line for mRNAs
+# because for example even though the protein entry
+# http://www.ncbi.nlm.nih.gov/protein/685422211?report=fasta
+# has the source organism in between brackets the mRNA entry does not. See it at
+# http://www.ncbi.nlm.nih.gov/nuccore/685422210?report=fasta
+# The addition of this will make the produced FASTA-formatted entries more
+# consistent with those of proteins and more easily parsed by scripts. In fact
+# the need for parsing this information to compare source organisms present in
+# a two files of FASTA entries is what prompted this addition. Script to do that
+# is `compare_organisms_in_two_files_of_fasta_entries.py`
 # v.0.6. This works for all cases where there is a one-to-one relationship
 # between protein sequence and an mRNA under the ' db="nuccore",
 # LinkName="protein_nuccore_mrna"' part of an Entrez link
@@ -31,6 +40,13 @@
 # sequences in FASTA format. That program tries the approach here to attempt to
 # get the mRNA, and if that fails it tries successively lessening efficient
 # methods to get at least the CDS that corresponds to the protein sequence. ***
+#
+'''
+By the way, I saw someone else's take on this early 2018:
+Maybe useful stuff or better? 
+https://twitter.com/widdowquinn/status/963148471334158336
+>"Need to work backwards from proteins to their coding sequences? Tired of trawling through the database to get the CDS? Me, too. So I wrote this: https://widdowquinn.github.io/ncfp/     I hope you find it useful. Bugs, issues etc. here, please: https://github.com/widdowquinn/ncfp/issues …"
+'''
 #
 #
 #
@@ -53,7 +69,7 @@
 #  USER ADJUSTABLE VALUES        #
 ##################################
 #
-User_Email = "YOUR EMAIL HERE" #PUT YOUR E-MAIL HERE or NCBI's SERVER WILL COMPLAIN
+User_Email = "wdecatur@yahoo.com" #PUT YOUR E-MAIL HERE or NCBI's SERVER WILL COMPLAIN
 #
 #
 #*******************************************************************************
@@ -88,7 +104,7 @@ import time
 
 #DEBUG CONTROL
 #comment line below to turn off debug print statements
-logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
+#logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 
 
 #path_to_folder_with_file = "" # LEFT HERE FOR POSSIBLE USE IN DEBUGGING
@@ -120,6 +136,14 @@ def ExtractGI_numbers(a_FASTA_file):
     (publically available at https://www.biostars.org/p/64078/) where
     I did it starting with the accession.version identifier. However, if have full
     Genbank FASTA record, just easier to get from that.
+
+    ***NOTE SINCE AS POSTED AT ftp://ftp.ncbi.nih.gov/genbank/gbrel.txt GI numbers
+    ARE BEING PAHSED OUT, I IMAGINE ELink MAY EVENUTALLY WORK WITH
+    Accession.Version identifiers??? (Or does it already and I missed how?)
+    KEEP EYES OPEN. ***
+
+
+
     '''
     #initialize values
     the_FASTA_file = open(a_FASTA_file , "r")
@@ -194,6 +218,48 @@ def EPost_mRNA_uids(mRNA_uids):
     query_key = epost_result["QueryKey"]
     return webenv, query_key
 
+
+def containsAll(str, set):
+    '''
+    checks if a string contains all characters in a set.
+
+    from
+    http://code.activestate.com/recipes/65441-checking-whether-a-string-contains-a-set-of-chars/
+    '''
+    for c in set:
+        if c not in str: return 0;
+    return True;
+
+def EFetch_mRNA_sequences_GB_FORMAT(mRNA_uids_list_length, the_webenv, the_query_key):
+    '''
+    Fetches the mRNA sequences in GENBANK format for a list posted prior to the
+    NCBI Entrez history server.
+
+    Returns those records as a list.
+    '''
+    #EFetch
+    batch_size = 20
+    the_records = ""
+    the_records_list = []
+    for start in range(0, mRNA_uids_list_length, batch_size):
+        end = min(mRNA_uids_list_length, start + batch_size)
+        sys.stderr.write("Fetching records %i thru %i..." % (start + 1, end))
+        fetch_handle = Entrez.efetch(db="nuccore",
+                                     rettype="gb", retmode="text",
+                                     retstart=start, retmax=batch_size,
+                                     webenv=the_webenv,
+                                     query_key=the_query_key)
+        data = fetch_handle.read()
+        fetch_handle.close()
+        the_records = the_records + data
+    # Genbank entries START WITH THE TEXT `LOCUS`
+    the_records_list = filter(None, "!LOCUS".join(the_records.split('LOCUS')).split('!')) # from http://www.gossamer-threads.com/lists/python/python/71964 Splitting on a regex w/o consuming delimite
+    # and http://stackoverflow.com/questions/3845423/remove-empty-strings-from-a-list-of-strings; the filter removes the blank one from the beginning of '  print ",NCCO".join(str.split('NCCO')).split(',')   '
+    # WOW, I WISH I HAD FOUND THE ABOVE COMBINATION OF SOLUTION EARLIER BECAUSE I HAD OTHER PLACES I COULD HAVE USED THESE, ESPECIALLY 'FILTER'
+
+    return the_records_list
+
+
 def EFetch_mRNA_sequences(mRNA_uids_list_length, the_webenv, the_query_key):
     '''
     Fetches the mRNA sequences in FASTA format for a list posted prior to the
@@ -215,6 +281,90 @@ def EFetch_mRNA_sequences(mRNA_uids_list_length, the_webenv, the_query_key):
         data = fetch_handle.read()
         fetch_handle.close()
         the_records = the_records + data
+
+    #if user sepcified not to alter description line, skip adding source organism
+    # even if seems not present in between brackets
+    if not args.unmodified:
+        #*********************************************************************************
+        #** MINOR DETOUR TO MAKE DESCRIPTION LINES MORE CONSISTENT WITH THOSE OF
+        # NCBI PROTEINS AND TO MAKE THEM MORE EASILY PARSED FOR SOURCE ORGANISM.**
+        #because of the need to be able to add the source organism in brackets,
+        # I need to make this a list of records for easy handling each one.
+        # (And to make function more consistent with the more refined
+        # `GetmRNAorCDSforProtein.py` script so I can work out aproach here and
+        # then apply to the more complex `GetmRNAorCDSforProtein.py`. )
+        the_records_list = filter(None, "!>".join(the_records.split('>')).split('!')) # from http://www.gossamer-threads.com/lists/python/python/71964 Splitting on a regex w/o consuming delimite
+        # and http://stackoverflow.com/questions/3845423/remove-empty-strings-from-a-list-of-strings; the filter removes the blank one from the beginning of '  print ",NCCO".join(str.split('NCCO')).split(',')   '
+        # WOW, I WISH I HAD FOUND THE ABOVE COMBINATION OF SOLUTION EARLIER BECAUSE I HAD OTHER PLACES I COULD HAVE USED THESE, ESPECIALLY 'FILTER'
+
+        #extract GI_numbers for each record
+        GI_numbers_list = []
+        for record_string in the_records_list:
+            description_line = record_string.splitlines()[0]
+            # splitlines() used above from
+            # http://stackoverflow.com/questions/11833266/how-do-i-read-the-first-line-of-a-string
+            the_gi_number = description_line.split("|")[1] # from http://biopython.org/pipermail/biopython/2010-January/006143.html
+            GI_numbers_list.append(the_gi_number)
+
+        '''    ***NOTE SINCE AS POSTED AT ftp://ftp.ncbi.nih.gov/genbank/gbrel.txt GI numbers
+        ARE BEING PHASED OUT, I IMAGINE ELink MAY EVENUTALLY WORK WITH
+        Accession.Version identifiers??? (Or does it already and I missed how?)
+        KEEP EYES OPEN. ***   '''
+
+        #NEXT...
+        #In preparation for fetching via EFetch follow recommended practice and upload
+        # the list of uids needed to the NCBI Entrez history server via EPost
+        #EPost step
+        webenv, query_key = EPost_mRNA_uids(GI_numbers_list)
+
+        #NEXT...
+        #Fetch the mRNA sequences in GENBANK format via EFetch, following recommneded
+        # practice and using the NCBI Entrez history server.
+        #EFetch step
+        the_records_list_as_GENBANK_ENTRIES = EFetch_mRNA_sequences_GB_FORMAT(
+            len(GI_numbers_list), webenv, query_key)
+
+        adjusted_records_list = []
+        for idx, fasta_record in enumerate(the_records_list):
+            # If it has both brackets, assume the source organism lies between them.
+            # Othwerwise, if lacks source organism as signified by not having
+            # brackets (which usually flank source organisms names in typical
+            # NCBI protein fasta sequence), then get and add source organism name and adjust record.
+            if containsAll(fasta_record, '[]'):
+                adjusted_records_list.append(fasta_record)
+            else:
+                #parse corresponding genbank entry for source organism
+                source_organism_list = the_records_list_as_GENBANK_ENTRIES[idx].split('ORGANISM')
+                source_organism_info = source_organism_list[1].splitlines()[0]
+                extracted_source_organism  = source_organism_info.strip()
+                # Now that source organism information extracted, need to add it to
+                # end of description line of fasta entry, make that new version
+                # the description line, and fix any splitting of
+                # the text string that had to be done in order to accomplish that
+                # addition.
+                split_fasta_entry_lines = fasta_record.splitlines()
+                description_line = split_fasta_entry_lines[0]
+                # splitlines() used above from
+                # http://stackoverflow.com/questions/11833266/how-do-i-read-the-first-line-of-a-string
+                adjusted_description_line = description_line + " [" + extracted_source_organism + "]"
+                # make the new adjusted descrption line be the corresponding line
+                #  in the list of fasta record lines.
+                split_fasta_entry_lines[0] = adjusted_description_line
+                #put fasta entry back together as a complete string
+                adjusted_record = '\n'.join(split_fasta_entry_lines)
+                adjusted_records_list.append(adjusted_record)
+
+        #put presumably adjusted records (if they needed no adjusting, no harm no foul at checking at least and putting all back together again.)
+        # back together as a string that will now be the records
+        the_records = '\n'.join(adjusted_records_list)
+        # I worry because I didn't use `strip` when making the list, that I may have
+        # line endings already there, I want to eliminate any double line endings
+        # that got produced in the join step.
+        the_records =  the_records.replace ("\n\n","\n")
+
+        #** END OF MINOR DETOUR **    ** END OF MINOR DETOUR **  ** END OF MINOR DETOUR **
+        #*********************************************************************************
+
     return the_records
 
 
@@ -274,6 +424,7 @@ parser = argparse.ArgumentParser(
 #learned how to control line breaks in description above from http://stackoverflow.com/questions/3853722/python-argparse-how-to-insert-newline-the-help-text
 #DANG THOUGH THE 'RawTextHelpFormatter' setting seems to apply to all the text for argument choices. I don't know yet if that is what really what I wanted.
 parser.add_argument("InputFile", help="name of data file containing a list of FASTA protein sequences\nfor which you want mRNA sequences. REQUIRED.")
+parser.add_argument('-u', '--unmodified', action='store_true', help="Do not modify description line by adding source organism in bracket. Default is to add source organism in brackets to the description line if text in brackets present.")
 #I would also like trigger help to display if no arguments provided because need at least input file
 if len(sys.argv)==1:    #from http://stackoverflow.com/questions/4042452/display-help-message-with-python-argparse-when-script-is-called-without-any-argu
     parser.print_help()
@@ -379,7 +530,4 @@ else:
 
 #*******************************************************************************
 #*******************************************************************************
-
-
-
 
