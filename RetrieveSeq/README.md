@@ -151,3 +151,12 @@ TAAATGAAAACATGCATCTTTATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 ## Impending issues and to do
 - These scripts may have issues working as written once the GI sequence identifiers get phased out as described in section 1.4.1 of the [June 15 2015 Distribution Release Notes for NCBI-GenBank Flat File Release 208.0](ftp://ftp.ncbi.nih.gov/genbank/gbrel.txt) that can be found at ftp://ftp.ncbi.nih.gov/genbank/gbrel.txt. The GI accession form will be phased out by mid 2016 according to those release notes.
 - I should work on switching them over to the Accession.Version system. 
+
+
+# Related scripts by others
+
+I came across someone else's (Leighton Pritchard) take on getting coding sequences for proteins with the protein sequence in early 2018:
+Maybe useful stuff or better? See [here](https://twitter.com/widdowquinn/status/963148471334158336)
+
+>"Need to work backwards from proteins to their coding sequences? Tired of trawling through the database to get the CDS? Me, too. So I wrote this: https://widdowquinn.github.io/ncfp/     I hope you find it useful. Bugs, issues etc. here, please: https://github.com/widdowquinn/ncfp/issues …"
+
