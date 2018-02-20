@@ -25,6 +25,7 @@
 #
 #
 #
+#
 # TO RUN:
 # For example, enter on the command line, the line
 #-----------------------------------
@@ -156,6 +157,12 @@ seq.id ="gi|"+ genbank_seq_to_mine + ":"+ str(start) + "-" + str(end
 # with  more than 25 sequences because need treat as 4 times that given possible
 # number of calls to NCBI for difficult sequences to obtain.
 #
+'''
+By the way, I saw someone else's take on this early 2018:
+Maybe useful stuff or better? 
+https://twitter.com/widdowquinn/status/963148471334158336
+>"Need to work backwards from proteins to their coding sequences? Tired of trawling through the database to get the CDS? Me, too. So I wrote this: https://widdowquinn.github.io/ncfp/     I hope you find it useful. Bugs, issues etc. here, please: https://github.com/widdowquinn/ncfp/issues …"
+'''
 #
 #*******************************************************************************
 #*******************************************************************************
