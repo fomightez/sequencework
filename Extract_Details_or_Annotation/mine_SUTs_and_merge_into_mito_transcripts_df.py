@@ -22,7 +22,8 @@ __version__ = "0.1.0"
 #
 #
 #
-#
+# To do:
+# see `POSSIBLE TO DO` about references when using a file as source of SUTs data.
 #
 #
 #
@@ -91,10 +92,13 @@ SUT2734.1       None        62601      62872         1
 # the `suts_df`.
 # Details of SUT_data:
 # The data for SUT2729.1 through SUT2734.1  is from 
-# Lardenois_2011_noncoding_RNAs_V64      PMID: 1149693.  I
+# Lardenois_2011_noncoding_RNAs_V64      PMID: 21149693.  I
 # found it by adding tracks in jbrowse and exported the gff3.
 # JUST DEALING WITH THE MITOCHONDRIAL SUTs FOR NOW.
 
+SUT_data_refs = [
+"SUT2729.1 through SUT2734.1 from Lardenois et al PMID: 21149693.",
+                ]
 
 
 
@@ -175,6 +179,10 @@ def mine_and_mergeSUTs(pickle_df = True):
         suts_df = pd.read_table(input_SUTs, header=0, delim_whitespace= True)
         sys.stderr.write( "SUTs data has been read in the file '{}'"
             .format(input_SUTs))
+        # POSSIBLE TO DO: add a way to have the references in the file
+        # & have them mined out of there and punt in list `SUT_data_refs`. Then
+        # remove conditional `input_SUTs == 'use_hardcoded'` below when 
+        # documenting references to console/Jupyter cell.
     # need columns at end to match, before merging, so...
     # need to generate midpoint column (unless, although unlikely, already there)
     if 'midpoint' not in suts_df.columns:
@@ -198,6 +206,10 @@ def mine_and_mergeSUTs(pickle_df = True):
     #with pd.option_context('display.max_rows', None, 'display.max_columns', None):
     #    display(df)
     sys.stderr.write(suts_df.to_string())
+    if input_XUTs == 'use_hardcoded':
+        refs = "\n".join(SUT_data_refs)
+        sys.stderr.write( "\nFor documenting purposes, the following sources "
+        "were used to complile the SUTs data:\n{}".format(refs))
 
 
 
