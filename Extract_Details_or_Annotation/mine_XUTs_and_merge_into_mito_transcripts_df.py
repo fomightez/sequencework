@@ -25,6 +25,8 @@ __version__ = "0.1.0"
 #
 #
 #
+# To do:
+# see `POSSIBLE TO DO` about references when using a file as source of XUTs data.
 #
 #
 #
@@ -100,6 +102,11 @@ XUT1812_loc:chrmt(-)60561-61917_segs:1-1357
 # I found them when I noted I had mentioned that paper having XUTs data in it &
 # I searched for those involving mitochondrial by searching `chrm`.
 # JUST DEALING WITH THE MITOCHONDRIAL XUTs FOR NOW.
+
+XUT_data_refs = [
+"XUT1810 through XUT1812 is from Celik et al 2017 PMID: 28209632",
+                ]
+
 
 
 previous_pickled_df = "mito_transcripts_dataframeplusSUTs.pkl"
@@ -179,6 +186,10 @@ def mine_and_mergeXUTs(pickle_df = True):
         XUTs_df = pd.read_table(input_XUTs, header=0, delim_whitespace= True)
         sys.stderr.write( "XUTs data has been read in the file '{}'"
             .format(input_XUTs))
+        # POSSIBLE TO DO: add a way to have the references in the file
+        # & have them mined out of there and punt in list `XUT_data_refs`. Then
+        # remove conditional `input_XUTs == 'use_hardcoded'` below when 
+        # documenting references to console/Jupyter cell.
     # need columns at end to match, before merging, so...
     # need to generate midpoint column (unless, although unlikely, already there)
     if 'midpoint' not in XUTs_df.columns:
@@ -202,6 +213,10 @@ def mine_and_mergeXUTs(pickle_df = True):
     #with pd.option_context('display.max_rows', None, 'display.max_columns', None):
     #    display(df)
     sys.stderr.write(XUTs_df.to_string())
+    if input_XUTs == 'use_hardcoded':
+        refs = "\n".join(XUT_data_refs)
+        sys.stderr.write( "\nFor documenting purposes, the following sources "
+        "were used to complile the XUTs data:\n{}".format(refs))
 
 
 
