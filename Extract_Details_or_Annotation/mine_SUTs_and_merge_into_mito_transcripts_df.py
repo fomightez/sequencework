@@ -22,8 +22,6 @@ __version__ = "0.1.0"
 #
 #
 #
-# To do:
-# see `POSSIBLE TO DO` about references when using a file as source of SUTs data.
 #
 #
 #
@@ -34,9 +32,10 @@ __version__ = "0.1.0"
 # VERSION HISTORY:
 # v.0.1. basic working version
 #
-#
 # To do:
-# -
+# - see `POSSIBLE TO DO` about references when using a file as source of SUTs data.
+#
+#
 #
 # TO RUN:
 # Example,
@@ -206,7 +205,7 @@ def mine_and_mergeSUTs(pickle_df = True):
     #with pd.option_context('display.max_rows', None, 'display.max_columns', None):
     #    display(df)
     sys.stderr.write(suts_df.to_string())
-    if input_XUTs == 'use_hardcoded':
+    if input_SUTs == 'use_hardcoded':
         refs = "\n".join(SUT_data_refs)
         sys.stderr.write( "\nFor documenting purposes, the following sources "
         "were used to complile the SUTs data:\n{}".format(refs))
