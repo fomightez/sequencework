@@ -92,7 +92,8 @@ XUT1812       None        60561      61917         -1
 # the `XUTs_df`.
 # Details of XUT_data:
 # The data for XUT1810 through XUT1812 is from 
-# Celik et al 2017 PMID: 28209632.  
+# Wery et al. 2016 PMID: 26805575
+# (I had originally found in Celik et al 2017 PMID: 28209632.)  
 '''
 XUT1810_loc:chrmt(-)14344-14551_segs:1-208
 XUT1811_loc:chrmt(-)28849-29103_segs:1-255
@@ -103,7 +104,7 @@ XUT1812_loc:chrmt(-)60561-61917_segs:1-1357
 # JUST DEALING WITH THE MITOCHONDRIAL XUTs FOR NOW.
 
 XUT_data_refs = [
-"XUT1810 through XUT1812 is from Celik et al 2017 PMID: 28209632",
+"XUT1810 through XUT1812 are from Wery et al 2016 PMID: 26805575",
                 ]
 
 
