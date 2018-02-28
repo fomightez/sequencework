@@ -60,7 +60,11 @@ __version__ = "0.1.0"
 # df = mine_and_mergeXUTs()
 # 
 # Alternatively set `previous_pickled_df="no_pickle"`, before calling the main
-# function to not supply a previous dataframe (useful for testing).
+# function in Jupyter to not supply a previous dataframe (useful for testing).
+# Additionally, # add `pickle_df = False` like
+# `df = mine_and_mergeXUTs(pickle_df = False)` to 
+# not produce a pickled dataframe file, and then you don't need to supply a 
+# `save_as` setting either.
 #
 #
 #*******************************************************************************
