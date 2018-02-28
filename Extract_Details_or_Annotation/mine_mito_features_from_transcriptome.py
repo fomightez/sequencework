@@ -341,7 +341,7 @@ def mine_mito_features(tx_file_name, pickle_df = True):
             df = df.reset_index(drop=True) # res the index to reflect re-order
 
 
-        # Document the full set of transcripts mined in ther terminal or 
+        # Document the full set of transcripts mined in the terminal or 
         # Jupyter notebook display in some manner. 
         # Using `df.to_string()` because more universal than `print(df)` 
         # or Jupyter's `display(df)`.
