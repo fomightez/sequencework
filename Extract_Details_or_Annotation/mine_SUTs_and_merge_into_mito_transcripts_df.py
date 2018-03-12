@@ -307,7 +307,7 @@ def generate_output_file_name(file_name):
 def main():
     """ Main entry point of the script """
     # placing actual main action in a 'helper'script so can call that easily
-    # with a distinguising name in Jupyter notebooks, where `main()` may get
+    # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
     if save_as == 'no_output':
         df = mine_and_mergeSUTs(pickle_df = False)
