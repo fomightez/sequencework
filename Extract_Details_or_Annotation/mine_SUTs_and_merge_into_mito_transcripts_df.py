@@ -46,12 +46,12 @@ __version__ = "0.1.0"
 # Issue `python mine_SUTs_and_merge_into_mito_transcripts_df.py -h` for details.
 # 
 #
-# To use this after pasting into a cell in a Jupyter notebook, define 
-# `input_SUTs` as the source of the SUTs data. It will either be the name of the
-# file to read or use `use_harcoded` to specify to use the SUTs data that was
-# hardcoded into the script. Also define `save_as` the name of file to store the 
-# resulting dataframe. To not save anything, set `save_as= "no_output"`.  Then 
-# call the main function in a cell as shown below:
+# To use this after pasting (or loading) into a cell in a Jupyter notebook, 
+# define `input_SUTs` as the source of the SUTs data. It will either be the name 
+# of the file to read or use `use_harcoded` to specify to use the SUTs data that
+# was hardcoded into the script. Also define `save_as` the name of file to store
+# the resulting dataframe. To not save anything, set `save_as= "no_output"`.  
+# Then call the main function in a cell as shown below:
 # input_SUTs = "use_hardcoded"
 # save_as = "mito_transcripts_dataframeplusSUTS.pkl"
 # df = mine_and_mergeSUTs()
