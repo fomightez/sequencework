@@ -244,7 +244,7 @@ MRPL51
 Related scripts
 ---------------
 
-Several other of my code repositories hold code related to the manipulation of gene lists. Here are some:
+Several other of my code repositories hold code related to the manipulation of gene or genetic information lists. Here are some:
 
 - [My YeastMine repository](https://github.com/fomightez/yeastmine) has several useful scripts for converting yeast gene lists, such as `geneID_list_to_systematic_names.py`.
 
