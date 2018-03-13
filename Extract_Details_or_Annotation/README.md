@@ -33,4 +33,4 @@ Returns a dataframe with the details for the mito features, now with yeast mitoc
 
 # Related
 
-Put some links here
+* `UCSC_chrom_sizes_2_circos_karyotype.py` extracts chromosome sizes from UCSC `chrom.sizes` files and can be found in [my collection of circos-related utility scripts (Python)](https://github.com/fomightez/sequencework/tree/master/circos-utilities).
