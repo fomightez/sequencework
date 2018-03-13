@@ -1,0 +1,73 @@
+# circos-utilities
+
+Utility scripts for working with Circos.
+
+# The scripts
+
+* UCSC_chrom_sizes_2_circos_karyotype.py
+> UCSC chrom.sizes files --> karyotype.tab file for use in Circos
+
+Takes a URL for a UCSC `chrom.sizes` file and makes a `karyotype.tab`  file from it for use with Circos.
+
+To determine the URL to give the script, google `YOUR_ORGANISM genome UCSC chrom.sizes`,  where you replace `YOUR_ORGANISM` with your organism name and then adapt the path you see in the best match to be something similar to 
+`http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes` -or-
+`http://hgdownload-test.cse.ucsc.edu/goldenPath/canFam2/bigZips/canFam2.chrom.sizes`.
+
+Importantly, this script is intended for organisms without cytogenetic bands, such as dog, cow, yeast, etc..
+Acquiring the cytogenetic bands information is described [here](http://circos.ca/tutorials/lessons/ideograms/karyotypes/), about halfway down 
+the page where it says, "obtain the karyotype structure from...". 
+Unfortunately, it seems the output directed to by those instructions is not
+directly useful in Circos(?). Fortunately, though as described [here](http://circos.ca/documentation/tutorials/quick_start/hello_world/),"Circos ships with several predefined karyotype files for common sequence 
+assemblies: human, mouse, rat, and drosophila. These files are located in 
+data/karyotype within the Circos distribution."
+
+
+
+Example input from http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes :
+```
+chrIV   1531933
+chrXV   1091291
+chrVII  1090940
+chrXII  1078177
+chrXVI  948066
+chrXIII 924431
+chrII   813184
+chrXIV  784333
+chrX    745751
+chrXI   666816
+chrV    576874
+chrVIII 562643
+chrIX   439888
+chrIII  316620
+chrVI   270161
+chrI    230218
+chrM    85779
+```
+
+Example output (tab-separated):
+```
+chr -   Sc-chrIV    chrIV   0   1531933 black
+chr -   Sc-chrXV    chrXV   0   1091291 black
+chr -   Sc-chrVII   chrVII  0   1090940 black
+chr -   Sc-chrXII   chrXII  0   1078177 black
+chr -   Sc-chrXVI   chrXVI  0   948066  black
+chr -   Sc-chrXIII  chrXIII 0   924431  black
+chr -   Sc-chrII    chrII   0   813184  black
+chr -   Sc-chrXIV   chrXIV  0   784333  black
+chr -   Sc-chrX chrX    0   745751  black
+chr -   Sc-chrXI    chrXI   0   666816  black
+chr -   Sc-chrV chrV    0   576874  black
+chr -   Sc-chrVIII  chrVIII 0   562643  black
+chr -   Sc-chrIX    chrIX   0   439888  black
+chr -   Sc-chrIII   chrIII  0   316620  black
+chr -   Sc-chrVI    chrVI   0   270161  black
+chr -   Sc-chrI chrI    0   230218  black
+chr -   Sc-chrM chrM    0   85779   black
+```
+
+
+
+Related
+-------
+
+[circos-binder](https://github.com/fomightez/circos-binder) - for running Circos in your browser without need for downloads, installations, or maintenance.
