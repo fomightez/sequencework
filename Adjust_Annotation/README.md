@@ -80,3 +80,14 @@ YKR011C	1062
  ----------------------------------------------------------------------
  ----------------------------------------------------------------------
  ----------------------------------------------------------------------
+
+Related scripts
+---------------
+
+Several other of my code repositories hold code related to the manipulation of annotations or lists of annotation. Here are some:
+
+- [collection of scripts to Adjust lists in Sequencework repo](https://github.com/fomightez/sequencework/blob/master/Adjust_lists/)
+
+- [Collection of scripts to Extract Details or Annotations in sequencework repo](https://github.com/fomightez/sequencework/tree/master/Extract_Details_or_Annotation)
+
+* `UCSC_chrom_sizes_2_circos_karyotype.py` takes a list of chromosome sizes from UCSC `chrom.sizes` files and reworks it so it can be used as a karyotype file in Circos. It can be found in [my collection of circos-related utility scripts (Python)](https://github.com/fomightez/sequencework/tree/master/circos-utilities).
