@@ -250,4 +250,5 @@ Several other of my code repositories hold code related to the manipulation of g
 
 - [My text-mining/text manipulation code repository](https://github.com/fomightez/text_mining) has several useful scripts involving lists, such as, the `find_overlap_in_lists.py` script (and related `find_overlap_in_lists_with_Venn.py`) and `extract_data_on_line_using_word_list.py`.
 
+* `UCSC_chrom_sizes_2_circos_karyotype.py` takes a list of chromosome sizes from UCSC `chrom.sizes` files and reworks it so it can be used as a karyotype file in Circos. It can be found in [my collection of circos-related utility scripts (Python)](https://github.com/fomightez/sequencework/tree/master/circos-utilities).
 
