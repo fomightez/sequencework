@@ -44,7 +44,7 @@ chrI    230218
 chrM    85779
 ```
 
-Example output (tab-separated):
+Example output sent to file (tab-separated):
 ```
 chr -   Sc-chrIV    chrIV   0   1531933 black
 chr -   Sc-chrXV    chrXV   0   1091291 black
