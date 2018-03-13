@@ -9,7 +9,9 @@ Utility scripts for working with Circos.
 
 Takes a URL for a UCSC `chrom.sizes` file and makes a `karyotype.tab` file from it for use with Circos.
 
-To determine the URL to give the script, google `YOUR_ORGANISM genome UCSC chrom.sizes`,  where you replace `YOUR_ORGANISM` with your organism name and then adapt the path you see in the best match to be something similar to 
+Verified compatible with both Python 2.7 and Python 3.6.
+
+To determine the URL to feed the script, google `YOUR_ORGANISM genome UCSC chrom.sizes`,  where you replace `YOUR_ORGANISM` with your organism name and then adapt the path you see in the best match to be something similar to 
 `http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes` -or-
 `http://hgdownload-test.cse.ucsc.edu/goldenPath/canFam2/bigZips/canFam2.chrom.sizes`.
 
