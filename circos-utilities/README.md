@@ -73,7 +73,7 @@ chr -   Sc-chrM chrM    0   85779   black
 
 #### For running in a Jupyter notebook:
 
-To use this after pasting or loading into a cell in a Jupyter notebook, define the URL and then in a cell call the main function similar to below:
+To use this script after pasting or loading into a cell in a Jupyter notebook, in the next cell define the URL and then in a cell call the main function similar to below:
 ```
 url = "http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
 species_code = "define_automagically" # Use `define_automagically` to have one parsed from URL, or assign one there yourself
