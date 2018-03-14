@@ -71,6 +71,17 @@ chr -   Sc-chrM chrM    0   85779   black
 ```
 
 
+#### For running in a Jupyter notebook:
+
+To use this after pasting or loading into a cell in a Jupyter notebook, define the URL and then in a cell call the main function similar to below:
+```
+url = "http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
+species_code = "define_automagically" # Use `define_automagically` to have one parsed from URL, or assign one there yourself
+UCSC_chrom_sizes_2_circos_karyotype(species_code)
+```
+Note that `url` is actually not needed if you are using the yeast one because that specific one is hardcoded in script as default.
+In fact due to hact I hardcoded in defaults, just `main()` will indeed work for yeast after script pasted in or loaded into a cell.
+
 
 Related
 -------
