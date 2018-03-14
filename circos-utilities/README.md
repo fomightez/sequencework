@@ -11,6 +11,8 @@ Takes a URL for a UCSC `chrom.sizes` file and makes a `karyotype.tab` file from 
 
 Verified compatible with both Python 2.7 and Python 3.6.
 
+Written to run from command line or pasted/loaded inside a Jupyter notebook cell.
+
 To determine the URL to feed the script, google `YOUR_ORGANISM genome UCSC chrom.sizes`,  where you replace `YOUR_ORGANISM` with your organism name and then adapt the path you see in the best match to be something similar to 
 `http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes` -or-
 `http://hgdownload-test.cse.ucsc.edu/goldenPath/canFam2/bigZips/canFam2.chrom.sizes`.
@@ -23,10 +25,11 @@ directly useful in Circos(?). Fortunately, though as described [here](http://cir
 assemblies: human, mouse, rat, and drosophila. These files are located in 
 data/karyotype within the Circos distribution."
 
-Example call to run script:
+Example call to run script from command line:
 ```
 python UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes
 ```
+(Alternatively, upload the script to a Jupyter environment and use `%run UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes` in a Python-backed notebook.)
 
 Example input from http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes :
 ```
@@ -73,7 +76,7 @@ chr -   Sc-chrM chrM    0   85779   black
 
 #### For running in a Jupyter notebook:
 
-To use this script after pasting or loading into a cell in a Jupyter notebook, in the next cell define the URL and then in a cell call the main function similar to below:
+To use this script after pasting or loading into a cell in a Jupyter notebook, in the next cell define the URL and then call the main function similar to below:
 ```
 url = "http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
 species_code = "define_automagically" # Use `define_automagically` to have one parsed from URL, or assign one there yourself
