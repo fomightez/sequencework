@@ -29,7 +29,7 @@ Example call to run script from command line:
 ```
 python UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes
 ```
-(Alternatively, upload the script to a Jupyter environment and use `%run UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes` in a Python-backed notebook.)
+(Alternatively, upload the script to a Jupyter environment and use `%run UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes` in a Python-backed notebook to run the example.)
 
 Example input from http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes :
 ```
