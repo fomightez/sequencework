@@ -33,6 +33,8 @@ __version__ = "0.1.0"
 # assemblies: human, mouse, rat, and drosophila. These files are located in 
 # data/karyotype within the Circos distribution."
 #
+# Written to run from command line or pasted/loaded inside a Jupyter notebook 
+# cell. 
 #
 #
 #
@@ -122,9 +124,8 @@ chr -   Sc-chrM chrM    0   85779   black
 # Issue `UCSC_chrom_sizes_2_circos_karyotype.py -h` for details.
 # 
 #
-# To use this after pasting or loading into a cell in a Jupyter notebook, define 
-# the URL and then in a cell call the main function similar to 
-# below:
+# To use this after pasting or loading into a cell in a Jupyter notebook, in
+# the next cell define the URL and then call the main function similar to below:
 # url = "http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
 # species_code = "define_automagically" # Use `define_automagically` to have one parsed from URL, or assign one there yourself
 # UCSC_chrom_sizes_2_circos_karyotype(species_code)
