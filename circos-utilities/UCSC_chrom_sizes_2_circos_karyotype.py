@@ -131,6 +131,7 @@ chr -   Sc-chrM chrM    0   85779   black
 #
 # Note that `url` is actually not needed if you are using yeast one because that
 # specific one is hardcoded in script as default.
+# In fact due to hact I hardcoded in defaults, just `main()` will indded work.
 # 
 #
 '''
@@ -139,6 +140,11 @@ ANOTHER CELL:
 species_code = "define_automagically" # Use `define_automagically` to have one 
 # parsed from URL automatically, or assign one there yourself.
 UCSC_chrom_sizes_2_circos_karyotype(species_code)
+
+-OR, just-
+
+main()
+
 '''
 #
 #
