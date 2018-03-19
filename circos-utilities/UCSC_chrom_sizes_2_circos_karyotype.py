@@ -121,27 +121,26 @@ chr -   Sc-chrM chrM    0   85779   black
 #-OR-
 # python UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload-test.cse.ucsc.edu/goldenPath/canFam2/bigZips/canFam2.chrom.sizes dog_karyotype.tab --species_code dog
 #-----------------------------------
-# Issue `UCSC_chrom_sizes_2_circos_karyotype.py -h` for details.
+# Issue `python UCSC_chrom_sizes_2_circos_karyotype.py -h` for details.
 # 
 #
 # To use this after pasting or loading into a cell in a Jupyter notebook, in
 # the next cell define the URL and then call the main function similar to below:
 # url = "http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
-# species_code = "define_automagically" # Use `define_automagically` to have one parsed from URL, or assign one there yourself
 # UCSC_chrom_sizes_2_circos_karyotype(species_code)
 #
 # Note that `url` is actually not needed if you are using the yeast one because 
 # that specific one is hardcoded in script as default.
 # In fact due to fact I hardcoded in defaults, just `main()` will indeed work 
 # for yeast.
+#(`species_code_hardcoded` can be assigned in a cell before calling the 
+# function as well.)
 # 
 #
 '''
 CURRENT ACTUAL CODE FOR RUNNING/TESTING IN A NOTEBOOK WHEN LOADED OR PASTED IN 
 ANOTHER CELL:
-species_code = "define_automagically" # Use `define_automagically` to have one 
-# parsed from URL automatically, or assign one there yourself.
-UCSC_chrom_sizes_2_circos_karyotype(species_code)
+UCSC_chrom_sizes_2_circos_karyotype()
 
 -OR, just-
 
@@ -167,10 +166,9 @@ main()
 url = "http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes" 
 output_file_name = "karyotype.tab"
 
-species_code = "define_automagically" # replace `define_automagically` with 
-# what you want to use if something appropriate is not being extracted from the
-# provided URL. And you'd rather not (or cannot because using code in a cell in 
-#a Jupyer notebook, perhaps) provide it on the command line.
+species_code_hardcoded = None # replace `None` with what you want to use,
+# with flanking quotes if something appropriate is not being extracted from the
+# provided URL to be used as the species code.
 
 
 
@@ -255,7 +253,7 @@ def extract_species_code_fromUCSC_URL(url):
     return ''.join([i for i in species_code if not i.isdigit()]) # remove digits
 
 
-def UCSC_chrom_sizes_2_circos_karyotype(species_code):
+def UCSC_chrom_sizes_2_circos_karyotype():
     '''
     Main function of script. Will use url to get `chrom.sizes` file from UCSC 
     and use that to make a karyotype file for use in Circos.
@@ -295,7 +293,8 @@ def UCSC_chrom_sizes_2_circos_karyotype(species_code):
     # "Even when working with only one species, prefixing the chromosome with a 
     # species code is highly recommended - this will greatly help in creating 
     # more transparent configuration and data files."
-    if species_code != "define_automagically":
+    if species_code_hardcoded:
+        species_code = species_code_hardcoded
         sys.stderr.write( "\nThe following "
                 "species code will be used in the ID column "
                 "in the\nproduced karyotype file: '{}'.".format(species_code))
@@ -307,8 +306,12 @@ def UCSC_chrom_sizes_2_circos_karyotype(species_code):
                 "species code will be used in the\nID column "
                 "in the karyotype file: '{}'.\n"
                 "If that is not suitable, you can re-run the script and "
-                "provide one when calling\nthe script using the `--species_code` flag. Alternatively, edit "
+                "provide one when calling\nthe script using the "
+                "`--species_code` flag. Alternatively, edit "
                 "the produced file with find/replace.".format(species_code))
+    # With the approach in that above block, I can expose `species_code` to 
+    # setting for advanced use without it being required and without need to be 
+    # passed into the function.
 
 
 
@@ -352,8 +355,7 @@ def main():
     # placing actual main action in a 'helper'script so can call that easily 
     # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
-    UCSC_chrom_sizes_2_circos_karyotype(species_code) # need to pass that 
-    # because I potentially assign that within the called function
+    UCSC_chrom_sizes_2_circos_karyotype()
         
 
 
