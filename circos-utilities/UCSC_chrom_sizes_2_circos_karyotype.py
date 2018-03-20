@@ -384,7 +384,7 @@ if __name__ == "__main__" and '__file__' in globals():
     parser.add_argument("URL", help="URL of chrom.sizes file at UCSC. \
         ", metavar="URL")
     parser.add_argument('-sc', '--species_code', action='store', type=str, 
-        default= species_code, help="**OPTIONAL**Identifier \
+        default= species_code_hardcoded, help="**OPTIONAL**Identifier \
         to use in front of chromosome names. An attempt will be made to extract \
         one and that is why this is optional.")
     parser.add_argument("output", nargs='?', help="**OPTIONAL**Name of file \
