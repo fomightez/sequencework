@@ -12,7 +12,7 @@ Takes a URL for a UCSC `chrom.sizes` file and makes a `karyotype.tab` file from 
 Verified compatible with both Python 2.7 and Python 3.6.
 
 Written to run from command line or pasted/loaded inside a Jupyter notebook cell.  
-The main ways to run the script are demonstrated in the notebook [`demo UCSC_chrom_sizes_2_circos_karyotype script.ipynb`]() that is included in this repository.
+The main ways to run the script are demonstrated in the notebook [`demo UCSC_chrom_sizes_2_circos_karyotype script.ipynb`](https://github.com/fomightez/sequencework/blob/master/circos-utilities/demo%20UCSC_chrom_sizes_2_circos_karyotype%20script.ipynb) that is included in this repository. (That notebook can be viewed in a nicer rendering [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/circos-utilities/demo%20UCSC_chrom_sizes_2_circos_karyotype%20script.ipynb).)
 
 To determine the URL to feed the script, google `YOUR_ORGANISM genome UCSC chrom.sizes`,  where you replace `YOUR_ORGANISM` with your organism name and then adapt the path you see in the best match to be something similar to 
 `http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes` -or-
