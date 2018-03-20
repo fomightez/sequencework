@@ -129,12 +129,14 @@ chr -   Sc-chrM chrM    0   85779   black
 # url = "http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
 # UCSC_chrom_sizes_2_circos_karyotype(species_code)
 #
+#(`species_code_hardcoded` and `output_file_name `can be assigned in a cell 
+# before calling the function as well.)
+#
 # Note that `url` is actually not needed if you are using the yeast one because 
 # that specific one is hardcoded in script as default.
 # In fact due to fact I hardcoded in defaults, just `main()` will indeed work 
 # for yeast.
-#(`species_code_hardcoded` can be assigned in a cell before calling the 
-# function as well.)
+#
 # 
 #
 '''
@@ -421,5 +423,3 @@ if __name__ == "__main__" and '__file__' in globals():
 #*******************************************************************************
 ###-***********************END MAIN PORTION OF SCRIPT***********************-###
 #*******************************************************************************
-
-
