@@ -144,7 +144,7 @@ limit_of_name = 17 # number of bases of the sequence element to limit to using
 
 import sys
 import os
-import re
+import regex
 import pandas as pd
 from Bio import SeqIO
 from Bio.Seq import Seq # for reverse complement
@@ -276,10 +276,16 @@ def search_strand(pattern, sequence_to_scan, strand=1):
     that information where each element is a tuple of the start and end points
     along with the strand.
 
+    Works with overlapped sequences because now 
+    "regex.findall and regex.finditer support an ‘overlapped’ flag which 
+    permits overlapped matches."
+    , see https://pypi.python.org/pypi/regex/2018.02.21
+
     based on https://www.biostars.org/p/209383/ (specifically steve's answer)
     '''
     occurrences = []
-    for match in re.finditer(pattern.upper(), str(sequence_to_scan.upper())):
+    for match in regex.finditer(
+        pattern.upper(), str(sequence_to_scan.upper()),overlapped=True):
         if strand == 1:
             start_pos = match.start() + 1
             end_pos = match.end() + 1
@@ -290,6 +296,26 @@ def search_strand(pattern, sequence_to_scan, strand=1):
         occurrences.append((start_pos, end_pos,strand))
     return occurrences 
 
+def get_fasta_seq(source):
+    '''
+    Takes a source URL or filepath/ file name and gets sequence if it is in
+    FASTA format.
+    It won't return anything if what is provided isn't FASTA format because
+    Biopython handles both trying to extract FASTA from URL and from file.
+    See https://stackoverflow.com/a/44294079/8508004.
+    Placing it in a function it easy to then check and provide some feedback.
+    '''
+    if source.lower().startswith("http"):
+        return get_seq_from_URL(source)
+    else:
+        # Read sequence, treating source as a filepath.
+        # Use of `with` on next line based on http://biopython.org/wiki/SeqIO , 
+        # under "Sequence Input". Otherwise, backbone based on 
+        # https://www.biostars.org/p/209383/, and fact `rU` mode depecated.
+        with open(source, "r") as handle:
+            for record in SeqIO.parse(handle, "fasta"):
+                # print(record.seq) # for debugging
+                return record.seq
 
 def find_sequence_element_occurrences_in_sequence(return_dataframe = False):
     '''
@@ -302,17 +328,12 @@ def find_sequence_element_occurrences_in_sequence(return_dataframe = False):
     in a Jupyter notebook or importing it into another script.
     '''
     # get the fasta_seq to scan
-    if source.lower().startswith("http"):
-        fasta_seq = get_seq_from_URL(source)
-    else:
-        # Read sequence, treating source as a filepath.
-        # Use of `with` on next line based on http://biopython.org/wiki/SeqIO , 
-        # under "Sequence Input". Otherwise, backbone based on 
-        # https://www.biostars.org/p/209383/, and fact `rU` mode depecated.
-        with open(source, "r") as handle:
-            for record in SeqIO.parse(handle, "fasta"):
-                # print(record.seq) # for debugging
-                fasta_seq = record.seq
+    fasta_seq = get_fasta_seq(source)
+
+
+    assert fasta_seq, (
+    "The provided source of the FASTA-formatted sequence seems invalid. Is it "
+    "FASTA format?")
 
     # With the approach in this next block, I can expose `id_of_seq_scanned` to 
     # setting for advanced use without it being required and without need to be 
