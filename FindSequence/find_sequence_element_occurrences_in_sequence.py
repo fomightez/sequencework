@@ -272,7 +272,7 @@ def search_strand(pattern, sequence_to_scan, strand=1):
     provided, larger 5'-->3' sequence.
     Assumes strand is first unless provided.
 
-    Tracks the start and end points of each occurence, returning a list of
+    Tracks the start and end points of each occurrence, returning a list of
     that information where each element is a tuple of the start and end points
     along with the strand.
 
