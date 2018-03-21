@@ -11,3 +11,10 @@ Licesnse
 -------
 
 MIT licsense.
+
+
+Related code by others
+---------------------
+
+See ['Python: How to count frequency of triple nucleotide
+'](https://stackoverflow.com/questions/46385576/python-how-to-count-frequency-of-triple-nucleotide).
