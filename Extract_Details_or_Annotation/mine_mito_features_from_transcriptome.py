@@ -17,6 +17,7 @@ __version__ = "0.1.0"
 #--------------------------------------------------------
 #>Q0065 cdna chromosome:R64-1-1:Mito:13818:21935:1 gene:Q0065 gene_biotype:protein_coding transcript_biotype:protein_coding gene_symbol:AI4 description:Endonuclease I-SceII; encoded by a mobile group I intron within the mitochondrial COX1 gene; intron is normally spliced by the BI4p maturase but AI4p can mutate to acquire the same maturase activity [Source:SGD;Acc:S000007264]
 #>Q0143 cdna chromosome:R64-1-1:Mito:51277:51429:1 gene:Q0143 gene_biotype:protein_coding transcript_biotype:protein_coding description:Dubious open reading frame; unlikely to encode a functional protein, based on available experimental and comparative sequence data [Source:SGD;Acc:S000007277]
+#>tT(XXX)Q2 ncrna chromosome:R64-1-1:Mito:78089:78162:-1 gene:tT(XXX)Q2 gene_biotype:tRNA transcript_biotype:tRNA description:Mitochondrial threonine tRNA (tRNA-Thr), predicted by tRNAscan-SE analysis [Source:SGD;Acc:S000007335]
 #--------------------------------------------------------
 # Also needs the exact length of the mitochondrial chromosome.
 #
@@ -115,7 +116,8 @@ import pandas as pd
 
 
 ###---------------------------HELPER FUNCTIONS---------------------------------###
-def with_string_mine_fasta_def_line(def_line, string, list_of_indices2return=[1], return_1stWord = True):
+def with_string_mine_fasta_def_line(
+    def_line, string, list_of_indices2return=[1], return_1stWord = True):
     '''
     Takes a definition line of a fasta-formatted sequence entry and splits it
     on the string provided.
@@ -231,7 +233,7 @@ def mine_mito_features(tx_file_name, pickle_df = True):
     midpoint will simply be integer close to midpoint for now.
     midpoint to be used soon(?) for sorting and, much later, labeling.
 
-    By default, a picked version of the dataframe will be saved for use in
+    By default, a pickled version of the dataframe will be saved for use in
     other places.
 
     
