@@ -210,8 +210,6 @@ import os
 ###---------------------------HELPER FUNCTIONS---------------------------------###
 
 
-
-
 def make_and_save_karyotype(chromosomes_and_length, species_code):
     '''
     Takes a dictionary of chromosome identifiers and length and makes a karyotype
@@ -253,7 +251,11 @@ def extract_species_code_fromUCSC_URL(url):
     '''
     species_code = url.split("goldenPath")[1].split("/")[1]
     return ''.join([i for i in species_code if not i.isdigit()]) # remove digits
+###--------------------------END OF HELPER FUNCTIONS---------------------------###
+###--------------------------END OF HELPER FUNCTIONS---------------------------###
 
+#*******************************************************************************
+###------------------------'main' function of script---------------------------##
 
 def UCSC_chrom_sizes_2_circos_karyotype():
     '''
@@ -322,19 +324,8 @@ def UCSC_chrom_sizes_2_circos_karyotype():
     # http://circos.ca/documentation/tutorials/ideograms/karyotypes/ and like 
     # on page 6 of http://circos.ca/tutorials/course/handouts/session-4.pdf
     make_and_save_karyotype(chromosomes_and_length, species_code)
-
-
-
-
-
-
-
-
-
-
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
-
+###--------------------------END OF MAIN FUNCTION----------------------------###
+###--------------------------END OF MAIN FUNCTION----------------------------###
 
 
 
@@ -350,7 +341,7 @@ def UCSC_chrom_sizes_2_circos_karyotype():
 
 
 #*******************************************************************************
-###------------------------'main' secion of script---------------------------###
+###------------------------'main' section of script---------------------------##
 
 def main():
     """ Main entry point of the script """
