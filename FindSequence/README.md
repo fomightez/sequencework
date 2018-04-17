@@ -16,7 +16,7 @@ See [the demo notebook](https://nbviewer.jupyter.org/github/fomightez/sequencewo
 
 # Related items by others
 
-- Came accross [this barebones, related solution](https://twitter.com/strnr/status/986215833453113344) after I had made my `find_sequence_element_occurrences_in_sequence.py` script for finding exact matches:
+- Came accross [this barebones, related example](https://twitter.com/strnr/status/986215833453113344) after I had made my `find_sequence_element_occurrences_in_sequence.py` script for finding exact matches:
 
 ```
 # "essentially find the location of a particular sequence." - by Stephen Turner
