@@ -5,7 +5,7 @@
 * find_sequence_element_occurrences_in_sequence.py
 > smaller sequence and large sequence --> occurrences of exact matches of small sequence in larger one
 
-See [the demo notebook](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/FindSequence/demo%20find_sequence_element_occurrences_in_sequence%20script.ipynb) for use.
+See [the demo notebook](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/FindSequence/demo%20find_sequence_element_occurrences_in_sequence%20script.ipynb) for use. (That notebook can easily be uploaded and actively run once you launch a binder instance by pressing the `launch binder` button [here](https://github.com/fomightez/qgrid-notebooks).)
 
 
 
