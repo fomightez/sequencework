@@ -364,6 +364,17 @@ def find_sequence_element_occurrences_in_sequence(return_dataframe = False):
         df = df[['seq. element','start_pos','end_pos','strand']] # 'seq.element'
         # column will show on far right otherwise
 
+        #print(updated_sites_df)#originally for debugging during development,added..
+        # Document the full set of data collected in the terminal or 
+        # Jupyter notebook display in some manner. 
+        # Using `df.to_string()` because more universal than `print(df)` 
+        # or Jupyter's `display(df)`.
+        sys.stderr.write( "\nFor documenting purposes, the following lists the "
+            "collected occurences:\n")
+        #with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+        #    display(df)
+        sys.stderr.write(df.to_string())
+
         # write to tab-delimited file
         output_file_name = generate_output_file_name(
             id_of_seq_element,id_of_seq_scanned )
