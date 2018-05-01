@@ -244,7 +244,6 @@ def get_seq_from_URL(url):
     except ImportError:
         from io import StringIO
 
-    chromosomes_and_length = {}
     # Getting html originally for just Python 3, adapted from 
     # https://stackoverflow.com/a/17510727/8508004 and then updated from to 
     # handle Python 2 and 3 according to same link.
@@ -260,10 +259,31 @@ def get_seq_from_URL(url):
     # Use of `next()` on next line to get first FASTA -formatted sequence is 
     # based on http://biopython.org/DIST/docs/api/Bio.SeqIO-module.html
     # I think difference from `SeqIO.read()` in this approach is that it won't
-    # give an error of more than one entry is in the html.
+    # give an error if more than one entry is in the html.
     # I found I needed `StringIO()` or got issues with trying to handle long file name.
     record = next(fasta_iterator)
     return record.seq
+
+def get_fasta_seq(source):
+    '''
+    Takes a source URL or filepath/ file name and gets sequence if it is in
+    FASTA format.
+    It won't return anything if what is provided isn't FASTA format because
+    Biopython handles both trying to extract FASTA from URL and from file.
+    See https://stackoverflow.com/a/44294079/8508004.
+    Placing it in a function it easy to then check and provide some feedback.
+    '''
+    if source.lower().startswith("http"):
+        return get_seq_from_URL(source)
+    else:
+        # Read sequence, treating source as a filepath.
+        # Use of `with` on next line based on http://biopython.org/wiki/SeqIO , 
+        # under "Sequence Input". Otherwise, backbone based on 
+        # https://www.biostars.org/p/209383/, and fact `rU` mode depecated.
+        with open(source, "r") as handle:
+            for record in SeqIO.parse(handle, "fasta"):
+                # print(record.seq) # for debugging
+                return record.seq
 
 
 def search_strand(pattern, sequence_to_scan, strand=1):
@@ -296,26 +316,6 @@ def search_strand(pattern, sequence_to_scan, strand=1):
         occurrences.append((start_pos, end_pos,strand))
     return occurrences 
 
-def get_fasta_seq(source):
-    '''
-    Takes a source URL or filepath/ file name and gets sequence if it is in
-    FASTA format.
-    It won't return anything if what is provided isn't FASTA format because
-    Biopython handles both trying to extract FASTA from URL and from file.
-    See https://stackoverflow.com/a/44294079/8508004.
-    Placing it in a function it easy to then check and provide some feedback.
-    '''
-    if source.lower().startswith("http"):
-        return get_seq_from_URL(source)
-    else:
-        # Read sequence, treating source as a filepath.
-        # Use of `with` on next line based on http://biopython.org/wiki/SeqIO , 
-        # under "Sequence Input". Otherwise, backbone based on 
-        # https://www.biostars.org/p/209383/, and fact `rU` mode depecated.
-        with open(source, "r") as handle:
-            for record in SeqIO.parse(handle, "fasta"):
-                # print(record.seq) # for debugging
-                return record.seq
 
 def find_sequence_element_occurrences_in_sequence(return_dataframe = False):
     '''
@@ -414,7 +414,7 @@ def find_sequence_element_occurrences_in_sequence(return_dataframe = False):
 
 
 #*******************************************************************************
-###------------------------'main' secion of script---------------------------###
+###------------------------'main' section of script---------------------------##
 
 def main():
     """ Main entry point of the script """
