@@ -16,10 +16,15 @@ The main ways to run the script are demonstrated in [a series of notebooks illus
 
 Assumes PatMatch is run with the `-c` flag to search on both strands.
 
-Example call to run script from command line:
+Example calls to run script from command line:
 ```
 python patmatch_results_to_df.py results_file.txt
+
+python patmatch_results_to_df.py test.out --pattern DDWDWTAWAAGTARTADDDD -name promoter
+
+python patmatch_results_to_df.py protein.out --pattern TYEETGLQGHPS -name motif -p
 ```
+
 (Alternatively, upload the script to a Jupyter environment and use `%run patmatch_results_to_df.py results_file.txt` in a Python-backed notebook to run the example.)
 
 
