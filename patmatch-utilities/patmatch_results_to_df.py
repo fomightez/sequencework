@@ -48,7 +48,7 @@ __version__ = "0.1.0"
 
 #
 # To do:
-# - test on protein sequences
+# - update where `HEREEEEE-UPDATE WITH URL HERE LATER!` to point to correct notebook
 # - incorporate in demo notebook in patmatch-binder; also(?) in that demo binder 
 #   show how to bring into Python the web-based PatMatch data from the xls file?
 #   Also include running from command line (curl to get to rep after uploaded; this way will always get most current) and using main function.
@@ -67,6 +67,9 @@ __version__ = "0.1.0"
 #-----------------------------------
 # Issue `patmatch_results_to_df.py -h` for details.
 # 
+# More examples from running from the command line are in the notebook:
+# HEREEEEE-UPDATE WITH URL HERE LATER!!!!!!
+#
 #
 # When using in a notebook, if you don't specify dataframe objects, , you must
 # instead supply strings of file names for the pickled dataframes in the call
