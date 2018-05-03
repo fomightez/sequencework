@@ -53,6 +53,7 @@ __version__ = "0.1.0"
 #   show how to bring into Python the web-based PatMatch data from the xls file?
 #   Also include running from command line (curl to get to rep after uploaded; this way will always get most current) and using main function.
 #   Incorporate  running on entire genome in another notebook.
+#   Incorporate protein example. Expecially for when running in cell because need `protein_results= True`
 # - Advanced notebook for demo: `Advanced: Sending PatMatch output directly to Python`, under `Additional topics`?
 #
 #
@@ -77,6 +78,10 @@ __version__ = "0.1.0"
 # df = patmatch_results_to_df("test.out", pattern=my_pattern, name="promoter")
 # df
 #
+# - or-, for protein, the lines would be similar to:
+# aa_pattern= "TYEETGLQGHPS"
+# prot_df = patmatch_results_to_df("pro.out", pattern=aa_pattern, protein_results= True)
+# prot_df
 #
 #
 #
@@ -88,6 +93,10 @@ ANOTHER CELL:
 my_pattern= "DDWDWTAWAAGTARTADDDD"
 df = patmatch_results_to_df("test.out", pattern=my_pattern, name="promoter")
 df
+
+aa_pattern= "TYEETGLQGHPS"
+prot_df = patmatch_results_to_df("pro.out", pattern=aa_pattern, protein_results= True)
+prot_df
 '''
 #
 #
@@ -151,7 +160,8 @@ def fix_pattern_ids(row):
 ###------------------------'main' function of script---------------------------##
 
 def patmatch_results_to_df(
-    results_file, pattern="?", name=None, return_df = True, pickle_df=True):
+    results_file, pattern="?", name=None, return_df = True, pickle_df=True, 
+    protein_results=False):
     '''
     Main function of script. 
     It will take a file of results from command line-based PatMatch and make
@@ -272,7 +282,7 @@ def patmatch_results_to_df(
 
     # Remove irrelevant column if results from scan of protein sequence(s)
     if protein_results:
-        df.drop('strand', axis=1)
+        df = df.drop('strand', axis=1)
 
 
     # Reporting and Saving
@@ -336,6 +346,8 @@ def main():
         kwargs['pattern'] = '?'
     if args.pattern_name:
         kwargs['name'] = args.pattern_name
+    if args.protein_results:
+        kwargs['protein_results'] = True
     if df_save_as_name == 'no_pickling':
         kwargs['pickle_df'] = False
     kwargs['return_df'] = False #probably don't want dataframe returned if 
