@@ -48,6 +48,7 @@ __version__ = "0.1.0"
 
 #
 # To do:
+# - test on protein sequences
 # - incorporate in demo notebook in patmatch-binder; also(?) in that demo binder 
 #   show how to bring into Python the web-based PatMatch data from the xls file?
 #   Also include running from command line (curl to get to rep after uploaded; this way will always get most current) and using main function.
@@ -219,6 +220,10 @@ def patmatch_results_to_df(
         # I noticed when `-c` flag is used the first number in the interval 
         # returned to indicate the location will be larger than the second for 
         # those on the negative strand. 
+        # Obviously this is a pointless exercise for protein sequence, but I 
+        # think easier to leave and let it scan anyway and then fix pointless
+        # column in one step later. This could be revisied if optimization is
+        # necessary for scaling up.
         if start > end:
             strand = -1
             # fix start and end so start is actually lowest value to be 
@@ -264,6 +269,10 @@ def patmatch_results_to_df(
         # case and have all the infroamtion and thus reserves performing this 
         # step on the whole datframe again for only cases where several 
         # sequences scanned.
+
+    # Remove irrelevant column if results from scan of protein sequence(s)
+    if protein_results:
+        df.drop('strand', axis=1)
 
 
     # Reporting and Saving
