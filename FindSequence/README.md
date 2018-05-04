@@ -1,4 +1,4 @@
-# Collection of scripts to find subsequences in other sequences
+# Collection of scripts to find sequence elements in sequence data
 
 # The scripts
 
