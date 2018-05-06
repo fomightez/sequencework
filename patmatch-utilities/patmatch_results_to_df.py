@@ -20,15 +20,15 @@ __version__ = "0.1.0"
 #
 # This script is meant to be a utility script for working with command 
 # line-based PatMatch and Python, see a demonstration of use in
-# https://github.com/fomightez/patmatch-binder/blob/master/notebooks/PatMatch%20with%20Python.ipynb
+# https://git.io/vprdu
 # 
 # Assumes for nucleic acid patterns, it was run with `-c` flag and tries to 
 # assign strand information.
 # 
 # See https://github.com/fomightez/patmatch-binder about PatMatch.
 #
-# Written to run from command line or pasted/loaded inside a Jupyter notebook 
-# cell. 
+# Written to run from command line or imported into/pasted/loaded inside a 
+# Jupyter notebook cell. 
 #
 #
 #
@@ -48,13 +48,8 @@ __version__ = "0.1.0"
 
 #
 # To do:
-# - update where `HEREEEEE-UPDATE WITH URL HERE LATER!` to point to correct notebook
-# - incorporate in demo notebook in patmatch-binder; also(?) in that demo binder 
-#   show how to bring into Python the web-based PatMatch data from the xls file?
-#   Also include running from command line (curl to get to rep after uploaded; this way will always get most current) and using main function.
-#   Incorporate  running on entire genome in another notebook.
-#   Incorporate protein example. Expecially for when running in cell because need `protein_results= True`
-# - Advanced notebook for demo: `Advanced: Sending PatMatch output directly to Python`, under `Additional topics`?
+# - update where `HEREEEEE-UPDATE WITH URL HERE LATER!` to point to correct notebook (use git.io to shorten it)
+
 #
 #
 #
@@ -67,7 +62,8 @@ __version__ = "0.1.0"
 #-----------------------------------
 # Issue `patmatch_results_to_df.py -h` for details.
 # 
-# More examples from running from the command line are in the notebook:
+# More examples from running from the command line are at the two links below: 
+# https://github.com/fomightez/sequencework/blob/master/patmatch-utilities/
 # HEREEEEE-UPDATE WITH URL HERE LATER!!!!!!
 #
 #
@@ -163,21 +159,44 @@ def fix_pattern_ids(row):
 ###------------------------'main' function of script---------------------------##
 
 def patmatch_results_to_df(
-    results_file, pattern="?", name=None, return_df = True, pickle_df=True, 
+    results, pattern="?", name=None, return_df = True, pickle_df=True, 
     protein_results=False):
     '''
     Main function of script. 
-    It will take a file of results from command line-based PatMatch and make
-    a dataframe that will be more useful with Python/othergenetic-oriented 
-    scripts.
-    Optionally also returns a dataframe of the results data. Meant for use in 
-    a Jupyter notebook.
+    It will take a file of results (or the resutls as a Python string) from 
+    command line-based PatMatch and make a dataframe that will be more useful 
+    with Python/other genetic-oriented Python scripts.
+    Optionally also returns a dataframe of the results data. 
+    Meant for use in a Jupyter notebook.
+
+    The option to provide the results as a string is to handle where sending the
+    data driectly from shell script to Python without a typical file 
+    intermediate, see the advanced notebook at https://git.io/vpr7i for 
+    examples. The obvious use case for that is when working in the Jupyter 
+    # notebook environment.
     '''
     # Bring in the necessary data:
     #---------------------------------------------------------------------------
 
-    with open(results_file, 'r') as the_file:
-        results = the_file.read()
+    try:
+        with open(results, 'r') as the_file:
+            results = the_file.read()
+    except (TypeError,OSError) as e:
+        pass # pass because instead just want to use results as a string because
+        # probably provided as a string directly piped from PatMatch to Python
+        # without file intermediate. The results variable will already be a
+        # string in that case and so ready to go and don't need to read file.
+        # The `except` above the pass has two errors it excepts because the
+        # first was a TypeError seen when I tried to pass a file-like string to
+        # `with open` because it seems `with open` method is incompatible with
+        # use of StringIO, I think, which I usually use to try to pass things 
+        # associated with file methods string. (I qualifed it with 'I think' b/c 
+        # questions on stackoverlflow seemed to agree but I didn't try every 
+        # possibility because realized this would probably be a better way to 
+        # handle anyway.) That TypeError except got me to the next issue which
+        # was trying the string as a file name and getting it was too long, and 
+        # so I added the `OSError` catch and that seemed to make passing a 
+        # string into the function work.
 
     # feedback
     sys.stderr.write("Provided results read...")
@@ -425,7 +444,7 @@ if __name__ == "__main__" and '__file__' in globals():
         parser.print_help()
         sys.exit(1)
     args = parser.parse_args()
-    results_file= args.results_file
+    results = args.results_file
     df_save_as_name = args.df_output
 
 
