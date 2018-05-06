@@ -181,12 +181,12 @@ def patmatch_results_to_df(
     try:
         with open(results, 'r') as the_file:
             results = the_file.read()
-    except (TypeError,OSError) as e:
+    except (TypeError,OSError,IOError) as e:
         pass # pass because instead just want to use results as a string because
         # probably provided as a string directly piped from PatMatch to Python
         # without file intermediate. The results variable will already be a
         # string in that case and so ready to go and don't need to read file.
-        # The `except` above the pass has two errors it excepts because the
+        # The `except` above the pass has three errors it excepts because the
         # first was a TypeError seen when I tried to pass a file-like string to
         # `with open` because it seems `with open` method is incompatible with
         # use of StringIO, I think, which I usually use to try to pass things 
@@ -196,7 +196,8 @@ def patmatch_results_to_df(
         # handle anyway.) That TypeError except got me to the next issue which
         # was trying the string as a file name and getting it was too long, and 
         # so I added the `OSError` catch and that seemed to make passing a 
-        # string into the function work.
+        # string into the function work. `IOError` seemed to handle that same
+        # thing in Python 2.7.
 
     # feedback
     sys.stderr.write("Provided results read...")
@@ -374,7 +375,7 @@ def main():
         kwargs['pickle_df'] = False
     kwargs['return_df'] = False #probably don't want dataframe returned if 
     # calling script from command line
-    patmatch_results_to_df(results_file,**kwargs)
+    patmatch_results_to_df(results,**kwargs)
     # using https://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/#calling-a-function
     # to build keyword arguments to pass to the function above
     # (see https://stackoverflow.com/a/28986876/8508004 and
