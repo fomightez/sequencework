@@ -67,7 +67,7 @@ __version__ = "0.1.0"
 # source = "https://downloads.yeastgenome.org/sequence/S288C_reference/chromosomes/fasta/chrmt.fsa"
 # element = "GAATTC"
 # id_of_seq_element = "ele1" #Set to `None` without quotes or backticks to have defined automatically
-# find_sequence_element_occurrences_in_sequence.py()
+# find_sequence_element_occurrences_in_sequence(source)
 #
 # Something similar would need to be done if importing the script into another.
 # (`id_of_seq_scanned_hardcoded` can be assigned in a cell before calling the 
@@ -81,7 +81,7 @@ ANOTHER CELL:
 source = "https://downloads.yeastgenome.org/sequence/S288C_reference/chromosomes/fasta/chrmt.fsa"
 element = "GAATTC"
 id_of_seq_element = "EcoRI" #Set to `None` without quotes or backticks to have defined automatically
-df = find_sequence_element_occurrences_in_sequence(return_dataframe = True)
+df = find_sequence_element_occurrences_in_sequence(source,return_dataframe = True)
 
 
 '''
@@ -325,13 +325,10 @@ def search_strand(pattern, sequence_to_scan, strand=1):
 #*******************************************************************************
 ###------------------------'main' function of script---------------------------##
 def find_sequence_element_occurrences_in_sequence(
-    return_dataframe = False, **kwargs):
+    source, element, id_of_seq_element, return_dataframe = False):
     '''
-    Main function of script. Scan a sequence and report on occurrences of a
-    sub-sequence element in that sequence.
-
-    I added `**kwargs` so I could easily call the main function in a Jupyter 
-    notebook and still provide `source` or other necessary variables.
+    Main function of script. Scan a sequence (source) and report on occurrences 
+    of a sub-sequence element in that sequence.
 
     Returns None
     Unless `return_dataframe = True`, and then it returns a dataframe of 
@@ -435,7 +432,8 @@ def main():
     # placing actual main action in a 'helper' script so can call that easily 
     # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
-    find_sequence_element_occurrences_in_sequence()
+    find_sequence_element_occurrences_in_sequence(
+        source, element, id_of_seq_element)
 
         
 
