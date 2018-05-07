@@ -318,13 +318,10 @@ def search_strand(pattern, sequence_to_scan, strand=1):
 
 
 def find_sequence_element_occurrences_in_sequence(
-    return_dataframe = False, **kwargs):
+    return_dataframe = False, source=source):
     '''
     Main function of script. Scan a sequence and report on occurrences of a
     sub-sequence element in that sequence.
-
-    I added `**kwargs` so I could easily call the main function in a Jupyter 
-    notebook and still provide `source` or other necessary variables.
 
     Returns None
     Unless `return_dataframe = True`, and then it returns a dataframe of 
