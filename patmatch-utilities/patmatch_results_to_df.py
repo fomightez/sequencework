@@ -20,7 +20,7 @@ __version__ = "0.1.0"
 #
 # This script is meant to be a utility script for working with command 
 # line-based PatMatch and Python, see a demonstration of use in
-# https://git.io/vprdu
+# https://git.io/vpo13
 # 
 # Assumes for nucleic acid patterns, it was run with `-c` flag and tries to 
 # assign strand information.
@@ -48,8 +48,7 @@ __version__ = "0.1.0"
 
 #
 # To do:
-# - update where `HEREEEEE-UPDATE WITH URL HERE LATER!` to point to correct notebook (use git.io to shorten it)
-
+# - ?
 #
 #
 #
@@ -60,24 +59,28 @@ __version__ = "0.1.0"
 #-----------------------------------
 # python patmatch_results_to_df.py -RESULTS_FILE
 #-----------------------------------
+# Best to add the `-p` flag if the results are from protein sequences.
 # Issue `patmatch_results_to_df.py -h` for details.
 # 
-# More examples from running from the command line are at the two links below: 
+# More examples from running from the command line are at the links below: 
 # https://github.com/fomightez/sequencework/blob/master/patmatch-utilities/
-# HEREEEEE-UPDATE WITH URL HERE LATER!!!!!!
+# https://git.io/vpo13
+# https://git.io/vpo1s
+# https://git.io/vpo1Z
+# https://git.io/vpr7i
 #
 #
-# When using in a notebook, if you don't specify dataframe objects, , you must
-# instead supply strings of file names for the pickled dataframes in the call
-# to the main function. 
-# To use this after pasting or loading into a cell in a Jupyter notebook, in
-# the next cell specify the two dataframes then call the main function similar 
-# to below:
+#
+# To use this after importing/pasting or loading into a cell in a Jupyter 
+# notebook, specify at least the results file (or results as a string) in the 
+# call to the main function similar to below:
 # my_pattern= "DDWDWTAWAAGTARTADDDD"
 # df = patmatch_results_to_df("test.out", pattern=my_pattern, name="promoter")
 # df
 #
-# - or-, for protein, the lines would be similar to:
+# - or-, for protein, (& if you like to import it) the lines would be similar to:
+# !curl -O https://raw.githubusercontent.com/fomightez/sequencework/master/patmatch-utilities/patmatch_results_to_df.py
+# from patmatch_results_to_df import patmatch_results_to_df
 # aa_pattern= "TYEETGLQGHPS"
 # prot_df = patmatch_results_to_df("pro.out", pattern=aa_pattern, protein_results= True)
 # prot_df
@@ -87,8 +90,8 @@ __version__ = "0.1.0"
 # 
 #
 '''
-CURRENT ACTUAL CODE FOR RUNNING/TESTING IN A NOTEBOOK WHEN LOADED OR PASTED IN 
-ANOTHER CELL:
+CURRENT ACTUAL CODE FOR RUNNING/TESTING IN A NOTEBOOK WHEN IMPORTED/LOADED OR 
+PASTED IN ANOTHER CELL:
 my_pattern= "DDWDWTAWAAGTARTADDDD"
 df = patmatch_results_to_df("test.out", pattern=my_pattern, name="promoter")
 df
