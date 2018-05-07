@@ -67,7 +67,7 @@ __version__ = "0.1.0"
 # source = "https://downloads.yeastgenome.org/sequence/S288C_reference/chromosomes/fasta/chrmt.fsa"
 # element = "GAATTC"
 # id_of_seq_element = "ele1" #Set to `None` without quotes or backticks to have defined automatically
-# find_sequence_element_occurrences_in_sequence(source)
+# find_sequence_element_occurrences_in_sequence(source, element, id_of_seq_element, return_dataframe = True)
 #
 # Something similar would need to be done if importing the script into another.
 # (`id_of_seq_scanned_hardcoded` can be assigned in a cell before calling the 
@@ -81,7 +81,7 @@ ANOTHER CELL:
 source = "https://downloads.yeastgenome.org/sequence/S288C_reference/chromosomes/fasta/chrmt.fsa"
 element = "GAATTC"
 id_of_seq_element = "EcoRI" #Set to `None` without quotes or backticks to have defined automatically
-df = find_sequence_element_occurrences_in_sequence(source,return_dataframe = True)
+df = find_sequence_element_occurrences_in_sequence(source, element, id_of_seq_element, return_dataframe = True)
 
 
 '''
