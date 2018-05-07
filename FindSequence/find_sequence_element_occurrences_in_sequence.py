@@ -314,9 +314,16 @@ def search_strand(pattern, sequence_to_scan, strand=1):
             end_pos = (len(sequence_to_scan) - match.end() ) + 1
         # print (start_pos, '\t', end_pos, '\t',strand) # for debugging
         occurrences.append((start_pos, end_pos,strand))
-    return occurrences 
+    return occurrences
+
+###--------------------------END OF HELPER FUNCTIONS---------------------------###
+###--------------------------END OF HELPER FUNCTIONS---------------------------###
 
 
+
+
+#*******************************************************************************
+###------------------------'main' function of script---------------------------##
 def find_sequence_element_occurrences_in_sequence(
     return_dataframe = False, **kwargs):
     '''
@@ -400,19 +407,11 @@ def find_sequence_element_occurrences_in_sequence(
             return None
 
 
-    
+###--------------------------END OF MAIN FUNCTION----------------------------###
+###--------------------------END OF MAIN FUNCTION----------------------------###
 
 
 
-
-
-
-
-
-
-
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
 
 
 
@@ -437,13 +436,8 @@ def main():
     # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
     find_sequence_element_occurrences_in_sequence()
+
         
-
-
-
-
-
-
 
 if __name__ == "__main__" and '__file__' in globals():
     """ This is executed when run from the command line """
