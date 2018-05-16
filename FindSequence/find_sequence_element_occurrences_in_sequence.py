@@ -30,10 +30,10 @@ __version__ = "0.1.0"
 #
 #
 # This script based on work and musings developed in 
-# `Resources for writing code to do GC cluster accounting.md`
+# `Resources for writing code to do BLABLA accounting.md`
 #
 # The script at https://www.biostars.org/p/209383/ (steve's answer) served as 
-# the backbone for adding convenience and user-friendly features.
+# the backbone upon which I added convenience/user-friendly features.
 #
 #
 #
@@ -45,7 +45,14 @@ __version__ = "0.1.0"
 # v.0.1. basic working version
 #
 # To do:
-# - 
+# - For now, I think, it only searches the first sequence if a multi-sequence
+# FASTA formatted file is provided. Maybe expand to handle multi where it adds
+# id from description line for each to each match for table and dataframe. So
+# end up with something sort of like what I have now for command line PatMatch,
+# see `patmatch_results_to_df.py` and https://git.io/vpFZQ and the notebooks
+# linked from in there (but will need to run actively in the Binder launchable 
+# from https://git.io/vpFZx to see results because I saved them without results
+# to keep short and encourage active use.)
 #
 #
 #
@@ -279,7 +286,7 @@ def get_fasta_seq(source):
         # Read sequence, treating source as a filepath.
         # Use of `with` on next line based on http://biopython.org/wiki/SeqIO , 
         # under "Sequence Input". Otherwise, backbone based on 
-        # https://www.biostars.org/p/209383/, and fact `rU` mode depecated.
+        # https://www.biostars.org/p/209383/, and fact `rU` mode deprecated.
         with open(source, "r") as handle:
             for record in SeqIO.parse(handle, "fasta"):
                 # print(record.seq) # for debugging
@@ -383,7 +390,7 @@ def find_sequence_element_occurrences_in_sequence(
         #    display(df)
         sys.stderr.write(df.to_string())
 
-        # write to tab-delimited file
+        # write to tab-delimited table file
         output_file_name = generate_output_file_name(
             id_of_seq_element,id_of_seq_scanned )
         df.to_csv(output_file_name, sep='\t',index = False)
