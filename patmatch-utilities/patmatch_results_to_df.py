@@ -86,6 +86,9 @@ __version__ = "0.1.0"
 # prot_df
 #
 #
+# A more in-depth series of examples of using this script within a notebook 
+# without need to save file intermediates is found at:
+# https://git.io/vpr7i
 #
 # 
 #
