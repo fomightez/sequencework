@@ -427,7 +427,7 @@ if __name__ == "__main__" and '__file__' in globals():
         it will be used to make a unique indentifer for each match; however, \
         it is not essential as a unique id will still be assigned in its \
         absence. To provide the identifier simply enter the text after the \
-        flag. For example, if the search had been for patternn `GAATTAC`, you \
+        flag. For example, if the search had been for patternn `GAATTC`, you \
         can include `-name EcoRI`, \
         without quotes or ticks, in the call to the script.")
     parser.add_argument("-p", "--protein_results",help=
