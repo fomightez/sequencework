@@ -1,6 +1,6 @@
 # BLAST-utilities
 
-Utility scripts for working with command line-based BLAST, which is launchable [here](https://github.com/fomightez/qgrid-notebooks).
+Utility scripts for working with command line-based BLAST, which is already installed and working in the Jupyter instances launchable [here](https://github.com/fomightez/qgrid-notebooks).
 
 # The scripts
 
@@ -19,11 +19,11 @@ Assumes BLAST is run with the flag below:
 -outfmt "6 qseqid sseqid stitle pident qcovs length mismatch gapopen qstart qend sstart send qframe sframe frames evalue bitscore qseq sseq"
 ```
 
-See [here](https://medium.com/@auguste.dutcher/turn-blast-results-into-a-presence-absence-matrix-cc44429c814) for illustration of that approach, and https://blastedbio.blogspot.com/2014/11/column-headers-in-blast-tabular-and-csv.html for a listing of definitiions for those text codes.
+See [here](https://medium.com/@auguste.dutcher/turn-blast-results-into-a-presence-absence-matrix-cc44429c814) for illustration of that approach, and [here](https://blastedbio.blogspot.com/2014/11/column-headers-in-blast-tabular-and-csv.html) for a listing of explanations for those text codes.  
 For drafting the actual BLAST command, I also found these helpful:
 
-- https://angus.readthedocs.io/en/2017/ 
-- http://library.open.oregonstate.edu/computationalbiology/chapter/command-line-blast/
+- [Running command-line BLAST](https://angus.readthedocs.io/en/2017/running-command-line-blast.html) 
+- [Shawn  T. O’Neil's A Primer for Computational Biology: Chapter 7 Command Line BLAST](http://library.open.oregonstate.edu/computationalbiology/chapter/command-line-blast/)
 
 
 Example calls to run script from command line:
