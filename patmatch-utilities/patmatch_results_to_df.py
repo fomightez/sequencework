@@ -35,8 +35,6 @@ __version__ = "0.1.0"
 #
 #
 #
-# Verified compatible with both Python 2.7 and Python 3.6; written initially in 
-# Python 3. 
 #
 #
 # Dependencies beyond the mostly standard libraries/modules:
