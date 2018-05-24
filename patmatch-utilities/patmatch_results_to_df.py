@@ -167,7 +167,7 @@ def patmatch_results_to_df(
     protein_results=False):
     '''
     Main function of script. 
-    It will take a file of results (or the resutls as a Python string) from 
+    It will take a file of results (or the results as a Python string) from 
     command line-based PatMatch and make a dataframe that will be more useful 
     with Python/other genetic-oriented Python scripts.
     Optionally also returns a dataframe of the results data. 
@@ -385,7 +385,7 @@ def main():
     # (see https://stackoverflow.com/a/28986876/8508004 and
     # https://stackoverflow.com/a/1496355/8508004 
     # (maybe https://stackoverflow.com/a/7437238/8508004 might help too) for 
-    # related help)
+    # related help). Made it easy to add more as I thought of them.
 
 
 
