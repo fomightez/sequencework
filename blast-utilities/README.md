@@ -20,7 +20,7 @@ Assumes BLAST is run with the flag below:
 ```
 Example BLAST command to make the results needed by `blast_to_df.py`:
 ```
-!blastn -query sequence.fa -db db_seq.fa -outfmt "6 qseqid sseqid stitle pident qcovs length mismatch gapopen qstart qend sstart send qframe sframe frames evalue bitscore qseq sseq" -out seq.x.db_seq.comp.txt
+blastn -query sequence.fa -db db_seq.fa -outfmt "6 qseqid sseqid stitle pident qcovs length mismatch gapopen qstart qend sstart send qframe sframe frames evalue bitscore qseq sseq" -out seq.x.db_seq.comp.txt
 ```
 
 See [here](https://medium.com/@auguste.dutcher/turn-blast-results-into-a-presence-absence-matrix-cc44429c814) for illustration of that approach, and [here](https://blastedbio.blogspot.com/2014/11/column-headers-in-blast-tabular-and-csv.html) for a listing of explanations for those text codes.  
