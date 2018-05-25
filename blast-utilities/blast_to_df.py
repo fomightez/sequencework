@@ -37,22 +37,24 @@ __version__ = "0.1.0"
 #
 #
 # (Aside: this was originally called `BLAST_to_df.py` because NCBI uses all caps 
-# on the software name everywhere but this caused me a nightmare debugging what 
-# seemed like it should work (and did work as a script) when I tried importing 
-# main function. UPSHOT IS DON'T USE CAPS IF WANT TO IMPORT!!, see 
-# https://stackoverflow.com/a/23030897/8508004 and link to documentation that 
-# says "Modules [and] Packages should have short, all-lowercase names")  
-# Honestly, technically the error I was getting with 
-# `from BLAST_to_df import BLAST_to_df` makes no sense because caps at start 
-# worked in 
-# https://github.com/fomightez/sequencework/blob/master/circos-utilities/demo%20UCSC_chrom_sizes_2_circos_karyotype%20script.ipynb ,
-# but since it is convention, I should do it.
+# on the software name everywhere but while in a debugging nightmare and trying 
+# many things, I found https://stackoverflow.com/a/23030897/8508004 and link to 
+# documentation that says "Modules ...[and]... Packages should have short, 
+# all-lowercase names". So changed name.
+# But it turned out my debugging nightmare was casued
+# by trying to debug the imported function and it seems Jupyter wasn't fully
+# importing even though I reran importing command--> see 
+# https://support.enthought.com/hc/en-us/articles/204469240-Jupyter-IPython-After-editing-a-module-changes-are-not-effective-without-kernel-restart
+# for confirmation and solution. The issue was when I thought I was re-running
+# the import command, I wasn't and the traceback was trying to show the same
+# error but it uses the code file it has to show the traceback and that is why
+# sometimes it seems to point to irrelevant place, such as in comment.)
 # 
 #
 #
 #
 #
-# Developed by adapting simple `blast_to_df()` function at 
+# Developed by adapting simple `BLAST_to_df()` function at 
 # https://gist.github.com/fomightez/baf668acd4c51586deed2a2c89fcac67 to be 
 # more full-featured using backbone of `patmatch_results_to_df.py`.
 #
