@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-# BLAST_to_df.py
+# blast_to_df.py
 __author__ = "Wayne Decatur" #fomightez on GitHub
 __license__ = "MIT"
 __version__ = "0.1.0"
 
 
-# BLAST_to_df.py by Wayne Decatur
+# blast_to_df.py by Wayne Decatur
 # ver 0.1
 #
 #*******************************************************************************
@@ -36,11 +36,23 @@ __version__ = "0.1.0"
 #
 #
 #
+# (Aside: this was originally called `BLAST_to_df.py` because NCBI uses all caps 
+# on the software name everywhere but this caused me a nightmare debugging what 
+# seemed like it should work (and did work as a script) when I tried importing 
+# main function. UPSHOT IS DON'T USE CAPS IF WANT TO IMPORT!!, see 
+# https://stackoverflow.com/a/23030897/8508004 and link to documentation that 
+# says "Modules [and] Packages should have short, all-lowercase names")  
+# Honestly, technically the error I was getting with 
+# `from BLAST_to_df import BLAST_to_df` makes no sense because caps at start 
+# worked in 
+# https://github.com/fomightez/sequencework/blob/master/circos-utilities/demo%20UCSC_chrom_sizes_2_circos_karyotype%20script.ipynb ,
+# but since it is convention, I should do it.
+# 
 #
 #
 #
 #
-# Developed by adapting simple `BLAST_to_df()` function at 
+# Developed by adapting simple `blast_to_df()` function at 
 # https://gist.github.com/fomightez/baf668acd4c51586deed2a2c89fcac67 to be 
 # more full-featured using backbone of `patmatch_results_to_df.py`.
 #
@@ -65,10 +77,10 @@ __version__ = "0.1.0"
 # Examples,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# python BLAST_to_df.py -RESULTS_FILE
+# python blast_to_df.py -RESULTS_FILE
 #-----------------------------------
 # Best to add the `-p` flag if the results are from protein sequences.
-# Issue `BLAST_to_df.py -h` for details.
+# Issue `blast_to_df.py -h` for details.
 # 
 # More examples from running from the command line are at the links below: 
 # https://git.io/????????
@@ -78,7 +90,7 @@ __version__ = "0.1.0"
 # To use this after importing/pasting or loading into a cell in a Jupyter 
 # notebook, specify at least the results file (or results as a string) in the 
 # call to the main function similar to below:
-# df = BLAST_to_df("test.out")
+# df = blast_to_df("test.out")
 # df
 #
 #
@@ -91,7 +103,7 @@ __version__ = "0.1.0"
 '''
 CURRENT ACTUAL CODE FOR RUNNING/TESTING IN A NOTEBOOK WHEN IMPORTED/LOADED OR 
 PASTED IN ANOTHER CELL:
-df = BLAST_to_df("test.out")
+df = blast_to_df("test.out")
 df
 '''
 #
@@ -152,7 +164,7 @@ def _(row):
 #*******************************************************************************
 ###------------------------'main' function of script---------------------------##
 
-def BLAST_to_df(results, return_df = True, pickle_df=True):
+def blast_to_df(results, return_df = True, pickle_df=True):
     '''
     Main function of script. 
     BLAST results to Pandas dataframe.
@@ -177,17 +189,16 @@ def BLAST_to_df(results, return_df = True, pickle_df=True):
     https://medium.com/@auguste.dutcher/turn-blast-results-into-a-presence-absence-matrix-cc44429c814
     '''
     import pandas as pd
-    col_names = ['qseqid', 'sseqid', 'stitle', 'pident', 'qcovs', 'length', 
-            'mismatch', 'gapopen', 'qstart', 'qend', 'sstart', 'send', 'qframe', 
-            'sframe', 'frames', 'evalue', 'bitscore', 'qseq', 'sseq']
+    col_names = ['qseqid', 'sseqid', 'stitle', 'pident', 'qcovs', 'length',
+    'mismatch', 'gapopen', 'qstart', 'qend', 'sstart', 'send', 'qframe',
+    'sframe', 'frames', 'evalue', 'bitscore', 'qseq', 'sseq']
     # Bring in the necessary data and mke collected results into dataframe:
     #---------------------------------------------------------------------------
-
-    # df = pd.read_csv(results, sep='\t', header=None, names=col_names) 
-    # AT FIRST I HAD ABOVE, because I mistakenly though documentation said 
-    # `pd.read_csv()` work with a string so I thought I wouldn't have to resort 
-    # to acrobatics I used in 
-    # `patmatch_results_to_df.py` to handle correctly whether provided a file 
+    # df = pd.read_csv(results, sep='\t', header=None, names=col_names)
+    # AT FIRST I HAD ABOVE, because I mistakenly though documentation said
+    # `pd.read_csv()` work with a string so I thought I wouldn't have to resort
+    # to acrobatics I used in
+    # `patmatch_results_to_df.py` to handle correctly whether provided a file
     # or string; however, seems that I do need to handle all that.
     try:
         df = pd.read_csv(results, sep='\t', header=None, names=col_names)
@@ -278,7 +289,7 @@ def main():
         kwargs['pickle_df'] = False
     kwargs['return_df'] = False #probably don't want dataframe returned if 
     # calling script from command line
-    BLAST_to_df(results,**kwargs)
+    blast_to_df(results,**kwargs)
     # using https://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/#calling-a-function
     # to build keyword arguments to pass to the function above
     # (see https://stackoverflow.com/a/28986876/8508004 and
@@ -299,8 +310,8 @@ if __name__ == "__main__" and '__file__' in globals():
     # provide arguments when prototyping a full script in the notebook.
     ###-----------------for parsing command line arguments-----------------------###
     import argparse
-    parser = argparse.ArgumentParser(prog='BLAST_to_df.py',
-        description="BLAST_to_df.py \
+    parser = argparse.ArgumentParser(prog='blast_to_df.py',
+        description="blast_to_df.py \
         Takes output from command line-based BLAST and brings it into \
         Python as a dataframe and saves a file of that dataframe for use \
         elsewhere. Optionally, it can also return that dataframe for use \
