@@ -220,11 +220,8 @@ def blast_to_df(results, return_df = True, pickle_df=True):
             from StringIO import StringIO
         except ImportError:
             from io import StringIO
-        df = pd.read_table(StringIO(results), sep='\t', header=None, names=col_names)
-        # I need StringIO so string handled as file document. Also note that at ONE TIME
-        # didn't work when I had `pd.read_csv()` here but worked when I switched
-        # to `pd.read_table()`.!?! Makes no sense since both have StringIO 
-        # listed in documentation.
+        df = pd.read_csv(StringIO(results), sep='\t', header=None, names=col_names)
+        # I need StringIO so string handled as file document. 
         
 
     # feedback
