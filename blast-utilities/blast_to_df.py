@@ -194,11 +194,34 @@ def blast_to_df(results, return_df = True, pickle_df=True):
     'sframe', 'frames', 'evalue', 'bitscore', 'qseq', 'sseq']
     # Bring in the necessary data and mke collected results into dataframe:
     #---------------------------------------------------------------------------
-    df = pd.read_csv(results, sep='\t', header=None, names=col_names)
-    # Documentation for `pd.read_csv()` seems to say it witll work with a string 
-    # so I think I woun't have to resort to acrobatics I used in 
+    # df = pd.read_csv(results, sep='\t', header=None, names=col_names)
+    # AT FIRST I HAD ABOVE, because I mistakenly though documentation said
+    # `pd.read_csv()` work with a string so I thought I wouldn't have to resort
+    # to acrobatics I used in
     # `patmatch_results_to_df.py` to handle correctly whether provided a file
-    # or string. 
+    # or string; however, seems that I do need to handle all that.
+    try:
+        df = pd.read_csv(results, sep='\t', header=None, names=col_names)
+    except (TypeError,OSError,IOError) as e:
+        # The `except` above the pass has three errors it excepts because the
+        # first was a TypeError seen when I tried to pass a file-like string to
+        # `with open` because it seems `with open` method is incompatible with
+        # use of StringIO, I think, which I usually use to try to pass things 
+        # associated with file methods string. (I qualifed it with 'I think' b/c 
+        # questions on stackoverlflow seemed to agree but I didn't try every 
+        # possibility because realized this would probably be a better way to 
+        # handle anyway.) That TypeError except got me to the next issue which
+        # was trying the string as a file name and getting it was too long, and 
+        # so I added the `OSError` catch and that seemed to make passing a 
+        # string into the function work. `IOError` seemed to handle that same
+        # thing in Python 2.7.
+        # Note "FileNotFoundError is a subclass of OSError"(https://stackoverflow.com/a/28633573/8508004)
+        try:
+            from StringIO import StringIO
+        except ImportError:
+            from io import StringIO
+        df = pd.read_csv(StringIO(results), sep='\t', header=None, names=col_names)
+        # I need StringIO so string handled as file document. 
         
 
     # feedback
