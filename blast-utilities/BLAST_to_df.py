@@ -54,6 +54,7 @@ __version__ = "0.1.0"
 
 #
 # To do:
+# - sort out of working for string with `read_csv`. I had weird results and need to test fresh!!!
 # - verify works with Python 2.7
 # - add demo links to replace instances of https://git.io/????????
 #
@@ -151,8 +152,7 @@ def _(row):
 #*******************************************************************************
 ###------------------------'main' function of script---------------------------##
 
-def BLAST_to_df(
-    results, return_df = True, pickle_df=True):
+def BLAST_to_df(results, return_df = True, pickle_df=True):
     '''
     Main function of script. 
     BLAST results to Pandas dataframe.
@@ -168,7 +168,7 @@ def BLAST_to_df(
     data driectly from shell to Python without a typical file 
     intermediate, see the advanced notebook at https://git.io/???????? for 
     examples. The obvious use case for that is when working in the Jupyter 
-    # notebook environment.
+    notebook environment.
 
     For the function to work, it necessitates that the BLAST command be run with
     `-outfmt "6 qseqid sseqid stitle pident qcovs length mismatch gapopen qstart
@@ -183,11 +183,38 @@ def BLAST_to_df(
     # Bring in the necessary data and mke collected results into dataframe:
     #---------------------------------------------------------------------------
 
-    df = pd.read_csv(results, sep='\t', header=None, names=col_names) # did 
-    # it this way because from documentation `pd.read_csv()` work with a string
-    # so don't have to result to acrobatics I used in 
+    # df = pd.read_csv(results, sep='\t', header=None, names=col_names) 
+    # AT FIRST I HAD ABOVE, because I mistakenly though documentation said 
+    # `pd.read_csv()` work with a string so I thought I wouldn't have to resort 
+    # to acrobatics I used in 
     # `patmatch_results_to_df.py` to handle correctly whether provided a file 
-    # or string.
+    # or string; however, seems that I do need to handle all that.
+    try:
+        df = pd.read_csv(results, sep='\t', header=None, names=col_names)
+    except (TypeError,OSError,IOError) as e:
+        # The `except` above the pass has three errors it excepts because the
+        # first was a TypeError seen when I tried to pass a file-like string to
+        # `with open` because it seems `with open` method is incompatible with
+        # use of StringIO, I think, which I usually use to try to pass things 
+        # associated with file methods string. (I qualifed it with 'I think' b/c 
+        # questions on stackoverlflow seemed to agree but I didn't try every 
+        # possibility because realized this would probably be a better way to 
+        # handle anyway.) That TypeError except got me to the next issue which
+        # was trying the string as a file name and getting it was too long, and 
+        # so I added the `OSError` catch and that seemed to make passing a 
+        # string into the function work. `IOError` seemed to handle that same
+        # thing in Python 2.7.
+        # Note "FileNotFoundError is a subclass of OSError"(https://stackoverflow.com/a/28633573/8508004)
+        try:
+            from StringIO import StringIO
+        except ImportError:
+            from io import StringIO
+        df = pd.read_table(StringIO(results), sep='\t', header=None, names=col_names)
+        # I need StringIO so string handled as file document. Also note that at ONE TIME
+        # didn't work when I had `pd.read_csv()` here but worked when I switched
+        # to `pd.read_table()`.!?! Makes no sense since both have StringIO 
+        # listed in documentation.
+        
 
     # feedback
     sys.stderr.write("Provided results read and converted to a dataframe...")
