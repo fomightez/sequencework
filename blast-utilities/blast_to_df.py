@@ -9,7 +9,7 @@ __version__ = "0.1.0"
 # ver 0.1
 #
 #*******************************************************************************
-# Verified compatible with both Python 2.7 ?? and Python 3.6; written initially in 
+# Verified compatible with both Python 2.7 and Python 3.6; written initially in 
 # Python 3. 
 #
 #
@@ -68,8 +68,6 @@ __version__ = "0.1.0"
 
 #
 # To do:
-# - sort out of working for string with `read_csv`. I had weird results and need to test fresh!!!
-# - verify works with Python 2.7
 # - add demo links to replace instances of https://git.io/????????
 #
 #
