@@ -235,7 +235,7 @@ def blast_to_df(results, return_df = True, pickle_df=True):
     # Jupyter notebook display in some manner. 
     # Using `df.to_string()` because more universal than `print(df)` 
     # or Jupyter's `display(df)`.
-    #sys.stderr.write( "\nFor documenting purposes, the following lists the "
+    #sys.stderr.write("\nFor documenting purposes, the following lists the "
     #    "parsed data:\n")
     #with pd.option_context('display.max_rows', None, 'display.max_columns', None):
     #    display(df)
@@ -249,7 +249,7 @@ def blast_to_df(results, return_df = True, pickle_df=True):
     else:
         df.to_pickle(df_save_as_name )
         # Let user know
-        sys.stderr.write( "\n\nA dataframe of the data "
+        sys.stderr.write("\n\nA dataframe of the data "
         "has been saved as a file\nin a manner where other "
         "Python programs can access it (pickled form).\n"
         "RESULTING DATAFRAME is stored as ==> '{}'".format(df_save_as_name ))
@@ -258,7 +258,7 @@ def blast_to_df(results, return_df = True, pickle_df=True):
     # Return dataframe (optional)
     #---------------------------------------------------------------------------
     if return_df:
-        sys.stderr.write( "\n\nReturning a dataframe with the information "
+        sys.stderr.write("\n\nReturning a dataframe with the information "
                 "as well.")
         return df
 
