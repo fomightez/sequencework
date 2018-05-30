@@ -177,7 +177,7 @@ def blast_to_df(results, return_df = True, pickle_df=True):
     Meant for use in a Jupyter notebook.
 
     The option to provide the results as a string is to handle where sending the
-    data driectly from shell to Python without a typical file 
+    data directly from shell to Python without a typical file 
     intermediate, see the advanced notebook at https://git.io/???????? for 
     examples. The obvious use case for that is when working in the Jupyter 
     notebook environment.
@@ -245,7 +245,7 @@ def blast_to_df(results, return_df = True, pickle_df=True):
     if pickle_df == False:
         sys.stderr.write("\n\nA dataframe of the data "
         "was not stored for use\nelsewhere "
-        "because `no_pickling` was specified in place of the output file name.")
+        "because `no_pickling` was specified.")
     else:
         df.to_pickle(df_save_as_name )
         # Let user know
