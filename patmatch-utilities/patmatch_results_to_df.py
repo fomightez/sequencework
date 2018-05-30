@@ -174,7 +174,7 @@ def patmatch_results_to_df(
     Meant for use in a Jupyter notebook.
 
     The option to provide the results as a string is to handle where sending the
-    data driectly from shell script to Python without a typical file 
+    data directly from shell script to Python without a typical file 
     intermediate, see the advanced notebook at https://git.io/vpr7i for 
     examples. The obvious use case for that is when working in the Jupyter 
     # notebook environment.
@@ -202,6 +202,7 @@ def patmatch_results_to_df(
         # so I added the `OSError` catch and that seemed to make passing a 
         # string into the function work. `IOError` seemed to handle that same
         # thing in Python 2.7.
+        # Note "FileNotFoundError is a subclass of OSError"(https://stackoverflow.com/a/28633573/8508004)
 
     # feedback
     sys.stderr.write("Provided results read...")
@@ -329,7 +330,7 @@ def patmatch_results_to_df(
     if pickle_df == False:
         sys.stderr.write("\n\nA dataframe of the parsed data shown above "
         "was not stored for use\nelsewhere "
-        "because `no_pickling` was specified in place of the output file name.")
+        "because `no_pickling` was specified.")
     else:
         df.to_pickle(df_save_as_name )
         # Let user know
