@@ -12,7 +12,7 @@ Takes output from command line BLAST and makes a dataframe from it for use with 
 Verified compatible with both Python 2.7 and Python 3.6.
 
 Written to run from command line or pasted/loaded inside a Jupyter notebook cell.  
-The main ways to run the script are demonstrated in [a series of notebooks???](???). (Not written yet but in the meantime, I am adding to this repo [a tiny demo of using it](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/blast-utilities/demo_blast2df_in_python2.ipynb) from when I verified it worked in Python 2.)
+The main ways to run the script are demonstrated in [a series of notebooks found here](https://github.com/fomightez/blast-binder). They can be run actively by pressing the `launch binder` button [there](https://github.com/fomightez/blast-binder). (https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/blast-utilities/demo_blast2df_in_python2.ipynb) in Python 2.)
 
 Assumes BLAST is run with the flag below:
 ```
@@ -46,7 +46,7 @@ To use this script after pasting or loading into a cell in a Jupyter notebook, i
 ```
 df = blast_to_df("results_file.txt")
 ```
-See [here????](???????) for notebooks demonstrating use within a Jupyter notebook.
+See [here](https://git.io/vh8M7) and for notebooks demonstrating use within a Jupyter notebook; click `luanch binder` to launch the notebooks from there.
 
 
 Related
