@@ -20,7 +20,7 @@ __version__ = "0.1.0"
 #
 # This script is meant to be a utility script for working with command 
 # line-based BLAST and Python, see a demonstration of use in
-# https://git.io/????????
+# https://git.io/vh8M9
 # 
 # It working necessitates that the BLAST command run with `-outfmt "6 qseqid 
 # sseqid stitle pident qcovs length mismatch gapopen qstart qend sstart send 
@@ -32,7 +32,7 @@ __version__ = "0.1.0"
 #
 # Written to run from command line or imported into/pasted/loaded inside a 
 # Jupyter notebook cell. When doing in Jupyter (IPython, I believe) you can skip
-# the file save intermediate see https://git.io/????????
+# the file save intermediate see https://git.io/vh8Mi
 #
 #
 #
@@ -68,7 +68,6 @@ __version__ = "0.1.0"
 
 #
 # To do:
-# - add demo links to replace instances of https://git.io/????????
 #
 #
 #
@@ -83,7 +82,7 @@ __version__ = "0.1.0"
 # Issue `blast_to_df.py -h` for details.
 # 
 # More examples from running from the command line are at the links below: 
-# https://git.io/????????
+# https://git.io/vh8M9
 #
 #
 #
@@ -96,7 +95,7 @@ __version__ = "0.1.0"
 #
 # A more in-depth series of examples of using this script within a notebook 
 # without need to save file intermediates is found at:
-# https://git.io/????????
+# https://git.io/vh8M9
 #
 # 
 #
@@ -178,7 +177,7 @@ def blast_to_df(results, return_df = True, pickle_df=True):
 
     The option to provide the results as a string is to handle where sending the
     data directly from shell to Python without a typical file 
-    intermediate, see the advanced notebook at https://git.io/???????? for 
+    intermediate, see the advanced notebook at https://git.io/vh8M9 for 
     examples. The obvious use case for that is when working in the Jupyter 
     notebook environment.
 
