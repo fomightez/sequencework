@@ -3,12 +3,12 @@
 Repo for my own computational resources dealing with aligning and alignments (both nucleic and protein), plus give me a place to reference other handy resources.
 
 * add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py
-> alignment --> alignment with top sequence in alignment blocks numbered according to actual contiguous sequence (i.e., excluding gaps)
+> alignment text --> alignment text with top sequence in alignment blocks annotated with numbering according to actual contiguous sequence (i.e., excluding gaps)
 
 info here
 
 * BIOALIGNAMER (* NOT HERE YET BUT BELONGS HERE*)
->alignment with cryptic identifiers for organisms --> common names as ids
+>alignment text with cryptic identifiers for organisms --> alignment text with common names as ids
 
 I'd need to see if it needs updating/fixing (for example, I think it is purely 2.7) but I have one of the more fleshed out Python scripts I wrote that corrects names in alignments to add the common name automaigically. Created for facilating pipelines for submitting tasks to the GARLI webserver.
 I intended to put up a web-served version of it [here](http://fomightez.pythonanywhere.com/) but I recall I hadn't figured out how to get the toggles to work at the bottom at the time for controlling the command line parameters. (I knot I got some text entry forms working later, for example see [here](http://fomightez.pythonanywhere.com/ammonium_screen/) and [here](http://fomightez.pythonanywhere.com/spartan_fixer/) and [here](http://fomightez.pythonanywhere.com/triplet_freq/), and so I probably could figure it out now.)
