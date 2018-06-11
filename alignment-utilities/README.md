@@ -18,6 +18,24 @@ I intended to put up a web-served version of it [here](http://fomightez.pythonan
 
 info here
 
+* extract_regions_from_clustal_alignment.py
+> alignment of large region ---> alignment of a portion plus sequence of ungapped corresponding block/
+
+Intended to be used then aligning the entire chromosome along full length to insure corresponding sub-regions best aligned (assuming no rearramgements).
+
+info here.
+
+
+* reverse_complement_of_clustal_alignment.py
+> alignment ---> alignment with same sequences in reverse complement form
+
+Intended to be used after `extract_regions_from_clustal_alignment.py` for sequences on the other (a.k.a. reverse) strand because some might be on other strand when extract from entire chromosome and sometimes still it would make more sense to view the extracted sequence in the other direction. For example, if typically used to looking at the regions in one direction, etc.
+
+info here.
+
+
+
+
 Utilities by others
 ------------------
 
