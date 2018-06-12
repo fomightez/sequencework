@@ -34,6 +34,10 @@ Intended to be used after `extract_regions_from_clustal_alignment.py` for sequen
 info here.
 
 
+* calculate_cons_for_clustal_nucleic.py
+> nucleic alignment without consensus line ---> alignment with consensus line
+
+info here.
 
 
 Utilities by others
