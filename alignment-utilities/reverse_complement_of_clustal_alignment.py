@@ -422,7 +422,7 @@ if __name__ == "__main__" and '__file__' in globals():
         (fomightez @ github) ***")
 
     parser.add_argument("align_file", help="Name of file of alignmnet text \
-        file to add numbers according to the top line.\
+        file.\
         ", metavar="ALIGNMENT_FILE")
 
 
