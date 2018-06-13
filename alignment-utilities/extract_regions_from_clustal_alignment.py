@@ -20,7 +20,7 @@ __version__ = "0.1.0"
 # positions (coordinates) for the sequence on the top line, presumably the 
 # reference. (The alignment can also be provided as a Python string to the 
 # script or core function when running in a computational environment, such as 
-# Jupyter notebook.)
+# Jupyter notebook. MAYBE THIS DOESN't WORK YET!!!!)
 # 
 # This is useful after you have performed a large alignment, say of an entire 
 # chromosome, in order to have individual occurences of related segments fall 
@@ -549,12 +549,12 @@ if __name__ == "__main__" and '__file__' in globals():
         large region, such as an entire chromosome and extracts the sequences \
         that corresponds to a specific region according to the ungapped \
         numbering of the positions (coordinates) for the sequence on the top \
-        line, presumably the reference..\
+        line, presumably the reference.\
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
 
     parser.add_argument("align_file", help="Name of file of alignmnet text \
-        file to add numbers according to the top line.\
+        file.\
         ", metavar="ALIGNMENT_FILE")
 
     parser.add_argument("region", help="Region to cover in extracting. Provide \
