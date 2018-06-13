@@ -34,9 +34,9 @@ Intended to be used after `extract_regions_from_clustal_alignment.py` for sequen
 info here.
 
 * score_columns_in_clustal_nucleic.py
-> nucleic alignment ---> two scores assessing conservation in a quick-n-dirty 
+> nucleic alignment ---> two scores assessing conservation of an MSA overall in a quick-n-dirty manner
 
-Intended to be used when comparing separate alignments of related but distinct repetitive genetic elements in order to objectively assess which of the related elements are more highly conserved.
+Intended to be used when comparing separate alignments of related but distinct repetitive genetic elements in order to objectively assess which of the related elements are more highly conserved overall.
 
 info here
 
