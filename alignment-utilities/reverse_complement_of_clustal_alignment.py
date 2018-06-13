@@ -417,7 +417,7 @@ if __name__ == "__main__" and '__file__' in globals():
         large region, such as an entire chromosome and extracts the sequences \
         that corresponds to a specific region according to the ungapped \
         numbering of the positions (coordinates) for the sequence on the top \
-        line, presumably the reference..\
+        line, presumably the reference.\
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
 
