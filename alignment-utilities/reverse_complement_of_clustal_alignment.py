@@ -243,8 +243,8 @@ def reverse_complement_of_clustal_alignment(
     # notebook environment.
     '''
     # feedback about important option
-    sys.stderr.write("**NOTE: gap indicator in this script is currently set to "
-        "'{}'. If\nthat does not match what provided alignment uses to "
+    sys.stderr.write("\n**NOTE: gap indicator in this script is currently set "
+        "'to {}'. If\nthat does not match what provided alignment uses to "
         "indicate gaps,\nplease change the setting within the script code "
         "under\n'USER ADJUSTABLE VALUES' around line 120 "
         "(give or take a few).**\n".format(gap_indicator))
