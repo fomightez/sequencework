@@ -33,11 +33,18 @@ Intended to be used after `extract_regions_from_clustal_alignment.py` for sequen
 
 info here.
 
+* score_columns_in_clustal_nucleic.py
+> nucleic alignment ---> two scores assessing conservation in a quick-n-dirty 
+
+Intended to be used when comparing separate alignments of related but distinct repetitive genetic elements in order to objectively assess which of the related elements are more highly conserved.
+
+info here
 
 * calculate_cons_for_clustal_nucleic.py
 > nucleic alignment without consensus line ---> alignment with consensus line
 
 info here.
+
 
 
 Utilities by others
