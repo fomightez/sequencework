@@ -413,11 +413,9 @@ if __name__ == "__main__" and '__file__' in globals():
     parser = argparse.ArgumentParser(prog=
         'reverse_complement_of_clustal_alignment.py',
         description="reverse_complement_of_clustal_alignment.py \
-        takes a text document of an alignment in CLUSTAL format, presumably a \
-        large region, such as an entire chromosome and extracts the sequences \
-        that corresponds to a specific region according to the ungapped \
-        numbering of the positions (coordinates) for the sequence on the top \
-        line, presumably the reference.\
+        takes a text document of an alignment in CLUSTAL format and outputs \
+        that same alignment, but with composing sequences as reverse \
+        complements.\
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
 
