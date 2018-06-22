@@ -36,7 +36,8 @@ __version__ = "0.1.0"
 #
 # It is designed to handle gaps indicated with either periods or dashes.
 # For those on the reverse strand, there is a related script that takes the
-# alignment block and makes the reverse complement of that, called EHWEHRKLWHEKLRHJWEKLRWKEJRLWKE??
+# alignment block and makes the reverse complement of that, called 
+# `reverse_complement_of_clustal_alignment.py`.
 #
 #
 # 
@@ -69,7 +70,6 @@ __version__ = "0.1.0"
 
 #
 # To do:
-# - replace `EHWEHRKLWHEKLRHJWEKLRWKEJRLWKE??` with script name
 #
 #
 #
