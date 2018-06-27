@@ -330,10 +330,10 @@ def extract_regions_from_clustal_alignment(
             if line.strip().startswith(id_):
                 if id_ in alignment_dict:
                     alignment_dict[id_] += line[len(
-                        id_):].strip().split(" ")[0].strip()
+                        id_):].strip().split()[0].strip()
                 else:
                     alignment_dict[id_] =  line[len(
-                        id_):].strip().split(" ")[0].strip()
+                        id_):].strip().split()[0].strip()
 
     # Because: "Note the website should have an option about showing gaps as 
     # periods (dots) or dashes, we’ve shown dashes above." - SOURCE: 
