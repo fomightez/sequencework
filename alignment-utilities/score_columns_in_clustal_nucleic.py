@@ -33,9 +33,9 @@ __version__ = "0.1.0"
 # 
 #
 # Written to run from command line or imported into/pasted/loaded inside a 
-# Jupyter notebook cell. When doing in Jupyter (IPython, I believe) you can skip
-# the file save intermediate, see https://git.io/vh8Mi for similar advanced 
-# examples.
+# Jupyter notebook cell. (Is this working--> When doing in Jupyter (IPython, I 
+# believe) you can skip the file save intermediate, see https://git.io/vh8Mi for 
+# similar advanced examples.)
 #
 #
 #
@@ -60,7 +60,7 @@ __version__ = "0.1.0"
 
 #
 # To do:
-# - 
+# - see if works when alignment provided as in-memory string
 #
 #
 #
