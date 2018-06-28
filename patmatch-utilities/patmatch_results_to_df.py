@@ -170,8 +170,8 @@ def patmatch_results_to_df(
     It will take a file of results (or the results as a Python string) from 
     command line-based PatMatch and make a dataframe that will be more useful 
     with Python/other genetic-oriented Python scripts.
-    Optionally also returns a dataframe of the results data. 
-    Meant for use in a Jupyter notebook.
+    Optionally also returns a dataframe of the results data. Meant for use in a 
+    Jupyter notebook.
 
     The option to provide the results as a string is to handle where sending the
     data directly from shell script to Python without a typical file 
