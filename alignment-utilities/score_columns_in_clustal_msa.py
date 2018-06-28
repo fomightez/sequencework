@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-# score_columns_in_clustal_nucleic.py
+# score_columns_in_clustal_msa.py
 __author__ = "Wayne Decatur" #fomightez on GitHub
 __license__ = "MIT"
 __version__ = "0.1.0"
 
 
-# score_columns_in_clustal_nucleic.py by 
+# score_columns_in_clustal_msa.py by 
 # Wayne Decatur
 # ver 0.1
 #
@@ -20,10 +20,10 @@ __version__ = "0.1.0"
 # columns both including and excluding counting gaps in the column. This is done
 # in order to assign some rough scoring metric(s) to an alignment. The metric(s)
 # can then be used when comparing separate alignments of related, but distinct 
-# repetitive genetic elements in order to objectively assess which of the 
-# related elements are more highly conserved overall given what a particular
-# 'score' emphasizes. Mainly meant to be a rough guide to replace (or confirm) 
-# visual inspection.
+# genetic elements or protein para/orthologs/families in order to objectively 
+# assess which of the related elements are more highly conserved overall given 
+# what a particular 'score' emphasizes. Mainly meant to be a rough guide to 
+# replace (or confirm) visual inspection.
 #
 # Excluding gaps in the column is meant to allow insertions in a few sequences 
 # not to be penalized as much and instead allow greater impact from segments
@@ -69,17 +69,17 @@ __version__ = "0.1.0"
 # Examples,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# python score_columns_in_clustal_nucleic.py -ALIGNMENT_TEXT_FILE
+# python score_columns_in_clustal_msa.py -ALIGNMENT_TEXT_FILE
 #-----------------------------------
 #
-# Issue `score_columns_in_clustal_nucleic.py -h` for details.
+# Issue `score_columns_in_clustal_msa.py -h` for details.
 # 
 #
 #
 # To use this after importing/pasting or loading into a cell in a Jupyter 
 # notebook, specify at least the results file (or results as a string) in the 
 # call to the main function similar to below:
-# score_columns_in_clustal_nucleic("test.clustal")
+# score_columns_in_clustal_msa("test.clustal")
 # 
 #-or-
 # To specify OPTIONAL ....
@@ -89,7 +89,7 @@ __version__ = "0.1.0"
 '''
 CURRENT ACTUAL CODE FOR RUNNING/TESTING IN A NOTEBOOK WHEN IMPORTED/LOADED OR 
 PASTED IN ANOTHER CELL:
-score_columns_in_clustal_nucleic("test.clustal")
+score_columns_in_clustal_msa("test.clustal")
 '''
 #
 #
@@ -224,7 +224,7 @@ def generate_output_file_name(file_name,suffix_for_saving, fa=False, tb = False)
 #*******************************************************************************
 ###------------------------'main' function of script---------------------------##
 
-def score_columns_in_clustal_nucleic(
+def score_columns_in_clustal_msa(
     alignment, 
     suffix_for_saving = suffix_for_saving, name_basis="alignment.clustal"):
     '''
@@ -369,7 +369,7 @@ def main():
     kwargs = {}
     #kwargs['descr_source'] = descr_source
     kwargs['suffix_for_saving'] = suffix_for_saving
-    score_columns_in_clustal_nucleic(alignment,**kwargs)
+    score_columns_in_clustal_msa(alignment,**kwargs)
     # using https://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/#calling-a-function
     # to build keyword arguments to pass to the function above
     # (see https://stackoverflow.com/a/28986876/8508004 and
@@ -391,14 +391,15 @@ if __name__ == "__main__" and '__file__' in globals():
     ###-----------------for parsing command line arguments-----------------------###
     import argparse
     parser = argparse.ArgumentParser(prog=
-        'score_columns_in_clustal_nucleic.py',
-        description="score_columns_in_clustal_nucleic.py \
+        'score_columns_in_clustal_msa.py',
+        description="score_columns_in_clustal_msa.py \
         takes a text document of an alignment in CLUSTAL format  and generates \
         a couple of quick-n-dirty 'scores' based on percent overall \
         conservation in an alignment. Specifically, determines conservation of \
         residues in alignment columns both including and excluding counting \
         gaps in the column. Intended to be used when comparing separate \
-        alignments of related but distinct repetitive genetic elements in \
+        alignments of related but distinct genetic elements  or protein \
+        para/orthologs/families in \
         order to objectively assess which of the related elements are more \
         highly conserved overall. \
         **** Script by Wayne Decatur   \
