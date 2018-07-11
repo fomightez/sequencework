@@ -20,10 +20,10 @@ __version__ = "0.1.0"
 # columns both including and excluding counting gaps in the column. This is done
 # in order to assign some rough scoring metric(s) to an alignment. The metric(s)
 # can then be used when comparing separate alignments of related, but distinct 
-# genetic elements or protein para/orthologs/families in order to objectively 
-# assess which of the related elements are more highly conserved overall given 
-# what a particular 'score' emphasizes. Mainly meant to be a rough guide to 
-# replace (or confirm) visual inspection.
+# genetic elements or protein para/orthologs/gene family members/gene cluster 
+# members in order to objectively  assess which of the related elements are more
+# highly conserved overall given what a particular 'score' emphasizes. Mainly 
+# meant to be a rough guide to replace (or confirm) visual inspection.
 #
 # Excluding gaps in the column is meant to allow insertions in a few sequences 
 # not to be penalized as much and instead allow greater impact from segments
