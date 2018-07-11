@@ -36,7 +36,7 @@ info here.
 * score_columns_in_clustal_msa.py
 >alignment ---> two scores assessing conservation of an MSA overall in a quick-n-dirty manner
 
-Intended to be used when comparing separate alignments of related but distinct genetic elements or protein para/orthologs/families in order to objectively assess which of the related elements are more highly conserved overall.
+Intended to be used when comparing separate alignments of related but distinct genetic elements or protein paralogs/orthologs/gene family members/gene cluster members in order to objectively assess which of the related elements are more highly conserved overall.
 
 info here
 
