@@ -1,6 +1,6 @@
 # BLAST-utilities
 
-Utility scripts for working with command line-based BLAST, which is already installed and working in the Jupyter instances launchable [here](https://github.com/fomightez/qgrid-notebooks).
+Utility scripts for working with command line-based BLAST, which is already installed and working in the Jupyter instances launchable [here](https://github.com/fomightez/blast-binder).
 
 # The scripts
 
