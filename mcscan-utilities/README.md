@@ -8,7 +8,7 @@ Utility scripts for working with MCscan software, which is already installed and
 > MCscan results --> assessment of whether significant rearrangement of the chromosome/genome has occured.
 
 Developed primarily for core function `get_if_chromosome_rearranged("<anchors_file>")` to be used in Jupyter notebook environment. 
-Needs to be run after performing the `python2 -m jcvi.compara.catalog ortholog` step. See the Example Workflow [here](https://github.com/fomightez/mcscan-binder) for familiarizing yourself with that step.
+Needs to be run after performing the `python2 -m jcvi.compara.catalog ortholog` step. See the Example Workflow [here](https://github.com/tanghaibao/jcvi/wiki/MCscan-(Python-version)) for familiarizing yourself with that step.
 
 There is a version that just reworks the code from the `dotplot.py` but that
 was way longer than it needed to be because of the interconnectedness of the 
