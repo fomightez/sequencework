@@ -152,10 +152,23 @@ TAAATGAAAACATGCATCTTTATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 - These scripts may have issues working as written once the GI sequence identifiers get phased out as described in section 1.4.1 of the [June 15 2015 Distribution Release Notes for NCBI-GenBank Flat File Release 208.0](ftp://ftp.ncbi.nih.gov/genbank/gbrel.txt) that can be found at ftp://ftp.ncbi.nih.gov/genbank/gbrel.txt. The GI accession form will be phased out by mid 2016 according to those release notes.
 - I should work on switching them over to the Accession.Version system. 
 
+# Related scripts by me
+
+I have coded several for extracting various sequences or subsequences from FASTA files using biopython. For example, see `drafting_extracting_mito_chr_function.py`. ` 
+
 
 # Related scripts by others
 
-I came across someone else's (Leighton Pritchard) take on getting coding sequences for proteins with the protein sequence in early 2018:
+-Haibao Tang's jcvi/MCscan software, see [here for links and info](https://github.com/fomightez/mcscan-binder), contains a script that
+collect sequennces matching features annotated in gff3 files:
+
+>" Parses the selected features out of GFF, with subfeatures concatenated.
+    For example, to get the CDS sequences, do this:
+    $ gff.py load athaliana.gff athaliana.fa --parents mRNA --children CDS"
+
+It can be called with `!python2 -m jcvi.formats.gff load` in a Jupyter envioronment with jcvi/MCscan installed (easily launched from [here](https://github.com/fomightez/mcscan-binder)). Use that command alone to get 'help' information/usage from which that quote above i taken.
+
+- I came across someone else's (Leighton Pritchard) take on getting coding sequences for proteins with the protein sequence in early 2018:
 Maybe useful stuff or better? See [here](https://twitter.com/widdowquinn/status/963148471334158336)
 
 >"Need to work backwards from proteins to their coding sequences? Tired of trawling through the database to get the CDS? Me, too. So I wrote this: https://widdowquinn.github.io/ncfp/     I hope you find it useful. Bugs, issues etc. here, please: https://github.com/widdowquinn/ncfp/issues …"
