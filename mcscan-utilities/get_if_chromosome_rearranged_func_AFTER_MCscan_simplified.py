@@ -188,13 +188,22 @@ def get_if_chromosome_rearranged(anchors_file):
     bed_files = (qbed,sbed)
 
     # Parse the contents in the BED file first to put them in ROUGH order of 
-    # how they would be along chromsome. MORE ON THIS:
-    # I am opting to simplify dealing with the coordinates and just use midpoints
-    # instead of requiring pre-sorting of BED file. Should work for most things
-    # But I imagine with slightly different sized genes on another strand, when 
-    # overlapping, they could appear to move in order because using midpoint.
-    # So note above how `get_if_chromosome_rearranged_func_based_on_mcscan.py`
-    # might be safer in such cases.
+    # how they would be along chromsome. This should be actually moot as 
+    # according to running `!python2 -m jcvi.formats.gff bed`, the default is 
+    # to sort when the bed file is made from the gff3 if following the normal 
+    # workflow, see 
+    # https://github.com/tanghaibao/jcvi/wiki/MCscan-(Python-version)#workflow 
+    # and so just putting here mostly in case I forget that and come to the 
+    # Bed file from another route and expect order not to matter in upstream
+    # steps. This probably would handle any naive assumptions like that.
+    # MORE ON THIS:
+    # I am opting to simplify dealing with the coordinates and just use 
+    # midpoints instead of requiring pre-sorting of BED file. Should work for 
+    # most things. But I imagine with slightly different sized genes on another 
+    # strand, when overlapping, they could appear to move in order because 
+    # using midpoint. So that is why I noted above that 
+    # `get_if_chromosome_rearranged_func_based_on_mcscan.py` might be safer in 
+    # such cases.
     # Resources about this:
     # BEDOPS noted at http://seqanswers.com/forums/showthread.php?t=17721
     # http://seqanswers.com/forums/showthread.php?t=32100
