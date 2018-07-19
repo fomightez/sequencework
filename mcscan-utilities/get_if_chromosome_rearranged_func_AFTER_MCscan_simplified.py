@@ -28,6 +28,14 @@ __version__ = "0.1.0"
 # jcvi package parts, and so this oversimplifies what I assume
 # `get_if_chromosome_rearranged_func_based_on_mcscan.py` does. (There is no one-
 # to-one correspondance between the two implementations worked out.)
+# 
+# Note that this version only considers genes for which it has orthologs 
+# identified. This seems actually where this 'simplified' approach may be better
+# than the one derived from the dotplot.py script. That is because additional
+# genes will no longer make the items in the query set not the same where as
+# from looking at the dotplot output, it looks like additional genes in one
+# organism being compared cause the list of the query and subject genes to never
+# match and always seem to show a rearrangement.
 #
 # Instead of requiring a sorted BED file among the input, i.e., so numerically 
 # gene position ascending, I am going to use a simplified approach 
@@ -44,7 +52,8 @@ __version__ = "0.1.0"
 # a rearrangement has occured.) Likewise, this simplified script will only work 
 # with a single chromosome (or single-chromosome genome). Again, use 
 # `get_if_chromosome_rearranged_func_based_on_mcscan.py` if you need overview
-# for multiple chromosomes.
+# for multiple chromosomes. But see note above about when bed files being used 
+# to compare have unequal numbers of genes.
 #
 # 
 #
@@ -236,6 +245,11 @@ def get_if_chromosome_rearranged(anchors_file):
     # Sort based on midpoint to sort (roughly)
     qbed_lines.sort(key=operator.itemgetter(1))
     sbed_lines.sort(key=operator.itemgetter(1))
+
+    #To assure that only genes with correspondences are considered for examining
+    # for rearrangements remove any lines form the bed file lines that don't contain
+
+
     bed_file_lines = (qbed_lines,sbed_lines)
 
     # Parse `.bed` files contents (now semi-sorted) -- column 4 (3 in 
@@ -246,13 +260,24 @@ def get_if_chromosome_rearranged(anchors_file):
     for indx,current_bed in enumerate(bed_file_lines):
         if indx == 0:
             list_to_build = qbed_ids_in_order
+            ids_of_concern = qids_to_sids_correspondences.keys()
         else:
             list_to_build = sbed_ids_in_order
+            ids_of_concern = qids_to_sids_correspondences.values()
         for line_pos_tuple in current_bed:
             line = line_pos_tuple[0]
             if not line.startswith('#'):
                 cols = line.split("\t")
-                list_to_build.append(cols[3])
+                if cols[3] in ids_of_concern:
+                    list_to_build.append(cols[3])
+                # The `if cols[3] in ids_of_concern:` conditional added before 
+                # that append is to 
+                # assure that only genes with correspondences are considered for 
+                # examining for rearrangements. Those not shared won't be 
+                # appended and thus the order of such genes will not considered 
+                # further in the script/function. Added because I was noticing
+                # when examining dotplots that the genes not shared were being 
+                # plotted and thus they would cause issues if 
 
     # Determine location of corresponding ids in each bed file
     qbed_loc = []
