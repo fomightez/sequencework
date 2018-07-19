@@ -320,9 +320,9 @@ def main():
     # (maybe https://stackoverflow.com/a/7437238/8508004 might help too) for 
     # related help). Makes it easy to add more later.
     if result:
-        print("Rearrangement DETECTED.")
+        print("Rearrangement DETECTED based on orthologs.")
     else:
-        print("Not significantly rearranged.")
+        print("Orthologs inidcate not significantly rearranged.")
 
 
 if __name__ == "__main__" and '__file__' in globals():
