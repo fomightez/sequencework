@@ -31,11 +31,10 @@ __version__ = "0.1.0"
 # 
 # Note that this version only considers genes for which it has orthologs 
 # identified. This seems actually where this 'simplified' approach may be better
-# than the one derived from the dotplot.py script. That is because additional
-# genes will no longer make the items in the query set not the same where as
-# from looking at the dotplot output, it looks like additional genes in one
+# than the one derived from the dotplot.py script. That is because it looks like 
+# 'additional' / 'unshared' genes in one
 # organism being compared cause the list of the query and subject genes to never
-# match and always seem to show a rearrangement.
+# match and always report a rearrangement.
 #
 # Instead of requiring a sorted BED file among the input, i.e., so numerically 
 # gene position ascending, I am going to use a simplified approach 
