@@ -16,7 +16,7 @@ jcvi package parts, and so this oversimplifies what I assume
 `get_if_chromosome_rearranged_func_based_on_mcscan.py` does. (There is no one-
 to-one correspondance between the two implementations worked out.)
 
-Note that this version only considers genes for which it has orthologs identified. This seems actually where this 'simplified' approach may be better than the one derived from the dotplot.py script, `get_if_chromosome_rearranged_func_based_on_mcscan.py`. That is because additional genes will no longer make the items in the query set not the same where as from looking at the dotplot output, it looks like additional genes in one organism being compared cause the list of the query and subject genes to never match and always report a rearrangement.
+Note that this version only considers genes for which it has orthologs identified. This seems actually where this 'simplified' approach may be better than the one derived from the dotplot.py script, `get_if_chromosome_rearranged_func_based_on_mcscan.py`. That is because it looks like additional genes in one organism being compared cause the list of the query and subject genes to never match and always report a rearrangement.
 
 Instead of requiring a sorted BED file among the input, i.e., so numerically 
 gene position ascending, I use a simplified approach 
