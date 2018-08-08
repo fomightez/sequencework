@@ -39,7 +39,7 @@ To use this script after pasting or loading into a cell in a Jupyter notebook, i
 ```
 get_if_chromosome_rearranged("S288c.N44.anchors") 
 ```
-See [here](https://git.io/vh8M7) and for notebooks demonstrating use within a Jupyter notebook; click `luanch binder` to launch the notebooks from there.
+See [here](https://git.io/vh8M7) and for notebooks demonstrating use within a Jupyter notebook; click `launch binder` to launch the notebooks from there.
 
 
 Related
