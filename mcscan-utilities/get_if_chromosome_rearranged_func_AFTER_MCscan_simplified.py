@@ -61,7 +61,7 @@ __version__ = "0.1.0"
 #
 #
 # USE:
-# Intended to be used after MCscan run; I suggest luanching binder session
+# Intended to be used after MCscan run; I suggest launching binder session
 # from https://github.com/fomightez/mcscan-binder in order to use MCScan to 
 # perform the `python2 -m jcvi.compara.catalog ortholog` step.
 # 
