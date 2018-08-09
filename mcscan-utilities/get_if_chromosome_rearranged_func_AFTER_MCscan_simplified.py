@@ -14,7 +14,7 @@ __version__ = "0.1.0"
 #*******************************************************************************
 # Verified compatible with Python 2.7 and Python 3,6; JCVI/MCscan are currently 
 # only in Python 2.7, but you can run it in a kernel spawned with 3.6 in the
-# same session where JCVI/MCscan previously run. (The repo at 
+# same session where JCVI/MCscan was run with 2.7. (The repo at 
 # https://github.com/fomightez/mcscan-binder will spawn a Jupyter environment 
 # capable of both.)
 #
@@ -29,10 +29,10 @@ __version__ = "0.1.0"
 # `get_if_chromosome_rearranged_func_based_on_mcscan.py` does. (There is no one-
 # to-one correspondance between the two implementations worked out.)
 # 
-# Note that this version only considers genes for which it has orthologs 
-# identified. This seems actually where this 'simplified' approach may be better
-# than the one derived from the dotplot.py script. That is because it looks like 
-# 'additional' / 'unshared' genes in one
+# Note that this version only considers genes where orthologs/correspondences
+# identified. All others ignore. This seems actually where this 'simplified' 
+# approach may be better than the one derived from the dotplot.py script. That 
+# is because it looks like 'additional' / 'unshared' genes in one
 # organism being compared cause the list of the query and subject genes to never
 # match and always report a rearrangement.
 #
@@ -165,7 +165,7 @@ def get_if_chromosome_rearranged(anchors_file):
     This is a simplified version of the script 
     `get_if_chromosome_rearranged_func_based_on_mcscan.py`.
     '''
-    # Read and parse the anchors file to get the query and subect equivalent 
+    # Read and parse the anchors file to get the query and subject equivalent 
     # ids - first and second colums are qbed and sbed ids, respectively
     ''' Example anchors file
     ###
@@ -245,10 +245,6 @@ def get_if_chromosome_rearranged(anchors_file):
     qbed_lines.sort(key=operator.itemgetter(1))
     sbed_lines.sort(key=operator.itemgetter(1))
 
-    #To assure that only genes with correspondences are considered for examining
-    # for rearrangements remove any lines form the bed file lines that don't contain
-
-
     bed_file_lines = (qbed_lines,sbed_lines)
 
     # Parse `.bed` files contents (now semi-sorted) -- column 4 (3 in 
@@ -276,7 +272,8 @@ def get_if_chromosome_rearranged(anchors_file):
                 # appended and thus the order of such genes will not considered 
                 # further in the script/function. Added because I was noticing
                 # when examining dotplots that the genes not shared were being 
-                # plotted and thus they would cause issues if 
+                # plotted and thus they would cause issues, such as deviation
+                # from a straight, diagonal line.
 
     # Determine location of corresponding ids in each bed file
     qbed_loc = []
