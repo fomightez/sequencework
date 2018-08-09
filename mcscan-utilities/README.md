@@ -42,7 +42,7 @@ get_if_chromosome_rearranged("S288c.N44.anchors")
 See [here](https://git.io/vh8M7) and for notebooks demonstrating use within a Jupyter notebook; click `launch binder` to launch the notebooks from there.
 
 
-Related
+Related scripts by others
 -------
 
-???
+Annotation by MFannot is often part of using organelle genomic data. By default it produces a `masterfile` formatted outout file. That can be converted to a `GFF3` formatted annotation file, which is what MCscan needs to work with, via a Perl script called [mfannot2gff.pl](https://github.com/kbseah/mitonotate/blob/master/mfannot2gff.pl). That script is included in the [MITONOTATE Annotation pipeline for ciliate mitochondrial genomes](https://github.com/kbseah/mitonotate) created by Brandon Seah (kbseah@mpi-bremen.de).
