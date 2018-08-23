@@ -31,8 +31,9 @@ __version__ = "0.1.0"
 #
 #
 # Written to run from command line or imported into/pasted/loaded inside a 
-# Jupyter notebook cell. When doing in Jupyter (IPython, I believe) you can skip
-# the file save intermediate see https://git.io/vh8Mi
+# Jupyter notebook cell. When doing in Jupyter (or IPython, I believe) you can 
+# skip the file save intermediate, see https://git.io/vh8Mi for these advanced 
+# examples.
 #
 #
 #
@@ -78,7 +79,6 @@ __version__ = "0.1.0"
 #-----------------------------------
 # python blast_to_df.py -RESULTS_FILE
 #-----------------------------------
-# Best to add the `-p` flag if the results are from protein sequences.
 # Issue `blast_to_df.py -h` for details.
 # 
 # More examples from running from the command line are at the links below: 
