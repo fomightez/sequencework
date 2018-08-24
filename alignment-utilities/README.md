@@ -46,6 +46,20 @@ info here
 info here.
 
 
+* roughly_score_relationships_to_subject_seq_pairwise_premsa.py
+> sequences in FASTA format (single multi-FASTA file)  ---> quick assessment of similarity of first sequence to each of the others
+
+Meant to be run prior a multi-sequence alignment task in order to tell quickly what is similar to one another and maybe leave out redundant sequences if you are looking to reduce the submitted alignment job.
+
+Produces a ranked list where the highest scoring one is closest to the first sequence in the provided sequence.
+
+The core of this is based on [this script](https://github.com/berrisfordjohn/adding_stats_to_mmcif/blob/master/adding_stats_to_mmcif/pairwise_align.py) by [John Berrisford](https://github.com/berrisfordjohn).
+
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/alignment-utilities/demo%20roughly_score_relationships_to_subject_seq_pairwise_premsa.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/alignment-utilities/demo%20roughly_score_relationships_to_subject_seq_pairwise_premsa.ipynb).
+
+CAVEAT:  
+The original intention was to align the entire length of provided sequences but for moderate- or large-sized sequences (>5 kb) this is not possible unless you have a substantial amount of computing power due to demanding memory resources from Biopython's aligmnet algorithmn (see [here](https://github.com/biopython/biopython/pull/1655)). Thus, it was modified to sample what seems to work when using the script in Jupyter sessions launched from MyBinder.org via [here](https://github.com/fomightez/blast-binder). Therefore, the reported score may not represent the entire range of the provided sequences but that is reported back if that is the case.
+
 
 Utilities by others
 ------------------
