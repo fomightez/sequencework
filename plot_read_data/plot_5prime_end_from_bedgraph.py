@@ -198,8 +198,8 @@ def get_scores_from_bedgraph(bedgraph):
                     # normal
                     score_per_position_dict[x+1] = score
         graph_end = end
-        print ("start extracted from bedgraph file=",graph_start) # FOR DEBUGGING
-        print ("end extracted from bedgraph file=",graph_end) # FOR DEBUGGING
+        #print ("start extracted from bedgraph file=",graph_start) # FOR DEBUGGING
+        #print ("end extracted from bedgraph file=",graph_end) # FOR DEBUGGING
     return score_per_position_dict
                     
 
@@ -419,13 +419,13 @@ def plot_5prime_end_from_bedgraph(
             plt.bar(plot_positions, 
                 starts_per_position_forward, 
                 color=['#BC5F5F'], 
-                width=1.0, 
+                width=1.4, 
                 label = "forward 5'-DNA ends") #width from 
                 #https://stackoverflow.com/questions/20454120/how-to-remove-gaps-between-bars-in-matplotlib-bar-chart
             plt.bar(plot_positions, 
                 starts_per_position_reverse, 
                 color=['#7C71AF'], 
-                width=1.0, 
+                width=1.4, 
                 label = "reverse 5'-DNA ends") #width from 
                 #https://stackoverflow.com/questions/20454120/how-to-remove-gaps-between-bars-in-matplotlib-bar-chart
 
