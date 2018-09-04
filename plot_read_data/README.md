@@ -90,6 +90,10 @@ python plot_5prime_end_from_bedgraph.py 5013-5359 forward.bedgraph reverse.bedgr
 
 The impetus for writing it was to plot ribonucleotide incorporation data from [Clausen et al., 2015 (PMID:25622295)](https://www.ncbi.nlm.nih.gov/pubmed/25622295); however, it is more general than that as it can plot any 5'-end data in bedgraph files. As of the time of writing this though part of the title text and other things reflecting that intention is hard coded inside the script, and so you should look at some of the variables under 'USER ADJUSTABLE VALUES ' and edit the text to reflect your data if you use it for something else.
 
+Example output:
+
+![Example of Plot](https://raw.githubusercontent.com/fomightez/clausen_ribonucleotides/master/77999-78298_ribonucleotide_plot.png)
+
 * plot_coverage.py (NEED TO PUT IN THIS REPO STILL)
 > high-throughput sequencing data --> plot of coverage for specified region (or expoerted relative data)
 
