@@ -495,4 +495,11 @@ Related items by others
 
 R code to plot expression across chromosomes in Jupyter notebooks looks to be demonstrated [here](https://twitter.com/ODiogoSilva/status/898241229250605056) by Diogo Silva for an organism with 12 chromosomes, but I haven't found the actual code yet.
 
+For use with targeted sequencing to look for CNVs:
+[CNVkit: Copy number detection and visualization for targeted sequencing using off-target read.]
+	- Preprint https://www.biorxiv.org/content/early/2018/09/04/408534?rss=1
+	- Docs https://cnvkit.readthedocs.io/en/stable/ 
+	- Examples https://github.com/etal/cnvkit-examples …
+	- Tutorial https://www.youtube.com/watch?v=JGOIXYoLG6w&feature=youtu.be
+
 I listed some other related resources [here](https://www.biostars.org/p/183822/#253097).
