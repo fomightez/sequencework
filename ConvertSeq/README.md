@@ -77,6 +77,8 @@ Since sequence manipulations are at the heart of many of my computational endeav
 
 - In the `CompareFASTA_or_FASTQ` folder is a script that takes two lists of sequence records in FASTA format and checks if the source organisms overlap. See `compare_organisms_in_two_files_of_fasta_entries.py`.
 
+- In the [`sequencework/alignment-utilities`](https://github.com/fomightez/sequencework/tree/master/alignment-utilities) folder is a script that takes an alignment and generates that alignment with the reverse complement sequences. It is called `reverse_complement_of_clustal_alignment.py`. One of the core actions it does is use Biopython's sequence object with the `.reverse_complement()` method to make the reverse complementats.
+
 - In the `Adjust_Annotation` folder are some scripts for dealing with converting sequence-associated annotation files to be more useful.
 
 - In the `SOLiD` folder are some scripts for dealing with converting Applied Biosystems SOLiD data from NCBI's Short Read Archive into a useful form.
@@ -85,3 +87,10 @@ Since sequence manipulations are at the heart of many of my computational endeav
 
 - In the `yeastmine` folder in a different repository are some scripts, such as `geneID_list_to_systematic_names.py`, useful for converting identifiers of gene and protein identifiers to other useful forms. See [here](https://github.com/fomightez/yeastmine) for `yeastmine` work.
 
+
+Related scripts by others
+------------------------
+
+I tend to use Biopython's sequence object with the `.reverse_complement()` method to generate reverse complements of sequences (see above) but this post is good to know about:
+
+[python code for getting the reverse complement DNA strand](http://crazyhottommy.blogspot.com/2013/10/python-code-for-getting-reverse.html)
