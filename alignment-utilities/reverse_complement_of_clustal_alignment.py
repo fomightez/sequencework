@@ -419,7 +419,7 @@ if __name__ == "__main__" and '__file__' in globals():
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
 
-    parser.add_argument("align_file", help="Name of file of alignmnet text \
+    parser.add_argument("align_file", help="Name of file of alignment text \
         file.\
         ", metavar="ALIGNMENT_FILE")
 
