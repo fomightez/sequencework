@@ -240,9 +240,12 @@ def extract_regions_from_clustal_alignment(
     suffix_for_saving = suffix_for_saving, name_basis="alignment.clustal"):
     '''
     Main function of script. 
-    It will take an alignment text file (or the alignment as a Python string) 
-    and add position indicators to the top line that is the actual numbering of 
-    the residues in contiguous sequence.
+    It will take an alignment text file in CLUSTAL format, presumably a large 
+    region, such as an entire chromosome and extracts the sequences that 
+    corresponds to a specific region according to the ungapped numbering of the 
+    positions (coordinates) for the sequence on the top line, presumably the 
+    reference. It saves these in aligned and unaligned format. Also reports the
+    coordinates from where they were extracted.
 
     The option to provide the results as a string is to handle where sending the
     data directly from shell script to Python without a typical file 
