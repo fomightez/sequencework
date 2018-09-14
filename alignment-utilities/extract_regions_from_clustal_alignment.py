@@ -289,7 +289,15 @@ def extract_regions_from_clustal_alignment(
     first_words = []
     first_id_needed = True
     for line in alignment.split("\n"):
-        if line:
+        if line and not line.isspace():
+            # originally had just `if line:` on above line but I was seeing
+            # lines that were all spaces for the length of the line made by 
+            # Clustal Omega at the bottom of a sequence blocks. And these 
+            #  space-filled' were causing out of index errors with the next 
+            # line, `first_word = line.split()[0]` because nothing in first 
+            # position if default `split` run on such a line. These 
+            # 'space-filled' lines were not encountered when I developed with 
+            # Kalign-generated MSAs.
             first_word = line.split()[0]
             if first_word in first_words:
                 if first_id_needed:
