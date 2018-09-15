@@ -66,7 +66,12 @@ __version__ = "0.1.0"
 #
 #
 # VERSION HISTORY:
-# v.0.1. basic working version
+# v.0.1. basic working version. But VERY SLOW IF THE SEQUENCES ALIGNED OVER 10K.
+# Kept file of that version though as parts might be useful when looking to 
+# avoid biopython in order to limit dependencies. (Cannot imagine when I might 
+# need that though given convenience of MyBinder.org.)
+# v.0.2. converted handling alignments and extraction part to Biopython. Last 
+# part already made use of biopython in version 0.1.
 
 #
 # To do:
@@ -166,6 +171,22 @@ from Bio.Align import MultipleSeqAlignment
 
 ###---------------------------HELPER FUNCTIONS---------------------------------###
 
+
+def column_from_residue_number(aln, id, res_no):
+    '''
+    Takes an alignment an identifier and a residue number and returns the column
+    that the specified residue number occurs in.
+
+    from https://www.biostars.org/p/93805/#93811
+    '''
+    rec = next((r for r in aln if r.id == id), None)
+    j = 0
+    for i, res in enumerate(rec.seq):
+        if res!='-':
+            if j==res_no:
+                return i
+            j+=1
+
 def get_aln_index_and_real_pos(sequence):
     '''
     a generator that takes a sequence and then returns next position in 
@@ -259,7 +280,9 @@ def extract_regions_from_clustal_alignment(
     try:
         with open(alignment, 'r') as the_file:
             file_name = alignment
-            alignment = the_file.read()
+            #alignment = the_file.read() #<--from when not using Bopiython to 
+            # handle alignment file and extraction
+            alignment = AlignIO.read(the_file, "clustal")
     except (TypeError,OSError,IOError) as e:
         file_name = name_basis
         pass # pass because instead just want to use results as a string because
@@ -286,6 +309,7 @@ def extract_regions_from_clustal_alignment(
 
 
 
+    '''
     # Go through multiple sequence alignment file parsing it to collect the 
     # identifiers. Also, identify the first identifier in each alignment block.
     #---------------------------------------------------------------------------
@@ -354,8 +378,8 @@ def extract_regions_from_clustal_alignment(
     # First I had check if any have periods, but maybe just faster/easier to 
     # run `.replace()` on all anyway? Rather then check and then process.
     '''
-    if any([True if '.' in v else False for k,v in alignment_dict.items()]):
-        alignment_dict= {k: v.replace(".","-") for k,v in alignment_dict.items()}
+    #if any([True if '.' in v else False for k,v in alignment_dict.items()]):
+    #    alignment_dict= {k: v.replace(".","-") for k,v in alignment_dict.items()}
     '''
     alignment_dict= {k: v.replace(".","-") for k,v in alignment_dict.items()}
 
@@ -371,6 +395,7 @@ def extract_regions_from_clustal_alignment(
         # `pretty_msa_maker_from_clustal_nucleic.py ` for mechanism used in 
         # assertion test involving Ivo van der Wijk's solution from 
         # https://stackoverflow.com/a/3844948/8508004
+    '''
 
 
 
@@ -390,7 +415,7 @@ def extract_regions_from_clustal_alignment(
     assert start < end, (
     "The user-supplied 'start' ({}) must be less than "
     "'end' ({}).".format(start,end))
-    ref_seq_len = len(alignment_dict[first_identifier].replace("-",""))
+    ref_seq_len = len(alignment[0].seq.ungap("-"))
     assert end < ref_seq_len, (
     "The user-supplied 'end' ({}) cannot be larger than the length of the "
     "sequence on the top line, which is '{}'.".format(end,ref_seq_len))
@@ -403,41 +428,32 @@ def extract_regions_from_clustal_alignment(
     #---------------------------------------------------------------------------
     # first need to determine location corresponding to start and end of 
     # contiguous sequence in the alignment
-    aln_start_pt = 0 # setting to this and checking later will insure only gets
-    # first match because you could imagine multiple if gaps occur after it
-    aln_end_pt = 0 # setting to this and checking later will insure only gets
-    # first match because you could imagine multiple if gaps occur after it
-    for i,real_pos in get_aln_index_and_real_pos(alignment_dict[first_identifier]):
-        if real_pos == start and aln_start_pt == 0:
-            aln_start_pt = i 
-        if real_pos == end and aln_end_pt == 0:
-            aln_end_pt = i
-            break # don't want to go any further b/c have boundaries of region
+    aln_start_col = column_from_residue_number(
+        alignment, alignment[0].id, start-1)  #-1 because number being supplied 
+    # is in terms of 'natural' sequence numbering where first residue is 
+    # NUMBER 1 and need to convert it to zero indexed bioppython.
+    aln_end_col = column_from_residue_number(
+        alignment, alignment[0].id, end-1)  #-1 because number being supplied 
+    # is in terms of 'natural' sequence numbering where first residue is 
+    # NUMBER 1 and need to convert it to zero indexed bioppython.
+    
     # Now use the corresponding alignment start and end points to slice the 
-    # aligned sequences
+    # aligned sequences.
     # Also collect the actual coordinates for each sequence in the aligned block
     # extracted because should be useful (Intended to be used with 
     # `pretty_msa_maker_from_clustal_nucleic` script)
     aligned_segmnts_dict = {}
     actl_coords_in_segments = {}
-    for id_ in alignment_dict:
-        aligned_segmnts_dict[id_] = alignment_dict[id_][aln_start_pt:aln_end_pt+1]
-        actual_start_coordnt = 0 # setting to this and checking later will 
-        # insure only gets first match
-        actual_end_coordnt = 0  # setting to this and checking later will 
-        # insure only gets first match
-        for i,real_pos in get_aln_index_and_real_pos(alignment_dict[id_]):
-            if i == aln_start_pt and actual_start_coordnt == 0:
-                actual_start_coordnt = real_pos 
-            if i == aln_end_pt and actual_end_coordnt == 0:
-                actual_end_coordnt = real_pos 
-                break # don't want to go any further b/c have actual coordinates
-        actl_coords_in_segments[id_] = (
+    for record in alignment:
+        aligned_segmnts_dict[record.id] = record.seq[aln_start_col:aln_end_col+1]
+        actual_start_coordnt = len(record.seq[:aln_start_col+1].ungap("-"))
+        actual_end_coordnt = len(record.seq[:aln_end_col+1].ungap("-")) 
+        actl_coords_in_segments[record.id] = (
             actual_start_coordnt,actual_end_coordnt)
-    assert actl_coords_in_segments[first_identifier] == (start,end) , (
-    "actl_coords_in_segments may be calculating wrong because for '{}'' "
-    "should match start and end user-provided and they don't".format(
-        first_identifier))
+    assert actl_coords_in_segments[alignment[0].id] == (start,end) , (
+    "actl_coords_in_segments may be getting calculated wrong because for '{}'\n"
+    "they should match start and end that they user-provided, and they don't".format(
+        alignment[0].id))
 
 
 
@@ -450,8 +466,12 @@ def extract_regions_from_clustal_alignment(
     # Bio.AlignIO, but you can do this from a list of SeqRecord objects too:"
     records = []
     for id_ in aligned_segmnts_dict:
+        #records.append(
+        #    SeqRecord(Seq(aligned_segmnts_dict[id_], generic_dna), id_)) # based
+        ## on https://www.biostars.org/p/48797/; from when was using a string 
+        # in v.0.1
         records.append(
-            SeqRecord(Seq(aligned_segmnts_dict[id_], generic_dna), id_)) # based
+            SeqRecord(aligned_segmnts_dict[id_], id_)) # based
         # on https://www.biostars.org/p/48797/
     align = MultipleSeqAlignment(records,
                              annotations={},
@@ -470,9 +490,17 @@ def extract_regions_from_clustal_alignment(
     for id_ in aligned_segmnts_dict:
         id_descript = "actual_extracted_coordinates: {}-{}".format(
             *actl_coords_in_segments[id_])
+        #records.append(
+        #    SeqRecord(
+        #    Seq(aligned_segmnts_dict[id_], generic_dna).ungap(
+        #    "-"), id_, description=id_descript))# based
+        ## on https://www.biostars.org/p/48797/ and `.ungap()` method, see
+        ## https://github.com/biopython/biopython/issues/1511 , and `description`
+        ## from from what I seen for `id` plus https://biopython.org/wiki/SeqIO; 
+        # from when was using strings in v.0.1
         records.append(
             SeqRecord(
-            Seq(aligned_segmnts_dict[id_], generic_dna).ungap(
+            aligned_segmnts_dict[id_].ungap(
             "-"), id_, description=id_descript))# based
         # on https://www.biostars.org/p/48797/ and `.ungap()` method, see
         # https://github.com/biopython/biopython/issues/1511 , and `description`
