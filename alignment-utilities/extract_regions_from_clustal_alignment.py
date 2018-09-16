@@ -38,6 +38,15 @@ __version__ = "0.1.0"
 # For those on the reverse strand, there is a related script that takes the
 # alignment block and makes the reverse complement of that, called 
 # `reverse_complement_of_clustal_alignment.py`.
+# 
+# I'll mention it here in case there are concerns from folks that know that 
+# python/bopython are zero-indexed and wondering what numbering system might be
+# used in the resulting data. Every effort has been made to insure that 
+# numberings returned should match those provided; nothing should be shifted by 
+# one relative the input. In other words, if the user provides data using the
+# typcial, conventional numbering where the first residue is numbered one, the 
+# generated coordinate data will also be in the 'common language' form where the
+# residue #1 corresponds to the first in the sequence.
 #
 #
 # 
