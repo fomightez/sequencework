@@ -71,7 +71,7 @@ __version__ = "0.1.0"
 #
 #
 # Dependencies beyond the mostly standard libraries/modules:
-#
+# Biopython
 #
 #
 # VERSION HISTORY:
@@ -588,7 +588,7 @@ if __name__ == "__main__" and '__file__' in globals():
     # on https://stackoverflow.com/a/22923872/8508004
     # See also https://stackoverflow.com/a/22424821/8508004 for an option to 
     # provide arguments when prototyping a full script in the notebook.
-    ###-----------------for parsing command line arguments-----------------------###
+    ###-----------------for parsing command line arguments-------------------###
     import argparse
     parser = argparse.ArgumentParser(prog=
         'extract_regions_from_clustal_alignment.py',
@@ -620,8 +620,8 @@ if __name__ == "__main__" and '__file__' in globals():
     action="store_true")
 
     parser.add_argument('-os', '--output_suffix', action='store', type=str, 
-    default= suffix_for_saving, help="OPTIONAL: Set a suffix for including in file \
-    name of output. \
+    default= suffix_for_saving, help="OPTIONAL: Set a suffix for including in \
+    file name of output. \
     If none provided, '{}' will be used.".format(suffix_for_saving))
 
 
