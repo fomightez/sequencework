@@ -7,6 +7,11 @@ Sequence Converters
 
 **Description of each script**
 
+- convert_fasta_to_reverse_complement.py
+> DNA -->  reverse complement DNA sequence
+
+`convert_fasta_to_reverse_complement.py` takes a sequence file in FASTA format and converts the sequence (or sequences) in it to the reverse complement.
+
 - ConvertFASTAdnaSEQtoRNA.py     
 
 > DNA --> mRNA  
