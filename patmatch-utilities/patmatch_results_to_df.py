@@ -399,7 +399,7 @@ if __name__ == "__main__" and '__file__' in globals():
     # on https://stackoverflow.com/a/22923872/8508004
     # See also https://stackoverflow.com/a/22424821/8508004 for an option to 
     # provide arguments when prototyping a full script in the notebook.
-    ###-----------------for parsing command line arguments-----------------------###
+    ###-----------------for parsing command line arguments-------------------###
     import argparse
     parser = argparse.ArgumentParser(prog='patmatch_results_to_df.py',
         description="patmatch_results_to_df.py \
