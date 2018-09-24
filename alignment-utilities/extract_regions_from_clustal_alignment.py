@@ -505,7 +505,7 @@ def extract_regions_from_clustal_alignment(
         #    "-"), id_, description=id_descript))# based
         ## on https://www.biostars.org/p/48797/ and `.ungap()` method, see
         ## https://github.com/biopython/biopython/issues/1511 , and `description`
-        ## from from what I seen for `id` plus https://biopython.org/wiki/SeqIO; 
+        ## from what I've seen for `id` plus https://biopython.org/wiki/SeqIO; 
         # from when was using strings in v.0.1
         records.append(
             SeqRecord(
