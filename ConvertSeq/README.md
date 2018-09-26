@@ -99,3 +99,5 @@ Related scripts by others
 I tend to use Biopython's sequence object with the `.reverse_complement()` method to generate reverse complements of sequences (see above) but this post is good to know about:
 
 [python code for getting the reverse complement DNA strand](http://crazyhottommy.blogspot.com/2013/10/python-code-for-getting-reverse.html)
+
+[ranking code for doing this - "What is the fastest way to get the reverse complement of a DNA sequence in python?"](https://bioinformatics.stackexchange.com/questions/3583/what-is-the-fastest-way-to-get-the-reverse-complement-of-a-dna-sequence-in-pytho?rq=1), leads to an nice repo with the data [here](https://github.com/conchoecia/fastest_rc_python)
