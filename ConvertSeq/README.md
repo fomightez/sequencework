@@ -88,7 +88,7 @@ Since sequence manipulations are at the heart of many of my computational endeav
 
 - In the `SOLiD` folder are some scripts for dealing with converting Applied Biosystems SOLiD data from NCBI's Short Read Archive into a useful form.
 
-- In the `UGENE_help` folder in a different repository is some guidance and one script for converting between Unipro's UGENE sequence anysis software and Serial CLoner. See [here](https://github.com/fomightez/UGENE_help) for `UGENE help`.
+- In the `UGENE_help` folder in a different repository is some guidance and one script for converting between Unipro's UGENE sequence anysis software and Serial Cloner. See [here](https://github.com/fomightez/UGENE_help) for `UGENE help`.
 
 - In the `yeastmine` folder in a different repository are some scripts, such as `geneID_list_to_systematic_names.py`, useful for converting identifiers of gene and protein identifiers to other useful forms. See [here](https://github.com/fomightez/yeastmine) for `yeastmine` work.
 
@@ -96,8 +96,8 @@ Since sequence manipulations are at the heart of many of my computational endeav
 Related scripts by others
 ------------------------
 
-I tend to use Biopython's sequence object with the `.reverse_complement()` method to generate reverse complements of sequences (see above) but this post is good to know about:
+I tend to use Biopython's sequence object with the `.reverse_complement()` method to generate reverse complements of sequences (see above) but these posts are good to know about:
 
-[python code for getting the reverse complement DNA strand](http://crazyhottommy.blogspot.com/2013/10/python-code-for-getting-reverse.html)
+- [python code for getting the reverse complement DNA strand](http://crazyhottommy.blogspot.com/2013/10/python-code-for-getting-reverse.html)
 
-[ranking code for doing this - "What is the fastest way to get the reverse complement of a DNA sequence in python?"](https://bioinformatics.stackexchange.com/questions/3583/what-is-the-fastest-way-to-get-the-reverse-complement-of-a-dna-sequence-in-pytho?rq=1), leads to an nice repo with the data [here](https://github.com/conchoecia/fastest_rc_python)
+- [ranking code for making reverse complements - "What is the fastest way to get the reverse complement of a DNA sequence in python?"](https://bioinformatics.stackexchange.com/questions/3583/what-is-the-fastest-way-to-get-the-reverse-complement-of-a-dna-sequence-in-pytho?rq=1), leads to an nice repo with the data [here](https://github.com/conchoecia/fastest_rc_python)
