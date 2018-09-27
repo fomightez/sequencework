@@ -67,6 +67,18 @@ UGCGACAUGUGUCGCCUCUCACGCUACUAG
 Using the example command above, the output produced would be in the file `fasta_seq_mRNAconv.txt`.
 
 
+- collapse_large_unknown_blocks_in_DNA_sequence.py
+> DNA with lots of large blocks of uknown nucleotide repeats -->  DNA with lots of small blocks of uknown nucleotide repeats of a set size 
+
+`collapse_large_unknown_blocks_in_DNA_sequence.py` takes a DNA sequence in FASTA format and reduces the large blocks of unknown sequences, represented by N, to be shorter. This is meant to be used for sequences that appear to have arbitrarily-sized blocks of unknown nucleotides so the blocks are short and easier to align in multiple sequence alignment in cases where it looks like the block may not be as large as arbitarily made. The output sequence remains in FASTA format. Also works if the provided FASTA file is a multi-FASTA, i.e., contains multiple sequences in FASTA format in the one file. All sequences in the file will have the large blocks of repeated Ns collapsed to a small size. 
+
+Typcially this would then be submitted to software that performs a MULTIPLE SEQUENCE ALIGNMENT to see if some conerved elements are better aligned now, indicating the perhaps arbitrary blocks were making it hard to see the adjacent placement while keeping in mind these new small blocks of `N`s are indeed 'fuzzy'.  
+More on that:  
+In order to better judge some sequences extracted from alignments against a chromosome/genome, I've found that reducing apparently arbitrarily sized repeats of unknown nucleotides, represented as repeated `N`s, such as "NNNNNNNNNNNNNNN" for example, can help in assessing the sequences extracted from an alignment or help prepare them for aligning again, especially when additional knowledge, such as matches in flanking sequence seem to suggest the spacing doesn't match the number of unknown nucleotides shown in the represtation. In other words, often in assemblies form Illumina sequences guesses or abtirary numbers (such as 50) `N`s in a row will be introduced for smallish (less than a kn) gaps in the sequence assembly and reducing these to a smaller size can sometimes make alignments more obvious. It is important to be clear this one done and keep both sets of data. I have made a script that does this called `collapse_large_unknown_blocks_in_DNA_sequence.py` and it can be found in my ['ConvertSeq' code repository](https://github.com/fomightez/sequencework/tree/master/ConvertSeq).
+
+
+
+
 
 Related scripts
 ---------------
