@@ -60,6 +60,12 @@ There is a [demo notebook for this script in this repo](https://github.com/fomig
 CAVEAT:  
 The original intention was to align the entire length of provided sequences but for moderate- or large-sized sequences (>5 kb) this is not possible unless you have a substantial amount of computing power due to demanding memory resources from Biopython's aligmnet algorithmn (see [here](https://github.com/biopython/biopython/pull/1655)). Thus, it was modified to sample what seems to work when using the script in Jupyter sessions launched from MyBinder.org via [here](https://github.com/fomightez/blast-binder). Therefore, the reported score may not represent the entire range of the provided sequences but that is reported back if that is the case.
 
+Related utilities in my other repositories
+------------------------------------------
+
+In order to better judge some sequences extracted from alignments against a chromosome/genome, I've found that reducing apparently arbitrarily sized repeats of unknown nucleotides, represented as repeated `N`s, such as "NNNNNNNNNNNNNNN" for example, can help in assessing the sequences extracted from an alignment or help prepare them for aligning again, especially when additional knowledge, such as matches in flanking sequence seem to suggest the spacing doesn't match the number of unknown nucleotides shown in the represtation. In other words, often in assemblies form Illumina sequences guesses or abtirary numbers (such as 50) `N`s in a row will be introduced for smallish (less than a kn) gaps in the sequence assembly and reducing these to a smaller size can sometimes make alignments more obvious. It is important to be clear this one done and keep both sets of data. I have made a script that does this called `collapse_large_unknown_blocks_in_DNA_sequence.py` and it can be found in my ['ConvertSeq' code repository](https://github.com/fomightez/sequencework/tree/master/ConvertSeq).
+
+
 
 Utilities by others
 ------------------
