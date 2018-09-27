@@ -18,7 +18,7 @@ __version__ = "0.1.0"
 # reverse complement. The sequence remains in FASTA format.
 # Also works if the provided FASTA file is a multi-FASTA, i.e., contains 
 # multiple sequences in FASTA format in the one file. All sequences in the file
-# will be converted to the reverse complement sequece.
+# will be converted to the reverse complement sequence.
 #
 #
 #
@@ -66,8 +66,8 @@ __version__ = "0.1.0"
 # call to the main function similar to below:
 # convert_fasta_to_reverse_complement("sequence.fa")
 #-or-
-# To specify OPTIONAL suffic to add to the names of generated files, specify 
-# `suffix_for_saving` like on next line when providing alignment as string:
+# To specify OPTIONAL suffix to add to the names of generated files, specify 
+# `suffix_for_saving` like on next line when calling main function:
 # extract_regions_from_clustal_alignment("sequence.fa",suffix_for_saving="rev_compl")
 # 
 #
@@ -177,7 +177,7 @@ def convert_fasta_to_reverse_complement(sequence,
     records = []
     records_rc = []
     for record in SeqIO.parse(sequence, "fasta"):
-        records.append(record)
+        #records.append(record)
         records_rc.append(record.reverse_complement(id=True,description=True)) #
         # see https://biopython.org/DIST/docs/api/Bio.SeqRecord.SeqRecord-class.html#reverse_complement 
         # for arguments. They were necessary to pass information in FASTA 
@@ -250,7 +250,7 @@ if __name__ == "__main__" and '__file__' in globals():
         (fomightez @ github) ***")
 
     parser.add_argument("sequence_file", help="Name of sequence file to \
-        convert. Can be a \
+        use as input for converting to reverse complement. Can be a \
         multi-FASTA file, i.e., multiple sequences in FASTA format in one file.\
         All included will be converted.", metavar="SEQUENCE_FILE")
 
