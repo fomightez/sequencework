@@ -15,11 +15,12 @@ __version__ = "0.1.0"
 #
 #
 # PURPOSE: Takes a DNA sequence in FASTA format and reduces the large blocks of
-# unknown sequences, represented by N, to be shorter. This is meant to be used
-# for sequences that appear to have arbitrarily-sized blocks of unknown 
-# nucleotides so the blocks are short and easier to align in multiple sequence 
-# alignment in cases where it looks like the block may not be as large as 
-# arbitarily made.  
+# unknown nucleotides, represented by repated `N`s, to be shorter. This is meant 
+# to be used for sequences that appear to have arbitrarily-sized blocks of 
+# unknown nucleotides so the blocks are short and easier to align / or visualize 
+# how the sub-elements should align in multiple sequence alignment in cases 
+# where it looks like the block may not be as large as arbitarily made. (Or to
+# help assess if that may be the case.)  
 # The output sequence remains in FASTA format.
 # Also works if the provided FASTA file is a multi-FASTA, i.e., contains 
 # multiple sequences in FASTA format in the one file. All sequences in the file
@@ -342,19 +343,23 @@ if __name__ == "__main__" and '__file__' in globals():
         'collapse_large_unknown_blocks_in_DNA_sequence.py',
         description="collapse_large_unknown_blocks_in_DNA_sequence.py \
         Takes a DNA sequence in FASTA format and reduces the large blocks of \
-        unknown sequences, represented by N, to be shorter. This is meant to \
+        unknown nucleotides, represented by numerous uninterrupted `N`s, to be \
+        shorter. This is meant to \
         be used for sequences that appear to have arbitrarily-sized blocks of \
-        unknown nucleotides so the blocks are short and easier to align in \
-        multiple sequence alignment in cases where it looks like the block may \
-        not be as large as arbitarily made.\
+        unknown nucleotides so the blocks are short and easier to align or to \
+        visualize how they should align in \
+        multiple sequence alignment, for cases where it looks like the block \
+        may not be as large as arbitarily made. Or to help assess if that is \
+        indeed the case. \
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
 
     parser.add_argument("sequence_file", help="Name of sequence file to \
-        use as input to produce a file where the repeated unknown nucleotidess, \
-        such as `NNNNNNNNN`, are reduced to `NNNNN`. Can be a \
-        multi-FASTA file, i.e., multiple sequences in FASTA format in one file.\
-        All included will be converted.", metavar="SEQUENCE_FILE")
+        use as input to produce a file where the repeated unknown \
+        nucleotidess, such as `NNNNNNNNN`, are reduced to `NNNNN`. Can be a \
+        multi-FASTA file, i.e., multiple sequences in FASTA format in one \
+        file. All sequences included will be modified\
+        .", metavar="SEQUENCE_FILE")
 
     parser.add_argument('-ct', '--collapse_to', action='store', type=int, 
     default= num_of_repeatedNs_to_collapse_to, help="OPTIONAL: Adjust the \
