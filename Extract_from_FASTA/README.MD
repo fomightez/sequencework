@@ -1,7 +1,7 @@
 # Extracting sequences from a FASTA file
 
 
-## Scripts /Resources by others
+## Scripts / Resources by others
 
 - >"Fastest way to extract some seqs from a BIG fasta file based on header?" - SOURCE: https://twitter.com/macmanes/status/1045659290919481344
 
