@@ -24,7 +24,7 @@ __version__ = "0.1.0"
 # alignment the top line has gaps; this was a compromise to get those sequences
 # that are all gaps to score as `0.0`, which makes more sense then them 
 # accumulating score where the gaps happen to match with gaps in top line. 
-# Hence `favoring` in name and not `relative.
+# Hence `favoring` in name and not `relative`.
 # This is only meant to be run when `score_sequences_in_clustal_msa.py` fails 
 # and you have additional knowledge that the sequence on the top line of the 
 # multiple sequence alignment is a good guide, i.e., it is a reference
@@ -492,7 +492,7 @@ if __name__ == "__main__" and '__file__' in globals():
     ###-----------------for parsing command line arguments-----------------------###
     import argparse
     parser = argparse.ArgumentParser(prog=
-        'score_sequences_in_clustal_msa_favoring_top_line.py ',
+        'score_sequences_in_clustal_msa_favoring_top_line.py',
         description="score_sequences_in_clustal_msa_favoring_top_line.py  \
         takes a multiple sequence alignment (MSA) in clustal format and \
         generates a quick-n-dirty 'score' of percent match to the top \
