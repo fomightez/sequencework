@@ -14,7 +14,7 @@ __version__ = "0.1.0"
 # Python 3. 
 #
 #
-# PURPOSE: Takes a multiple seuence alignment (MSA) in clustal format and 
+# PURPOSE: Takes a multiple sequence alignment (MSA) in clustal format and 
 # generates a quick-n-dirty 'score' of percent match to the 'majority' for each 
 # individual sequence in the alignment. Mainly meant to be a rough guide to 
 # replace (or confirm) visual inspection. Returns a dataframe with the id and
