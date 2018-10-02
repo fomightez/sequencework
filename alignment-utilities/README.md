@@ -45,11 +45,16 @@ info here
 
 info here.
 
+* score_sequences_in_clustal_msa.py 
+> multiple sequence alignment (clustal) ---> dataframe of the id and assessment score of each sequence 
+
+This ranks the individual sequences of a multipe sequence alignment for how well well they compare to the others in the alignment. Specifically, it takes a multiple seuence alignment (MSA) in clustal format and generates a quick-n-dirty 'score' of percent match to the 'majority' for each individual sequence in the alignment. Returns a dataframe with the id and score for each sequence in the alignment. Mainly meant to be a rough guide to replace (or confirm) visual inspection to identify what is supposedly 'aligned' doesn't really match up. This situation can arise when looking at small sections from much larger alignments, say for a region from a chromosome or genome alignment. In some regions, the sequence available to align doesn't really match up, but an attempt to align will be made by the aligning software. This script should be useful for recognizing weak scoring sequences from those that appear more reasonable, i.e., represent homologs.
+
 
 * roughly_score_relationships_to_subject_seq_pairwise_premsa.py
 > sequences in FASTA format (single multi-FASTA file)  ---> quick assessment of similarity of first sequence to each of the others
 
-Meant to be run prior a multi-sequence alignment task in order to tell quickly what is similar to one another and maybe leave out redundant sequences if you are looking to reduce the submitted alignment job.
+Meant to be run prior  to a multiple sequence alignment task in order to tell quickly what is similar to one another and maybe leave out redundant sequences if you are looking to reduce the submitted alignment job.
 
 Produces a ranked list where the highest scoring one is closest to the first sequence in the provided sequence.
 
