@@ -493,7 +493,7 @@ if __name__ == "__main__" and '__file__' in globals():
     parser = argparse.ArgumentParser(prog=
         'score_sequences_in_clustal_msa.py ',
         description="score_sequences_in_clustal_msa.py  \
-        takes a multiple seuence alignment (MSA) in clustal format and \
+        takes a multiple sequence alignment (MSA) in clustal format and \
         generates a quick-n-dirty 'score' of percent match to the 'majority' \
         for each individual sequence in the alignment. Mainly meant to be a \
         rough guide to replace (or confirm) visual inspection. Returns a \
