@@ -270,10 +270,11 @@ def collapse_large_unknown_blocks_in_DNA_sequence(sequence,
                               "N"*num_of_repeatedNs_to_collapse_to + 
                               modf_seq[start_n_ends[1]:]) # based on
                               # https://stackoverflow.com/a/41753038/8508004
-            # replace the appropriate record with the modified sequence
+            # replace the appropriate record with the modified sequence, tagging
+            # the description line
             records[indx] = SeqRecord(
                 Seq(modf_seq, generic_dna), 
-                id=record.id, description=record.description)# based
+                id=record.id, description=record.description+" COLLAPSED")#based
             # on https://www.biostars.org/p/48797/ and `.ungap()` method, see
             # https://github.com/biopython/biopython/issues/1511 , and `description`
             # from what I've seen for `id` plus https://biopython.org/wiki/SeqIO
