@@ -84,6 +84,9 @@ __version__ = "0.1.0"
 # To specify OPTIONAL suffix to add to the names of generated files, specify 
 # `suffix_for_saving` like on next line when providing alignment as string:
 # extract_regions_from_clustal_alignment("sequence.fa",suffix_for_saving="_condensed")
+#-or-
+#number_collapsed_per_seq += collapse_large_unknown_blocks_in_DNA_sequence(os.path.join(directory,seq_file))
+# For quantification of the sequences collapsed when using it in a notebook.
 # 
 #
 # 
@@ -205,12 +208,18 @@ def get_start_n_ends_for_match_to_pattern(pattern_obj,a_string):
 
 def collapse_large_unknown_blocks_in_DNA_sequence(sequence,
     num_of_repeatedNs_to_collapse_to = num_of_repeatedNs_to_collapse_to,
+    return_num_seqs_collapsed = False,
     suffix_for_saving = suffix_for_saving):
     '''
     Main function of script. 
     Takes a DNA sequence in FASTA format and reduces the large blocks of 
     unknown sequences, represented by N, to be shorter.
     The sequence remains in FASTA format.
+
+    `return_num_seqs_collapsed` is for when a lot a of sequences are getting
+    processed in a Jupyter notebook and you'd like a gauge of how many 
+    individual sequences collapsed. Setting this to True, you can get a nunber
+    returned 
 
     `num_of_repeatedNs_to_collapse_to` and `suffix_for_saving` optional when
     calling the main function from a Jupyter cell after import or pasting in 
@@ -235,6 +244,8 @@ def collapse_large_unknown_blocks_in_DNA_sequence(sequence,
     # go through parsed records and act if necessary
     modf_seq = None #reset here allows use in notebook cell when running that 
     # cell multiple times
+
+    num_seqs_collapsed = 0 # intialize so can return, if desired
     for indx, record in enumerate(records):
         # first check if any occurences of more than the 
         # `num_of_repeatedNs_to_collapse_to` unknown nucleotides (N's) in a row. 
@@ -243,6 +254,7 @@ def collapse_large_unknown_blocks_in_DNA_sequence(sequence,
             # process seq since it has at least one instance needing collapsing
             unk_block_locations = get_start_n_ends_for_match_to_pattern(
                 pat_obj,str(record.seq))
+            num_seqs_collapsed += 1
             #print(record.id) # ONLY FOR DEBUGGING
             #print (unk_block_locations) # ONLY FOR DEBUGGING
             
@@ -294,6 +306,9 @@ def collapse_large_unknown_blocks_in_DNA_sequence(sequence,
             "than {} \ndetected in {}, and so no changes made.".format(
             num_of_repeatedNs_to_collapse_to, sequence))
     sys.stderr.write("\n*****************DONE**************************\n")
+
+    if return_num_seqs_collapsed:
+        return num_seqs_collapsed 
 
 
 
