@@ -24,6 +24,9 @@ It is designed to handle/filter gaps ('dashes') in the provided sequence pattern
 
 There is a [demo notebook for this script in this repo](UPDATE THIS URL HERE)<---UPDATE THIS URL HERE that can be viewed nicely displayed [here](UPDATE THIS URL HERE)<----UPDATE THIS URL HERE.
 
+## Related scripts / utilities in my other repositories
+
+To extract sequences from a Clustal-formatted alignment file, see `extract_regions_from_clustal_alignment.py` in [my Alignment utilities sub-repository](https://github.com/fomightez/sequencework/tree/master/alignment-utilities).
 
 ## Scripts / Resources by others
 
