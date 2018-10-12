@@ -238,13 +238,14 @@ def get_seq_following_seq_from_multiFASTA(
     # make a pattern object since it could be used often if I change things to 
     # search the file for multiple records instead of just one at a time
     pat_obj = re.compile(seq_to_find.lower())
-    # luckily it seemed it didn't (and wouldn't work) to use 
+    # It seemed it didn't (and wouldn't work) to use 
     # https://stackoverflow.com/a/12989308/8508004 to bring regular expression
-    # search term from shell. Seems like according to what I found at while 
+    # search term from shell. Seems that similar to what I found at while 
     # working on `collapse_large_unknown_blocks_in_DNA_sequence.py` using 
     # https://stackoverflow.com/a/5466478/8508004 you need to double up 
-    # brackets on command line to use those search terms. I put some examples in
-    # the demo notebook, `demo get_seq_following_seq_from_multiFASTA.ipynb`.
+    # brackets on command line to use those search terms. I put several 
+    # examples in the demo notebook, 
+    # `demo get_seq_following_seq_from_multiFASTA.ipynb`.
     
     # If more than one, go through parsed records and collect the record to act 
     # on.
@@ -261,7 +262,7 @@ def get_seq_following_seq_from_multiFASTA(
                 pat_obj,str(record_to_search.seq))
     if len(match_locations) > 1:
         sys.stderr.write("{} matches to the sequence found in the specified "
-            "sequence. The sequence\nthat follows the one that occurs first "
+            "sequence. The sequence\nthat follows the match encountered first "
             "has been returned.".format(len(match_locations)))
     if match_locations:
         start = match_locations[0][1]
