@@ -350,7 +350,7 @@ if __name__ == "__main__" and '__file__' in globals():
         file.", metavar="SEQUENCE_FILE")
     parser.add_argument("record_id", help="Specific identifier of sequence \
         entry in sequence file to mine. If the provided sequence file only \
-        contains one sequence, that sequence to be mined and what is provided \
+        contains one sequence, that sequence will be mined and what is provided \
         for this parameter will be ignored. In other words, if the sequence \
         file is not a multi-FASTA file, you don't need to determine the \
         identifier and can instead just enter `blahblah` or any other \
