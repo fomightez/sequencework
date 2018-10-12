@@ -347,7 +347,6 @@ if __name__ == "__main__" and '__file__' in globals():
         use as input. Must be FASTA format. Can be a \
         multi-FASTA file, i.e., multiple sequences in FASTA format in one \
         file.", metavar="SEQUENCE_FILE")
-    #python get_seq_following_seq_from_multiFASTA.py seq.fa record_id pattern amount_to_get
     parser.add_argument("record_id", help="Specific identifier of sequence \
         entry in sequence file to mine. If the provided sequence file only \
         contains one sequence, that sequence to be mined and what is provided \
