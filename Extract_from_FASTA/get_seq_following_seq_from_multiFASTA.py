@@ -219,7 +219,7 @@ def get_seq_following_seq_from_multiFASTA(
     # make a records list because need to adjust handling if only one record in 
     # sequence file because don't want record_id to matter in such a case & 
     # be sure to give feedback of that sort.
-    records = []  #intialize a list of records for the present FASTA file
+    records = []  #intialize a list of records for the FASTA file
     for record in SeqIO.parse(sequence_file, "fasta"):
         records.append(record)
     single_record = False
@@ -230,8 +230,7 @@ def get_seq_following_seq_from_multiFASTA(
         sys.stderr.write("Single sequence with id of {} provided in the "
             "sequence file. It will be "
             "used to search for the provided sequence pattern and provide the "
-            "{} residues after it.".format(
-            record_id, amount_to_get))
+            "{} residues after it.".format(record_id, amount_to_get))
 
     # Prepare the pattern to be searched for.
     if filter_dashes:
