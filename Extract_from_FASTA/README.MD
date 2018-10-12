@@ -7,6 +7,8 @@ Repo for my computational resources dealing with extracting sequence information
 * get_seq_following_seq_from_multiFASTA.py
 > sequence(s) and a pattern to match   ---> first sequence after the match in specific sequence
 
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_multiFASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_multiFASTA.ipynb).
+
 At the time this was developed, it was intended to help examine sequences just downstream of sequences extracted from much larger alignments to check if all pertinent sequence included already.
 
 Takes a sequence pattern string, a sequence file (FASTA-format), and  record id, and extracts a sequence of specified size following the sequence pattern. (The FASTA-formatted sequence file is assumed by default to be a multi-FASTA, i.e., multiple sequences in the provided file, although it definitely doesn't have to be. In case it is only a single sequence, the record id becomes moot, see below.
@@ -22,7 +24,7 @@ This script is meant to be used after you have performed a large alignment, say 
 
 It is designed to handle/filter gaps ('dashes') in the provided sequence patterns. The idea being that the known sequence ends may be manually extracted from sequence alignments. This way the user is not wasting time removing the gap indications / dashes from the collected text lines. The default handling of removing the gaps to ignore them can be overriden. The idea is that maybe you'll have a multiple sequence alignment file saved as FASTA with dashes, i.e., aligned FASTA file format and may want to use this script.  (The caveat is that number of residues to get will then be counting the gaps / dashes too.)
 
-There is a [demo notebook for this script in this repo](UPDATE THIS URL HERE)<---UPDATE THIS URL HERE that can be viewed nicely displayed [here](UPDATE THIS URL HERE)<----UPDATE THIS URL HERE.
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_multiFASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_multiFASTA.ipynb).
 
 ## Related scripts / utilities in my other repositories
 
