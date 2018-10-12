@@ -216,9 +216,9 @@ def get_seq_following_seq_from_multiFASTA(
 
     A sequence string of the specified length will be returned.
     '''
-    # make a records list because need to adjust record_id because don't 
-    # xpect it to matter in such a case of only one entry in sequence file & 
-    # give feedback of that sort.
+    # make a records list because need to adjust handling if only one record in 
+    # sequence file because don't want record_id to matter in such a case & 
+    # be sure to give feedback of that sort.
     records = []  #intialize a list of records for the present FASTA file
     for record in SeqIO.parse(sequence_file, "fasta"):
         records.append(record)
