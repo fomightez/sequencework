@@ -31,7 +31,7 @@ __version__ = "0.1.0"
 # Note that if there is only one record in the specified sequence file, the 
 # record id is moot and you can instead provide any string for that parameter 
 # as it will be ignored. This makes the script more flexible in cases where 
-# sequence files aren't complex as the user doesn't need to provide the 
+# sequence files aren't complex as the user doesn't need to provide an actual 
 # record id.
 # 
 # This script is meant to be used after you have performed a large alignment, 
