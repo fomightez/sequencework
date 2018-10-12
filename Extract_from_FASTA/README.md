@@ -17,7 +17,7 @@ A sequence string of the specified length will be returned. Redirect the output 
 
 The provided sequence pattern will be matched regardless of case, as both the input sequence and pattern to search will be converted to lowercase. Beyond being insensitive of the case, **REGULAR EXPRESSION SEARCH TERM SYNTAX IS ACCEPTABLE in the provided sequence pattern**.
 
-Note that if there is only one record in the specified sequence file, the record id is moot and you can instead provide any string for that parameter as it will be ignored. This makes the script more flexible in cases where sequence files aren't complex as the user doesn't need to provide the record id.
+Note that if there is only one record in the specified sequence file, the record id is moot and you can instead provide any string for that parameter as it will be ignored. This makes the script more flexible in cases where sequence files aren't complex as the user doesn't need to provide an actual record id.
 
 This script is meant to be used after you have performed a large alignment, say of an entire chromosome, in order to have individual occurrences of related segments fall linearly with where they match up along the span of the sequence. Often due to  large (seeming-to-be) arbitratrily-sized blocks of repeated unknown nucleotides (which are often good to 'collapse', see `collapse_large_unknown_blocks_in_DNA_sequence.py`) the 'ends' of region often fail to get extracted exactly right. This script is meant to help in determining how best to clean up such instances. For example, in the obtained sequence, is there an 'end' that matches up better with the pattern of known 'ends' and should be added?
 
