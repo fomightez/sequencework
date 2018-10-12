@@ -20,7 +20,7 @@ Related scripts
 Since sequence manipulations are at the heart of many of my computational endeavors, several other of my code repositories hold code that is related. Here are some:
 
 
- - In the `ConvertSeq` folder is a script that converst a sequence (or sequences) to the reverse complement. See `convert_fasta_to_reverse_complement.py`.
+ - In the `ConvertSeq` folder is a script that converts a sequence (or sequences) to the reverse complement. See `convert_fasta_to_reverse_complement.py`.
 
 
 
