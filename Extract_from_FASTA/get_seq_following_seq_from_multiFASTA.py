@@ -207,7 +207,8 @@ def get_seq_following_seq_from_multiFASTA(
     '''
     Main function of script.
     Takes a sequence string, a sequence file (FASTA-format), and a record id and 
-    extracts a sequence of specified size following the sequence string. 
+    extracts from the specified record a sequence of specified size following 
+    the sequence string. 
     (The FASTA-formatted sequence file is assumed by default to be a 
     multi-FASTA, i.e., multiple sequences in the provided file, although it 
     definitely doesn't have to be. In case it is only a single sequence, the 
