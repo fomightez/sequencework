@@ -37,7 +37,7 @@ __version__ = "0.1.0"
 # This script is meant to be used after you have performed a large alignment, 
 # say of an entire chromosome, in order to have individual occurrences of 
 # related segments fall linearly with where they match up along the span of the 
-# sequence. Often due to  large (seeming-to-be) arbitratrily-sized blocks of 
+# sequence. Often due to large (seeming-to-be) arbitratrily-sized blocks of 
 # repeated unknown nucleotides (which are often good to 'collapse', see 
 # `collapse_large_unknown_blocks_in_DNA_sequence.py`) the 'ends' of regions 
 # often fail to get extracted exactly right. This script is meant to help in 
