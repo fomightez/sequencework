@@ -23,6 +23,8 @@ This script is meant to be used after you have performed a large alignment, say 
 It is designed to handle/filter gaps ('dashes') in the provided sequence patterns. The idea being that the known sequence ends may be manually extracted from sequence alignments. This way the user is not wasting time removing the gap indications / dashes from the collected text lines. The default handling of removing the gaps to ignore them can be overriden. The idea is that maybe you'll have a multiple sequence alignment file saved as FASTA with dashes, i.e., aligned FASTA file format and may want to use this script. 
 
 
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/AdjustFASTA_or_FASTQ/demo%20delete_seq_following_pattern_within_multiFASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/AdjustFASTA_or_FASTQ/demo%20delete_seq_following_pattern_within_multiFASTA.ipynb).
+
 - add_source_organism_info_to_FASTA.py
 > FASTA file -->  FASTA file with organism info injected in text
 
