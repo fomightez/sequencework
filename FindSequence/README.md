@@ -15,10 +15,14 @@ For searching for ambiguous sequences/motifs or mismatches, see [below](#related
 
 - If looking to retrieve a sequence from a database, you want the [RetrieveSeq](https://github.com/fomightez/sequencework/tree/master/RetrieveSeq) directory in this repo.
 
+- If you want to retrieve the sequence following a match to a sequence, you want the [Extract_from_FASTA](https://github.com/fomightez/sequencework/tree/master/Extract_from_FASTA) directory in this repo
+
+- If you want to delete sequence following a match to a sequence, you want the [AdjustFASTA_or_FASTQ](https://github.com/fomightez/sequencework/tree/master/AdjustFASTA_or_FASTQ) directory in this repo
+
 
 # Related items by others where I have added some utilities for associating the data with Python
 
-- The venerable PatMatch allows much more flexibility beyond exact matches to nucleotide and protein sequences and motifs, and although it doesn't directly play well with Python, I have made a utility script that helps with that.  
+- The venerable PatMatch allows much more flexibility beyond exact matches to nucleotide and protein sequences and motifs (and is easier to use than regular expression-based search terms because tailored to residues), and although it doesn't directly play well with Python, I have made a utility script that helps with that.  
 See about the command line-based version and links to online implementations at [my repo, patmatch-binder](https://github.com/fomightez/patmatch-binder). It includes active demonstrations in launchable Jupyter notebooks of running the command line-based version and getting the data into Python. Go [there](https://github.com/fomightez/patmatch-binder) and click `launch binder` for that.
 
 
