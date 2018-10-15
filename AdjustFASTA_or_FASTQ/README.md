@@ -7,6 +7,22 @@ Sequence Adjusters
 
 **Description of each script**
 
+
+- delete_seq_following_pattern_within_multiFASTA.py
+> sequence(s) in FASTA file and a pattern to match   --->  sequence deleted after match in derived FASTA file 
+
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/AdjustFASTA_or_FASTQ/demo%20delete_seq_following_pattern_within_multiFASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/AdjustFASTA_or_FASTQ/demo%20delete_seq_following_pattern_within_multiFASTA.ipynb).
+
+`delete_seq_following_pattern_within_multiFASTA.py` takes a sequence pattern string, a sequence file (FASTA-format), and a record id, and deletes any sequence following the sequence pattern. In other, words it trims the specified sequence, to make the first match to the pattern the new end. (The FASTA-formatted sequence file is assumed by default to be a multi-FASTA, i.e., multiple sequences in the provided file, although it definitely doesn't have to be. In case it is only a single sequence, the record id becomes moot and you can enter any nonsosenst for that arguement. Nothing will be returned but a copy of the FASTA sequence file with the truncated sequence will be produced.
+
+The provided sequence pattern will be matched regardless of case, as both the input sequence and pattern to search will be converted to lowercase. Beyond being insensitive of the case, REGULAR EXPRESSION SEARCH TERM SYNTAX IS ACCEPTABLE in the provided sequence pattern.
+
+Note that if there is only one record in the specified sequence file, the record id is moot and you can instead provide any string for that parameter as it will be ignored. This makes the script more flexible in cases where sequence files aren't complex as the user doesn't need to provide an actual record id. 
+This script is meant to be used after you have performed a large alignment, say of an entire chromosome, in order to have individual occurrences of related segments fall linearly with where they match up along the span of the sequence. Often due to large (seeming-to-be) arbitratrily-sized blocks of repeated unknown nucleotides (which are often good to 'collapse', see `collapse_large_unknown_blocks_in_DNA_sequence.py`) the 'ends' of regions often fail to get extracted exactly right and you can end up with some sequences that trail on for longer than they should.
+
+It is designed to handle/filter gaps ('dashes') in the provided sequence patterns. The idea being that the known sequence ends may be manually extracted from sequence alignments. This way the user is not wasting time removing the gap indications / dashes from the collected text lines. The default handling of removing the gaps to ignore them can be overriden. The idea is that maybe you'll have a multiple sequence alignment file saved as FASTA with dashes, i.e., aligned FASTA file format and may want to use this script. 
+
+
 - add_source_organism_info_to_FASTA.py
 > FASTA file -->  FASTA file with organism info injected in text
 
