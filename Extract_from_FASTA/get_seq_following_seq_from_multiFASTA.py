@@ -227,10 +227,10 @@ def get_seq_following_seq_from_multiFASTA(
         record_id = records[0].id
         single_record = True
         # feedback
-        sys.stderr.write("Single sequence with id of {} provided in the "
-            "sequence file. It will be "
-            "used to search for the provided sequence pattern and provide the "
-            "{} residues after it.".format(record_id, amount_to_get))
+        sys.stderr.write("Single sequence with id of '{}' provided in the "
+            "sequence file.\nIt will be "
+            "used to search for the provided sequence pattern\nand provide the "
+            "{} residues after it.\n\n".format(record_id, amount_to_get))
 
     # Prepare the pattern to be searched for.
     if filter_dashes:
