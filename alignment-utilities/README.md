@@ -85,11 +85,11 @@ Related utilities in my other repositories
 
 - `get_seq_following_seq_from_multiFASTA.py`
 
-Often when you use an alignment of entire chromosome to extract a collinear region to identify orthologs sometimes the ends aren't exactly perfect. You may wish to look at the sequence just beyond the edge of collected sequence, and so you can use the end of that extracted seqeunce to search that pattern agains the original source to get the downstream sequence. I made a script to do this post-alignment processing. It is called `get_seq_following_seq_from_multiFASTA.py` and it can be found in my ['Sequencework/Extract_from_FASTA' code repository](https://github.com/fomightez/sequencework/tree/master/Extract_from_FASTA).
+  Often when you use an alignment of entire chromosome to extract a collinear region to identify orthologs sometimes the ends aren't exactly perfect. You may wish to look at the sequence just beyond the edge of collected sequence, and so you can use the end of that extracted seqeunce to search that pattern agains the original source to get the downstream sequence. I made a script to do this post-alignment processing. It is called `get_seq_following_seq_from_multiFASTA.py` and it can be found in my ['Sequencework/Extract_from_FASTA' code repository](https://github.com/fomightez/sequencework/tree/master/Extract_from_FASTA).
 
 - `delete_seq_following_pattern_within_multiFASTA.py`
 
-Often when you use an alignment of entire chromosome to extract a collinear region to identify orthologs sometimes the ends aren't exactly perfect. You may wish to remove sequences after an element or pattern in order to not have long trailing overhangs beyond the aliged region. I made a script to do this post-alignment processing. It is called `delete_seq_following_pattern_within_multiFASTA.py` and it can be found in my ['Sequencework/AdjustFASTA_or_FASTQ' code repository](https://github.com/fomightez/sequencework/tree/master/AdjustFASTA_or_FASTQ).
+  Often when you use an alignment of entire chromosome to extract a collinear region to identify orthologs sometimes the ends aren't exactly perfect. You may wish to remove sequences after an element or pattern in order to not have long trailing overhangs beyond the aliged region. I made a script to do this post-alignment processing. It is called `delete_seq_following_pattern_within_multiFASTA.py` and it can be found in my ['Sequencework/AdjustFASTA_or_FASTQ' code repository](https://github.com/fomightez/sequencework/tree/master/AdjustFASTA_or_FASTQ).
 
 
 Utilities by others
