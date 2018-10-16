@@ -39,13 +39,15 @@ Returns a dataframe with the details for the mito features, now with yeast mitoc
 There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_Details_or_Annotation/demo%20report_coordinates_for_seq_within_multiFASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_Details_or_Annotation/demo%20report_coordinates_for_seq_within_multiFASTA.ipynb).
 
 Takes a sequence pattern string, a sequence file (FASTA-format), and a record identifier, and reports the start and end coordinates of that sequence within the specified FASTA record.
-Because inherently the sequence to search can be provided as a pattern, I am saying 'pattern'; however, the impetus for this script was for when you have a known sequence, that will only occour once in that record and you need the coordinates. (The FASTA-formatted sequence file in which to search is assumed by default to be a multi-FASTA, i.e., multiple sequences in the provided file, although it definitely doesn't have to be. In case it is only a single sequence, the record id becomes moot, see below.) Two values, the start and the end will be returned, separated by a tab. Redirect the output to a file if using command line version and a file is needed.
+Because inherently the sequence to search can be provided as a pattern, I am saying 'pattern'; however, the impetus for this script was for when you have a known sequence, that will only occour once in that record and you need the coordinates. The FASTA-formatted sequence file in which to search is assumed by default to be a multi-FASTA, i.e., multiple sequences in the provided file, although it definitely doesn't have to be. More on that below. 
+
+After running the script, two values, the start and the end will be returned, separated by a tab. Redirect the output to a file if using command line version and a file is needed.
 
 Importantly, the coordinates numbering is in 'common' terms where the position numbered one corresponds to the first position. (In other words, thecoordinates returned are in the more conventional form & are not zero-indexed even though behind-the-scenes Python/Biopython is indeed zero-indexed.)
 
-The provided sequence pattern will be matched regardless of case, as both the input sequence and pattern to search will be converted behind-the-scenes to lowercase for the comparison. Beyond being insensitive of the case, REGULAR EXPRESSION SEARCH TERM SYNTAX IS ACCEPTABLE in the provided sequence pattern.
-
 Note that if there is only one record in the specified sequence file, the record id is moot and you can instead provide any string for that parameter as it will be ignored. This makes the script more flexible in cases where sequence files aren't complex as the user doesn't need to provide an actual record id.
+
+The provided sequence pattern will be matched regardless of case, as both the input sequence and pattern to search will be converted behind-the-scenes to lowercase for the comparison. Beyond being insensitive of the case, REGULAR EXPRESSION SEARCH TERM SYNTAX IS ACCEPTABLE in the provided sequence pattern.
 
 It is designed to handle/filter gaps ('dashes') in the provided sequence patterns. The idea being that the known sequence ends may be manually extracted from sequence alignments. This way the user is not wasting time removing the gap indications / dashes from the collected text lines.
 
