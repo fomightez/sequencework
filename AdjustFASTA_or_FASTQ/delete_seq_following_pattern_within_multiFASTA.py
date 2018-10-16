@@ -103,8 +103,7 @@ __version__ = "0.1.0"
 #
 #
 # To use this after importing/pasting or loading into a cell in a Jupyter 
-# notebook, specify at least the results file (or results as a string) in the 
-# call to the main function similar to below:
+# notebook, call the main function similar to below:
 # delete_seq_following_pattern_within_multiFASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT")
 # -or-
 # when calling the main function you can include `filter_dashes = False` to 
