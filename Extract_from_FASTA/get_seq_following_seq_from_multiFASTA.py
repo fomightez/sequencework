@@ -24,9 +24,9 @@ __version__ = "0.1.0"
 # output to a file if using command line version and a file is needed.
 #
 # The provided sequence pattern will be matched regardless of case, as both the
-# input sequence and pattern to search will be converted to lowercase. Beyond 
-# being insensitive of the case, REGULAR EXPRESSION SEARCH TERM SYNTAX IS 
-# ACCEPTABLE in the provided sequence pattern.
+# input sequence and pattern to search will be converted behind-the-scenes to 
+# lowercase for the comparison. Beyond being insensitive of the case, REGULAR 
+# EXPRESSION SEARCH TERM SYNTAX IS ACCEPTABLE in the provided sequence pattern.
 #
 # Note that if there is only one record in the specified sequence file, the 
 # record id is moot and you can instead provide any string for that parameter 
@@ -88,7 +88,7 @@ __version__ = "0.1.0"
 # v.0.1. basic working version. 
 #
 # To do:
-# - check regex works
+#
 #
 #
 #
