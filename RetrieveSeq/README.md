@@ -1,5 +1,7 @@
 # Sequence Retrieval
 
+Repo for my computational resources dealing with retrieving sequences from remote resources.
+
 ## Running these scripts
 You need to do two things to run these scripts:
 
@@ -154,8 +156,14 @@ TAAATGAAAACATGCATCTTTATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 # Related scripts by me
 
-I have coded several for extracting various sequences or subsequences from FASTA files using biopython. For example, see `drafting_extracting_mito_chr_function.py`. ` 
+For retrieving/extracting sequences from 'local' sources (meaning where I supply most of sequences themselves), see:
 
+* ['Sequencework/Extract_from_FASTA' code repository](https://github.com/fomightez/sequencework/tree/master/Extract_from_FASTA/)
+* ['Sequencework/FindSequence' code repository](https://github.com/fomightez/sequencework/tree/master/FindSequence/)
+* ['Sequencework/alignment-utilities' code repository](https://github.com/fomightez/sequencework/tree/master/alignment-utilities/)
+* ['Sequencework/RetrieveSeq' code repository](https://github.com/fomightez/sequencework/tree/master/RetrieveSeq/)
+
+I have coded several for extracting various sequences or subsequences from FASTA files using biopython. For example, see `drafting_extracting_mito_chr_function.py`. 
 
 # Related scripts by others
 
