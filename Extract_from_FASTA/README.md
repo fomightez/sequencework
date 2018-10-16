@@ -33,6 +33,8 @@ To extract sequences from a Clustal-formatted alignment file, see `extract_regio
 
 If you are gathering some details or other information related to the sequences, you probably want to see my ['Sequencework/Extract_Details_or_Annotation' code repository](https://github.com/fomightez/sequencework/tree/master/Extract_Details_or_Annotation/).
 
+See `drafting_extracting_mito_chr_function.py`. 
+
 ## Scripts / Resources by others
 
 - >"Fastest way to extract some seqs from a BIG fasta file based on header?" - SOURCE: https://twitter.com/macmanes/status/1045659290919481344
