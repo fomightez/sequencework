@@ -104,8 +104,7 @@ __version__ = "0.1.0"
 #
 #
 # To use this after importing/pasting or loading into a cell in a Jupyter 
-# notebook, specify at least the results file (or results as a string) in the 
-# call to the main function similar to below:
+# notebook, call the main function similar to below:
 # following_seq = get_seq_following_seq_from_multiFASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT" , 200)
 # -or-
 # when calling the main function you can include `filter_dashes = False` to 
