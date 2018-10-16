@@ -34,7 +34,7 @@ Intended to be used in conjuction with `mine_mito_features_from_transcriptome.py
 Returns a dataframe with the details for the mito features, now with yeast mitochondrial XUTs added.
 
 * report_coordinates_for_seq_within_multiFASTA.py 
-> subsequence from a specific sequence in a FASTA file --->  start and end coordinates of that subsequence
+> subsequence from a specific sequence in a FASTA file --->  coordinates of the match
 
 There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_Details_or_Annotation/demo%20report_coordinates_for_seq_within_multiFASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_Details_or_Annotation/demo%20report_coordinates_for_seq_within_multiFASTA.ipynb).
 
