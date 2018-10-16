@@ -106,8 +106,7 @@ __version__ = "0.1.0"
 #
 #
 # To use this after importing/pasting or loading into a cell in a Jupyter 
-# notebook, specify at least the results file (or results as a string) in the 
-# call to the main function similar to below:
+# notebook, call to the main function similar to below:
 # following_seq = report_coordinates_for_seq_within_multiFASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT")
 #
 # 
