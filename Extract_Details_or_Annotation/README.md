@@ -3,9 +3,6 @@
 Repo for my computational resources dealing with gathering information or some details from sequence files and not the actual sequence. If you are seeking to include the sequence, you should probably look into my other repositories, see ['Related' below](https://github.com/fomightez/sequencework/tree/master/Extract_Details_or_Annotation#related). 
 
 
-['Sequencework/Extract_from_FASTA' code repository](https://github.com/fomightez/sequencework/tree/master/Extract_from_FASTA/) or ['Sequencework/Extract_from_FASTA' code repository](https://github.com/fomightez/sequencework/tree/master/Extract_from_FASTA/).
-
-
 # The scripts
 
 * mine_mito_features_from_transcriptome.py
