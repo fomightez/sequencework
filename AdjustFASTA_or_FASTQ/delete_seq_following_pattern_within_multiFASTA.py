@@ -253,10 +253,10 @@ def delete_seq_following_pattern_within_multiFASTA(
         record_id = records[0].id
         single_record = True
         # feedback
-        sys.stderr.write("Single sequence with id of {} provided in the "
-            "sequence file. It will be "
-            "used to search for the provided sequence pattern and delete the "
-            "residues after it.".format(record_id))
+        sys.stderr.write("Single sequence with id of '{}' provided in the "
+            "sequence file.\nIt will be "
+            "used to search for the provided sequence pattern\nand delete the "
+            "residues after it.\n\n".format(record_id))
 
     # Prepare the pattern to be searched for.
     if filter_dashes:
