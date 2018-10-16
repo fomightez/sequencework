@@ -1,6 +1,7 @@
 # Extracting sequences from a FASTA file
 
-Repo for my computational resources dealing with extracting sequence information from FASTA-formatted sequence files.
+Repo for my computational resources dealing with extracting sequence from FASTA-formatted sequence files. If you need to gather some details or other information related to the sequences, you should probably look into my ['Sequencework/Extract_Details_or_Annotation' code repository](https://github.com/fomightez/sequencework/tree/master/Extract_Details_or_Annotation/).
+
 
 ## My scripts
 
@@ -28,7 +29,9 @@ There is a [demo notebook for this script in this repo](https://github.com/fomig
 
 ## Related scripts / utilities in my other repositories
 
-To extract sequences from a Clustal-formatted alignment file, see `extract_regions_from_clustal_alignment.py` in [my Alignment utilities sub-repository](https://github.com/fomightez/sequencework/tree/master/alignment-utilities).
+To extract sequences from a Clustal-formatted alignment file, see `extract_regions_from_clustal_alignment.py` in ['Sequencework/alignment-utilities' code repository](https://github.com/fomightez/sequencework/tree/master/alignment-utilities/).
+
+If you are gathering some details or other information related to the sequences, you probably want to see my ['Sequencework/Extract_Details_or_Annotation' code repository](https://github.com/fomightez/sequencework/tree/master/Extract_Details_or_Annotation/).
 
 ## Scripts / Resources by others
 
