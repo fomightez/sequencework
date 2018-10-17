@@ -12,7 +12,7 @@ Descriptions of the scripts are found within `README.md` files in the sub folder
 Related 'Binderized' Utilities
 ----------------------------
 
-Collection of links to launchable Jupyter environment where various sequence analysis tools work. Many of my recent scripts are built with use in these environments in mind:
+Collection of links to launchable Jupyter environments where various sequence analysis tools work **WITHOUT ANY NEED FOR ADDITIONAL EFFORT/INSTALLS**. Many of my recent scripts are built with use in these environments in mind:
 
 (Many of these include/feature Biopython, too, such as  but I haven't made a one all encompassing one yet for that since I use it a lot as an underlying library.)
 
