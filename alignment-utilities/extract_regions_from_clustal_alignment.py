@@ -356,7 +356,7 @@ def extract_regions_from_clustal_alignment(
                 first_words.append(first_word)
     # feedback
     sys.stderr.write(
-        "top line idenitifier determined as '{}'...".format(first_identifier))
+        "top line identifier determined as '{}'...".format(first_identifier))
     # NOTE WILL GET `UnboundLocalError: local variable 'first_identifier' 
     # referenced before assignment` if no alignment/file present!!!!
 
