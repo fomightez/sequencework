@@ -64,7 +64,7 @@ __version__ = "0.1.0"
 # Examples,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# python add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py -ALIGNMENT_TEXT_FILE
+# python add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py ALIGNMENT_TEXT_FILE
 #-----------------------------------
 #
 # Issue `add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py -h` for details.
