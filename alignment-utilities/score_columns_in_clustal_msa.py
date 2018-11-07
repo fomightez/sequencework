@@ -69,7 +69,7 @@ __version__ = "0.1.0"
 # Examples,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# python score_columns_in_clustal_msa.py -ALIGNMENT_TEXT_FILE
+# python score_columns_in_clustal_msa.py ALIGNMENT_TEXT_FILE
 #-----------------------------------
 #
 # Issue `score_columns_in_clustal_msa.py -h` for details.
