@@ -71,7 +71,7 @@ __version__ = "0.1.0"
 # Examples,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# python reverse_complement_of_clustal_alignment.py -ALIGNMENT_TEXT_FILE
+# python reverse_complement_of_clustal_alignment.py ALIGNMENT_TEXT_FILE
 #-----------------------------------
 #
 # Issue `reverse_complement_of_clustal_alignment.py -h` for details.
