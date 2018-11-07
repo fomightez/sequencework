@@ -220,7 +220,7 @@ def add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output(
             else:
                 first_words.append(first_word)
     # feedback
-    sys.stderr.write("top line idenitifier determined as '{}'...".format(first_id))
+    sys.stderr.write("top line identifier determined as '{}'...".format(first_id))
 
     # Go through each line and if the first line identifier recognized, add a
     # line with the growing count to the building output and then the line with
