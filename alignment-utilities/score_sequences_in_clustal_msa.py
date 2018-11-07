@@ -309,11 +309,11 @@ def score_sequences_in_clustal_msa(
                 first_words.append(first_word)
     # feedback
     sys.stderr.write(
-        "top line idenitifier determined as '{}'...".format(first_identifier))
+        "top line identifier determined as '{}'...".format(first_identifier))
     # NOTE WILL GET `UnboundLocalError: local variable 'first_identifier' 
     # referenced before assignment` if no alignment/file present!!!!
     sys.stderr.write(
-        "bottom line idenitifier determined as '{}'."
+        "bottom line identifier determined as '{}'."
         "..".format(last_identifier))
 
 
