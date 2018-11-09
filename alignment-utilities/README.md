@@ -65,7 +65,7 @@ See related script `score_sequences_in_clustal_msa.py`.
 * roughly_score_relationships_to_subject_seq_pairwise_premsa.py
 > sequences in FASTA format (single multi-FASTA file)  ---> quick assessment of similarity of first sequence to each of the others
 
-Meant to be run prior  to a multiple sequence alignment task in order to tell quickly what is similar to one another and maybe leave out redundant sequences if you are looking to reduce the submitted alignment job.
+Meant to be run prior to a multiple sequence alignment task in order to tell quickly what is similar to one another and maybe leave out redundant sequences if you are looking to reduce the submitted alignment job.
 
 Produces a ranked list where the highest scoring one is closest to the first sequence in the provided sequence.
 
