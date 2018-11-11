@@ -62,6 +62,16 @@ Mainly meant to be a rough guide to replace (or confirm) visual inspection to id
 
 See related script `score_sequences_in_clustal_msa.py`.
 
+* categorize_residues_based_on_conservation_relative_consensus_line.py
+> multiple sequence alignment (clustal with consensus symbols) ---> listings of the positions categorized by conservation for a sequence in the alignment
+
+Meant to be run once you have a multiple sequence alignment and want to use the conservation details for further work, such as authoring commands for molecular visualization of a related structure. 
+
+Takes an multiple sequence alignment (in CLUSTAL format) that has a consensus line, produced from, say, [MUSCLE](https://www.ebi.ac.uk/Tools/msa/muscle/) , and for a specific sequence in the alignment categorizes the residues that are identical, strongly, similar, or 
+weakly similar in the alignment.  Plus also categorizes unconserved, while at it. Importantly, residue positions in the results are in common terms where first residue is number one.
+
+There is a [demo notebook for this script as part of my series of structurework-command line demos](https://github.com/fomightez/cl_demo-binder). You can launch the series from [here](https://github.com/fomightez/cl_demo-binder) and then slect from the index to go to the 'Categorize conservation in a MSA and use that to generate commands' page. The direct link to a static version of that page is [here](????????????). Usage of the script is illustrated there because this script is ideal for bridging sequence analysis to molecular structure analysis and I had an idea for a good illustration of that bridging concept. That demo also has a function fuller accounting of documentation for this script as well.
+
 * roughly_score_relationships_to_subject_seq_pairwise_premsa.py
 > sequences in FASTA format (single multi-FASTA file)  ---> quick assessment of similarity of first sequence to each of the others
 
