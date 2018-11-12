@@ -16,9 +16,9 @@ Collection of links to launchable Jupyter environments where various sequence an
 
 (Many of these include/feature Biopython, too, such as  but I haven't made a one all encompassing one yet for that since I use it a lot as an underlying library.)
 
-- [patmatch-binder](https://github.com/fomightez/patmatch-binder) - launchable Jupyter sessions for running command line-based  PatMatch in Jupyter environment provided via Binder (*Perl and Python-based*).
+- [patmatch-binder](https://github.com/fomightez/patmatch-binder) - launchable Jupyter sessions for running command line-based PatMatch in Jupyter environment provided via Binder (*Perl and Python-based*).
 
-- [blast-binder](https://github.com/fomightez/blast-binder) - launchable Jupyter sessions for running command line-based  PatMatch in Jupyter environment provided via Binder.
+- [blast-binder](https://github.com/fomightez/blast-binder) - launchable Jupyter sessions for running command line-based BLAST+ in Jupyter environment provided via Binder.
 
 - [InterMine-binder](https://github.com/fomightez/intermine-binder) - 
 Intermine Web Services available in a Jupyter environment running via the Binder service. (See the [ guide to getting started with using Intermine sites and Jupyter using MyBinder-served Jupyter notebooks](https://github.com/fomightez/guide_to_intermine-binder).)
