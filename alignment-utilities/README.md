@@ -52,7 +52,7 @@ info here.
 
 Meant to add a consensus symbol line for cases where alignment produced doesn't have it (e.g., Clustal output from Stretcher or extracted I-TASSER thread template listing) or it has been lost. Consensus line it produces is similar to the Clustal style consensus symbols MUSCLE adds below each reside of the alignment. 
 NOT MADE YET BUT SHOULD BE USING calculate_cons_for_clustal_protein.py as a basis and info from [here](https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Bioinformatics+Tools+FAQ#BioinformaticsToolsFAQ-WhatdoconsensussymbolsrepresentinaMultipleSequenceAlignment?).  
-(Keep in mind [MView](https://www.ebi.ac.uk/Tools/msa/mview/) good if just need visual representation, albeit not as concise as this script makes or MUSCLE outputs.)
+(Keep in mind [MView](https://www.ebi.ac.uk/Tools/msa/mview/) good if just need visual representation, albeit not as concise, suitable for saving, or machine-parseable as this script makes or MUSCLE outputs.)
 
 * score_sequences_in_clustal_msa.py 
 > multiple sequence alignment (clustal) ---> dataframe of the id and assessment score of each sequence 
