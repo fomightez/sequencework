@@ -47,11 +47,11 @@ Meant to add a consensus symbol line for cases where alignment produced doesn't 
 info here. 
 (Keep in mind [MView](https://www.ebi.ac.uk/Tools/msa/mview/) good if just need visual representation, albeit not as concise as this script makes or MUSCLE outputs.)
 
-* calculate_cons_for_clustal_protein.py
+* calculate_cons_for_clustal_protein.py <---NOT MADE YET
 > protein alignment without consensus line ---> alignment with consensus line
 
-Meant to add a consensus symbol line for cases where alignment produced doesn't have it (e.g., Clustal output from Stretcher or extracted I-TASSER thread template listing) or it has been lost. Consensus line it produces is similar to the Clustal style consensus symbols MUSCLE adds below each reside of the alignment. 
-NOT MADE YET BUT SHOULD BE USING calculate_cons_for_clustal_protein.py as a basis and info from [here](https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Bioinformatics+Tools+FAQ#BioinformaticsToolsFAQ-WhatdoconsensussymbolsrepresentinaMultipleSequenceAlignment?).  
+Meant to add a consensus symbol line for cases where alignment produced doesn't have it (e.g., Clustal output from Stretcher or extracted I-TASSER thread template listing or exported from aligned templates at SWISS-MODEL) or it has been lost. Consensus line it produces is similar to the Clustal style consensus symbols MUSCLE adds below each reside of the alignment. 
+NOT MADE YET BUT SHOULD BE WRITTEN USING calculate_cons_for_clustal_nucloeas.py as a basis and info from [here](https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Bioinformatics+Tools+FAQ#BioinformaticsToolsFAQ-WhatdoconsensussymbolsrepresentinaMultipleSequenceAlignment?).  
 (Keep in mind [MView](https://www.ebi.ac.uk/Tools/msa/mview/) good if just need visual representation, albeit not as concise, suitable for saving, or machine-parseable as this script makes or MUSCLE outputs.)
 
 * score_sequences_in_clustal_msa.py 
