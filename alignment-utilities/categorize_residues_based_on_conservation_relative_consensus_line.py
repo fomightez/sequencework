@@ -73,14 +73,14 @@ __version__ = "0.1.0"
 # To use this after importing/pasting or loading into a cell in a Jupyter 
 # notebook, specify at least the alignment file and id of sequence to analyze 
 # in the call to the main function similar to below:
-# categorize_residues_based_on_conservation_relative_consensus_line("alignment.clw",STV1)
+# categorize_residues_based_on_conservation_relative_consensus_line("alignment.clw","VPH1")
 # 
 #-or-
 # If `return_panel_data` is `True` and `output_separate` is `True` then it will
 # return a dictionary of the dataframes with the categories as keys, one dataframe
 # with the positions for each category. For that all to the main function 
 # similar to below:
-# categorize_residues_based_on_conservation_relative_consensus_line("alignment.clw",STV1,output_separate = True,return_panel_data=True)
+# categorize_residues_based_on_conservation_relative_consensus_line("alignment.clw","VPH1",output_separate = True,return_panel_data=True)
 #
 # There are other options, see the demo for illustration.
 # 
@@ -88,7 +88,7 @@ __version__ = "0.1.0"
 '''
 CURRENT ACTUAL CODE FOR RUNNING/TESTING IN A NOTEBOOK WHEN IMPORTED/LOADED OR 
 PASTED IN ANOTHER CELL:
-categorize_residues_based_on_conservation_relative_consensus_line("alignment.clw",STV1,output_separate=True,return_panel_data=True)
+categorize_residues_based_on_conservation_relative_consensus_line("alignment.clw","VPH1",output_separate=True,return_panel_data=True)
 '''
 #
 #
