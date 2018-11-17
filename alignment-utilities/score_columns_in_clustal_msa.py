@@ -393,7 +393,7 @@ if __name__ == "__main__" and '__file__' in globals():
     parser = argparse.ArgumentParser(prog=
         'score_columns_in_clustal_msa.py',
         description="score_columns_in_clustal_msa.py \
-        takes a text document of an alignment in CLUSTAL format  and generates \
+        takes a text document of an alignment in CLUSTAL format and generates \
         a couple of quick-n-dirty 'scores' based on percent overall \
         conservation in an alignment. Specifically, determines conservation of \
         residues in alignment columns both including and excluding counting \
@@ -405,8 +405,8 @@ if __name__ == "__main__" and '__file__' in globals():
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
 
-    parser.add_argument("align_file", help="Name of file of alignmnet text \
-        file.\
+    parser.add_argument("align_file", help="Name of file of alignment text \
+        file (CLUSTAL format).\
         ", metavar="ALIGNMENT_FILE")
 
 
