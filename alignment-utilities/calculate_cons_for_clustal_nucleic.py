@@ -14,11 +14,12 @@ __version__ = "0.1.0"
 # Python 3. 
 #
 #
-# PURPOSE: Takes a multiple seuence alignment (MSA) in clustal format and adds 
+# PURPOSE: Takes a multiple sequence alignment (MSA) in clustal format and adds 
 # symbols indicating conservation/consensus below each set of sequence 
 # alignment blocks.  Different symbols indicate identical residues and conserved 
 # substitutions in a output alignment file.
-# Good for replacing lost information in alignments upon hand-editing with 
+# Good for replacing absent information in alignments. Or good
+# for replacing outdated /lost information in alignments upon hand-editing with 
 # Seqotron on a Mac. Better than `cons` in EMBOSS suite because makes format 
 # that matches t-coffee more so no hand editing, plus adds conserved substitions
 # as periods (, vaguely similar to what is described for proteins at 
@@ -27,7 +28,9 @@ __version__ = "0.1.0"
 # See `edited t-coffee alignment for true mitochondrial orgins.md` for first use. 
 # 
 # Also useful in conjunction with Kalign (https://www.ebi.ac.uk/Tools/msa/kalign/) 
-# tool as that doesn't add asterisks indicating conservation.
+# tool as that doesn't add asterisks indicating conservation. (Several others
+# that generate Clustal formatted alignments also seem to save with consensus 
+# symbol lines.)
 # CAVIEAT: right now in order to correctly identify the sequence identifiers at
 # the start of alignment lines, they need to occur at least three times so there
 # has to be at least two full blocks of sequence + at least a partial block. The
@@ -101,11 +104,6 @@ __version__ = "0.1.0"
     # REMOVE CAVEAT WHEN DONE. 
 # - add `name_basis` use?
 #   
-# - use this as basis to make a spearate one for proteins, deleting three 
-# occurences of note about what to use for semi-conserved grouping of amino 
-# acids from nucleic file when done. Looking at nucleic example more, I had
-# found http://biopython.org/DIST/docs/api/Bio.Align.AlignInfo.SummaryInfo-class.html
-#
 #
 #
 #
@@ -162,10 +160,6 @@ suffix_for_saving = "_plusCONS" #to be used for naming the output automatically
 
 conserved_nt_tuples = [("A","G"), ("T","C"), ("U","C")] #used to decide if
 # conservative substition made in case where not all identical
-# FOR LATER, http://www.ebi.ac.uk/Tools/msa/clustalo/help/faq.html will be 
-# particularly helpful with what groups are conserved substitutions when adding
-# proteins amino acid alignments in future.
-
 
 #
 #*******************************************************************************
@@ -310,7 +304,7 @@ def calculate_cons_for_clustal_nucleic(
     first_words = []
     first_id_needed = True
     for line in alignment.split("\n"):
-        if line:
+        if line.strip():
             first_word = line.split()[0]
             if first_word in first_words:
                 if first_id_needed:
@@ -401,9 +395,6 @@ def calculate_cons_for_clustal_nucleic(
     #---------------------------------------------------------------------------
     # `conservation_line` will be used for logging if identical in all 
     # alignments at that position or if conservatively substituted. 
-    # FOR LATER, http://www.ebi.ac.uk/Tools/msa/clustalo/help/faq.html will be 
-    # particularly helpful with what groups are conserved substitutions when adding
-    # proteins amino acid alignments in future.
     # `majority` will simply be what is the majority at that position and later 
     # be used in another script, i.e., my pretty msa maker one, for determining 
     # if nucleotides represented as bold. 
@@ -428,9 +419,6 @@ def calculate_cons_for_clustal_nucleic(
         elif current_pos_list.count(current_pos_list[0]) == len(current_pos_list):
             conservation_line += "*"
         elif any([set(current_pos_list).issubset(x) for x in conserved_nt_tuples]):
-            # FOR LATER, http://www.ebi.ac.uk/Tools/msa/clustalo/help/faq.html will be 
-            # particularly helpful with what groups are conserved substitutions when adding
-            # proteins amino acid alignments in future.
             conservation_line+= "."
         else:
             conservation_line += " "
