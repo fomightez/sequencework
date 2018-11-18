@@ -16,8 +16,6 @@ Collection of links to launchable Jupyter environments where various sequence an
 
 (Many of these include/feature Biopython, too, such as  but I haven't made a one all encompassing one yet for that since I use it a lot as an underlying library.)
 
-- - [cl_demo-binder](https://github.com/fomightez/cl_demo-binder) - launchable, working Jupyter-based environment that has a collection of demonstrations of useful resources on command line (or useable in Jupyter sessions) for manipulating sequence files. (THIS WAS STARTED AFTER SEVERAL OTHER DEMO NOTEBOOKS (many meant to be static) MADE FOR SEQUENCE SCRIPT and hopefully slowly those will be added to here as well to be available in active form.)
-
 - [patmatch-binder](https://github.com/fomightez/patmatch-binder) - launchable Jupyter sessions for running command line-based PatMatch in Jupyter environment provided via Binder (*Perl and Python-based*).
 
 - [blast-binder](https://github.com/fomightez/blast-binder) - launchable Jupyter sessions for running command line-based BLAST+ in Jupyter environment provided via Binder.
@@ -31,6 +29,8 @@ MCscan software available in a launchable Jupyter environment running via the Bi
 - [mcscan-blast-binder](https://github.com/fomightez/mcscan-blast-binder) - MCscan and BLAST+ command line software available in a launchable Jupyter environment running via the Binder service (*Python 2-based*).
 
 - [synchro-binder](https://github.com/fomightez/synchro-binder) - SynChro software available in a launchable Jupyter environment running via the Binder service with Quick start and some other illustrations of its use.
+
+- [cl_sq_demo-binder](https://github.com/fomightez/cl_sq_demo-binder) - launchable, working Jupyter-based environment that has a collection of demonstrations of useful resources on command line (or useable in Jupyter sessions) for manipulating sequence files. (THIS WAS STARTED AFTER SEVERAL OTHER DEMO NOTEBOOKS (many meant to be static) MADE FOR SEQUENCE SCRIPT and hopefully slowly those will be added to here as well to be available in active form.)
 
 - [clausen_ribonucleotides binder](https://github.com/fomightez/clausen_ribonucleotides) - Analyze ribonucleotide incorporation data from Clausen et al. 2015 data using script `plot_5prime_end_from_bedgraph.py`.
 
