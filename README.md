@@ -30,7 +30,7 @@ MCscan software available in a launchable Jupyter environment running via the Bi
 
 - [synchro-binder](https://github.com/fomightez/synchro-binder) - SynChro software available in a launchable Jupyter environment running via the Binder service with Quick start and some other illustrations of its use.
 
-- [cl_sq_demo-binder](https://github.com/fomightez/cl_sq_demo-binder) - launchable, working Jupyter-based environment that has a collection of demonstrations of useful resources on command line (or useable in Jupyter sessions) for manipulating sequence files. (THIS WAS STARTED AFTER SEVERAL OTHER DEMO NOTEBOOKS (many meant to be static) MADE FOR SEQUENCE SCRIPT and hopefully slowly those will be added to here as well to be available in active form.)
+- [cl_sq_demo-binder](https://github.com/fomightez/cl_sq_demo-binder) - launchable, working Jupyter-based environment that has a collection of demonstrations of useful resources on command line (or useable in Jupyter sessions) for manipulating sequence files. (Note: THIS WAS STARTED AFTER SEVERAL OTHER DEMO NOTEBOOKS (many meant to be static) MADE FOR SEQUENCE SCRIPTs, and hopefully slowly those will be added to here as well to be available in active form.)
 
 - [clausen_ribonucleotides binder](https://github.com/fomightez/clausen_ribonucleotides) - Analyze ribonucleotide incorporation data from Clausen et al. 2015 data using script `plot_5prime_end_from_bedgraph.py`.
 
