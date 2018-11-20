@@ -266,7 +266,7 @@ def calculate_cons_for_clustal_protein(
     '''
     Main function of script. 
     It will take an alignment text file (or the alignment as a Python string(?)) 
-    and add  ymbols indicatinf identical residues and conserved substitutions, 
+    and add  symbols indicating identical residues and conserved substitutions, 
     and then output a new alignment file.
 
     The option to provide the results as a string is to handle where sending the
