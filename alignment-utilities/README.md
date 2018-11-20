@@ -80,6 +80,15 @@ weakly similar in the alignment.  Plus also categorizes unconserved, while at it
 
 There is a [demo notebook for this script as part of my series of structurework-command line demos](https://github.com/fomightez/cl_demo-binder). You can launch the series from [here](https://github.com/fomightez/cl_demo-binder) and then selecting from the index to go to the 'Categorize conservation in a MSA and use that to generate molvis commands' page. The direct link to a nicely-rendered, static version of that page is [here](https://nbviewer.jupyter.org/github/fomightez/cl_demo-binder/blob/master/cl_demo-binder%20Categorize%20conservation%20in%20a%20MSA%20and%20use%20that%20to%20generate%20molvis%20commands.ipynb). Usage of the script is illustrated there because this script is ideal for bridging sequence analysis to molecular structure analysis and I had an idea for a good illustration of that bridging concept. That demo also has a function fuller accounting of documentation for this script as well.
 
+* mview_to_CLUSTAL.py 
+> MView output of an alignment with few 'bells-n-whistles' ---> alignment in CLUSTAL format
+
+Meant to be used when wanting to adjust width of sequence characters per line.
+
+Takes a multiple sequence alignment output by MView with options set so mainly just the lines of sequence and not html or consenuss information and reformats it to CLUSTAL.
+
+There is a [demo notebook for this script as part of my series of sequencework-command line demos](https://github.com/fomightez/cl_sq_demo-binder) where this script is demonstrated as part of a notebook combining a typical worflow. To get an active form of the specific demo notebook, you can launch the series from [here](https://github.com/fomightez/cl_sq_demo-binder) and then select from the index to go to the 'Use biopython to make valid CLUSTAL formatted MSAs, check sequence of manually edited alignment, and add consensus line' notebook. Alternatively, the direct link to a nicely-rendered, static version of that page is [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/Use%20biopython%20to%20make%20valid%20CLUSTAL%20formatted%20MSAs%2C%20check%20sequence%20of%20manually%20edited%20alignment%2C%20and%20add%20consensus%20line.ipynb).
+
 * roughly_score_relationships_to_subject_seq_pairwise_premsa.py
 > sequences in FASTA format (single multi-FASTA file)  ---> quick assessment of similarity of first sequence to each of the others
 
