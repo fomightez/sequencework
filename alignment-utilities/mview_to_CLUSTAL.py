@@ -186,7 +186,7 @@ def mview_to_CLUSTAL(mview_data, suffix_for_saving = suffix_for_saving):
     - Collects the IDs and the sequences
     - Truncates the ids to 30 if not already. (Based on 
     https://www.ebi.ac.uk/Tools/msa/clustalw2/help/faq.html#18)
-    - To make things easy, add spaces to each indentifier to make them all 
+    - To make things easy, add spaces to each identifier to make them all 
     equal length with longest.
     - If length of longest identifier is less than 16 then left justify with 
     spaces to sixteen and then put sequence on each line at next 
@@ -248,7 +248,7 @@ def mview_to_CLUSTAL(mview_data, suffix_for_saving = suffix_for_saving):
     # Make IDs consistent and ready for output.
     #---------------------------------------------------------------------------
     # To make things easy, add spaces 
-    # to each indentifier to make them all equal length with longest. Based on
+    # to each identifier to make them all equal length with longest. Based on
     # https://stackoverflow.com/a/5676676/8508004
     identifiers = set(identifiers)
     len_longest_id = len(max(identifiers, key=len))
