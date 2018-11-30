@@ -7,7 +7,7 @@ __version__ = "0.1.0"
 
 # check_seq_frag_in_MSAclustal_intact_viaFASTA.py by 
 # Wayne Decatur
-# ver 0.1
+# ver 0.2
 #
 #*******************************************************************************
 # Verified compatible with both Python 2.7 and Python 3.6; written initially in 
@@ -30,7 +30,9 @@ __version__ = "0.1.0"
 # all match contiguously with a single region in the provided FASTA sequence 
 # file. In other words, what is at the very start or very end of the sequence
 # can be left off in MSA. 
-#
+# Optionally, the first residue number of the fragment in multiple sequence 
+# alignment can also be returned. This value will be in common terms where the
+# first position in a sequence would be number one, etc..
 #
 # 
 #
@@ -57,6 +59,7 @@ __version__ = "0.1.0"
 #
 # VERSION HISTORY:
 # v.0.1. basic working version
+# v.0.2. adds returning first position of sequence within the MSA
 
 #
 # To do:
@@ -81,7 +84,11 @@ __version__ = "0.1.0"
 # ungapped FASTA file of the sequence in the call to the main function similar 
 # to below:
 # consistent = check_seq_frag_in_MSAclustal_intact_viaFASTA("alignment.clw", "VPH1", "S288C_YOR270C_VPH1_protein.fsa", return_TF = True)
-# 
+# -OR-
+# To also get the position numbering of the first residue of the sequence
+# represented in the multiple sequence alignment, call function with 
+# `return_start_residue_pos` set to true as well, like so:
+# consistent, start_pos = check_seq_frag_in_MSAclustal_intact_viaFASTA("alignment.clw", "VPH1", "S288C_YOR270C_VPH1_protein.fsa", return_TF = True, return_start_residue_pos)
 #
 # 
 #
@@ -159,7 +166,8 @@ from Bio import AlignIO
 ###------------------------'main' function of script---------------------------##
 
 def check_seq_frag_in_MSAclustal_intact_viaFASTA(
-    alignment, id_, fasta_fn, return_TF = False):
+    alignment, id_, fasta_fn, return_TF = False, 
+    return_start_residue_pos = False):
     '''
     Main function of script. 
     It will take an alignment text file (CLUSTAL form) and check if for a \
@@ -170,6 +178,13 @@ def check_seq_frag_in_MSAclustal_intact_viaFASTA(
     `return_TF` is false, which is default setting. If `return_TF` is true, 
     whether it matches is passed back as as a boolean; this is intended to 
     handle when called from a function. 
+    Optionally, also returns the position number of the start of the sequence
+    fragment in the multiple sequence alignment. If the sequence fragment is not
+    internally contiguous, it will return 'NA'. If `return_start_residue_pos` is 
+    false, which is the default setting, and `return_start_residue_pos` is true, 
+    it will send the value to standard out.  If `return_start_residue_pos` is 
+    true and `return_start_residue_pos` is true, the value will be passed back 
+    as an integer. This is intended to handle when called from a function.
     '''
     # feedback about important option
     sys.stderr.write("\n**NOTE: gap indicator in this script is currently set "
@@ -243,20 +258,36 @@ def check_seq_frag_in_MSAclustal_intact_viaFASTA(
     # See if the sequence is in the FASTA sequence and return TF if called 
     # with `return_TF = True`. Otherwise, consider called from command line 
     # & return True or False to stdout
+    # Also return the starting position depending on `return_start_residue_pos` 
+    # setting.
     #---------------------------------------------------------------------------
     sys.stderr.write("Checking...\nIs sequence contiguous without regard to the"
-        " ends?  ...  ...\n")
+        " ends?")
+    if return_start_residue_pos:
+        sys.stderr.write("Will return start position value, too.")
+    sys.stderr.write("...  ...\n")
+    if seq in fasta_seq:
+        seq_in_fasta = True
+        start_residue_pos = str(fasta_seq).index(str(seq)) + 1 # `+1` to convert 
+        # to more common convention of first residue being number ONE. In other 
+        # words, keep python/bipython zero indexing behind-the-scenes.
+    else:
+        seq_in_fasta = False
+        start_residue_pos = 'NA'
     import time
     time.sleep(0.5) #putting delay here to insure stdout is last thing printed
-    if return_TF:
-        return seq in fasta_seq
+    if return_TF and return_start_residue_pos:
+        return seq_in_fasta, start_residue_pos
+    elif return_TF and not return_start_residue_pos:
+        return seq_in_fasta
+    elif return_start_residue_pos:
+        import time
+        time.sleep(0.05) #putting delay here to insure stdout is last thing printed
+        print (str(seq_in_fasta), str(start_residue_pos))
     else:
         import time
         time.sleep(0.05) #putting delay here to insure stdout is last thing printed
-        if seq in fasta_seq:
-            print ("True")
-        else:
-            print ("False")
+        print (str(seq_in_fasta))
 
 
 
@@ -280,6 +311,7 @@ def main():
     # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
     kwargs = {}
+    kwargs['return_start_residue_pos'] = return_start_residue_pos
     #kwargs['descr_source'] = descr_source
     #kwargs['suffix_for_saving'] = suffix_for_saving
     check_seq_frag_in_MSAclustal_intact_viaFASTA(alignment, id_, fasta_fn, **kwargs)
@@ -330,8 +362,15 @@ if __name__ == "__main__" and '__file__' in globals():
         against (FASTA format).\
         ", metavar="FASTA_FILE")
 
+    parser.add_argument('-rsp', '--return_start_pos', help="Add this flag when \
+        calling the script in \
+        order to be able to also return the start position of the contiguous \
+        fragment represented in the MSA. When the fragment isn't contiguous, \
+        using this setting will return 'NA'.\
+        ", action="store_true")
 
-    '''parser.add_argument('-ds', '--descr_source', action='store', type=str, 
+
+    '''parser.add_argument('-rsp', '--return_start_pos', action='store', type=str, 
     default= None, help="OPTIONAL: Provide FASTA file with same \
     ids to use as source of alignment to use as source of descriptions. The \
     typical file is output as `*_extracted_ungapped.fa` files from the \
@@ -352,6 +391,7 @@ if __name__ == "__main__" and '__file__' in globals():
     alignment = args.align_file
     id_ = args.id
     fasta_fn = args.fasta_file
+    return_start_residue_pos = args.return_start_pos
 
 
     main()
