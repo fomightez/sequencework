@@ -253,7 +253,7 @@ def check_seq_frag_in_MSAclustal_intact_viaFASTA(
     else:
         import time
         time.sleep(0.05) #putting delay here to insure stdout is last thing printed
-        if seq infasta_seq:
+        if seq in fasta_seq:
             print ("True")
         else:
             print ("False")
