@@ -16,16 +16,16 @@ __version__ = "0.1.0"
 #
 # PURPOSE: Takes a text document of an alignment in CLUSTAL format and adds 
 # position indicators to the top line that is the actual numbering of the 
-# residues in contiguous sequence. The added annotation makes it easier to 
+# residues in the contiguous sequence. The added annotation makes it easier to 
 # locate regions in the alignment if you know the location in the top sequence, 
-# typically the reference sequence.
+# typically the reference sequence. Assumes the top line begins at residue one.
 #
 # Mview program at EMBL-EBI https://www.ebi.ac.uk/Tools/msa/mview/ will take
 # a clustal formatted alignment and add numbers, but they will be the total 
 # numbers of characters on the the line, including the dashes that indicate gaps
 # and so they will simply count up 80 at a time. For locating residues relative
 # the numbering in the contiguous sequence, it isn't very helpful for when there
-# are large gaps, such as when aligning an enture chromosome of divergent 
+# are large gaps, such as when aligning an entire chromosome of divergent 
 # organisms.
 # RELATED:
 # Clustal Omega program at EMBL-EBI  https://www.ebi.ac.uk/Tools/msa/clustalo/
@@ -56,6 +56,11 @@ __version__ = "0.1.0"
 
 #
 # To do:
+# - FIX so that if consensus symbols present, they don't get shifted over to not line up.
+# - update so that it handles if the top line doesn't begin with residue number 
+# one. Do that similar to the approach used in 
+# `MSA_to_corresponding_residue_numbers.py` so that a number can be supplied 
+# that is the actual numbering of the first residue.
 #
 #
 #
