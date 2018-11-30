@@ -31,7 +31,12 @@ __version__ = "0.1.0"
 # stretches of residues or even a single residue can be absent. This can be 
 # verified by using my script `check_seq_frag_in_MSAclustal_intact_viaFASTA.py`
 # to compare a sequence in a multiple sequence alignment to that in a FASTA and
-# validate it contains a continuous fragment.
+# validate it contains a continuous fragment. Optionally, 
+# `check_seq_frag_in_MSAclustal_intact_viaFASTA.py` can return the value that
+# corresponds to the first position of the fragment represented in the multiple
+# sequence alignment, and so the information it yeilds can be very useful when 
+# writing commands to call the script or main function when using fragments of 
+# sequences in the multiple sequence alignment.
 #
 # Meant to be used to determine the specific corresponding pairs of residues of
 # sequences represented in the alignment relative the sequence of a chain 
@@ -99,9 +104,9 @@ __version__ = "0.1.0"
 # If any of the sequences begin with a residue number other than ONE, provide
 # a list of the starting positions for ALL sequences, even if all others are 
 # ONE, as a python list. For example, if four sequences and the second one from 
-# top one begins at residue 59, provide `supplied_start_pos = [1,59,1,1]` in 
+# top one begins at residue 37, provide `supplied_start_pos = [1,37,1,1]` in 
 # call to main function of script, like so:
-# ref_id, dfs_by_id  = MSA_to_corresponding_residue_numbers("alignment.clw", "VPH1", return_dfs = True, supplied_start_pos = [5,1,5,5])
+# ref_id, dfs_by_id  = MSA_to_corresponding_residue_numbers("alignment.clw", "VPH1", return_dfs = True, supplied_start_pos = [5,1,9,8])
 # 
 #
 # 
@@ -635,7 +640,8 @@ if __name__ == "__main__" and '__file__' in globals():
         specifying the start position for each sequence in the provided \
         alignment, if at \
         least one of them isn't beginning at the first residue in the \
-        sequence. Seperate each integer with a space. IF ALL BEGIN AT ONE, \
+        sequence. Seperate each integer with a space, such as `5 1 9 8` \
+        without tickmarks. IF ALL BEGIN AT ONE, \
         NO REASON TO INCLUDE SUCH A LIST.")
 
     '''parser.add_argument("fasta_file", help="Name of sequence file to check \
