@@ -277,8 +277,6 @@ def check_seq_frag_in_MSAclustal_intact_viaFASTA(
     else:
         seq_in_fasta = False
         start_residue_pos = 'NA'
-    import time
-    time.sleep(0.5) #putting delay here to insure stdout is last thing printed
     if return_TF and report_start_residue_pos:
         return seq_in_fasta, start_residue_pos
     elif return_TF and not report_start_residue_pos:
