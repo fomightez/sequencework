@@ -163,7 +163,7 @@ from Bio import AlignIO
 
 
 #*******************************************************************************
-###------------------------'main' function of script---------------------------##
+###------------------------'main' function of script--------------------------##
 
 def check_seq_frag_in_MSAclustal_intact_viaFASTA(
     alignment, id_, fasta_fn, return_TF = False, 
@@ -225,7 +225,8 @@ def check_seq_frag_in_MSAclustal_intact_viaFASTA(
         msa_ids.append(record.id)
         if record.id == id_:
             seq = record.seq
-            sys.stderr.write("{} sequence collected from alignment...".format(id_))
+            sys.stderr.write("{} sequence collected from "
+                "alignment...".format(id_))
     try: 
         if seq != None:
             pass
@@ -233,7 +234,8 @@ def check_seq_frag_in_MSAclustal_intact_viaFASTA(
         sys.stderr.write("\n***    ERROR    ***   ERROR   ***\nCAUSE OF ERROR:")
         sys.stderr.write("\nNo matches to provided identifier were found in "
             "the multiple sequence alignment.\nUser specified id: {}\n"
-            "Identifiers in the provided alignment: {}.\n".format(id_, repr(msa_ids)))
+            "Identifiers in the provided alignment: "
+            "{}.\n".format(id_, repr(msa_ids)))
         sys.stderr.write("***  END OF ERROR DESCRIPTION ***\n")
         sys.exit(1)
     # Ungap the identified sequence
@@ -283,11 +285,11 @@ def check_seq_frag_in_MSAclustal_intact_viaFASTA(
         return seq_in_fasta
     elif report_start_residue_pos:
         import time
-        time.sleep(0.05) #putting delay here to insure stdout is last thing printed
+        time.sleep(0.05) #putting delay here to insure stdout last thing printed
         print (str(seq_in_fasta), str(start_residue_pos))
     else:
         import time
-        time.sleep(0.05) #putting delay here to insure stdout is last thing printed
+        time.sleep(0.05) #putting delay here to insure stdout last thing printed
         print (str(seq_in_fasta))
 
 
