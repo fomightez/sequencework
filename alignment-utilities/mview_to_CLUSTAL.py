@@ -130,7 +130,7 @@ import os
 
 
 
-###---------------------------HELPER FUNCTIONS---------------------------------###
+###---------------------------HELPER FUNCTIONS-------------------------------###
 
 
 def generate_output_file_name(file_name,suffix_for_saving):
@@ -157,8 +157,8 @@ def generate_output_file_name(file_name,suffix_for_saving):
 
 
 
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
+###--------------------------END OF HELPER FUNCTIONS-------------------------###
+###--------------------------END OF HELPER FUNCTIONS-------------------------###
 
 
 
@@ -166,7 +166,7 @@ def generate_output_file_name(file_name,suffix_for_saving):
 
 
 #*******************************************************************************
-###------------------------'main' function of script---------------------------##
+###------------------------'main' function of script--------------------------##
 
 def mview_to_CLUSTAL(mview_data, suffix_for_saving = suffix_for_saving):
     '''
@@ -346,7 +346,7 @@ if __name__ == "__main__" and '__file__' in globals():
     # on https://stackoverflow.com/a/22923872/8508004
     # See also https://stackoverflow.com/a/22424821/8508004 for an option to 
     # provide arguments when prototyping a full script in the notebook.
-    ###-----------------for parsing command line arguments-----------------------###
+    ###-----------------for parsing command line arguments-------------------###
     import argparse
     parser = argparse.ArgumentParser(prog=
         'mview_to_CLUSTAL.py ',
