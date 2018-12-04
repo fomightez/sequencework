@@ -234,13 +234,11 @@ def check_seq_in_MSAclustal_consistent_with_FASTA(
     # consider called from command line & return True or False to stdout
     #---------------------------------------------------------------------------
     sys.stderr.write("Checking...\nAre the sequences the same?  ...  ...\n")
-    import time
-    time.sleep(0.5) #putting delay here to insure stdout is last thing printed
     if return_TF:
         return seq == fasta_seq
     else:
         import time
-        time.sleep(0.05) #putting delay here to insure stdout is last thing printed
+        time.sleep(0.3) #putting delay here to insure stdout is last thing printed
         if seq == fasta_seq:
             print ("True")
         else:
