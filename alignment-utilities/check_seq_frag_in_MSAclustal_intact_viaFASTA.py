@@ -285,11 +285,11 @@ def check_seq_frag_in_MSAclustal_intact_viaFASTA(
         return seq_in_fasta
     elif report_start_residue_pos:
         import time
-        time.sleep(0.05) #putting delay here to insure stdout last thing printed
+        time.sleep(0.3) #putting delay here to insure stdout last thing printed
         print (str(seq_in_fasta), str(start_residue_pos))
     else:
         import time
-        time.sleep(0.05) #putting delay here to insure stdout last thing printed
+        time.sleep(0.3) #putting delay here to insure stdout last thing printed
         print (str(seq_in_fasta))
 
 
