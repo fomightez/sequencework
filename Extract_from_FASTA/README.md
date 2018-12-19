@@ -5,6 +5,13 @@ Repo for my computational resources dealing with extracting sequence from FASTA-
 
 ## My scripts
 
+* get_seq_from_multiFASTA_with_match_in_description.py
+> sequences and a text pattern to match   ---> first sequence that has a match in description
+
+There is a [demo notebook for this script in this repo](UPDATE) that can be viewed nicely displayed [here](UPDATE). <--- UPDATE THOSE
+
+Takes any sequences in FASTA format and gets the first sequence with a description line containing a match to provided text string. For example, if provided a multi-sequence FASTA file and a gene identifier, such as `YDL140C`, it will pull out the first sequence matching that anywhere in the description line. Defaults to ignoring case.
+
 * get_seq_following_seq_from_multiFASTA.py
 > sequence(s) and a pattern to match   ---> first sequence after the match in specific sequence
 
