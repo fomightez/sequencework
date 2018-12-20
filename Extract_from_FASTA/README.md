@@ -8,9 +8,20 @@ Repo for my computational resources dealing with extracting sequence from FASTA-
 * get_seq_from_multiFASTA_with_match_in_description.py
 > sequences and a text pattern to match   ---> first sequence that has a match in description
 
-There is a [demo notebook for this script in this repo](UPDATE) that can be viewed nicely displayed [here](UPDATE). <--- UPDATE THOSE
+There is a [demo notebook for this script in this repo]https://github.com/fomightez/cl_sq_demo-binder). Launch a binder session from there and select 'Demo of script to get sequence from multiFASTA file when description contains matching text' to run it actively.  The particular notebook can be viewed statically, nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/Demo%20of%20script%20to%20get%20sequence%20from%20multiFASTA%20file%20when%20description%20contains%20matching%20text.ipynb) (although that version does caught off the full sequence in last cells).
 
 Takes any sequences in FASTA format and gets the first sequence with a description line containing a match to provided text string. For example, if provided a multi-sequence FASTA file and a gene identifier, such as `YDL140C`, it will pull out the first sequence matching that anywhere in the description line. Defaults to ignoring case.
+
+* extract_subsequence_from_FASTA.py
+> sequence file ---> subsequence
+
+There is a [demo notebook for this script in this repo](UPDATE) that can be viewed nicely displayed [here](UPDATE). <--- UPDATE THOSE
+
+Takes a sequence file and extracts a specified subsequence specified by providing positions to span. If there is more than one sequence, it will know which one to extract those positions form using the `record identifier`, a.k.a. the text before the first space on the description line of a FASTA entry, not including the caret symbol (less-than-symbol).
+
+Assumes multiFASTA, but it can be a FASTA formatted file with a single entry. In that case, the `record identifier` parameter is moot and nonsensincal text can be provided in its place.
+
+
 
 * get_seq_following_seq_from_FASTA.py
 > sequence(s) and a pattern to match   ---> first sequence after the match in specific sequence
