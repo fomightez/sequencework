@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-# delete_seq_following_pattern_within_multiFASTA.py
+# delete_seq_following_pattern_within_FASTA.py
 __author__ = "Wayne Decatur" #fomightez on GitHub
 __license__ = "MIT"
 __version__ = "0.1.0"
 
 
-# delete_seq_following_pattern_within_multiFASTA.py by 
+# delete_seq_following_pattern_within_FASTA.py by 
 # Wayne Decatur
 # ver 0.1
 #
@@ -54,7 +54,7 @@ __version__ = "0.1.0"
 # to use this script. 
 #
 #
-# (based on `get_seq_following_seq_from_multiFASTA.py`)
+# (based on `get_seq_following_seq_from_FASTA.py`)
 #
 #
 #
@@ -95,16 +95,16 @@ __version__ = "0.1.0"
 # Examples,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# python delete_seq_following_pattern_within_multiFASTA.py seq.fa record_id pattern > seq_clipped.fa
+# python delete_seq_following_pattern_within_FASTA.py seq.fa record_id pattern > seq_clipped.fa
 #-----------------------------------
 #
-# Issue `delete_seq_following_pattern_within_multiFASTA.py -h` for details.
+# Issue `delete_seq_following_pattern_within_FASTA.py -h` for details.
 # 
 #
 #
 # To use this after importing/pasting or loading into a cell in a Jupyter 
 # notebook, call the main function similar to below:
-# delete_seq_following_pattern_within_multiFASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT")
+# delete_seq_following_pattern_within_FASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT")
 # -or-
 # when calling the main function you can include `filter_dashes = False` to 
 # not remove the dashes from the supplied pattern sequence before comparing.
@@ -116,7 +116,7 @@ __version__ = "0.1.0"
 '''
 CURRENT ACTUAL CODE FOR RUNNING/TESTING IN A NOTEBOOK WHEN IMPORTED/LOADED OR 
 PASTED IN ANOTHER CELL:
-delete_seq_following_pattern_within_multiFASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT" , 200)
+delete_seq_following_pattern_within_FASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT" , 200)
 '''
 #
 #
@@ -225,7 +225,7 @@ def get_start_n_ends_for_match_to_pattern(pattern_obj,a_string):
 #*******************************************************************************
 ###------------------------'main' function of script--------------------------##
 
-def delete_seq_following_pattern_within_multiFASTA(
+def delete_seq_following_pattern_within_FASTA(
     sequence_file, record_id, seq_to_find, filter_dashes = True, 
     suffix_for_saving = suffix_for_saving):
     '''
@@ -349,7 +349,7 @@ def main():
     kwargs = {}
     kwargs['filter_dashes'] = filter_dashes
     kwargs['suffix_for_saving'] = suffix_for_saving
-    delete_seq_following_pattern_within_multiFASTA(
+    delete_seq_following_pattern_within_FASTA(
         sequence_file, record_id, seq_to_find, **kwargs)
     # using https://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/#calling-a-function
     # to build keyword arguments to pass to the function above
@@ -374,8 +374,8 @@ if __name__ == "__main__" and '__file__' in globals():
     import argparse
     
     parser = argparse.ArgumentParser(prog=
-        'delete_seq_following_pattern_within_multiFASTA.py',
-        description="delete_seq_following_pattern_within_multiFASTA.py \
+        'delete_seq_following_pattern_within_FASTA.py',
+        description="delete_seq_following_pattern_within_FASTA.py \
         takes a sequence pattern string, a sequence file (FASTA-format), and a \
         record id, and deletes any sequence following the sequence pattern. In \
         other words it trims the specified sequence, to make the first match \
