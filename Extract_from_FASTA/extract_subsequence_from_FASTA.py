@@ -192,7 +192,7 @@ def generate_output_file_name(file_name,text_to_match, suffix_for_saving):
 ###------------------------'main' function of script---------------------------##
 
 def extract_subsequence_from_FASTA(
-    alignment, id_, region_str, use_colon = False,
+    sequence, id_, region_str, use_colon = False,
     keep_description = False,
     return_record_as_string = False,
     suffix_for_saving = suffix_for_saving, name_basis="alignment.clustal"):
@@ -227,12 +227,12 @@ def extract_subsequence_from_FASTA(
     # Note on next line have to cast to list becaude pyfaidx records don't have 
     # `len`; otherwise get `TypeError: object of type 'Fasta' has no len()`.
     if len(list(records)) == 1:   
-        record_id = records[0].name
+        id_ = records[0].name
         single_record = True
         # feedback
         sys.stderr.write("Single sequence with id of '{}' provided in the "
             "sequence file.\nIt will be used as the source of the sequence "
-            "covering the provided positions.\n\n".format(record_id))
+            "covering the provided positions.\n\n".format(id_))
 
     # feedback
     #sys.stderr.write("Sequence file read...")
@@ -273,7 +273,9 @@ def extract_subsequence_from_FASTA(
             if id_ == record.name:
                 if start-1 < 0:
                     start = 0
-                seq_fa = ">" + record.long_name + "\n"+str(record[start-1:end])
+                seq_fa = (">" + record.long_name +":"+str(start)+
+                    coordinates_delimiter_default+str(end)+ "\n"+
+                    str(record[start-1:end]))
                 # The way pyfaididx, works, start of 1 and end 50 will get, first 
                 # through 50, using above line. Which means it sliced like normal
                 # Python list.
