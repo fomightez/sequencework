@@ -107,7 +107,7 @@ __version__ = "0.1.0"
 #-or-
 # To specify OPTIONAL 'file name'-like string to base names of generated files 
 # on, specify `name_basis` like on next line when calling the function:
-# extract_regions_from_clustal_alignment(test.out,region_str="101-200",name_basis="rt_arm_chrV_sensu.clustal")
+# extract_regions_from_clustal_alignment("test.out",region_str="101-200",name_basis="rt_arm_chrV_sensu.clustal")
 # **`name_basis` ignored when a real file is supplied; presently, 
 # "alignment.clustal" is default.** 
 #
