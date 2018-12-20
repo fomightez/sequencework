@@ -12,10 +12,10 @@ There is a [demo notebook for this script in this repo](UPDATE) that can be view
 
 Takes any sequences in FASTA format and gets the first sequence with a description line containing a match to provided text string. For example, if provided a multi-sequence FASTA file and a gene identifier, such as `YDL140C`, it will pull out the first sequence matching that anywhere in the description line. Defaults to ignoring case.
 
-* get_seq_following_seq_from_multiFASTA.py
+* get_seq_following_seq_from_FASTA.py
 > sequence(s) and a pattern to match   ---> first sequence after the match in specific sequence
 
-There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_multiFASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_multiFASTA.ipynb).
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_FASTA.ipynb).
 
 At the time this was developed, it was intended to help examine sequences just downstream of sequences extracted from much larger alignments to check if all pertinent sequence included already.
 
@@ -32,7 +32,7 @@ This script is meant to be used after you have performed a large alignment, say 
 
 It is designed to handle/filter gaps ('dashes') in the provided sequence patterns. The idea being that the known sequence ends may be manually extracted from sequence alignments. This way the user is not wasting time removing the gap indications / dashes from the collected text lines. The default handling of removing the gaps to ignore them can be overriden. The idea is that maybe you'll have a multiple sequence alignment file saved as FASTA with dashes, i.e., aligned FASTA file format and may want to use this script.  (The caveat is that number of residues to get will then be counting the gaps / dashes too.)
 
-There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_multiFASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_multiFASTA.ipynb).
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_FASTA.ipynb).
 
 ## Related scripts / utilities in my other repositories
 
