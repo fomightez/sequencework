@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-# get_seq_following_seq_from_multiFASTA.py
+# get_seq_following_seq_from_FASTA.py
 __author__ = "Wayne Decatur" #fomightez on GitHub
 __license__ = "MIT"
 __version__ = "0.1.0"
 
 
-# get_seq_following_seq_from_multiFASTA.py by 
+# get_seq_following_seq_from_FASTA.py by 
 # Wayne Decatur
 # ver 0.1
 #
@@ -96,16 +96,16 @@ __version__ = "0.1.0"
 # Examples,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# python get_seq_following_seq_from_multiFASTA.py seq.fa record_id pattern amount_to_get > extracted_seq.fa
+# python get_seq_following_seq_from_FASTA.py seq.fa record_id pattern amount_to_get > extracted_seq.fa
 #-----------------------------------
 #
-# Issue `get_seq_following_seq_from_multiFASTA.py -h` for details.
+# Issue `get_seq_following_seq_from_FASTA.py -h` for details.
 # 
 #
 #
 # To use this after importing/pasting or loading into a cell in a Jupyter 
 # notebook, call the main function similar to below:
-# following_seq = get_seq_following_seq_from_multiFASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT" , 200)
+# following_seq = get_seq_following_seq_from_FASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT" , 200)
 # -or-
 # when calling the main function you can include `filter_dashes = False` to 
 # not remove the dashes from the supplied pattern sequence before comparing.
@@ -117,7 +117,7 @@ __version__ = "0.1.0"
 '''
 CURRENT ACTUAL CODE FOR RUNNING/TESTING IN A NOTEBOOK WHEN IMPORTED/LOADED OR 
 PASTED IN ANOTHER CELL:
-following_seq = get_seq_following_seq_from_multiFASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT" , 200)
+following_seq = get_seq_following_seq_from_FASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT" , 200)
 '''
 #
 #
@@ -201,7 +201,7 @@ def get_start_n_ends_for_match_to_pattern(pattern_obj,a_string):
 #*******************************************************************************
 ###------------------------'main' function of script--------------------------##
 
-def get_seq_following_seq_from_multiFASTA(
+def get_seq_following_seq_from_FASTA(
     sequence_file, record_id, seq_to_find, amount_to_get, filter_dashes = True):
     '''
     Main function of script.
@@ -244,7 +244,7 @@ def get_seq_following_seq_from_multiFASTA(
     # https://stackoverflow.com/a/5466478/8508004 you need to double up 
     # brackets on command line to use those search terms. I put several 
     # examples in the demo notebook, 
-    # `demo get_seq_following_seq_from_multiFASTA.ipynb`.
+    # `demo get_seq_following_seq_from_FASTA.ipynb`.
     
     # If more than one, go through parsed records and collect the record to act 
     # on.
@@ -301,7 +301,7 @@ def main():
     # assigned multiple times depending how many scripts imported/pasted in.
     kwargs = {}
     kwargs['filter_dashes'] = filter_dashes
-    result = get_seq_following_seq_from_multiFASTA(
+    result = get_seq_following_seq_from_FASTA(
         sequence_file, record_id, seq_to_find, amount_to_get,**kwargs)
     # using https://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/#calling-a-function
     # to build keyword arguments to pass to the function above
@@ -327,8 +327,8 @@ if __name__ == "__main__" and '__file__' in globals():
     import argparse
     
     parser = argparse.ArgumentParser(prog=
-        'get_seq_following_seq_from_multiFASTA.py',
-        description="get_seq_following_seq_from_multiFASTA.py \
+        'get_seq_following_seq_from_FASTA.py',
+        description="get_seq_following_seq_from_FASTA.py \
         takes a sequence pattern string, a sequence file (FASTA-format), and a \
         record id and extracts a sequence of specified size following the \
         sequence pattern. Importantly, the regular expression search term \
