@@ -14,12 +14,25 @@ Takes a sequence file and extracts a specified subsequence specified by providin
 
 Assumes multiFASTA, but it can be a FASTA formatted file with a single entry. In that case, the `record identifier` parameter is moot and nonsensical text can be provided in its place.
 
+Typical example command:
+
+```
+python extract_subsequence_from_FASTA.py SK1.genome.fa chrIII 101-200
+```
+
 * get_seq_from_multiFASTA_with_match_in_description.py
 > sequences and a text pattern to match   ---> first sequence that has a match in description
 
-There is a [demo notebook for this script in this repo]https://github.com/fomightez/cl_sq_demo-binder). Launch a binder session from there and select 'Demo of script to get sequence from multiFASTA file when description contains matching text' to run it actively.  The particular notebook can be viewed statically, nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/Demo%20of%20script%20to%20get%20sequence%20from%20multiFASTA%20file%20when%20description%20contains%20matching%20text.ipynb) (although that version does caught off the full sequence in last cells).
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/cl_sq_demo-binder). Launch a binder session from there and select 'Demo of script to get sequence from multiFASTA file when description contains matching text' to run it actively.  The particular notebook can be viewed statically, nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/Demo%20of%20script%20to%20get%20sequence%20from%20multiFASTA%20file%20when%20description%20contains%20matching%20text.ipynb) (although that version does caught off the full sequence in last cells).
 
 Takes any sequences in FASTA format and gets the first sequence with a description line containing a match to provided text string. For example, if provided a multi-sequence FASTA file and a gene identifier, such as `YDL140C`, it will pull out the first sequence matching that anywhere in the description line. Defaults to ignoring case.
+
+Typical example command:
+
+```
+python get_seq_from_multiFASTA_with_match_in_description.py DBVPG6044.mt.pep.fa cox1
+```
+
 
 
 * get_seq_following_seq_from_FASTA.py
