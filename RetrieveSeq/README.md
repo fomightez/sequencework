@@ -161,7 +161,7 @@ For retrieving/extracting sequences from 'local' sources (meaning where I supply
 * ['Sequencework/Extract_from_FASTA' code repository](https://github.com/fomightez/sequencework/tree/master/Extract_from_FASTA/)
 * ['Sequencework/FindSequence' code repository](https://github.com/fomightez/sequencework/tree/master/FindSequence/)
 * ['Sequencework/alignment-utilities' code repository](https://github.com/fomightez/sequencework/tree/master/alignment-utilities/)
-* ['Sequencework/RetrieveSeq' code repository](https://github.com/fomightez/sequencework/tree/master/RetrieveSeq/)
+
 
 I have coded several for extracting various sequences or subsequences from FASTA files using biopython. For example, see `drafting_extracting_mito_chr_function.py`. 
 
