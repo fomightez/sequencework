@@ -100,8 +100,8 @@ __version__ = "0.1.0"
 #
 #
 # To use this after importing/pasting or loading into a cell in a Jupyter 
-# notebook, specify at least the results file (or results as a string) in the 
-# call to the main function similar to below:
+# notebook, specify the alignment file (or results as a string) and the 
+# range in the call to the main function similar to below:
 # extract_regions_from_clustal_alignment("test.clustal",region_str="101-200")
 # 
 #-or-
