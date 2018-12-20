@@ -84,6 +84,9 @@ __version__ = "0.1.0"
 
 #
 # To do:
+# - why do I have `name_basis` in main function and even a special example call
+# to function. I don't see where it gets used here?? Just not implemented yet, 
+# but needed?
 #
 #
 #
@@ -606,7 +609,7 @@ if __name__ == "__main__" and '__file__' in globals():
         ", metavar="ALIGNMENT_FILE")
 
     parser.add_argument("region", help="Region to cover in extracting. Provide \
-        start position and end position coordinates seperated by the region \
+        start position and end position coordinates separated by the region \
         delimiter which is '{}' by default. You can use `--use_colon` flag to \
         change to a colon, for using something like, `201:405` instead of \
         `201{}405`. (Coordinates are meant to refer to 'common' numbering \
