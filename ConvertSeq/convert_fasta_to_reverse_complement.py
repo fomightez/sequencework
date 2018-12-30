@@ -192,7 +192,7 @@ def convert_fasta_to_reverse_complement(sequence,
     # should pass one of those"
     # Feedback
     sys.stderr.write("\n\n*****************DONE**************************\n"
-        "Sequences in FASTA file '{}' converted to revesrse "
+        "Sequences in FASTA file '{}' converted to reverse "
         "complement\nand saved as '{}'.\n"
         "*****************DONE**************************\n".format(
         sequence,output_file_name))
