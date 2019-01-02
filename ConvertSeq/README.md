@@ -12,6 +12,8 @@ Sequence Converters
 
 `convert_fasta_to_reverse_complement.py` takes a sequence file in FASTA format and converts the sequence (or sequences) in it to the reverse complement.
 
+Presently, there isn't a dedicated demonstration page for this script. However, there is a workflow in which it is used at the end to insure the coding sequence of an open reading frame is in the direction start to finish. That can be viewerd [here](https://nbviewer.jupyter.org/github/fomightez/blast-binder/blob/master/notebooks/Searching%20for%20coding%20sequences%20in%20genomes%20using%20BLAST%20and%20Python.ipynb). It can be launched as an active Jupyter session by clicking `launch binder` [here](https://github.com/fomightez/blast-binder) and then selecting 'Searching for coding sequences in genomes using BLAST and Python' from the index page once the session launches.
+
 - ConvertFASTAdnaSEQtoRNA.py     
 
 > DNA --> mRNA  
