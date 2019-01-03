@@ -33,10 +33,10 @@ Returns a dataframe with the details for the mito features, now with yeast mitoc
 Intended to be used in conjuction with `mine_mito_features_from_transcriptome.py` and `mine_SUT_and merge_into_mito_transcripts_df.py`, specifically after `mine_SUT_and merge_into_mito_transcripts_df.py`.  
 Returns a dataframe with the details for the mito features, now with yeast mitochondrial XUTs added.
 
-* report_coordinates_for_seq_within_multiFASTA.py 
+* report_coordinates_for_seq_within_FASTA.py 
 > subsequence from a specific sequence in a FASTA file --->  coordinates of the match
 
-There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_Details_or_Annotation/demo%20report_coordinates_for_seq_within_multiFASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_Details_or_Annotation/demo%20report_coordinates_for_seq_within_multiFASTA.ipynb).
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_Details_or_Annotation/demo%20report_coordinates_for_seq_within_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_Details_or_Annotation/demo%20report_coordinates_for_seq_within_FASTA.ipynb).
 
 Takes a sequence pattern string, a sequence file (FASTA-format), and a record identifier, and reports the start and end coordinates of that sequence within the specified FASTA record.
 Because inherently the sequence to search can be provided as a pattern, I am saying 'pattern'; however, the impetus for this script was for when you have a known sequence, that will only occour once in that record and you need the coordinates. The FASTA-formatted sequence file in which to search is assumed by default to be a multi-FASTA, i.e., multiple sequences in the provided file, although it definitely doesn't have to be. More on that below. 
@@ -53,7 +53,7 @@ It is designed to handle/filter gaps ('dashes') in the provided sequence pattern
 
 Note that why some aspects of this script may seem redundant with my scripts [`find_sequence_element_occurrences_in_sequence.py`](https://github.com/fomightez/sequencework/tree/master/FindSequence) and [`blast_to_df.py`](https://github.com/fomightez/sequencework/tree/master/blast-utilities) that include coordinates in the output tables, those were meant to mainly be used when looking for a table of information about matches or exploring matches that may occur multiples times in many sequences in the supplied file(s). This script is targeted at the case where you know record id and expect only one match to that record with that identifier.
 
-There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_Details_or_Annotation/demo%20report_coordinates_for_seq_within_multiFASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_Details_or_Annotation/demo%20report_coordinates_for_seq_within_multiFASTA.ipynb).
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_Details_or_Annotation/demo%20report_coordinates_for_seq_within_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_Details_or_Annotation/demo%20report_coordinates_for_seq_within_FASTA.ipynb).
 
 # Related
 
