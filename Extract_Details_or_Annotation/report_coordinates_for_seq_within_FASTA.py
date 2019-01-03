@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-# report_coordinates_for_seq_within_multiFASTA.py
+# report_coordinates_for_seq_within_FASTA.py
 __author__ = "Wayne Decatur" #fomightez on GitHub
 __license__ = "MIT"
 __version__ = "0.1.0"
 
 
-# report_coordinates_for_seq_within_multiFASTA.py by 
+# report_coordinates_for_seq_within_FASTA.py by 
 # Wayne Decatur
 # ver 0.1
 #
@@ -98,23 +98,23 @@ __version__ = "0.1.0"
 # Examples,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# python report_coordinates_for_seq_within_multiFASTA.py seq.fa record_id pattern
+# python report_coordinates_for_seq_within_FASTA.py seq.fa record_id pattern
 #-----------------------------------
 #
-# Issue `report_coordinates_for_seq_within_multiFASTA.py -h` for details.
+# Issue `report_coordinates_for_seq_within_FASTA.py -h` for details.
 # 
 #
 #
 # To use this after importing/pasting or loading into a cell in a Jupyter 
-# notebook, call to the main function similar to below:
-# following_seq = report_coordinates_for_seq_within_multiFASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT")
+# notebook, call the main function similar to below:
+# following_seq = report_coordinates_for_seq_within_FASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT")
 #
 # 
 #
 '''
 CURRENT ACTUAL CODE FOR RUNNING/TESTING IN A NOTEBOOK WHEN IMPORTED/LOADED OR 
 PASTED IN ANOTHER CELL:
-following_seq = report_coordinates_for_seq_within_multiFASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT")
+following_seq = report_coordinates_for_seq_within_FASTA("seq.fa", "Skluv", "GAAATTTCCCCCAAAATGT")
 '''
 #
 #
@@ -198,7 +198,7 @@ def get_start_n_ends_for_match_to_pattern(pattern_obj,a_string):
 #*******************************************************************************
 ###------------------------'main' function of script--------------------------##
 
-def report_coordinates_for_seq_within_multiFASTA(
+def report_coordinates_for_seq_within_FASTA(
     sequence_file, record_id, seq_to_find, filter_dashes = True):
     '''
     Main function of script.
@@ -241,7 +241,7 @@ def report_coordinates_for_seq_within_multiFASTA(
     # https://stackoverflow.com/a/5466478/8508004 you need to double up 
     # brackets on command line to use those search terms. I put several 
     # examples in the demo notebook, 
-    # `demo report_coordinates_for_seq_within_multiFASTA.ipynb`.
+    # `demo report_coordinates_for_seq_within_FASTA.ipynb`.
     
     # If more than one, go through parsed records and collect the record to act 
     # on.
@@ -293,7 +293,7 @@ def main():
     # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
     kwargs = {}
-    result = report_coordinates_for_seq_within_multiFASTA(
+    result = report_coordinates_for_seq_within_FASTA(
         sequence_file, record_id, seq_to_find,**kwargs)
     # using https://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/#calling-a-function
     # to build keyword arguments to pass to the function above
@@ -319,8 +319,8 @@ if __name__ == "__main__" and '__file__' in globals():
     import argparse
     
     parser = argparse.ArgumentParser(prog=
-        'report_coordinates_for_seq_within_multiFASTA.py',
-        description="report_coordinates_for_seq_within_multiFASTA.py \
+        'report_coordinates_for_seq_within_FASTA.py',
+        description="report_coordinates_for_seq_within_FASTA.py \
         takes a sequence pattern string, a sequence file (FASTA-format), and a \
         record id, and reports the start and end coordinates of that sequence \
         within the specified FASTA record. Importantly, the coordinates \
