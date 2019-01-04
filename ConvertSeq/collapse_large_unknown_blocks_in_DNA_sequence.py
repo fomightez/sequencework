@@ -195,7 +195,8 @@ def get_start_n_ends_for_match_to_pattern(pattern_obj,a_string):
     '''
     start_end_tuples = []
     for m in pattern_obj.finditer(a_string):
-        start_end_tuples.append(m.span()) # from https://stackoverflow.com/a/250306/8508004
+        start_end_tuples.append(m.span()) # from 
+        # https://stackoverflow.com/a/250306/8508004
     return start_end_tuples
 
 ###--------------------------END OF HELPER FUNCTIONS-------------------------###
@@ -239,7 +240,8 @@ def collapse_large_unknown_blocks_in_DNA_sequence(sequence,
     # 469 (appendix 2) of Practical Computing for Biologists;
     # bracket handling for combining regex use of brackets to control numbers to 
     # match combined with use of `.format()` to provide the number as a variable 
-    # comes from https://stackoverflow.com/a/5466478/8508004  
+    # comes from https://stackoverflow.com/a/5466478/8508004 ; `re.I` for ignore
+    # case.
 
     # go through parsed records and act if necessary
     modf_seq = None #reset here allows use in notebook cell when running that 
