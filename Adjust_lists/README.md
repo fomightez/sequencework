@@ -241,7 +241,7 @@ MRPL51
  
  
  
-Related scripts
+My Related scripts
 ---------------
 
 Several other of my code repositories hold code related to the manipulation of gene or genetic information lists. Here are some:
@@ -252,3 +252,14 @@ Several other of my code repositories hold code related to the manipulation of g
 
 * `UCSC_chrom_sizes_2_circos_karyotype.py` takes a list of chromosome sizes from UCSC `chrom.sizes` files and reworks it so it can be used as a karyotype file in Circos. It can be found in [my collection of circos-related utility scripts (Python)](https://github.com/fomightez/sequencework/tree/master/circos-utilities).
 
+
+Related code by others
+----------------------
+
+From [Ming Tang early 2019](https://twitter.com/tangming2005/status/1087776160463888384) using `awk` to creat a tx2gene file/`tx2gene.csv` from an ensembl gtf:
+
+>"create a tx2gene mapping file from ensemble gtf retaining the version number of genes and transcripts.
+awk -F "\t" '$3 == "transcript" { print $9 }' myensembl.gtf| tr -s ";" " "   | cut -d " " -f2,4|  sed 's/\"//g' | awk '{print $1"."$2}' > genes.txt"
+"awk -F "\t" '$3 == "transcript" { print $9 }' myensembl.gtf| tr -s ";" " "   | cut -d " " -f6,8|  sed 's/\"//g' | awk '{print $1"."$2}' > transcripts.txt
+
+paste transcripts.txt genes.txt > tx2genes.txt"
