@@ -64,7 +64,7 @@ There is a [demo notebook for this script in this repo](https://github.com/fomig
 * get_specified_length_of_end_of_seq_from_FASTA.py
 > sequence(s) and a number of residues to get   ---> specified number of characters at the end of the sequence for the indicated record
 
-There is a [demo notebook for this script in this repo](https://github.com/fomightez/cl_sq_demo-binder/tree/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/tree/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb). It can actively by run in your browser by going to [here](https://github.com/fomightez/cl_sq_demo-binder), clicking on the `launch binder` badge, and selecting the notebook from the listing.
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/cl_sq_demo-binder/tree/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/tree/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb). It can actively by run in your browser by going to [here](https://github.com/fomightez/cl_sq_demo-binder), clicking on the `launch binder` badge, and selecting the 'Demo of script to get specified length of sequence from end of a record in FASTA file' notebook from the listing.
 
 At the time this was developed, it was intended to extract sequences coding for a C-terminal protein domain.
 
@@ -75,7 +75,7 @@ A sequence string of the specified length will be returned. Redirect the output 
 Note that if there is only one record in the specified sequence file, the record id is moot and you can instead provide any string for that parameter as it will be ignored. This makes the script more flexible in cases where sequence files aren't complex as the user doesn't need to provide an actual record id.
 
 
-There is a [demo notebook for this script in this repo](https://github.com/fomightez/cl_sq_demo-binder/tree/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/tree/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb). It can actively by run in your browser by going to [here](https://github.com/fomightez/cl_sq_demo-binder), clicking on the `launch binder` badge, and selecting the notebook from the listing.
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/cl_sq_demo-binder/tree/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/tree/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb). It can actively by run in your browser by going to [here](https://github.com/fomightez/cl_sq_demo-binder), clicking on the `launch binder` badge, and selecting the 'Demo of script to get specified length of sequence from end of a record in FASTA file' notebook from the listing.
 
 
 ## Related scripts / utilities in my other repositories
