@@ -59,6 +59,25 @@ It is designed to handle/filter gaps ('dashes') in the provided sequence pattern
 
 There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/Extract_from_FASTA/demo%20get_seq_following_seq_from_FASTA.ipynb).
 
+
+
+* get_specified_length_of_end_of_seq_from_FASTA.py
+> sequence(s) and a number of residues to get   ---> specified number of characters at the end of the sequence for the indicated record
+
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/cl_sq_demo-binder/tree/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/tree/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb). It can actively by run in your browser by going to [here](https://github.com/fomightez/cl_sq_demo-binder), clicking on the `launch binder` badge, and selecting the notebook from the listing.
+
+At the time this was developed, it was intended to extract sequences coding for a C-terminal protein domain.
+
+Takes a sequence file (FASTA-format), & a record id, and a number (integer), and extracts a sequence of specified length from the end of the indicated sequence. The number provided is what specifies the length extracted. (The FASTA-formatted sequence file is assumed by default to be a multi-FASTA, i.e., multiple sequences in the provided file, although it definitely doesn't have to be. In case it is only a single sequence, the record id becomes moot, see below.
+
+A sequence string of the specified length will be returned. Redirect the output to a file if that is what is needed. (Unless using main function as coverd in the demo notebook, see below.)
+
+Note that if there is only one record in the specified sequence file, the record id is moot and you can instead provide any string for that parameter as it will be ignored. This makes the script more flexible in cases where sequence files aren't complex as the user doesn't need to provide an actual record id.
+
+
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/cl_sq_demo-binder/tree/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/tree/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb). It can actively by run in your browser by going to [here](https://github.com/fomightez/cl_sq_demo-binder), clicking on the `launch binder` badge, and selecting the notebook from the listing.
+
+
 ## Related scripts / utilities in my other repositories
 
 To extract sequences from a Clustal-formatted alignment file, see `extract_regions_from_clustal_alignment.py` in ['Sequencework/alignment-utilities' code repository](https://github.com/fomightez/sequencework/tree/master/alignment-utilities/).
