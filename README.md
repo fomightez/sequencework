@@ -41,7 +41,7 @@ MCscan software available in a launchable Jupyter environment running via the Bi
 See also
 -------
 
-[My simulated data repo](https://github.com/fomightez/simulated_data) has some useful scripts and resources for generating simulated (mock / fake) gene expression data or gene lists.
+[My simulated data repo](https://github.com/fomightez/simulated_data) has some useful scripts and resources for generating simulated (mock / fake) sequence data, gene expression data, or gene lists.
 
 
 
