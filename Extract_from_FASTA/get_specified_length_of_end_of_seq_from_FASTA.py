@@ -223,8 +223,8 @@ def get_specified_length_of_end_of_seq_from_FASTA(
     # Now extract the sequence of specified length from the record.
     if len(record_to_mine) < amount_to_get:
         sys.stderr.write("Note that the sepecified number of residues "
-        "to get, {}, exceeds the length of the specified record, which is {} "
-        "residues in length.\nThe entire sequences has been "
+        "to get, {}, exceeds the\nlength of the specified record, which is {} "
+        "residues in length.\nThe entire sequence has been "
         "returned.".format(amount_to_get, len(record_to_mine)))
         return str(record_to_mine.seq)
     else:
