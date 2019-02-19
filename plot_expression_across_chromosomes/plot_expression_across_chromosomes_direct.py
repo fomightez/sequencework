@@ -537,7 +537,7 @@ parser.add_argument('-bd', '--base_desig', action='store', type=str,
     type what you'd like to read there instead of `wild-type`.") 
 parser.add_argument("-svg", "--save_vg",help=
     "add this flag to save as vector graphics \
-    (**RECOMENDED FOR PUBLICATION***) instead of default png. Not default or \
+    (**RECOMMENDED FOR PUBLICATION***) instead of default png. Not default or \
     saved alongside default because file size can get large due to the large \
     number of points.",
     action="store_true")
@@ -610,12 +610,14 @@ if "gtf" in annotaton_file.name.lower():
     col_names_to_apply = genome_annotation_fields_for_gtf 
 
 # read in annotation file
-init_genome_df = pd.read_table(
-    annotaton_file, header=None, names=col_names_to_apply, comment='#')
-# comment handling added because I came across gtfs with a header that had `#` 
-# at start of each line. Others must have seen same because I saw someone 
-# dealing with it at https://github.com/shenlab-sinai/ngsplotdb/pull/2/files. I 
-# cannot use that solution since I use Pandas read_table function.
+init_genome_df = pd.read_csv(
+    annotaton_file, sep='\t', header=None, low_memory=False,
+    names=col_names_to_apply, comment='#') # comment handling added because I 
+# came across gtfs with a header that had `#`  at start of each line. Others 
+# must have encountered same because I saw someone dealing with it at 
+# https://github.com/shenlab-sinai/ngsplotdb/pull/2/files. I cannot use that 
+# solution since I use Pandas read_csv function. (`read_table`) was 
+# deprecated recently.
 
 # parse out gene_ids from attribute or group, i.e., 9th column in the annotation file
 init_genome_df["gene_id"] = init_genome_df.apply(extract_gene_ids, axis=1)
@@ -652,6 +654,10 @@ genome_df["position"] = genome_df.apply(calculate_position, axis=1)
 chromosomes_in_roman_num = False
 # check if majority look like integers. If that is the case verify most are 
 # valid roman numerals just to be sure.
+genome_df['seqname'] = genome_df['seqname'].apply(str) # cast to string so 
+# string methods like `.isdigit()` continue to work even when chromosomes are 
+# actually numbers; faster way from 
+# https://stackoverflow.com/questions/17950374/converting-a-column-within-pandas-dataframe-from-int-to-string/44008334
 seqname_set = set(genome_df['seqname'].tolist())
 chromosomes_in_roman_num = not bool(len([s for s in seqname_set if s.isdigit()]) > len(seqname_set)/2) #checks if most chromosomes seem to be digits and says they are roman numerals if that is false
 if chromosomes_in_roman_num:
