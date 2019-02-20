@@ -96,7 +96,7 @@ genome_annotation_fields_for_bed = ("chrom", "chromStart", "chromEnd", "name",
     "score", "strand", "thickStart", "thickEnd", "itemRgb", "blockCount", 
     "blockSizes", "blockStarts")
 
-suffix_for_saving_result = "_across_chr.svg"
+suffix_for_saving_result = "_across_chr.png"
 
 title_prefix = "Expression across " # Change to `None` to suppress title
 
@@ -999,9 +999,10 @@ if save_vg:
     plt.savefig(output_file_name[:-4]+".svg", orientation='landscape') # FOR VECTOR GRAPHICS; useful if merging into Adobe Illustrator. Based on https://neuroscience.telenczuk.pl/?p=331 ; I think ReportLab also outputs SVG?
     sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name[:-4]+".svg"))
 else:
-    sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name))
     plt.savefig(output_file_name)
-    plt.savefig(output_file_name[:-4]+".png")
+    sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name))
+    # plt.savefig(output_file_name[:-4]+".svg")
+    # sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name[:-4]+".svg"))
     # plt.savefig(output_file_name[:-4]+".pdf", orientation='landscape') # UNFORTUNATELY DOES NOT PRODUCE VECTOR GRAPHICS, unlike ReportLab's pdf output; USE SVG for that and the make PDF later.
     #plt.show()
 
