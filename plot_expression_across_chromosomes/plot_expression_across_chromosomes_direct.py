@@ -3,6 +3,7 @@
 # plot_expression_across_chromosomes_direct.py by Wayne Decatur
 __author__ = "Wayne Decatur" #fomightez on GitHub
 __license__ = "MIT"
+__version__ = "0.2.0"
 
 #*******************************************************************************
 # Written in Python 2.7 to be compatible with Python 3.
@@ -61,6 +62,7 @@ __license__ = "MIT"
 #
 # VERSION HISTORY:
 # v.0.1. basic working version
+# v.0.2. refactored early part to speed up.
 #
 # to do:
 # 
@@ -643,10 +645,44 @@ init_genome_df = pd.read_csv(
 # deprecated recently. dtypes added when speed and working with large files
 # became an issue, see 
 # https://github.com/fomightez/sequencework/issues/1#issuecomment-465760222
+# When I tested timing lines using yeast data (gtf; 12 Mb) and 
+# https://stackoverflow.com/a/14452178/8508004, I found it slightly faster
+# (0.42 vs 0.50) with `low_memory=False`, and so that is why that is used. I 
+# suspect the difference would be even starker with the 1.4 Gb human GTF. I only 
+# ended up seeing it get this far with the because I used `sys.exit(1)` to stop 
+# it after the read.
+#(LATER: When just read of human gtf timed in a notebook with `%%time`, with 
+# `low_memory=False` it took only 1 min 10s whereas it was 4min 44s when 
+#`True`. That effort with human data was done running in Cyverse. Oddly, on
+# Cyverse it turned out never to take that long again when `True`, usually
+# disparity only about 40 seconds.)
 
-# parse out gene_ids from attribute or group, i.e., 9th column in the annotation file
+#sys.stderr.write("...parsing genes...") # There is no point in this because I 
+# found stderr , for reasons I don't understand, although have seen similar when
+# working in notebooks, won't output after pandas read starts even though with 
+# yeast gtf (12 Mb) that read is almost instantaneous (see timing above.) 
+#
+
+# Parse out gene_ids from attribute or group, i.e., 9th column in the annotation 
+# file.
+
+#init_genome_df = (init_genome_df[init_genome_df[init_genome_df.columns[-1]].
+    #str.contains("gene_id")]) #for yeast and human this doesn't seem to 
+    # remove anything and so there is no point trying to use it to limit to
+    # pertinent rows.
+
 init_genome_df["gene_id"] = init_genome_df.apply(extract_gene_ids, axis=1)
 
+
+# Next want to end up with one entry per gene with the start and end 
+# coordinates. I was originally doing this using the code in docstring below 
+# but  efficiency became an issue when someone tried with human data. And
+# I recalled learning appending can be very infficient, see 
+# https://stackoverflow.com/a/31713471/8508004 and Tinkerbeast's comment at 
+# https://stackoverflow.com/a/25376997/8508004 . So code after doesn't
+# use `.append` and accomplishes the same outcome with more pythonic
+# pandas-based steps.
+'''
 # copy each row to a new dataframe, unless gene already present. 
 # This will give me unique gene_ids for each and I can make that index.
 # Because it takes first occurence of each gene, it only has that as start and
@@ -668,6 +704,18 @@ for id in list(genome_df.index.values):
     genome_df.loc[id, "end"] = max_val
 # provide feedback on number of unique genes identified
 sys.stderr.write("Information for {0} genes parsed...".format(len(genome_df)))
+'''
+# Use groupby and `.agg()` to get min and max. Then move the multi-index
+# datafram produced to single index, where gene_id is the index, and the
+# 'seqname' gets moved from hierarchical index to a column.
+genome_df = init_genome_df.groupby(
+    ["gene_id","seqname"]).agg({'start': min,'end': max}) 
+genome_df = genome_df.reset_index(level=['seqname']) #based on 
+# https://stackoverflow.com/a/20461206/8508004
+# provide feedback on number of unique genes identified
+sys.stderr.write("Information for {0} genes parsed.."
+    ".".format(len(genome_df)))
+
 # calculate average position
 # genome_df["position"] = genome_df[["start","end"]].apply(np.mean, axis=1) # gives float and I'd prefer as integer
 genome_df["position"] = genome_df.apply(calculate_position, axis=1)
