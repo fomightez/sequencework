@@ -97,24 +97,24 @@ genome_annotation_fields_for_bed = ("chrom", "chromStart", "chromEnd", "name",
     "score", "strand", "thickStart", "thickEnd", "itemRgb", "blockCount", 
     "blockSizes", "blockStarts")
 column_types_for_gff  = {"seqname":'category',
-                "source":'category',
-                "feature type":'category',
+                "source":'object',
+                "feature type":'object',
                 "start":'int64',
                 "end":'int64',
-                "score":'category',
-                "strand":'category',
-                "frame":'category',
-                "group":'category',
+                "score":'object',
+                "strand":'object',
+                "frame":'object',
+                "group":'object',
                }
 column_types_for_gtf = {"seqname":'category',
-                "source":'category',
-                "feature type":'category',
+                "source":'object',
+                "feature type":'object',
                 "start":'int64',
                 "end":'int64',
-                "score":'category',
-                "strand":'category',
-                "frame":'category',
-                "attribute":'category',
+                "score":'object',
+                "strand":'object',
+                "frame":'object',
+                "attribute":'object',
                }
 
 suffix_for_saving_result = "_across_chr.png"
@@ -778,7 +778,11 @@ genome_df.sort_values(["chr_as_numeric","position"], inplace=True, ascending=Tru
 chr_specs = {}
 xs_by_chr = [] #ported over from https://github.com/brentp/bio-playground/blob/master/plots/manhattan-plot.py
 # sorting just above makes it easy to get last entry for each chromosome
-grouped = genome_df.groupby('seqname')
+grouped = genome_df.groupby('seqname', observed=True) #`observed=True` necessary
+# because 'seqname' defined as categorical to get better ordering of human-style 
+# chromosomes without any intervention. But without `observed=True` it uses all 
+# the originally defined categoricals (chromosomes) as groupings and not just 
+# ones in dataframe where subset based on `limit_to_chrs`.
 previous_chr_last_x = 0
 for chr, data_per_chr_df in grouped:
     chr_specs[chr] = {}
@@ -805,7 +809,12 @@ genome_df.dropna(subset=["level_val"], inplace = True)
 # earlier, I couldn't yet capture x & y values for plot b/c had not yet removed 
 # those with no expression values. Not DRY, but will better represent chromosome
 # relative scale this way.
-grouped_from_filtered = genome_df.groupby('seqname')
+grouped_from_filtered = genome_df.groupby('seqname', observed=True) # Note that
+# `observed=True` necessary because 'seqname' defined as categorical to get 
+# better ordering of human-style chromosomes without any intervention. But 
+# without `observed=True` it uses all the originally defined categoricals 
+# (chromosomes) as groupings and not just ones in dataframe where subset based 
+# on `limit_to_chrs`.
 xs = []
 ys = []
 cs = []
