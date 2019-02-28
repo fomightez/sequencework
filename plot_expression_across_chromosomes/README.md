@@ -27,6 +27,8 @@ Importantly, the plot script provided here is meant to be pipeline-agnostic. Thi
 
 You can generate chromosome profiles for individual chromosomes or only a few chromosomes or scaffolds by using the `--chrs` flag to limit the analysis to specific chromosomes or scaffolds.
 
+**There is a [demo notebook for this script in this repo](https://github.com/fomightez/cl_sq_demo-binder).** Launch a binder session from there and select 'Demo of script to plot expression across chromosomes and genomes' to run it interactively in a Jupyter session.  The particular notebook can be viewed statically, nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/demo%20plot_expression_across_chromosomes.ipynb). The demonstration contains exmples for yeast and human. Presently, the requirements to run the human exceed the provided computational/memory capacity there. *Sorry.* And so I point you to the [static version](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/demo%20plot_expression_across_chromosomes.ipynb) to see how the human data can come out. You can move the demo to a place witih a larger capacity, such as Cyverse, and run it there for the human section. The command to get the human genetic information is commented out in the 3rd cell and you can modify the gunzip line to `!gunzip -k Homo_sapiens.GRCh38.88.chr.gtf.gz` because it will already be in the working directory and not need to be moved.
+
 ### QUICK-START GUIDE
 
 Place the script in a directory with your genome annoation file and your summary data file.
@@ -323,7 +325,7 @@ The resulting plot will look like what is seen [here](https://github.com/fomight
 
 Unlike the [`plot_expression_across_chromosomes.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomespy) script, here there is `--no_data_header` setting because the script will try to read any line that looks like data., i.e., gene identifier in first column and a number in the data column. Header lines of Salmon-quantified data and most others will not resemble this and will be skipped. However, if you find you are getting weird genes reported as not matching in the report while running, you can just ignore it. The `--no_data_header` setting was only for suppressing odd notification.
 
-See the [`plot_expression_across_chromosomes.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomespy) script above for further details of some of the options.
+See the [`plot_expression_across_chromosomes.py`](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#plot_expression_across_chromosomespy) script above for further details of some of the options. In fact there is a **launchable, interactive demo** of that notebook as well and so see under its description for more on how to launch it actively [here](https://github.com/fomightez/cl_sq_demo-binder) and view it statically [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/demo%20plot_expression_across_chromosomes.ipynb).
 
 ### USAGE SUMMARY
 
