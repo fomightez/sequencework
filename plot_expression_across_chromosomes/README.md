@@ -222,6 +222,7 @@ Resulting plot file, `genes_mean_TPM_across_chr.png`, produced:
   	python plot_expression_across_chromosomes.py genes.gtf genes_mean_TPM.tsv --columns 1,2,4 --lines
 	
 Explanation: specify columns other than default and plot with vertical lines from zero.  
+(This aesthetic came from seeing the `--lines` option in Brent Pederson's [Manhattan plot script](https://github.com/brentp/bio-playground/blob/master/plots/manhattan-plot.py).)
 Resulting plot produced:  
 ![example](example_imgs/genes_mean_TPM_across_chrlines.png)  
 
