@@ -127,3 +127,7 @@ Utilities by others
 I have several listed [here](http://proteopedia.org/wiki/index.php/User:Wayne_Decatur/Sequence_analysis_tools) such as those that interconvert/reformat alignments in various forms. Just search `align` on that page to step through examining them. In particular note:
 
 - Under 'Installable software for fine-tuning sequence alignments' there, I discuss using SEQOTRON on my work Mac and  `cons` alignment consensus program and many others at EMBOSS explorer website to put in conservation. Along the way it looks like it adds numbering similar to Mview where it is just numbering for total number on line INCLUDING GAPS. (Not to self, see my `edited t-coffee alignment for true XXXXX XXXXX.md` for example.)
+
+Somewhat related:  
+
+- [pyani](https://github.com/widdowquinn/pyani) for calculating average nucleotide identity (ANI) and related measures for whole genome comparisons, and rendering relevant graphical summary output.
