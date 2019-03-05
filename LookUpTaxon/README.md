@@ -65,3 +65,8 @@ GLGP--SYCSFSHNGSNQ------------------------------------------
 ```
 
 **Related report also produced not shown here.**
+
+
+## Related scripts by others
+
+- [pyani](https://github.com/widdowquinn/pyani) has a script called `genbank_get_genomes_by_taxon.py` that  enables download of genomes from NCBI, specified by taxon ID.
