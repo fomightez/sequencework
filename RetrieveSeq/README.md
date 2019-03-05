@@ -181,3 +181,5 @@ Maybe useful stuff or better? See [here](https://twitter.com/widdowquinn/status/
 
     >"Need to work backwards from proteins to their coding sequences? Tired of trawling through the database to get the CDS? Me, too. So I wrote this: https://widdowquinn.github.io/ncfp/     I hope you find it useful. Bugs, issues etc. here, please: https://github.com/widdowquinn/ncfp/issues …"
 
+
+- [pyani](https://github.com/widdowquinn/pyani) has a script called `genbank_get_genomes_by_taxon.py` that  enables download of genomes from NCBI, specified by taxon ID.
