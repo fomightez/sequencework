@@ -25,6 +25,12 @@ It is designed to handle/filter gaps ('dashes') in the provided sequence pattern
 
 There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/AdjustFASTA_or_FASTQ/demo%20delete_seq_following_pattern_within_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/AdjustFASTA_or_FASTQ/demo%20delete_seq_following_pattern_within_FASTA.ipynb).
 
+- remove_seq_from_multiFASTA_with_match_in_description.py
+> sequence(s) in FASTA file and a pattern to match   --->  sequences without any that have match in description line 
+
+DOCUMENTATION OF THIS SCRIPT TO GO HERE.
+
+
 - add_source_organism_info_to_FASTA.py
 > FASTA file -->  FASTA file with organism info injected in text
 
