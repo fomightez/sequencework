@@ -13,7 +13,7 @@ Sequence Adjusters
 
 There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/AdjustFASTA_or_FASTQ/demo%20delete_seq_following_pattern_within_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/AdjustFASTA_or_FASTQ/demo%20delete_seq_following_pattern_within_FASTA.ipynb).
 
-`delete_seq_following_pattern_within_FASTA.py` takes a sequence pattern string, a sequence file (FASTA-format), and a record id, and deletes any sequence following the sequence pattern. In other, words it trims the specified sequence, to make the first match to the pattern the new end. (The FASTA-formatted sequence file is assumed by default to be a multi-FASTA, i.e., multiple sequences in the provided file, although it definitely doesn't have to be. In case it is only a single sequence, the record id becomes moot and you can enter any nonsosenst for that arguement. Nothing will be returned but a copy of the FASTA sequence file with the truncated sequence will be produced.
+`delete_seq_following_pattern_within_FASTA.py` takes a sequence pattern string, a sequence file (FASTA-format), and a record id, and deletes any sequence following the sequence pattern. In other, words it trims the specified sequence, to make the first match to the pattern the new end. (The FASTA-formatted sequence file is assumed by default to be a multi-FASTA, i.e., multiple sequences in the provided file, although it definitely doesn't have to be. In case it is only a single sequence, the record id becomes moot and you can enter any nonsense for that argument. Nothing will be returned but a copy of the FASTA sequence file with the truncated sequence will be produced.
 
 The provided sequence pattern will be matched regardless of case, as both the input sequence and pattern to search will be converted to lowercase. Beyond being insensitive of the case, REGULAR EXPRESSION SEARCH TERM SYNTAX IS ACCEPTABLE in the provided sequence pattern.
 
@@ -27,14 +27,17 @@ There is a [demo notebook for this script in this repo](https://github.com/fomig
 
 - remove_seq_from_multiFASTA_with_match_in_description.py
 > sequence(s) in FASTA file and a pattern to match   --->  sequences without any that have match in description line 
-
-DOCUMENTATION OF THIS SCRIPT TO GO HERE.
+remove_seq_from_multiFASTA_with_match_in_description.py takes a sequence file in FASTA format and a text string and then ...  
+***SCRIPT NEEDS TO BE TESTED***
+***DOCUMENTATION NEEDS TO BE COMPLETED***
 
 
 - add_source_organism_info_to_FASTA.py
 > FASTA file -->  FASTA file with organism info injected in text
 
-`add_source_organism_info_to_FASTA.py` takes a sequence file in FASTA format and ... ***DOCUMENTATION NEEDS TO BE COMPLETED***
+`add_source_organism_info_to_FASTA.py` takes a sequence file in FASTA format and ...  
+
+***DOCUMENTATION NEEDS TO BE COMPLETED***
 
 
 
