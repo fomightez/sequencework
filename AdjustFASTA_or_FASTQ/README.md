@@ -28,7 +28,8 @@ There is a [demo notebook for this script in this repo](https://github.com/fomig
 - remove_seq_from_multiFASTA_with_match_in_description.py
 > sequence(s) in FASTA file and a pattern to match   --->  sequences without any that have match in description line 
 remove_seq_from_multiFASTA_with_match_in_description.py takes a sequence file in FASTA format and a text string and then ...  
-***SCRIPT NEEDS TO BE TESTED***
+
+***SCRIPT NEEDS TO BE TESTED***  
 ***DOCUMENTATION NEEDS TO BE COMPLETED***
 
 
