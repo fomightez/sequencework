@@ -2,12 +2,12 @@
 # extract_regions_from_clustal_alignment.py
 __author__ = "Wayne Decatur" #fomightez on GitHub
 __license__ = "MIT"
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 
 # extract_regions_from_clustal_alignment.py by 
 # Wayne Decatur
-# ver 0.1
+# ver 0.2
 #
 #*******************************************************************************
 # Verified compatible with both Python 2.7 and Python 3.6; written initially in 
@@ -21,6 +21,7 @@ __version__ = "0.1.0"
 # reference. (The alignment can also be provided as a Python string to the 
 # script or core function when running in a computational environment, such as 
 # Jupyter notebook. MAYBE THIS DOESN't WORK YET?!?!!!)
+# The sequences can be protein sequences as well.
 # 
 # This is useful after you have performed a large alignment, say of an entire 
 # chromosome, in order to have individual occurences of related segments fall 
@@ -89,7 +90,6 @@ __version__ = "0.1.0"
 # - why do I have `name_basis` in main function and even a special example call
 # to function. I don't see where it gets used here?? Just not implemented yet, 
 # but needed?
-#
 #
 #
 #
@@ -484,6 +484,8 @@ def extract_regions_from_clustal_alignment(
         #    SeqRecord(Seq(aligned_segmnts_dict[id_], generic_dna), id_)) # based
         ## on https://www.biostars.org/p/48797/; from when was using a string 
         # in v.0.1
+        # Added benefit of not including `generic_dna` in `SeqRecord()` calling 
+        # is that I can use this same script with protein sequences.
         records.append(
             SeqRecord(aligned_segmnts_dict[id_], id_)) # based
         # on https://www.biostars.org/p/48797/
@@ -512,6 +514,8 @@ def extract_regions_from_clustal_alignment(
         ## https://github.com/biopython/biopython/issues/1511 , and `description`
         ## from what I've seen for `id` plus https://biopython.org/wiki/SeqIO; 
         # from when was using strings in v.0.1
+        # Added benefit of not including `generic_dna` in `SeqRecord()` calling 
+        # is that I can use this same script with protein sequences.
         records.append(
             SeqRecord(
             aligned_segmnts_dict[id_].ungap(
@@ -602,7 +606,8 @@ if __name__ == "__main__" and '__file__' in globals():
         large region, such as an entire chromosome and extracts the sequences \
         that corresponds to a specific region according to the ungapped \
         numbering of the positions (coordinates) for the sequence on the top \
-        line, presumably the reference.\
+        line, presumably the reference. The sequences can be protein sequences \
+        as well.\
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
 
