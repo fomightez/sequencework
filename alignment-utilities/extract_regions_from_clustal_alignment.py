@@ -20,7 +20,7 @@ __version__ = "0.1.0"
 # positions (coordinates) for the sequence on the top line, presumably the 
 # reference. (The alignment can also be provided as a Python string to the 
 # script or core function when running in a computational environment, such as 
-# Jupyter notebook. MAYBE THIS DOESN't WORK YET!!!!)
+# Jupyter notebook. MAYBE THIS DOESN't WORK YET?!?!!!)
 # 
 # This is useful after you have performed a large alignment, say of an entire 
 # chromosome, in order to have individual occurences of related segments fall 
@@ -40,7 +40,7 @@ __version__ = "0.1.0"
 # `reverse_complement_of_clustal_alignment.py`.
 # 
 # I'll mention it here in case there are concerns from folks that know that 
-# python/bopython are zero-indexed and wondering what numbering system might be
+# python/biopython are zero-indexed and wondering what numbering system might be
 # used in the resulting data. Every effort has been made to insure that 
 # numberings returned should match those provided; nothing should be shifted by 
 # one relative the input. In other words, if the user provides data using the
@@ -67,6 +67,8 @@ __version__ = "0.1.0"
 #
 # If you are Wayne, see `Collecting yeast XXXXX XXXXXX (XXXXXX) May 2018.md` for 
 # impetus behind this script.
+# Plan to also use it in 
+# `GSD Second_Pass_Extracting_XXXs_from_332_saccharomytina_orthologs.ipynb`
 #
 #
 #
@@ -292,7 +294,7 @@ def extract_regions_from_clustal_alignment(
     try:
         with open(alignment, 'r') as the_file:
             file_name = alignment
-            #alignment = the_file.read() #<--from when not using Bopiython to 
+            #alignment = the_file.read() #<--from when not using Biopython to 
             # handle alignment file and extraction
             alignment = AlignIO.read(the_file, "clustal")
     except (TypeError,OSError,IOError) as e:
