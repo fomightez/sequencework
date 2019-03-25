@@ -288,7 +288,7 @@ def extract_subsequence_from_FASTA(
             sys.exit(1)
     else:
         if id_ in records:
-            seq_fa = records[id_][start-1:end]
+            seq_fa = records[id_][start-1:end]+ "\n"
         else:
             sys.stderr.write("**ERROR:No match to identifier found "
                 "for ANY sequence record.  ***ERROR*** \nEXITING.\n")
