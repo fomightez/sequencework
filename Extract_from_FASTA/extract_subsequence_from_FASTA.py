@@ -69,6 +69,8 @@ __version__ = "0.1.0"
 
 #
 # To do:
+# - use chunking of 70 to save the FASTA sequence as multiline and not just
+# one long line. (see gist for worked out code.) RERUN THE DEMO AND SAVE NEW VERSION.
 #
 #
 #
@@ -275,7 +277,7 @@ def extract_subsequence_from_FASTA(
                     start = 0
                 seq_fa = (">" + record.long_name +":"+str(start)+
                     coordinates_delimiter_default+str(end)+ "\n"+
-                    str(record[start-1:end]))
+                    str(record[start-1:end]))+ "\n"
                 # The way pyfaididx, works, start of 1 and end 50 will get, first 
                 # through 50, using above line. Which means it sliced like normal
                 # Python list.
@@ -306,7 +308,7 @@ def extract_subsequence_from_FASTA(
         if keep_description: 
             output.write(seq_fa)
         else:
-            output.write(repr(seq_fa)) #this kees FASTA format; whereas 
+            output.write(repr(seq_fa)) #this keeps FASTA format; whereas 
             # `str(seq_fa)` just outputs sequence portion as string
     # Feedback
     sys.stderr.write("\n\n*****************DONE**************************\n")
