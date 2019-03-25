@@ -262,8 +262,8 @@ def extract_subsequence_from_FASTA(
     # Collect the corresponding sequence.
     #---------------------------------------------------------------------------
     # If do not need to keep entire description line, can take advantage of
-    # pyfaidx ability to use keys to get sequence without looping eand it
-    # also  eturns FASTA format automatically with coordinates there!! 
+    # pyfaidx ability to use keys to get sequence without looping and it
+    # also  returns FASTA format automatically with coordinates there!! 
     # No need to loop or edit description line to add coordinates or make 
     # FASTA. However cannot do that if want to keep the entire description line,
     # referred to as `.long_name` by pyfaidx.
@@ -277,7 +277,7 @@ def extract_subsequence_from_FASTA(
                     start = 0
                 seq_fa = (">" + record.long_name +":"+str(start)+
                     coordinates_delimiter_default+str(end)+ "\n"+
-                    str(record[start-1:end]))+ "\n"
+                    str(record[start-1:end]))
                 # The way pyfaididx, works, start of 1 and end 50 will get, first 
                 # through 50, using above line. Which means it sliced like normal
                 # Python list.
@@ -288,7 +288,7 @@ def extract_subsequence_from_FASTA(
             sys.exit(1)
     else:
         if id_ in records:
-            seq_fa = records[id_][start-1:end]+ "\n"
+            seq_fa = records[id_][start-1:end]
         else:
             sys.stderr.write("**ERROR:No match to identifier found "
                 "for ANY sequence record.  ***ERROR*** \nEXITING.\n")
@@ -310,6 +310,10 @@ def extract_subsequence_from_FASTA(
         else:
             output.write(repr(seq_fa)) #this keeps FASTA format; whereas 
             # `str(seq_fa)` just outputs sequence portion as string
+    # add new line to the end of the saved file so when concatanating sequence 
+    # it will start on next line
+    with open(output_file_name, 'a') as output: 
+        output.write('\n')
     # Feedback
     sys.stderr.write("\n\n*****************DONE**************************\n")
     sys.stderr.write("Extracted sequence saved in FASTA format as '{}'.".format(
