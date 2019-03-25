@@ -48,8 +48,14 @@ __version__ = "0.1.0"
 #
 #
 # To do:
-# - use what I did in `get_seq_following_seq_from_multiFASTA.py` to add ability
+# - use chunking of 70 to save the FASTA sequence as multiline and not just
+# one long line. (see gist for worked out code.) RERUN THE DEMO, EDIT/ADJUST 
+# LAST part where say `Note that we get two sequences even though I listed 
+# using `-n 4` there because description lines and sequence each separate line`
+#  to reflect new siutation, AND SAVE NEW VERSION.
+# - use what I did in `get_seq_following_seq_from_FASTA.py` to add ability
 # to use regex in provided search text
+# - Would I have need for multiple matches?
 #
 #
 #
@@ -193,11 +199,11 @@ def get_seq_from_multiFASTA_with_match_in_description(sequence, text_to_match,
     for record in records:
         if case_sensitive:
             if text_to_match in record.long_name:
-                seq_fa = ">" + record.long_name + "\n"+str(record)
+                seq_fa = ">" + record.long_name + "\n"+str(record)+ "\n"
                 break
         else:
             if text_to_match.lower() in record.long_name.lower():
-                seq_fa = ">" + record.long_name + "\n"+str(record)
+                seq_fa = ">" + record.long_name + "\n"+str(record)+ "\n"
                 break
     if seq_fa == "NOT_ANY_FOUND":
         sys.stderr.write("**ERROR:No match to provided text found in "
