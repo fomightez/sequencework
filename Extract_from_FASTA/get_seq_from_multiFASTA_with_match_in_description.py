@@ -199,11 +199,11 @@ def get_seq_from_multiFASTA_with_match_in_description(sequence, text_to_match,
     for record in records:
         if case_sensitive:
             if text_to_match in record.long_name:
-                seq_fa = ">" + record.long_name + "\n"+str(record)+ "\n"
+                seq_fa = ">" + record.long_name + "\n"+str(record)
                 break
         else:
             if text_to_match.lower() in record.long_name.lower():
-                seq_fa = ">" + record.long_name + "\n"+str(record)+ "\n"
+                seq_fa = ">" + record.long_name + "\n"+str(record)
                 break
     if seq_fa == "NOT_ANY_FOUND":
         sys.stderr.write("**ERROR:No match to provided text found in "
@@ -218,6 +218,10 @@ def get_seq_from_multiFASTA_with_match_in_description(sequence, text_to_match,
         sequence,text_to_match,suffix_for_saving)
     with open(output_file_name, 'w') as output:
         output.write(seq_fa)
+    # add new line to the end of the saved file so when concatanating sequence 
+    # it will start on next line
+    with open(output_file_name, 'a') as output: 
+        output.write('\n')
     # Feedback
     sys.stderr.write("\n\n*****************DONE**************************\n")
     sys.stderr.write("Extracted sequence saved in FASTA format as '{}'.".format(
