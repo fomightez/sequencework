@@ -62,7 +62,7 @@ __version__ = "0.2.0"
 # https://moderndata.plot.ly/bioinformatics-plots-made-in-python-and-r/ for 
 # other? inspiration)
 # - add ability to supply chromsome data as BEd format? But then where does gene
-# location get supplied???
+# location get supplied??
 #
 #
 #
