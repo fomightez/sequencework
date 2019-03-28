@@ -54,11 +54,9 @@ __version__ = "0.2.0"
 # v.0.2. refactored early part to speed up.
 #
 # to do:
-# - make jupyter nb version (display mock data in it so don't need to have our real data out there?) which should be easy using the ipython based testing code version to get a hard coded one fast.(sort of did with little change needed) BUT NEED BETTER WAY FOR HANDLING HARDCODING OF FILENAMES STILL.
+# - make jupyter nb version <--- I think I mean that cabe imported & return a plot
+#(display mock data in it so don't need to have our real data out there?) which should be easy using the ipython based testing code version to get a hard coded one fast.(sort of did with little change needed) BUT NEED BETTER WAY FOR HANDLING HARDCODING OF FILENAMES STILL.
 # - add supplying arguments to basic jupyter nb one where first hardcoded
-# - make a static ipython notebook version with image stored. (display mock data so don't need to have our real data out there?)
-# - make a jupyter nb version with working binder demo (new beta.mybinder.org)(display mock data so don't need to have our real data out there?)
-# - fix so that `chr IX` shows up in sequential order in plot? Probably not important since chromsomes don't relate to arbitrary designations we have them anyway.
 # - dream feature for jupyter nb version: interactive plot where gene id shows 
 # up when hover (and see 
 # https://moderndata.plot.ly/bioinformatics-plots-made-in-python-and-r/ for 
