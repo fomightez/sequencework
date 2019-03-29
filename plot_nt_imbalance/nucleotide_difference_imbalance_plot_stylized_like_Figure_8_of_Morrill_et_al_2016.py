@@ -328,8 +328,9 @@ def nucleotide_difference_imbalance_plot_stylized_like_Figure_8_of_Morrill_et_al
     #df = pd.DataFrame(data, indx, ["GvsC", "AvsT"])
     df = pd.DataFrame(chunks_diffs, chunks_midpoints, ["GvsC", "AvsT"])
     ax = sns.lineplot(data=df)
-    ax.set_ylabel(yaxis_label);
-    ax.set_xlabel(xaxis_label_prefix+chr_);
+    ax.set_ylabel(yaxis_label, fontsize = 16);
+    ax.set_xlabel(xaxis_label_prefix+chr_, fontsize = 16);
+    ax.legend(fontsize= 12);
 
 
 
