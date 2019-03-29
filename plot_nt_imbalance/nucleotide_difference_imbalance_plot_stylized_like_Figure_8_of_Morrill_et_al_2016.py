@@ -351,12 +351,12 @@ def nucleotide_difference_imbalance_plot_stylized_like_Figure_8_of_Morrill_et_al
             # into Adobe Illustrator. Based on 
             # https://neuroscience.telenczuk.pl/?p=331 ; I think ReportLab also 
             # outputs SVG?
-            sys.stderr.write("\n\nPlot image saved to: {}\n".format(
+            sys.stderr.write("\nPlot image saved to: {}\n".format(
                 output_file_name[:-4]+".svg"))
         else:
             # save png
             plt.savefig(output_file_name)
-            sys.stderr.write("\n\nPlot image saved to: {}\n".format(
+            sys.stderr.write("\nPlot image saved to: {}\n".format(
                 output_file_name))
 
 ###--------------------------END OF MAIN FUNCTION----------------------------###
