@@ -209,8 +209,9 @@ def midpoint(items):
 ###------------------------'main' function of script--------------------------##
 
 def nucleotide_difference_imbalance_plot_stylized_like_Figure_8_of_Morrill_et_al_2016(
-    sequence_file, chr_, position_corresponding_to_first_nt, save_vg=False, 
-    return_fig=False):
+    sequence_file, chr_, position_corresponding_to_first_nt,
+    chunk_size = chunk_size, overlap_specified = overlap_specified,
+    save_vg=False, return_fig=False):
     '''
     Main function of script. 
 
@@ -226,12 +227,18 @@ def nucleotide_difference_imbalance_plot_stylized_like_Figure_8_of_Morrill_et_al
     - position corresponding to first bases in provided sequence as an integer.
     To be used to label positions along coordinates in x-axis of plot.
 
+    Optionally you can provide integer settings for the `chunk_size` and 
+    `overlap_specified` for the analyses windows. Without specifying them, by 
+    default they are set to mirror Figure 8, panel B of Morrill et al 2016 
+    (PMID: 27026700).
+
     You can set `return_fig` to return a plot figure object and would be useful
     if calling from a Jupyter notebook or IPython. If you assign it to `ax` in
     your notebook, you can redisplay it in another cell via `ax.figure`.
 
     Saving as vector graphics is also an option. It is not the default because
-    file size can get large with a lot of points.
+    file PNG-style image files are more familiar to most folks and more 
+    convenient in Jupyter notebooks.
 
     Saves an image file of the plot, or optionally, returns a plot object.
     '''
@@ -380,6 +387,8 @@ def main():
     # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
     kwargs = {}
+    kwargs['chunk_size'] = chunk_size
+    kwargs['overlap_specified'] = overlap_specified
     kwargs['return_fig'] = False #probably don't want plot object returned if 
     # calling script from command line & instead will trigger save of plot image
     #kwargs['return_df'] = False #probably don't want dataframe returned if 
@@ -433,6 +442,15 @@ if __name__ == "__main__" and '__file__' in globals():
         Coordinate position that corresponds to first position of specified \
         along chromosome. To be used for label of x-axis. No spaces.", 
         metavar="START_POS")
+    parser.add_argument('-bl', '--block_size', action='store', type=int, 
+    default= chunk_size, help="OPTIONAL: Use the `--block_size` flag followed \
+    by an interger to provide a value to use as the span size (window of \
+    basepairs) to analyze instead of the default of '{}'.".format(chunk_size))
+    parser.add_argument('-ov', '--overlap_size', action='store', type=int, 
+    default= overlap_specified, help="OPTIONAL: Use the `--overlap_size` \
+    flag followed by an integer to specify the amount of overlap to use \
+    between the \
+    analysis windows instead of the default of '{}'.".format(overlap_specified))
     parser.add_argument("-svg", "--save_vg",help=
     "add this flag to save as vector graphics \
     (**RECOMMENDED FOR PUBLICATION***) instead of default png. Not default or \
@@ -451,7 +469,10 @@ if __name__ == "__main__" and '__file__' in globals():
     sequence_file = args.sequence_file
     chr_ = args.chr #cannot use `chr` because it is a built-in python function
     position_corresponding_to_first_nt = args.position_corresponding_to_first_nt
+    chunk_size=args.block_size
+    overlap_specified = args.overlap_size
     save_vg = args.save_vg
+    
 
 
     main()
