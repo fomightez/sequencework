@@ -164,7 +164,7 @@ def generate_output_file_name(file_name, suffix):
 def calc_nt_diff(di_base,seq):
     '''
     Takes a string made of two bases along with a sequence 
-    as a string. Calculates the nucleotide different 
+    as a string. Calculates the nucleotide difference 
     imbalance value for the base combination and returns that.
     It is insensitive to case.
     Nucleotide different imbalance value is meant to match
