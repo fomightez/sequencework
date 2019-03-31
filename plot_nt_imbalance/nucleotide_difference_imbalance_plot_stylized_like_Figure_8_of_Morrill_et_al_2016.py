@@ -167,7 +167,7 @@ def calc_nt_diff(di_base,seq):
     as a string. Calculates the nucleotide difference 
     imbalance value for the base combination and returns that.
     It is insensitive to case.
-    Nucleotide different imbalance value is meant to match
+    Nucleotide difference imbalance value is meant to match
     Figure 8 of Morrill et al 2016 (PMID: 27026700). I found
     the description of the calculation and what was being 
     plotted rather vague, and so it took some testing of my
