@@ -93,9 +93,9 @@ overlap_specified = 50 #50 bp overlap of windows, based on Figure 8 of Morrill
 step_size = chunk_size - overlap_specified #100 for chunk_size of 150 & overlap 
 # of 50; based on Figure 8 of Morrill et al 2016 (PMID: 27026700)
 
-suffix_for_saving_plot = "_nt_imblance_plot.png"
+suffix_for_saving_plot = "_dibase_imblance_plot.png"
 default_plt_image_size = (13,8)
-yaxis_label = "nucleotide imbalance"
+yaxis_label = "dinucleotide imbalance"
 xaxis_label_prefix = "position along "
 
 #
