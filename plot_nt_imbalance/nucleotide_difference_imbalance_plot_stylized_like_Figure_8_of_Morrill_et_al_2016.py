@@ -46,7 +46,6 @@ B, plot of nucleotide differences for a 20-kilobase region of yeast chromosome I
 #
 # to do:
 # - fix 'Purpose' header section above
-# - document at github
 #
 #
 # Note for myself:
