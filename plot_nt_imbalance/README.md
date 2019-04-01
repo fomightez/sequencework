@@ -15,7 +15,7 @@ There is a demonstration of this script available in my set of sequence analysis
 
 This is like `nucleotide_difference_imbalance_plot_stylized_like_Figure_8_of_Morrill_et_al_2016.py`; however, it allows specifying a combination of any two basepairs to see of the amount of those in proximity is out of balance vs the sum of the other two basepairs. For example, `GandC` vs. `AandT`. 
 
-Using the script is similar to `nucleotide_difference_imbalance_plot_stylized_like_Figure_8_of_Morrill_et_al_2016.py` and so look over the demo notebook about that and then to use `two_nucleotides_in_proximity_difference_imbalance_plot.py` add an argument of two nucleotides to group, such as `GC` when calling it on the command line. Or specify `dibase_text1`, such as `dibase_text1="GC"`, when calling the main function of the script when in a Jupyter notebook cell or in IPython.  
+Using the script is similar to `nucleotide_difference_imbalance_plot_stylized_like_Figure_8_of_Morrill_et_al_2016.py` and so look over the demo notebook about that and then to use `two_nucleotides_in_proximity_difference_imbalance_plot.py` add an argument of two nucleotides to group, such as `GC` when calling it on the command line. Or specify `dibase_text1`, such as `dibase_text1="GC"`, when calling the main function of the script when in a Jupyter notebook cell or in IPython. You only need to specify the one pair, the script or function deduces the other two from the remaining
 Example invocations of the script or main function:
 
 - from command line:
