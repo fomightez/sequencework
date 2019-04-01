@@ -22,6 +22,7 @@ Example invocations of the script or main function:
 
 ```bash
 python two_nucleotides_in_proximity_difference_imbalance_plot sequence.fa 20000 GC
+```
 
 - from importing main function when in Jupyter or IPython:
 
