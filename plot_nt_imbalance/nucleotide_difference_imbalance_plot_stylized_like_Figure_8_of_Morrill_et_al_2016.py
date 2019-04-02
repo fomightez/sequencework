@@ -21,6 +21,11 @@ __version__ = "0.1.0"
 A, nucleotide statistics for the core of RPB1 and the CTD region. The CTD coding strand has reduced guanine bases and a high concentration of cytosine (gray).  
 B, plot of nucleotide differences for a 20-kilobase region of yeast chromosome IV including RPB1. The data were calculated from 150-base pair windows with 50 base pairs of overlap between adjacent windows and plotted in Excel. The CTD region has a very negative value of G-C. A-T for this same region is less variable."
 '''
+# Actually on the strand they are using of the graph reads left to right, it would
+# be an abundance of Gs in the CTD region and so I think their 'G-C' plot label
+# should be best thought of as 'CvsG', but I am keeping their form because that
+# strikes me as odd putting G before C because usually %G+C stated as 'GC', for
+# example see page 2 of Wolters et al., 2015.
 #
 # Note that this script was originally intended to be used after using my script 
 # `get_chromosomal_coordinates_as_FASTA.py` from 
@@ -331,8 +336,10 @@ def nucleotide_difference_imbalance_plot_stylized_like_Figure_8_of_Morrill_et_al
     #indx and data were originally organized in dictionaries during development
     # but for better compatibility with Python 2.7 lists were used so order
     # maintained
-    #df = pd.DataFrame(data, indx, ["GvsC", "AvsT"])
-    df = pd.DataFrame(chunks_diffs, chunks_midpoints, ["GvsC", "AvsT"])
+    #df = pd.DataFrame(data, indx, ["CvsG", "TvsA"])
+    df = pd.DataFrame(chunks_diffs, chunks_midpoints, ["G-C", "A-T"]) # went 
+    # with what is used Morrill et al. figure for line labels even though 
+    # `["CvsG", "TvsA"])` is more descriptive to what is being plotted.
     ax = sns.lineplot(data=df)
     ax.set_ylabel(yaxis_label, fontsize = 16);
     ax.set_xlabel(xaxis_label_prefix+chr_, fontsize = 16);
