@@ -565,7 +565,7 @@ def fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot(gff_file_name,
             "Annotation of large ribosomal subunit by MFannot detected in\n'{}'"
             " and so no further processing necessary."
             "\n********************************************************"
-            "*\nDONE.\n".format(gff_file_name))
+            "*\nDONE.\n\n".format(gff_file_name))
         if return_status:
             status = "present"
         if return_quality_estimate:
