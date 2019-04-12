@@ -6,6 +6,12 @@ Adjust Annotation Files
 ---
 **Description of each script**
 
+- fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot.py
+
+>annotation file (gff3) from fungal mitochondria without annotation for 21S rRNA --> annotation file with 21S rRNA
+
+MFannot seems to do poorly with annotating the large ribosomal subunit, even if all the strains are cerevisiae it is hit or miss for some reason, `fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot.py` fixes that for cereivisae and other budding yeast(?).
+Besides the annoation file in gff3 format produced by MFAnnot followed by conversion to GFF3 format (via [`mfannot2gff3.pl`](https://github.com/yjx1217/LRSDAY/blob/master/scripts/mfannot2gff3.pl) or [`mfannot2gff.pl`](https://github.com/kbseah/mitonotate/blob/master/mfannot2gff.pl)) it needs the corresponding sequence file that MFannot used so it can locate the best match to the coding region of S. cereivisiae 21S rRNA. It also will check for the presensce of the Omega intron in the course of locating the 21S rRNA candidate.
 
 - makes_length_annotation_file.py
 
