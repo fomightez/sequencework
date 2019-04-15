@@ -632,6 +632,12 @@ def fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot(gff_file_name,
         subprocess.run(cmd, shell=True) # based on 
             # https://docs.python.org/3/library/subprocess.html#using-the-subprocess-module
             # and https://stackoverflow.com/a/18739828/8508004
+        # before BLAST command, make sure seq_file_name is a file present b/c 
+        # the error when specified file isn't there seemed unclear because BLASt
+        # just returns an error like:
+        # 'CalledProcessError: Command 'blastn ....' returned non-zero exit status 2.'
+        assert os.path.isfile("seq_file_name"), ("Specified sequence file '{}' "
+            "not found.".format(seq_file_name))
         cmd = ('blastn -query {} -db {} -outfmt "6 qseqid sseqid '
             'stitle pident qcovs length mismatch gapopen qstart qend sstart '
             'send qframe sframe frames evalue bitscore qseq '
