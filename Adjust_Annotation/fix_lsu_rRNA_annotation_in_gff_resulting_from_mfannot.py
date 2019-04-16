@@ -636,7 +636,7 @@ def fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot(gff_file_name,
         # the error when specified file isn't there seemed unclear because BLASt
         # just returns an error like:
         # 'CalledProcessError: Command 'blastn ....' returned non-zero exit status 2.'
-        assert os.path.isfile("seq_file_name"), ("Specified sequence file '{}' "
+        assert os.path.isfile(seq_file_name), ("Specified sequence file '{}' "
             "not found.".format(seq_file_name))
         cmd = ('blastn -query {} -db {} -outfmt "6 qseqid sseqid '
             'stitle pident qcovs length mismatch gapopen qstart qend sstart '
