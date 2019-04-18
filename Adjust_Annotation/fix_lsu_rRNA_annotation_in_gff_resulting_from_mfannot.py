@@ -713,33 +713,6 @@ def fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot(gff_file_name,
                     line_to_insert_before = "NOT APPLICABLE"
 
 
-        '''
-        # split off any header lines for putting back later. This will make 
-        # handling first true data line of gff3 easier.
-        end_of_header = False
-        header = []
-        main_lines_of_gff = []
-        for line in (gff_text_lines):
-            if line.startswith('#') and not end_of_header:
-                header.append(line + "\n")
-            elif not line.startswith('#') and not end_of_header:
-                end_of_header = True
-                main_lines_of_gff.append(line)
-            elif end_of_header:
-                main_lines_of_gff.append(line)
-        #first exclude first line because it will be an edge case where there
-        # isn't two lines to insert between
-        first_feature_start = 
-        #now handle the last line as it will also be an edge case where there
-        # isn't two lines to insert between
-        pass
-        # Now handle the standard cases where there is a where there's two lines 
-        #to insert between
-        lines_to_insert_between = (line_to_insert_after,line_to_insert_before)
-        '''
-
-
-
         # Update GFF3 with the new entry
         #REAL ENTRY (WITHOUT TABS SHOWING) AS MODEL ON NEXT LINE:
         #CMF_6-12611    mfannot rRNA    53945   57205   .   +   .   ID=rnl;Name=rnl;transl_table=3;gene=rnl
