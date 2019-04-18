@@ -58,15 +58,15 @@ __version__ = "0.1.0"
 
 #
 # To do:
-# -add quality assessment; currently just have defaulting to 10
-# - MAYBE ALSO RUN AGAINST SEQUENCE WITHOUT OMEGA INTRON AND SEE HOW THAT
-# INSERTION POINT FARES?!??!
-# THEN OUTPUT IF SEEMS OMEGA INTRON PRESENT OR NOT? See 
-#https://www.ncbi.nlm.nih.gov/pubmed/6361491 and as noted in `Counting putative promoters among 332 Saccharomycotina.ipynb`
-# IF I ever make a separate script that just checks of omega present or not, which would be useful for 
-# my extracted cerevisiae mitos where I don't need to fix the gffs at this time, I should
+# - add outputing quality assessment in demo (I think I make it now but don't have anywhere used yet)
+# - Mke a separate script that just checks of omega present or not, which would be useful for 
+# my extracted cerevisiae mitos where I don't need to fix the gffs at this time 
+# (or after I fix the cerevisiae ones to run along with those that didn't need fixing), I should
 # move the handling in this script to that one and just import that main 
-# function into here like I did with the blast_to_df.
+# function into here like I did with the blast_to_df. Include in notes on that
+#https://www.ncbi.nlm.nih.gov/pubmed/6361491 and as noted in `Counting putative 
+# promoters among 332 Saccharomycotina.ipynb`. Also these notes just below should be moved 
+# there are the associatd markdown file:
 '''
 yueomyces_sinensis_mito 20145-20664 looks to be the ortholog of the cerevisiae promoter at the start of the 21S rRNA ortholog; however, it seems yueomyces_sinensis maybe(?) lacks the Omega intron because I am seeing the parts of the yueomyces_sinensis be split between best matches covering 58020-58313 (corresponding to 17-295 of the 520 bp yueomyces_sinensis sequence) and 58318-58482 of cerevisiae (the latter part corresponding to 343-520 of 520 bp yueomyces_sinensis sequence).
 
@@ -88,8 +88,6 @@ noncoding_exon  3860..4439  chrmt:61868..62447  2000-05-19  2000-05-19
 # Issue `fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot.py -h` for 
 # details.
 # 
-# More examples from running from the command line are at the links below: 
-# https://git.io/????????
 #
 #
 #
