@@ -1,5 +1,8 @@
 # Annotation utilities
 
+Scripts
+-----------
+
 - `measure_intergenic_regions_in_mito_annotations.py`
 
 >annotation file and corresponding sequence file > list of intergenic gap sizes
