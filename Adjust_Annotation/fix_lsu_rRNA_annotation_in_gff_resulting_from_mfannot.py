@@ -65,8 +65,9 @@ __version__ = "0.1.0"
 # move the handling in this script to that one and just import that main 
 # function into here like I did with the blast_to_df. Include in notes on that
 #https://www.ncbi.nlm.nih.gov/pubmed/6361491 and as noted in `Counting putative 
-# promoters among 332 Saccharomycotina.ipynb`. Also these notes just below should be moved 
-# there are the associatd markdown file:
+# promoters among 332 Saccharomycotina.ipynb`. Also these notes just below 
+# should be moved there or into the associated markdown file about the 
+# development:
 '''
 yueomyces_sinensis_mito 20145-20664 looks to be the ortholog of the cerevisiae promoter at the start of the 21S rRNA ortholog; however, it seems yueomyces_sinensis maybe(?) lacks the Omega intron because I am seeing the parts of the yueomyces_sinensis be split between best matches covering 58020-58313 (corresponding to 17-295 of the 520 bp yueomyces_sinensis sequence) and 58318-58482 of cerevisiae (the latter part corresponding to 343-520 of 520 bp yueomyces_sinensis sequence).
 
@@ -775,9 +776,10 @@ def fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot(gff_file_name,
     elif return_status and not return_quality_estimate:
             return status
             sys.stderr.write("...status returned.\n")
-    # This was a dubm way to do this. I should have just built what to return 
-    # as a list and then returned that! Fix when add more and then change how
-    # feedback notifications done.
+    # This became not the idea way to do this once I added more than one thing I 
+    # might need to return. I should have just built what to return as a list 
+    # and then returned that! Fix when add more, working out the demo, and then 
+    # change how feedback notifications done.
         
 
 
