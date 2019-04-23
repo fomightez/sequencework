@@ -53,14 +53,6 @@ __version__ = "0.1.0"
 #
 # To do:
 # - verify works with Python 2 (can use https://github.com/fomightez/mcscan-blast-binder or mcscan-binder)
-'''
-yueomyces_sinensis_mito 20145-20664 looks to be the ortholog of the cerevisiae promoter at the start of the 21S rRNA ortholog; however, it seems yueomyces_sinensis maybe(?) lacks the Omega intron because I am seeing the parts of the yueomyces_sinensis be split between best matches covering 58020-58313 (corresponding to 17-295 of the 520 bp yueomyces_sinensis sequence) and 58318-58482 of cerevisiae (the latter part corresponding to 343-520 of 520 bp yueomyces_sinensis sequence).
-
-to help with that FROM SGD:
-noncoding_exon  1..2716 chrmt:58009..60724  2000-05-19  2000-05-19
-intron  2717..3859  chrmt:60725..61867  2000-05-19  2000-05-19
-noncoding_exon  3860..4439  chrmt:61868..62447  2000-05-19  2000-05-19
-'''
 #
 #
 #
