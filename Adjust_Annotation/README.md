@@ -13,6 +13,8 @@ Adjust Annotation Files
 MFannot seems to do poorly with annotating the large ribosomal subunit, even if all the strains are cerevisiae it is hit or miss for some reason, `fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot.py` fixes that for cereivisae and other budding yeast(?).
 Besides the annoation file in gff3 format produced by MFAnnot followed by conversion to GFF3 format (via [`mfannot2gff3.pl`](https://github.com/yjx1217/LRSDAY/blob/master/scripts/mfannot2gff3.pl) or [`mfannot2gff.pl`](https://github.com/kbseah/mitonotate/blob/master/mfannot2gff.pl)) it needs the corresponding sequence file that MFannot used so it can locate the best match to the coding region of S. cereivisiae 21S rRNA. It also will check for the presensce of the Omega intron in the course of locating the 21S rRNA candidate.
 
+There isn't a demo notebook for this script yet, but it is described being used as a step in a workflow/pipeline/ad-hoc series of processing in a [demo notebook for this script in this repo](https://github.com/fomightez/cl_sq_demo-binder). Launch a binder session from there and select 'Demo of script to get intergenic gap sizes from annotation file' to run it actively.  The particular notebook can be viewed statically, nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/Demo%20of%20script%20to%20get%20intergenic%20gap%20sizes%20from%20annotation%20file.ipynb).
+
 - makes_length_annotation_file.py
 
 > annotation file --> differently-arranged annotation file  
@@ -86,6 +88,11 @@ YKR011C	1062
  ----------------------------------------------------------------------
  ----------------------------------------------------------------------
  ----------------------------------------------------------------------
+CLOSELY RELATED sub-directory
+--------------------
+
+I realized `Adjust` didn't suit some of the things I was doing with annotation files and so see the `annotation-utilities` subdirectory [here[(https://github.com/fomightez/sequencework/tree/master/annotation-utilities).
+
 
 Related scripts
 ---------------
