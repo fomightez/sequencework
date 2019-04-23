@@ -14,7 +14,7 @@ __version__ = "0.1.0"
 #
 #
 # PURPOSE: Takes takes a file of annotations (in gff form) of a mitochondrial 
-# genome produced by MFAnnot and followed by conversion to gff via a script, the
+# genome produced by MFannot and followed by conversion to gff via a script, the
 # corresponding mitochondrial sequence in FASTA format, and 
 # determines if there is an entry for the large ribosomal subunit rRNA (rnl) 
 # present. If there is no entry for the large ribosomal subunit rRNA (rnl), it 
@@ -32,7 +32,7 @@ __version__ = "0.1.0"
 # on each feature. I have added in checking if the note about the translation 
 # table is present in each feature and hande the output to try and match 
 # conversion script output.
-# Script requires BLAST+ to be allready intalled in environment. An option is
+# Script requires BLAST+ to be already intalled in environment. An option is
 # available at https://github.com/fomightez/blast-binder; go there and click
 # `launch binder`, upload this script, and then use the terminal or notebook to
 # execute the script.
