@@ -90,7 +90,7 @@ noncoding_exon  3860..4439  chrmt:61868..62447  2000-05-19  2000-05-19
 CURRENT ACTUAL CODE FOR RUNNING/TESTING IN A NOTEBOOK WHEN IMPORTED/LOADED OR 
 PASTED IN ANOTHER CELL:
 from measure_intergenic_regions_in_mito_annotations import measure_intergenic_regions_in_mito_annotations
-measure_intergenic_regions_in_mito_annotations("mito_annotations.gff3", "mito_seq.fa")
+df = measure_intergenic_regions_in_mito_annotations("mito_annotations.gff3", "mito_seq.fa", return_df = True)
 '''
 #
 #
