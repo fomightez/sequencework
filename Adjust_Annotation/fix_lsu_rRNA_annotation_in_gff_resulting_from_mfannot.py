@@ -446,7 +446,7 @@ def determine_rnl_start_end(df, check_omega=True):
         # Get that script and import the main function.
         file_needed = "check_for_omega_intron.py"
         if not os.path.isfile(file_needed):
-            sys.stderr.write("Obtaining script containing function to check "
+            sys.stderr.write("\nObtaining script containing function to check "
                 "for omega intron"
                 "...\n")
             # based on http://amoffat.github.io/sh/
