@@ -576,23 +576,26 @@ def fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot(gff_file_name,
         # to pandas and import the function
         #--------------------------------------------------------------------
         #
-        sys.stderr.write("Obtaining script containing function to pass "
-            "BLAST results to python"
-            "...\n")
-        # based on http://amoffat.github.io/sh/
-        from sh import curl
-        curl("-OL",
-            "https://raw.githubusercontent.com/fomightez/sequencework/"
-            "master/blast-utilities/blast_to_df.py")
-        # verify that worked
+        # Because I want to build in a way to allow this to be done manually
+        # check if already there first and then otherwise try to get.
         file_needed = "blast_to_df.py"
         if not os.path.isfile(file_needed):
-            github_link = ("https://github.com/fomightez/sequencework/blob/"
+            sys.stderr.write("Obtaining script containing function to pass "
+                "BLAST results to python"
+                "...\n")
+            # based on http://amoffat.github.io/sh/
+            from sh import curl
+            curl("-OL",
+                "https://raw.githubusercontent.com/fomightez/sequencework/"
                 "master/blast-utilities/blast_to_df.py")
-            sys.stderr.write("\n'blast_to_df.py' not found. Please add it to "
-            "your current working\ndirectory from {}"
-            ".\n**EXITING !!**.\n".format(github_link))
-            sys.exit(1)
+            # verify that worked & ask for it to be done manually if fails
+            if not os.path.isfile(file_needed):
+                github_link = ("https://github.com/fomightez/sequencework/blob/"
+                    "master/blast-utilities/blast_to_df.py")
+                sys.stderr.write("\n'blast_to_df.py' not found. Please add it to "
+                "your current working\ndirectory from {}"
+                ".\n**EXITING !!**.\n".format(github_link))
+                sys.exit(1)
         from blast_to_df import blast_to_df
 
 
