@@ -369,11 +369,13 @@ def determine_if_annotations_include_rnl(file_name):
     return rnl_present
 
     
-def determine_rnl_start_end(df, check_omega=True):
+def determine_rnl_start_end(df, seq_file_name, check_omega=True):
     '''
     Takes a dataframe resulting from a BLAST query of the S. cerevisiae S228C 
     Q0158 / 21S_RRNA (just coding sequence) against a provided mitochondrial 
     genome and extracts the location of the rnl gene in the provided sequence.
+    Also because importing another function for handling BLAST query on sequence 
+    to check for omega, needs to 'take' sequence file name too.
 
     Returns start position, and end postion of gene in provided sequence as 
     integers.
@@ -618,7 +620,7 @@ def fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot(gff_file_name,
         from blast_to_df import blast_to_df
         blast_df = blast_to_df(result)
         rnl_start, rnl_end, strand, quality, omega_present = (
-            determine_rnl_start_end(blast_df))
+            determine_rnl_start_end(blast_df, seq_file_name))
         
         # Report on omega
         if omega_present:
