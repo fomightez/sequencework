@@ -390,7 +390,7 @@ def check_for_omega_intron(seq_file, df = None):
     # Verify gene sequence file present:
     #---------------------------------------------------------------------------
     # Don't continue if not.
-    # before BLAST command, make sure seq_file is a file present b/c 
+    # before BLAST command, make sure `seq_file` is a file present b/c 
     # the error when specified file isn't there seemed unclear because BLASt
     # just returns an error like:
     # 'CalledProcessError: Command 'blastn ....' returned non-zero exit status 2.'
