@@ -467,9 +467,6 @@ def determine_rnl_start_end(df, check_omega=True):
         omega_present = check_for_omega_intron(seq_file_name, df)
 
 
-    strand = "+"
-    qual_score = 50
-
     if check_omega:
         return start_pos,end_pos, strand, qual_score, omega_present
     else:
@@ -605,7 +602,7 @@ def fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot(gff_file_name,
         subprocess.run(cmd, shell=True) # based on 
             # https://docs.python.org/3/library/subprocess.html#using-the-subprocess-module
             # and https://stackoverflow.com/a/18739828/8508004
-        # before BLAST command, make sure seq_file_name is a file present b/c 
+        # before BLAST command, make sure `seq_file_name` is a file present b/c 
         # the error when specified file isn't there seemed unclear because BLASt
         # just returns an error like:
         # 'CalledProcessError: Command 'blastn ....' returned non-zero exit status 2.'
