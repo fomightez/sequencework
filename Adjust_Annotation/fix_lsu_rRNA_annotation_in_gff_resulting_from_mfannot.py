@@ -16,8 +16,8 @@ __version__ = "0.1.0"
 # PURPOSE: Takes takes a file of annotations (in gff form) of a mitochondrial 
 # genome produced by MFannot and followed by conversion to gff via a script, the
 # corresponding mitochondrial sequence in FASTA format, and 
-# determines if there is an entry for the large ribosomal subunit rRNA (rnl) 
-# present. If there is no entry for the large ribosomal subunit rRNA (rnl), it 
+# determines if there is an entry for the large ribosomal subunit RNA (rnl) 
+# present. If there is no entry for the large ribosomal subunit RNA (rnl), it 
 # adds the annotation to the gff.
 # Note: Going from the MFAnnot master files (`.new` extesion) preferably use 
 # `mfannot2gff3.pl` from
