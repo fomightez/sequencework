@@ -264,13 +264,14 @@ length_cer_rnl_coding = 3295 #length in bp of 21S_rRNA without introns
 
 import sys
 import os
+import subprocess
 import pandas as pd
 
 
 ###---------------------------HELPER FUNCTIONS---------------------------------###
 
     
-def determine_omega_presence(seq_file, df):
+def determine_omega_presence(seq_file, df = None):
     '''
     Takes the following:
     `seq_file`, name of sequence file
@@ -288,7 +289,7 @@ def determine_omega_presence(seq_file, df):
     into another where related queries already have taken place and makes no
     sense to repeat.
     '''
-    if not df:
+    if df is None:
         # need to do BLAST query with coding sequence of S. cerevisiae S228C 
         # first to make the dataframe other scripts may already have made
         sys.stderr.write("Checking hits against just coding portion of 21S rRNA"
@@ -461,7 +462,7 @@ def check_for_omega_intron(seq_file, df = None):
     # Check for omega intron in provided sequence
     #---------------------------------------------------------------------
     #
-    omega_present = (determine_omega_presence(seq_file),df)
+    omega_present = determine_omega_presence(seq_file,df)
 
 
 
