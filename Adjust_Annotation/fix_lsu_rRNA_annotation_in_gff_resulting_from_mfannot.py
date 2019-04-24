@@ -371,9 +371,9 @@ def determine_if_annotations_include_rnl(file_name):
     
 def determine_rnl_start_end(df, check_omega=True):
     '''
-    Takes a blast dataframe from a query of the S. cerevisiae S228C 
-    Q0158 / 21S_RRNA against a provided mitochondrial genome and 
-    extracts the location of the rnl gene in the provided sequence.
+    Takes a dataframe resulting from a BLAST query of the S. cerevisiae S228C 
+    Q0158 / 21S_RRNA (just coding sequence) against a provided mitochondrial 
+    genome and extracts the location of the rnl gene in the provided sequence.
 
     Returns start position, and end postion of gene in provided sequence as 
     integers.
@@ -439,42 +439,44 @@ def determine_rnl_start_end(df, check_omega=True):
     if qual_score > 100.00:
         qual_score = 100.00 - (qual_score-100.0)
 
-    # Determine if it contains omega intron. Do this by now checking with the 
-    # full genomic sequence of cerevisiae 21SrRNA region and see if the matches
-    # are less in number
-    omega_present = False
-    cer_rnl_fn = "cer_rnl.fa"
-    with open(cer_rnl_fn, "w") as q_file:
-        q_file.write(cer_rnl)
-    sys.stderr.write("\nChecking for omega intron presence"
-        "...\n")
-    cmd="makeblastdb -in {} -dbtype nucl".format(seq_file_name)
-    subprocess.run(cmd, shell=True) # based on 
-        # https://docs.python.org/3/library/subprocess.html#using-the-subprocess-module
-        # and https://stackoverflow.com/a/18739828/8508004
-    cmd = ('blastn -query {} -db {} -outfmt "6 qseqid sseqid '
-        'stitle pident qcovs length mismatch gapopen qstart qend sstart '
-        'send qframe sframe frames evalue bitscore qseq '
-        'sseq" -task blastn'.format(cer_rnl_fn, seq_file_name))
-    full_result = subprocess.check_output(cmd, shell=True) # based on 
-        # https://stackoverflow.com/a/18739828/8508004
-    full_result = full_result.decode("utf-8") # so it isn't bytes
-    from blast_to_df import blast_to_df
-    # do some shuffling so the new pickled dataframe with the data from BLAST 
-    # query with full genomic sequence of 21S rRNA WITH INTRON doesn't clobber 
-    # original
-    from sh import mv
-    mv("BLAST_pickled_df.pkl", "origBLAST_pickled_df.pkl")
-    blast_df_forfull = blast_to_df(full_result)
-    # finish shuffle now that have new pickled file and restore original
-    mv("BLAST_pickled_df.pkl", "fullBLAST_pickled_df.pkl")
-    mv("origBLAST_pickled_df.pkl", "BLAST_pickled_df.pkl")
-    sys.stderr.write("\nFirst pickled dataframe file remains '{}' and the new "
-        "one from\nquery with full, intron-containing cerevisiae 21S rRNA was "
-        "named to '{}'.\n".format("BLAST_pickled_df.pkl","fullBLAST_pickled_df.pkl"))
-    blast_df_forfull = blast_df_forfull[blast_df_forfull.bitscore > 99]
-    if len(blast_df_forfull) < len(df):
-        omega_present = True
+    if check_omega:
+        # Determine if it contains omega intron. Do this by now checking with the 
+        # full genomic sequence of cerevisiae 21S rRNA region and see if the matches
+        # are less in number
+        omega_present = False
+        cer_rnl_fn = "cer_rnl.fa"
+        with open(cer_rnl_fn, "w") as q_file:
+            q_file.write(cer_rnl)
+        sys.stderr.write("\nChecking for omega intron presence"
+            "...\n")
+        cmd="makeblastdb -in {} -dbtype nucl".format(seq_file_name)
+        subprocess.run(cmd, shell=True) # based on 
+            # https://docs.python.org/3/library/subprocess.html#using-the-subprocess-module
+            # and https://stackoverflow.com/a/18739828/8508004
+        cmd = ('blastn -query {} -db {} -outfmt "6 qseqid sseqid '
+            'stitle pident qcovs length mismatch gapopen qstart qend sstart '
+            'send qframe sframe frames evalue bitscore qseq '
+            'sseq" -task blastn'.format(cer_rnl_fn, seq_file_name))
+        full_result = subprocess.check_output(cmd, shell=True) # based on 
+            # https://stackoverflow.com/a/18739828/8508004
+        full_result = full_result.decode("utf-8") # so it isn't bytes
+        from blast_to_df import blast_to_df
+        # do some shuffling so the new pickled dataframe with the data from BLAST 
+        # query with full genomic sequence of 21S rRNA WITH INTRON doesn't clobber 
+        # original
+        from sh import mv
+        mv("BLAST_pickled_df.pkl", "origBLAST_pickled_df.pkl")
+        blast_df_forfull = blast_to_df(full_result)
+        # finish shuffle now that have new pickled file and restore original
+        mv("BLAST_pickled_df.pkl", "fullBLAST_pickled_df.pkl")
+        mv("origBLAST_pickled_df.pkl", "BLAST_pickled_df.pkl")
+        sys.stderr.write("\nFirst pickled dataframe file remains '{}' and the "
+            "new one from\nquery with full, intron-containing cerevisiae 21S "
+            "rRNA was named to '{}'.\n".format(
+            "BLAST_pickled_df.pkl","fullBLAST_pickled_df.pkl"))
+        blast_df_forfull = blast_df_forfull[blast_df_forfull.bitscore > 99]
+        if len(blast_df_forfull) < len(df):
+            omega_present = True
 
 
     strand = "+"
