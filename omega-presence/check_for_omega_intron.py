@@ -81,7 +81,7 @@ __version__ = "0.1.0"
 CURRENT ACTUAL CODE FOR RUNNING/TESTING IN A NOTEBOOK WHEN IMPORTED/LOADED OR 
 PASTED IN ANOTHER CELL:
 from check_for_omega_intron import check_for_omega_intron
-check_for_omega_intron("mito_annotations.gff3", "mito_seq.fa")
+check_for_omega_intron("mito_seq.fa")
 '''
 #
 #
