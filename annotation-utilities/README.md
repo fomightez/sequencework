@@ -12,6 +12,8 @@ There is a [demo notebook for this script in this repo](https://github.com/fomig
 See also
 -------
 
-The contents of [the Adjust_Annotation section here](https://github.com/fomightez/sequencework/tree/master/Adjust_Annotation) would probably be best put under this topic but predates this sub-directory. Currently it houses two scripts and points at some other resources:
+The contents of [the Adjust_Annotation sub-repositor](https://github.com/fomightez/sequencework/tree/master/Adjust_Annotation) would probably be best put under this topic but predates this sub-directory. Currently it houses two scripts and points at some other resources:
 * fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot.py
 * makes_length_annotation_file.py
+
+See `check_for_omega_intron.py` under [the omega-presence sub-repository](https://github.com/fomightez/sequencework/tree/master/omega-presence). Technically that could be used to make annotations but it isn't presently, and doesn't rely on gff3 annoation file, and so placed in its own sub-directory for now.
