@@ -585,10 +585,8 @@ def fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot(gff_file_name,
             "https://raw.githubusercontent.com/fomightez/sequencework/"
             "master/blast-utilities/blast_to_df.py")
         # verify that worked
-        file_needed = "blast-utilities/blast_to_df.py"
-        try:
-            os.path.isfile(file_needed)
-        except NameError:
+        file_needed = "blast_to_df.py"
+        if not os.path.isfile(file_needed):
             github_link = ("https://github.com/fomightez/sequencework/blob/"
                 "master/blast-utilities/blast_to_df.py")
             sys.stderr.write("\n'blast_to_df.py' not found. Please add it to "
