@@ -13,9 +13,9 @@ __version__ = "0.1.0"
 # Python 3. 
 #
 #
-# PURPOSE: Takes a sequence file (FASTA format) of a fungal mitochondrial large 
-# ribosomal subunit RNA and checks if it contains what seems to be a match to 
-# the omega intron of S. cerevisiae. Because it uses S. cerevisiae S288C 
+# PURPOSE: Takes a sequence file (FASTA format) containing a fungal mitochondrial 
+# large ribosomal subunit RNA and checks if it contains what seems to be a match 
+# to the omega intron of S. cerevisiae. Because it uses S. cerevisiae S288C 
 # mitochondrial large ribosomal subunit RNA for this effort, I say it is for 
 # fungal mitochondrial large ribosomal subunit RNA but depending on 
 # conservation, it may be limited to abudding yeast or sub-classes of budding 
@@ -521,9 +521,9 @@ if __name__ == "__main__" and '__file__' in globals():
     import argparse
     parser = argparse.ArgumentParser(prog='check_for_omega_intron.py',
         description="check_for_omega_intron.py \
-        takes output from MFannot that has been converted to a gff file by a\
-        subsequent script, a corresponding fungal mitochondrial sequence file, \
-        and adds annotation for large ribosomal RNA if it is not already there.\
+        takes the file name of a sequence containing mitochondrial large \
+        ribosomal subunit sequence and returns if omega intron seems present \
+        or not.\
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
 
