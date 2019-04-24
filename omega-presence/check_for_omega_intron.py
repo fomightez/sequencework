@@ -37,7 +37,7 @@ __version__ = "0.1.0"
 # 
 #
 # For impetus, see 
-# `ffor developing find_mito_fungal_lsu_rRNA_and_check_for_omega_intron script.md`
+# `for developing find_mito_fungal_lsu_rRNA_and_check_for_omega_intron script.md`
 #
 #
 #
@@ -293,14 +293,14 @@ def determine_omega_presence(seq_file, df):
         # first to make the dataframe other scripts may already have made
         sys.stderr.write("Checking hits against just coding portion of 21S rRNA"
             "...\n")
-        cmd="makeblastdb -in {} -dbtype nucl".format(seq_file_name)
+        cmd="makeblastdb -in {} -dbtype nucl".format(seq_file)
         subprocess.run(cmd, shell=True) # based on 
             # https://docs.python.org/3/library/subprocess.html#using-the-subprocess-module
             # and https://stackoverflow.com/a/18739828/8508004
         cmd = ('blastn -query {} -db {} -outfmt "6 qseqid sseqid '
             'stitle pident qcovs length mismatch gapopen qstart qend sstart '
             'send qframe sframe frames evalue bitscore qseq '
-            'sseq" -task blastn'.format(cer_rnl_fn, seq_file_name))
+            'sseq" -task blastn'.format(cer_rnl_fn, seq_file))
         result = subprocess.check_output(cmd, shell=True) # based on 
             # https://stackoverflow.com/a/18739828/8508004
         result = result.decode("utf-8") # so it isn't bytes
@@ -316,14 +316,14 @@ def determine_omega_presence(seq_file, df):
         q_file.write(cer_rnl)
     sys.stderr.write("\nChecking for omega intron presence"
         "...\n")
-    cmd="makeblastdb -in {} -dbtype nucl".format(seq_file_name)
+    cmd="makeblastdb -in {} -dbtype nucl".format(seq_file)
     subprocess.run(cmd, shell=True) # based on 
         # https://docs.python.org/3/library/subprocess.html#using-the-subprocess-module
         # and https://stackoverflow.com/a/18739828/8508004
     cmd = ('blastn -query {} -db {} -outfmt "6 qseqid sseqid '
         'stitle pident qcovs length mismatch gapopen qstart qend sstart '
         'send qframe sframe frames evalue bitscore qseq '
-        'sseq" -task blastn'.format(cer_rnl_fn, seq_file_name))
+        'sseq" -task blastn'.format(cer_rnl_fn, seq_file))
     full_result = subprocess.check_output(cmd, shell=True) # based on 
         # https://stackoverflow.com/a/18739828/8508004
     full_result = full_result.decode("utf-8") # so it isn't bytes
@@ -393,7 +393,7 @@ def check_for_omega_intron(seq_file, df = None):
     # the error when specified file isn't there seemed unclear because BLASt
     # just returns an error like:
     # 'CalledProcessError: Command 'blastn ....' returned non-zero exit status 2.'
-    assert os.path.isfile(seq_file_name), ("Specified sequence file '{}' "
+    assert os.path.isfile(seq_file), ("Specified sequence file '{}' "
             "not found.".format(seq_file))
     '''
     try:
