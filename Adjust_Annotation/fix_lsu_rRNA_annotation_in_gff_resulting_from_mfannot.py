@@ -440,43 +440,31 @@ def determine_rnl_start_end(df, check_omega=True):
         qual_score = 100.00 - (qual_score-100.0)
 
     if check_omega:
-        # Determine if it contains omega intron. Do this by now checking with the 
-        # full genomic sequence of cerevisiae 21S rRNA region and see if the matches
-        # are less in number
-        omega_present = False
-        cer_rnl_fn = "cer_rnl.fa"
-        with open(cer_rnl_fn, "w") as q_file:
-            q_file.write(cer_rnl)
-        sys.stderr.write("\nChecking for omega intron presence"
-            "...\n")
-        cmd="makeblastdb -in {} -dbtype nucl".format(seq_file_name)
-        subprocess.run(cmd, shell=True) # based on 
-            # https://docs.python.org/3/library/subprocess.html#using-the-subprocess-module
-            # and https://stackoverflow.com/a/18739828/8508004
-        cmd = ('blastn -query {} -db {} -outfmt "6 qseqid sseqid '
-            'stitle pident qcovs length mismatch gapopen qstart qend sstart '
-            'send qframe sframe frames evalue bitscore qseq '
-            'sseq" -task blastn'.format(cer_rnl_fn, seq_file_name))
-        full_result = subprocess.check_output(cmd, shell=True) # based on 
-            # https://stackoverflow.com/a/18739828/8508004
-        full_result = full_result.decode("utf-8") # so it isn't bytes
-        from blast_to_df import blast_to_df
-        # do some shuffling so the new pickled dataframe with the data from BLAST 
-        # query with full genomic sequence of 21S rRNA WITH INTRON doesn't clobber 
-        # original
-        from sh import mv
-        mv("BLAST_pickled_df.pkl", "origBLAST_pickled_df.pkl")
-        blast_df_forfull = blast_to_df(full_result)
-        # finish shuffle now that have new pickled file and restore original
-        mv("BLAST_pickled_df.pkl", "fullBLAST_pickled_df.pkl")
-        mv("origBLAST_pickled_df.pkl", "BLAST_pickled_df.pkl")
-        sys.stderr.write("\nFirst pickled dataframe file remains '{}' and the "
-            "new one from\nquery with full, intron-containing cerevisiae 21S "
-            "rRNA was named to '{}'.\n".format(
-            "BLAST_pickled_df.pkl","fullBLAST_pickled_df.pkl"))
-        blast_df_forfull = blast_df_forfull[blast_df_forfull.bitscore > 99]
-        if len(blast_df_forfull) < len(df):
-            omega_present = True
+        # Determine if it contains omega intron. 
+        # I have a separate script with a function to do this because other 
+        # scripts have to do this too.
+        # Get that script and import the main function.
+        file_needed = "check_for_omega_intron.py"
+        if not os.path.isfile(file_needed):
+            sys.stderr.write("Obtaining script containing function to check "
+                "for omega intron"
+                "...\n")
+            # based on http://amoffat.github.io/sh/
+            from sh import curl
+            curl("-OL",
+                "https://raw.githubusercontent.com/fomightez/sequencework/"
+                "master/annotation-utilities/check_for_omega_intron.py")
+            # verify that worked & ask for it to be done manually if fails
+            if not os.path.isfile(file_needed):
+                github_link = ("https://github.com/fomightez/sequencework/blob/"
+                    "master/annotation-utilities/")
+                sys.stderr.write("\n'check_for_omega_intron.py' not found. "
+                    "Please add it to your current working\ndirectory from {}"
+                ".\n**EXITING !!**.\n".format(github_link))
+                sys.exit(1)
+        from check_for_omega_intron import check_for_omega_intron
+        # Use the main function to check
+        omega_present = check_for_omega_intron(seq_file_name, df)
 
 
     strand = "+"
