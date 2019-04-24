@@ -629,7 +629,7 @@ def fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot(gff_file_name,
                 "investigation is suggested.**")
         else:
             sys.stderr.write("\n**Simple examination for presence of omega "
-                "intron didn't indicate obvious presence. Further "
+                "intron didn't indicate\nobvious presence. Further "
                 "investigation is suggested.**")
 
 
