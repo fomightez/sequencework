@@ -453,11 +453,11 @@ def determine_rnl_start_end(df, check_omega=True):
             from sh import curl
             curl("-OL",
                 "https://raw.githubusercontent.com/fomightez/sequencework/"
-                "master/annotation-utilities/check_for_omega_intron.py")
+                "master/omega-presence/check_for_omega_intron.py")
             # verify that worked & ask for it to be done manually if fails
             if not os.path.isfile(file_needed):
                 github_link = ("https://github.com/fomightez/sequencework/blob/"
-                    "master/annotation-utilities/")
+                    "master/omega-presence/")
                 sys.stderr.write("\n'check_for_omega_intron.py' not found. "
                     "Please add it to your current working\ndirectory from {}"
                 ".\n**EXITING !!**.\n".format(github_link))
@@ -810,7 +810,7 @@ if __name__ == "__main__" and '__file__' in globals():
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
 
-    parser.add_argument("gff_file", help="Name of annotaion results \
+    parser.add_argument("gff_file", help="Name of annotation results \
         file (gff format) from a mitochondrial genome to parse and possibly \
         fix.\
         ", metavar="GFF_FILE")
