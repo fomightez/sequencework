@@ -3,7 +3,7 @@
 ## Scripts
 
 * check_for_omega_intron.py
->sequence of large ribosomal subunit RNA from fungal mitochondria > whether omega seems present or not
+>sequence containing a large ribosomal subunit RNA from fungal mitochondria > whether omega seems present or not
 
 
 ## Related
