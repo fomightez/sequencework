@@ -36,6 +36,14 @@ __version__ = "0.1.0"
 # execute the script.
 # 
 #
+#
+#
+# CLOSELY RELATED: 
+# Other scripts import the main function of this one as part of their
+# processing. Current list:
+# - fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot.py
+# -find_mito_fungal_lsu_rRNA_and_check_for_omega_intron.py
+#
 # For impetus, see 
 # `for developing find_mito_fungal_lsu_rRNA_and_check_for_omega_intron script.md`
 #
@@ -391,7 +399,7 @@ def check_for_omega_intron(seq_file, df = None):
     #---------------------------------------------------------------------------
     # Don't continue if not.
     # before BLAST command, make sure `seq_file` is a file present b/c 
-    # the error when specified file isn't there seemed unclear because BLASt
+    # the error when specified file isn't there seemed unclear because BLAST
     # just returns an error like:
     # 'CalledProcessError: Command 'blastn ....' returned non-zero exit status 2.'
     assert os.path.isfile(seq_file), ("Specified sequence file '{}' "
