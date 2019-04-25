@@ -404,7 +404,7 @@ def determine_rnl_start_end(df, seq_file_name, check_omega=True):
     strand_for_start_alignment = extract_hit_strand(
         df['frames'].iloc[df.qstart.idxmin])
     strand_for_end_alignment = extract_hit_strand(
-        df['frames'].iloc[df.qstart.idxmin])
+        df['frames'].iloc[df.qend.idxmax])
     # for now triggering an error but would be nice to make so it can be fixed
     # if there is a pattern to most of the cases. (I could imagine this could 
     # happen if rnl spanned start and end of arbitraily placed mito chromosome
