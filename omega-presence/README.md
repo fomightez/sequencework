@@ -5,6 +5,8 @@
 * check_for_omega_intron.py
 >sequence containing a large ribosomal subunit RNA from fungal mitochondria > whether omega seems present or not
 
+* find_mito_fungal_lsu_rRNA_and_check_for_omega_intron.py
+>sequence > details of best match to cerevisiae 21S rRNA gene and whether omega intron present or not
 
 ## Related
 
