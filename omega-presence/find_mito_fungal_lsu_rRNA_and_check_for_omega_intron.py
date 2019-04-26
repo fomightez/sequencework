@@ -642,6 +642,9 @@ def find_mito_fungal_lsu_rRNA_and_check_for_omega_intron(seq_file_name,
         "\n\nDetails pickled for later use in Pandas in the "
         "file '{}'.\n".format(pkl_fn))
 
+    if return_df:
+        return df
+
 
 
 
