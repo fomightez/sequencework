@@ -322,28 +322,7 @@ def extract_hit_strand(frames_data):
             ".\n**EXITING !!**.\n".format(frames_data))
         sys.exit(1)
 
-def extract_hit_id(sseqid_data):
-    '''
-    Takes a string with the `sseqid` and returns
-    corresponding strand. I only will be supplying query as positive and so I 
-    assume it will always be "1", but best to assert that.
 
-    Returns:
-    a string of "+" or "-" to indicate plus/forward or minus/revers strand for 
-    the feature. This is the convention used to represent this in GFF3 according 
-    to https://useast.ensembl.org/info/website/upload/gff3.html .
-    '''
-    assert frames_data[0] == "1", ("Strand of query should be a 1. So expect "
-        "either\n'1/1' or '1/-1'. Seeing '{}' with {}. **Problem???**".format(
-        frames_data, seq_file_name))
-    if frames_data.split("/")[1].strip() == "1":
-        return "+"
-    elif frames_data.split("/")[1].strip() == "-1":
-        return "-"
-    else:
-        sys.stderr.write("\n**ERROR** Cannot extract strand of hit from '{}'"
-            ".\n**EXITING !!**.\n".format(frames_data))
-        sys.exit(1)
 
 
 
@@ -424,8 +403,9 @@ def determine_rnl_details(df, seq_file_name, check_omega=True):
     # stuff, and then rerun.)
     assert id_for_start_alignment == id_for_end_alignment, ("ID "
         "information for fragments containing start and end should be same. "
-        "Here seeing '{}' for start and '{}' for end. **Problem???**".format(
-        id_for_start_alignment, id_for_end_alignment))
+        "Here seeing '{}' for start and '{}' for end with {}. "
+        "**Problem???**".format(
+        id_for_start_alignment, id_for_end_alignment,seq_file_name))
     entry_id = id_for_start_alignment
 
     # calculate a score for quality
