@@ -377,8 +377,9 @@ def determine_rnl_details(df, seq_file_name, check_omega=True):
     # stuff, and then rerun.)
     assert strand_for_start_alignment == strand_for_end_alignment, ("Strand "
         "information for fragments containing start and end should be same. "
-        "Here seeing '{}' for start and '{}' for end. **Problem???**".format(
-        strand_for_start_alignment, strand_for_end_alignment))
+        "Here seeing '{}' for start and '{}' for end with {}. "
+        "**Problem???**".format(
+        strand_for_start_alignment, strand_for_end_alignment, seq_file_name))
     strand = strand_for_start_alignment
 
     # React if start and end coordinates identified are farther apart then
