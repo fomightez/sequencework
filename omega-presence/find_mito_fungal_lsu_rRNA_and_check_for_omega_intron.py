@@ -311,8 +311,8 @@ def extract_hit_strand(frames_data):
     to https://useast.ensembl.org/info/website/upload/gff3.html .
     '''
     assert frames_data[0] == "1", ("Strand of query should be a 1. So expect "
-        "either\n'1/1' or '1/-1'. Seeing '{}'. **Problem???**".format(
-        frames_data))
+        "either\n'1/1' or '1/-1'. Seeing '{}' with {}. **Problem???**".format(
+        frames_data, seq_file_name))
     if frames_data.split("/")[1].strip() == "1":
         return "+"
     elif frames_data.split("/")[1].strip() == "-1":
@@ -334,8 +334,8 @@ def extract_hit_id(sseqid_data):
     to https://useast.ensembl.org/info/website/upload/gff3.html .
     '''
     assert frames_data[0] == "1", ("Strand of query should be a 1. So expect "
-        "either\n'1/1' or '1/-1'. Seeing '{}'. **Problem???**".format(
-        frames_data))
+        "either\n'1/1' or '1/-1'. Seeing '{}' with {}. **Problem???**".format(
+        frames_data, seq_file_name))
     if frames_data.split("/")[1].strip() == "1":
         return "+"
     elif frames_data.split("/")[1].strip() == "-1":
