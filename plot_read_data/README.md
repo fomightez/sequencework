@@ -119,6 +119,9 @@ Specifically, the script [`shepherds_read_starts_at_start_of_origins_thru_to_plo
 Related items by others
 -----------------------
 
+[karyoploteR](https://bernatgel.github.io/karyoploter_tutorial/)
+>"karyoploteR is an R package to create karyoplots, that is, representations of whole genomes with arbitrary data plotted on them. ... The aim of karyoploteR is to offer the user an easy way to plot data along the genome to get broad genome-wide view to facilitate the identification of genome wide relations and distributions."
+
 Not for high-throughput data, but for a different type of modern sequencing data:
 
 [NanoPack - NanoPlot and NanoStats and other Python scripts and modules for visualizing and processing Oxford Nanopore sequencing data](https://github.com/wdecoster/nanopack)
