@@ -21,8 +21,8 @@ To determine the URL to feed the script, google `YOUR_ORGANISM genome UCSC chrom
 Importantly, this script is intended for organisms without cytogenetic bands, such as dog, cow, yeast, etc..  
 (For organisms with cytogenetic band data: Acquiring the cytogenetic bands information is described [here](http://circos.ca/tutorials/lessons/ideograms/karyotypes/), about halfway down 
 the page where it says, "obtain the karyotype structure from...". 
-Unfortunately, it seems the output directed to by those instructions is not
-directly useful in Circos(?). Fortunately, though as described [here](http://circos.ca/documentation/tutorials/quick_start/hello_world/),"Circos ships with several predefined karyotype files for common sequence 
+Unfortunately, it seems the output to which one is directed to by those instructions is not
+directly useful in Circos(?). Fortunately, though as described [here](http://circos.ca/documentation/tutorials/quick_start/hello_world/), "Circos ships with several predefined karyotype files for common sequence 
 assemblies: human, mouse, rat, and drosophila. These files are located in 
 data/karyotype within the Circos distribution." And also included there is a script for converting the cytogenetic band data to karyotype, see [here](http://circos.ca/documentation/tutorials/quick_start/hello_world/) and [here](https://groups.google.com/d/msg/circos-data-visualization/B55NlByQ6jY/nKWGSPsXCwAJ).)
 
