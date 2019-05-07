@@ -2,11 +2,11 @@
 # UCSC_chrom_sizes_2_circos_karyotype.py
 __author__ = "Wayne Decatur" #fomightez on GitHub
 __license__ = "MIT"
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 
 # UCSC_chrom_sizes_2_circos_karyotype.py by Wayne Decatur
-# ver 0.1
+# ver 0.2
 #
 #*******************************************************************************
 # Verified compatible with both Python 2.7 and Python 3.6; written initially in 
@@ -17,9 +17,9 @@ __version__ = "0.1.0"
 # Note: to determine the URL, google `YOUR_ORGANISM genome UCSC chrom.sizes`, 
 # where you replace `YOUR_ORGANISM` with your organism name and then
 # adapt the path you see in the best match to be something similar to 
-# "http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
+# "http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
 # -or-
-# "http://hgdownload-test.cse.ucsc.edu/goldenPath/canFam2/bigZips/canFam2.chrom.sizes"
+# "http://hgdownload.cse.ucsc.edu/goldenPath/canFam2/bigZips/canFam2.chrom.sizes"
 # 
 # IMPORTANTLY, this script is intended for organisms without cytogenetic bands, 
 # such as dog, cow, yeast, etc..
@@ -47,7 +47,7 @@ __version__ = "0.1.0"
 # part of Saccharomyces cerevisiae karyptype on page 6).
 #
 # Example input from 
-# http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes:
+# http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes:
 '''
 chrIV   1531933
 chrXV   1091291
@@ -98,6 +98,9 @@ chr -   Sc-chrM chrM    0   85779   black
 #
 # VERSION HISTORY:
 # v.0.1. basic working version
+# v.0.2. removed references to `http://hgdownload-test.cse.ucsc.edu/..` because 
+# seems UCSC has removed the `-test` part so that it is now
+# `https://hgdownload.cse.ucsc.edu/...`
 #
 # To do:
 # - probably would be nice to add automated handling of ordering by increasing 
@@ -116,17 +119,17 @@ chr -   Sc-chrM chrM    0   85779   black
 # Examples,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# python UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes
+# python UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes
 
 #-OR-
-# python UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload-test.cse.ucsc.edu/goldenPath/canFam2/bigZips/canFam2.chrom.sizes dog_karyotype.tab --species_code dog
+# python UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload.cse.ucsc.edu/goldenPath/canFam2/bigZips/canFam2.chrom.sizes dog_karyotype.tab --species_code dog
 #-----------------------------------
 # Issue `python UCSC_chrom_sizes_2_circos_karyotype.py -h` for details.
 # 
 #
 # To use this after pasting or loading into a cell in a Jupyter notebook, in
 # the next cell define the URL and then call the main function similar to below:
-# url = "http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
+# url = "http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
 # UCSC_chrom_sizes_2_circos_karyotype(species_code)
 #
 #(`species_code_hardcoded` and `output_file_name `can be assigned in a cell 
@@ -165,7 +168,7 @@ main()
 ##################################
 #
 ## default URL
-url = "http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes" 
+url = "https://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes" 
 output_file_name = "karyotype.tab"
 
 species_code_hardcoded = None # replace `None` with what you want to use,
@@ -240,7 +243,7 @@ def make_and_save_karyotype(chromosomes_and_length, species_code):
 def extract_species_code_fromUCSC_URL(url):
     '''
     Take something like:
-    http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes
+    https://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes
 
     And return:
     sacCer
@@ -257,12 +260,15 @@ def extract_species_code_fromUCSC_URL(url):
 #*******************************************************************************
 ###------------------------'main' function of script---------------------------##
 
-def UCSC_chrom_sizes_2_circos_karyotype():
+def UCSC_chrom_sizes_2_circos_karyotype(url=url):
     '''
     Main function of script. Will use url to get `chrom.sizes` file from UCSC 
     and use that to make a karyotype file for use in Circos.
     Saves the file as tab-separated values with the extension `.tab`, by
     default, to be consistent with what Circos ecosystem seems to use.
+
+    Default url is the yeast one if calling function from inside Juputer or
+    IPyhon.
 
     Returns None
     '''
@@ -348,7 +354,7 @@ def main():
     # placing actual main action in a 'helper'script so can call that easily 
     # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
-    UCSC_chrom_sizes_2_circos_karyotype()
+    UCSC_chrom_sizes_2_circos_karyotype(url)
         
 
 
@@ -414,3 +420,5 @@ if __name__ == "__main__" and '__file__' in globals():
 #*******************************************************************************
 ###-***********************END MAIN PORTION OF SCRIPT***********************-###
 #*******************************************************************************
+
+
