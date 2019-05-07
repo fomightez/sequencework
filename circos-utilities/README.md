@@ -84,7 +84,7 @@ species_code = "define_automagically" # Use `define_automagically` to have one p
 UCSC_chrom_sizes_2_circos_karyotype(species_code)
 ```
 Note that `url` is actually not needed if you are using the yeast one because that specific one is hardcoded in script as default.
-In fact due to hact I hardcoded in defaults, just `main()` will indeed work for yeast after script pasted in or loaded into a cell.
+In fact, because I hardcoded in defaults, just `main()` will indeed work for yeast after script pasted in or loaded into a cell.
 See [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/circos-utilities/demo%20UCSC_chrom_sizes_2_circos_karyotype%20script.ipynb) for a notebook demonstrating use within a Jupyter notebook.
 
 
