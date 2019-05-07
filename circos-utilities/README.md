@@ -15,8 +15,8 @@ Written to run from command line or pasted/loaded inside a Jupyter notebook cell
 The main ways to run the script are demonstrated in the notebook [`demo UCSC_chrom_sizes_2_circos_karyotype script.ipynb`](https://github.com/fomightez/sequencework/blob/master/circos-utilities/demo%20UCSC_chrom_sizes_2_circos_karyotype%20script.ipynb) that is included in this repository. (That notebook can be viewed in a nicer rendering [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/circos-utilities/demo%20UCSC_chrom_sizes_2_circos_karyotype%20script.ipynb).)
 
 To determine the URL to feed the script, google `YOUR_ORGANISM genome UCSC chrom.sizes`,  where you replace `YOUR_ORGANISM` with your organism name and then adapt the path you see in the best match to be something similar to 
-`http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes` -or-
-`http://hgdownload-test.cse.ucsc.edu/goldenPath/canFam2/bigZips/canFam2.chrom.sizes`.
+`http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes` -or-
+`http://hgdownload.cse.ucsc.edu/goldenPath/canFam2/bigZips/canFam2.chrom.sizes`.
 
 Importantly, this script is intended for organisms without cytogenetic bands, such as dog, cow, yeast, etc..  
 (For organisms with cytogenetic band data: Acquiring the cytogenetic bands information is described [here](http://circos.ca/tutorials/lessons/ideograms/karyotypes/), about halfway down 
@@ -28,11 +28,11 @@ data/karyotype within the Circos distribution." And also included there is a scr
 
 Example call to run script from command line:
 ```
-python UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes
+python UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes
 ```
-(Alternatively, upload the script to a Jupyter environment and use `%run UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes` in a Python-backed notebook to run the example.)
+(Alternatively, upload the script to a Jupyter environment and use `%run UCSC_chrom_sizes_2_circos_karyotype.py http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes` in a Python-backed notebook to run the example.)
 
-Example input from http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes :
+Example input from http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes :
 ```
 chrIV   1531933
 chrXV   1091291
@@ -79,7 +79,7 @@ chr -   Sc-chrM chrM    0   85779   black
 
 To use this script after pasting or loading into a cell in a Jupyter notebook, in the next cell define the URL and then call the main function similar to below:
 ```
-url = "http://hgdownload-test.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
+url = "http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
 species_code = "define_automagically" # Use `define_automagically` to have one parsed from URL, or assign one there yourself
 UCSC_chrom_sizes_2_circos_karyotype(species_code)
 ```
