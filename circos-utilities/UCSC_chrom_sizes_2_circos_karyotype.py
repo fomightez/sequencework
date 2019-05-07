@@ -171,7 +171,7 @@ main()
 url = "http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes" 
 output_file_name = "karyotype.tab"
 
-species_code_hardcoded = None # replace `None` with what you want to use,
+species_code = None # replace `None` with what you want to use,
 # with flanking quotes if something appropriate is not being extracted from the
 # provided URL to be used as the species code.
 
@@ -263,10 +263,10 @@ def extract_species_code_fromUCSC_URL(url):
 # user can see they can edit it under 'END USER ADJUSTABLE VARIABLES' to make it 
 # a string, but I want it tp default to `False` when not set to make checking 
 # status easier.
-if species_code_hardcoded == "None":
+if species_code == "None":
     species_code = False
 
-def UCSC_chrom_sizes_2_circos_karyotype(url=url, species_code = species_code):
+def UCSC_chrom_sizes_2_circos_karyotype(url=url, species_code=species_code):
     '''
     Main function of script. Will use url to get `chrom.sizes` file from UCSC 
     and use that to make a karyotype file for use in Circos.
