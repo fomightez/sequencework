@@ -80,9 +80,16 @@ chr -   Sc-chrM chrM    0   85779   black
 To use this script after pasting or loading into a cell in a Jupyter notebook, in the next cell define the URL and then call the main function similar to below:
 ```
 url = "http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
-species_code = "define_automagically" # Use `define_automagically` to have one parsed from URL, or assign one there yourself
-UCSC_chrom_sizes_2_circos_karyotype(species_code)
+species_code = "Ys"
+UCSC_chrom_sizes_2_circos_karyotype(url, species_code)
 ```
+-or-
+
+```
+UCSC_chrom_sizes_2_circos_karyotype(url)
+```
+Without supplying a second argument, a species code will be extracted automatically and used.
+
 Note that `url` is actually not needed if you are using the yeast one because that specific one is hardcoded in script as default.
 In fact, because I hardcoded in defaults, just `main()` will indeed work for yeast after script pasted in or loaded into a cell.
 See [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/circos-utilities/demo%20UCSC_chrom_sizes_2_circos_karyotype%20script.ipynb) for a notebook demonstrating use within a Jupyter notebook.
