@@ -168,7 +168,7 @@ main()
 ##################################
 #
 ## default URL
-url = "https://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes" 
+url = "http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes" 
 output_file_name = "karyotype.tab"
 
 species_code_hardcoded = None # replace `None` with what you want to use,
