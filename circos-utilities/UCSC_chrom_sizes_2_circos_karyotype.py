@@ -259,8 +259,10 @@ def extract_species_code_fromUCSC_URL(url):
 
 #*******************************************************************************
 ###------------------------'main' function of script---------------------------##
-
-def UCSC_chrom_sizes_2_circos_karyotype(url=url,species_code_hardcoded = False):
+if species_code_hardcoded = "None":
+    species_code_hardcoded = False
+def UCSC_chrom_sizes_2_circos_karyotype(url=url,
+    species_code_hardcoded = species_code_hardcoded):
     '''
     Main function of script. Will use url to get `chrom.sizes` file from UCSC 
     and use that to make a karyotype file for use in Circos.
@@ -270,7 +272,11 @@ def UCSC_chrom_sizes_2_circos_karyotype(url=url,species_code_hardcoded = False):
     Default url is the yeast one if calling function from inside Juputer or
     IPyhon.
 
-    Returns None
+    Optionally a string can be provided in the call to the function to be used
+    as species in place of the one extracted automatically. Example: 
+    `species_code_hardcoded = "doggie"`
+
+    Returns: None
     '''
     # Get data from URL.
     chromosomes_and_length = {}
@@ -354,7 +360,7 @@ def main():
     # placing actual main action in a 'helper'script so can call that easily 
     # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
-    UCSC_chrom_sizes_2_circos_karyotype(url)
+    UCSC_chrom_sizes_2_circos_karyotype(url,species_code )
         
 
 
@@ -383,7 +389,7 @@ if __name__ == "__main__" and '__file__' in globals():
     parser.add_argument('-sc', '--species_code', action='store', type=str, 
         default= species_code_hardcoded, help="**OPTIONAL**Identifier \
         to use in front of chromosome names. An attempt will be made to extract \
-        one and that is why this is optional.")
+        one if nothing is provided & that is why it's optional.")
     parser.add_argument("output", nargs='?', help="**OPTIONAL**Name of file \
         for storing the karyotype. If none is provided, the karyotype will be \
         stored as '"+output_file_name+"'.", 
