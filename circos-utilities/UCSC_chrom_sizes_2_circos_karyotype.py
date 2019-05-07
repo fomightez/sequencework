@@ -264,10 +264,10 @@ def extract_species_code_fromUCSC_URL(url):
 # a string, but I want it tp default to `False` when not set to make checking 
 # status easier.
 if species_code_hardcoded == "None":
-    species_code_hardcoded = False
+    species_code = False
 
 def UCSC_chrom_sizes_2_circos_karyotype(url=url,
-    species_code_hardcoded = species_code_hardcoded):
+    species_code = species_code):
     '''
     Main function of script. Will use url to get `chrom.sizes` file from UCSC 
     and use that to make a karyotype file for use in Circos.
@@ -279,7 +279,7 @@ def UCSC_chrom_sizes_2_circos_karyotype(url=url,
 
     Optionally a string can be provided in the call to the function to be used
     as species in place of the one extracted automatically. Example: 
-    `species_code_hardcoded = "doggie"`
+    `species_code = "doggie"`
 
     Returns: None
     '''
@@ -314,8 +314,8 @@ def UCSC_chrom_sizes_2_circos_karyotype(url=url,
     # "Even when working with only one species, prefixing the chromosome with a 
     # species code is highly recommended - this will greatly help in creating 
     # more transparent configuration and data files."
-    if species_code_hardcoded:
-        species_code = species_code_hardcoded
+    if species_code:
+        species_code = species_code
         sys.stderr.write( "\nThe following "
                 "species code will be used in the ID column "
                 "in the\nproduced karyotype file: '{}'.".format(species_code))
@@ -365,7 +365,7 @@ def main():
     # placing actual main action in a 'helper'script so can call that easily 
     # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
-    UCSC_chrom_sizes_2_circos_karyotype(url,species_code )
+    UCSC_chrom_sizes_2_circos_karyotype(url,species_code)
         
 
 
