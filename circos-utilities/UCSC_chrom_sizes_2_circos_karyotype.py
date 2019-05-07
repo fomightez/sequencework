@@ -262,10 +262,10 @@ def extract_species_code_fromUCSC_URL(url):
 # This switch below about `species_code_hardcoded` added here so that above the 
 # user can see they can edit it under 'END USER ADJUSTABLE VARIABLES' to make it 
 # a string, but I want it tp default to `False` when not set to make checking 
-status easier.
+# status easier.
 if species_code_hardcoded == "None":
     species_code_hardcoded = False
-    
+
 def UCSC_chrom_sizes_2_circos_karyotype(url=url,
     species_code_hardcoded = species_code_hardcoded):
     '''
