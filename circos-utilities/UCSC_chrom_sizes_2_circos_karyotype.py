@@ -260,7 +260,7 @@ def extract_species_code_fromUCSC_URL(url):
 #*******************************************************************************
 ###------------------------'main' function of script---------------------------##
 
-def UCSC_chrom_sizes_2_circos_karyotype(url=url):
+def UCSC_chrom_sizes_2_circos_karyotype(url=url,species_code_hardcoded = False):
     '''
     Main function of script. Will use url to get `chrom.sizes` file from UCSC 
     and use that to make a karyotype file for use in Circos.
