@@ -196,8 +196,8 @@ import seaborn as sns
 
 def extract_type(item):
     '''
-    Takes a site identifier, such as `Ma2''-41`, and returns just the type/class,
-    which owuld be `Ma2''` in this example, i.e., everything in from of the dash.
+    Takes a site identifier, such as `M2-41`, and returns just the type/class,
+    which would be `M2''` in this example, i.e., everything in front of the dash.
     '''
     return item.split("-")[0]
 
