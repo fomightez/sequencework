@@ -39,6 +39,13 @@ df = patmatch_results_to_df("results_file.txt", pattern=my_pattern, name="EcoRI"
 ```
 See [here](https://github.com/fomightez/patmatch-binder) for notebooks demonstrating use within a Jupyter notebook.
 
+#### Using patmatch_results_to_df with large genomes
+When I used PatMatch with the megagenome of pine sugar on Cyverse, it was including in its output several warnings like below:
+
+`Warning: recSearchFile: Record longer than buffer size (10000000) has been split\n`
+
+It probably is warning so you know that it may not show a match if it happens to match where the split was chosen. They way I dealt with this was to remove the warnings from the input to `patmatch_results_to_df.py` or `patmatch_results_to_df()` because otherwise they cause errors when the lines are processed as typical output and there are no start or end coordinates to extract. However, instead of having `patmatch_results_to_df.py` handle the issues, I thought it best the user has to deal with the warnings so they are aware.
+
 
 Related
 -------
