@@ -38,6 +38,12 @@ python blast_to_df.py results_file.txt
 (Alternatively, upload the script to a Jupyter environment and use `%run blast_to_df.py results_file.txt` in a Python-backed notebook to run the example.)
 
 
+**The pickle format ending in extension `.pkl` was chosen as the default output, despite not being human-readable, in order to store data efficiently since searches of entire gemomes has the potential to generate a lot of hits.** If you need to convert to a text-readable form, you can do the following with Jupyter or IPython where the pickled data has been saved to save it as tab separated text:
+
+    import pandas as pd
+    df = pd.read_pickle("patmatch_pickled_df.pkl")
+    df.to_csv('patmatch_data.tsv', sep='\t',index = False) 
+
 
 
 #### For running in a Jupyter notebook:
