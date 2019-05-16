@@ -29,6 +29,13 @@ python patmatch_results_to_df.py protein.out --pattern TYEETGLQGHPS -name motif 
 
 
 
+**The pickle format ending in extension `.pkl` was chosen as the default output, despite not being human-readable, in order to store data efficiently since searches of entire gemomes has the potential to generate a lot of hits.** If you need to convert to a text-readable form, you can do the following with Jupyter or IPython where the pickled data has been saved to save it as tab separated text:
+
+  import pandas as pd
+  df = pd.read_pickle("patmatch_pickled_df.pkl")
+  df.to_csv('patmatch_data.tsv', sep='\t',index = False) 
+
+
 
 #### For running in a Jupyter notebook:
 
@@ -38,6 +45,7 @@ my_pattern= "GAATTC"
 df = patmatch_results_to_df("results_file.txt", pattern=my_pattern, name="EcoRI")
 ```
 See [here](https://github.com/fomightez/patmatch-binder) for notebooks demonstrating use within a Jupyter notebook.
+
 
 #### Using patmatch_results_to_df with large genomes
 When I used PatMatch with the megagenome of pine sugar on Cyverse, it was including in its output several warnings like below:
