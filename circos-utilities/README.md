@@ -17,7 +17,7 @@ The main ways to run the script are demonstrated in the notebook [`demo UCSC_chr
 To determine the URL to feed the script, google `YOUR_ORGANISM genome UCSC chrom.sizes`,  where you replace `YOUR_ORGANISM` with your organism name and then adapt the path you see in the best match to be something similar to 
 `http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes` -or-
 `http://hgdownload.cse.ucsc.edu/goldenPath/canFam2/bigZips/canFam2.chrom.sizes`.  
-You can get an idea of what is available by exploring [here](http://hgdownload.cse.ucsc.edu/downloads.html).
+You can get an idea of what is available by exploring the top section [here](http://hgdownload.cse.ucsc.edu/downloads.html); clicking on the arrows creates drop-down lists reveal many genomes for each category.
 
 Importantly, this script is intended for organisms without cytogenetic bands, such as dog, cow, yeast, etc..  
 (For organisms with cytogenetic band data: Acquiring the cytogenetic bands information is described [here](http://circos.ca/tutorials/lessons/ideograms/karyotypes/), about halfway down 
