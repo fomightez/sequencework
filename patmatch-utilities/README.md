@@ -31,9 +31,9 @@ python patmatch_results_to_df.py protein.out --pattern TYEETGLQGHPS -name motif 
 
 **The pickle format ending in extension `.pkl` was chosen as the default output, despite not being human-readable, in order to store data efficiently since searches of entire gemomes has the potential to generate a lot of hits.** If you need to convert to a text-readable form, you can do the following with Jupyter or IPython where the pickled data has been saved to save it as tab separated text:
 
-  import pandas as pd
-  df = pd.read_pickle("patmatch_pickled_df.pkl")
-  df.to_csv('patmatch_data.tsv', sep='\t',index = False) 
+    import pandas as pd
+    df = pd.read_pickle("patmatch_pickled_df.pkl")
+    df.to_csv('patmatch_data.tsv', sep='\t',index = False) 
 
 
 
