@@ -32,6 +32,10 @@ from two_nucleotides_in_proximity_difference_imbalance_plot import two_nucleotid
 two_nucleotides_in_proximity_difference_imbalance_plot("sequence.fa", 20000, dibase_text1="GC", return_plot=True);
 ```
 
+Example output:
+
+![example_imbalance_plot](imblance_plot_exmple.png)
+
 Related items created by myself
 -------------------------------
 
