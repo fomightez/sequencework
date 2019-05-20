@@ -8,7 +8,7 @@
 See [the demo notebook TBD](????) for use. (That notebook can easily be uploaded and actively run once you launch a binder instance by pressing the `launch binder` button [here](https://github.com/fomightez/cl_sq_demo-binder).)  
 The script is also used in a more typical workflow in a page [here](https://nbviewer.jupyter.org/github/fomightez/ptmbr-accompmatz/blob/master/notebooks/PatMatch%20with%20Python%20basics.ipynb) and [here](https://nbviewer.jupyter.org/github/fomightez/ptmbr-accompmatz/blob/master/notebooks/Iterating%20over%20genomes%20with%20PatMatch.ipynb). These two pages are part of a series of notebooks that can be run actively by pressing the `launch binder` button [here](https://github.com/fomightez/patmatch-binder).
 
-Example output:
+Example output:  
 ![plot_sites_example_plot](plot_sites_example_plot.png)
 
 
