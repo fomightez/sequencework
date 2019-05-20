@@ -10,6 +10,10 @@ See [Figure 8, panel B](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4882425/fig
 
 There is a demonstration of this script available in my set of sequence analysis related demonstrations notebooks [here](https://github.com/fomightez/cl_sq_demo-binder). To run it actively,  launch a binder session by clicking on the `launch binder` badges [here](https://github.com/fomightez/cl_sq_demo-binder) and select the link to 'Demo of script to plot nt imbalance for sequence span' from the list of notebooks to run it actively.  The particular notebook can be viewed statically, nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/Demo%20of%20script%20to%20plot%20nt%20imbalance%20for%20sequence%20span.ipynb).
 
+Example output:
+
+![example_imbalance_plot](imblance_plot_exmple.png)
+
 * two_nucleotides_in_proximity_difference_imbalance_plot.py
 > FASTA sequence for a region of a chromosome/contig/scaffold --> plot of imbalance of the sum of two bases vs the sum of the other two
 
@@ -32,9 +36,7 @@ from two_nucleotides_in_proximity_difference_imbalance_plot import two_nucleotid
 two_nucleotides_in_proximity_difference_imbalance_plot("sequence.fa", 20000, dibase_text1="GC", return_plot=True);
 ```
 
-Example output:
 
-![example_imbalance_plot](imblance_plot_exmple.png)
 
 Related items created by myself
 -------------------------------
