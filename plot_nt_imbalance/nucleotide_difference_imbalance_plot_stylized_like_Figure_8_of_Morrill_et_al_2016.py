@@ -399,7 +399,7 @@ def main():
     # calling script from command line & instead will trigger save of plot image
     #kwargs['return_df'] = False #probably don't want dataframe returned if 
     # calling script from command line
-    kwargs['save_vg'] = False
+    kwargs['save_vg'] = save_vg
     nucleotide_difference_imbalance_plot_stylized_like_Figure_8_of_Morrill_et_al_2016(
         sequence_file, chr_, position_corresponding_to_first_nt,**kwargs)
     # using 
