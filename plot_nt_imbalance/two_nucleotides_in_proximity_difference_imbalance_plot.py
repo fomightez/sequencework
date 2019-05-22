@@ -404,7 +404,7 @@ def main():
     # calling script from command line & instead will trigger save of plot image
     #kwargs['return_df'] = False #probably don't want dataframe returned if 
     # calling script from command line
-    kwargs['save_vg'] = False
+    kwargs['save_vg'] = save_vg
     two_nucleotides_in_proximity_difference_imbalance_plot(
         sequence_file, chr_, position_corresponding_to_first_nt,**kwargs)
     # using 
