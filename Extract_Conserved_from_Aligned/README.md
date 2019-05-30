@@ -14,8 +14,8 @@
 
 >  aligned sequences in fasta form --> file of sequences that are 100% conserved  
 `extract_conserved_from_alignments.py` extracts conserved patches from aligned sequences.  
-The main impetus was that indentifying these would help in designing primers for PCR amplification.
-Developped in collaboration with Damian Menning, who developped the original implementation. See Mon, 14 Dec 2015 post to the Biopython Mailing List and [this gist](https://gist.github.com/fomightez/abd953068a675f416ed3). 
+The main impetus was that identifying these would help in designing primers for PCR amplification.
+Developed in collaboration with Damian Menning, who developed the original implementation. See Mon, 14 Dec 2015 post to the Biopython Mailing List and [this gist](https://gist.github.com/fomightez/abd953068a675f416ed3). I note that a variant version of this script is documented [here](https://my.usgs.gov/bitbucket/projects/ASC/repos/python-scripts-for-bioinformatics/browse/findPrimers.py?at=f41f74e848abf264c3f9f2116beb677b56fc8cb7) on the USGS's bitbucket for the Alaska Science Center: Python Scripts for Bioinformatics as `findPrimers.py`.
 
 **Usage**  
 
