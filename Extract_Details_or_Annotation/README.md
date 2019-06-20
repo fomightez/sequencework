@@ -67,3 +67,7 @@ If you are seeking to include the sequence in the data gathered, you should prob
 Specific, related scripts to note here:
 
   * `UCSC_chrom_sizes_2_circos_karyotype.py` extracts chromosome sizes from UCSC `chrom.sizes` files and can be found in [my collection of circos-related utility scripts (Python)](https://github.com/fomightez/sequencework/tree/master/circos-utilities).
+  
+  # Related efforts by others
+  
+ - [Towards reliable named entity recognition in the biomedical domain](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz504/5520946) looks to be complex and use machine learning. Repo:[Saber (Sequence Annotator for Biomedical Entities and Relations) is a deep-learning based tool for information extraction in the biomedical domain](https://github.com/BaderLab/saber). This isn't placed in [my general texting mining repo](https://github.com/fomightez/text_mining) because targeted for biomedical domain.
