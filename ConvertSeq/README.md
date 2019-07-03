@@ -109,7 +109,7 @@ Since sequence manipulations are at the heart of many of my computational endeav
 - In the `yeastmine` folder in a different repository are some scripts, such as `geneID_list_to_systematic_names.py`, useful for converting identifiers of gene and protein identifiers to other useful forms. See [here](https://github.com/fomightez/yeastmine) for `yeastmine` work.
 
 
-Related scripts by others
+Related scripts/software by others
 ------------------------
 
 I tend to use Biopython's sequence object with the `.reverse_complement()` method to generate reverse complements of sequences (see above) but these posts are good to know about:
@@ -117,3 +117,9 @@ I tend to use Biopython's sequence object with the `.reverse_complement()` metho
 - [python code for getting the reverse complement DNA strand](http://crazyhottommy.blogspot.com/2013/10/python-code-for-getting-reverse.html)
 
 - [ranking code for making reverse complements - "What is the fastest way to get the reverse complement of a DNA sequence in python?"](https://bioinformatics.stackexchange.com/questions/3583/what-is-the-fastest-way-to-get-the-reverse-complement-of-a-dna-sequence-in-pytho?rq=1), leads to an nice repo with the data [here](https://github.com/conchoecia/fastest_rc_python)
+
+- [any2fasta](https://github.com/tseemann/any2fasta)
+>"Can't remember how to convert your sequence file into FASTA?
+Just use "any2fasta" !
+Supports gff, gbk, embl, clw, etc and .gz .bz2 automatically.
+Install using #bioconda or @brew_sci" from [Torsten Seemann](https://twitter.com/torstenseemann/status/1146209691560640512)
