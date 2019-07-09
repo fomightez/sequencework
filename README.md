@@ -37,11 +37,17 @@ MCscan software available in a launchable Jupyter environment running via the Bi
 
 - [circos-binder](https://github.com/fomightez/circos-binder) - Circos software available in a launchable Jupyter environment running via the Binder service with tutorials illustrating use (TBD)(*Perl and Python-based*).
 
+Related resources by others
+---------------------------
+
+[rna-tools (previously rna-pdb-tools): a toolbox to analyze sequences, structures and simulations of RNA](https://github.com/mmagnus/rna-tools/blob/master/index-of-tools.md)
+
 
 See also
 -------
 
 [My simulated data repo](https://github.com/fomightez/simulated_data) has some useful scripts and resources for generating simulated (mock / fake) sequence data, gene expression data, or gene lists.
+
 
 
 
