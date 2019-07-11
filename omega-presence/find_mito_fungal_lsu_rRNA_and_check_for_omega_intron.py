@@ -9,7 +9,7 @@ __version__ = "0.1.0"
 # ver 0.1
 #
 #*******************************************************************************
-# Verified compatible with both Python 2.7 and Python 3.6; written initially in 
+# Verified compatible with both Python 2.7 and Python 3.7; written initially in 
 # Python 3. 
 #
 #
@@ -54,11 +54,12 @@ __version__ = "0.1.0"
 #
 #
 # VERSION HISTORY:
-# v.0.1. basic working version
-
+# v.0.1. basic working version and fixed to work in Python 2.7 via backport of
+# `subprocess.run()` 
+#
 #
 # To do:
-# - verify works with Python 2 (can use https://github.com/fomightez/mcscan-blast-binder )
+# - 
 #
 #
 #
@@ -279,8 +280,8 @@ import pandas as pd
 
 def generate_output_file_name_prefix(file_name, suffix_for_file_name):
     '''
-    Takes a file name as an argument and returns string for the name of the
-    output file. The generated name is based on the intout.
+    Takes a file name and suffix text as arguments and returns string for the 
+    name of the output file. Hence, the generated name is based on the input.
 
     suffix_for_file_name = "_rnl_info"
 
@@ -459,6 +460,26 @@ def determine_rnl_details(df, seq_file_name, check_omega=True):
 
 
 
+def py2_run(*popenargs, **kwargs):
+    '''
+    backport of `subprocess.run()` to Python 2
+    see https://stackoverflow.com/a/40590445/8508004
+
+    Despite being clearly listed at https://stackoverflow.com/a/40590445/8508004 
+    and https://github.com/jotyGill/openpyn-nordvpn/issues/82 , the presence of
+    `input=None, check=False,` caused issues, and so I removed those
+    and corresponding code in the function and then it seemed to work when I
+    started a fresh Python console in Jupyter session.
+    '''
+    process = subprocess.Popen(*popenargs, **kwargs)
+    try:
+        stdout, stderr = process.communicate(input)
+    except:
+        process.kill()
+        process.wait()
+        raise
+    retcode = process.poll()
+    return retcode, stdout, stderr
 
 
 ###--------------------------END OF HELPER FUNCTIONS---------------------------###
@@ -564,9 +585,18 @@ def find_mito_fungal_lsu_rRNA_and_check_for_omega_intron(seq_file_name,
         "sequence file"
         "...\n")
     cmd="makeblastdb -in {} -dbtype nucl".format(seq_file_name)
-    subprocess.run(cmd, shell=True) # based on 
-        # https://docs.python.org/3/library/subprocess.html#using-the-subprocess-module
-        # and https://stackoverflow.com/a/18739828/8508004
+    try:
+        subprocess.run(cmd, shell=True) # based on 
+            # https://docs.python.org/3/library/subprocess.html#using-the-subprocess-module
+            # and https://stackoverflow.com/a/18739828/8508004
+            # NOTE THAT subprocess.run is in Python 3 and not 2, so this `try` and
+            # `except` is to handle Python 2. see 
+            # https://stackoverflow.com/a/40590445/8508004
+    except AttributeError:
+        subprocess.run = py2_run
+        subprocess.run(cmd, shell=True) # based on 
+        # https://stackoverflow.com/a/40590445/8508004 and 
+        # https://github.com/jotyGill/openpyn-nordvpn/issues/82#issue-286134642
     # before BLAST command, make sure seq_file_name is a file present b/c 
     # the error when specified file isn't there seemed unclear because BLAST
     # just returns an error like:
