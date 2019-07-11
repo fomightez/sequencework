@@ -59,7 +59,10 @@ __version__ = "0.1.0"
 #
 #
 # To do:
-# - 
+# - add passing of adjusted bitscore cutoff when calling `check_for_omega_intron()`
+# so that in the cases where the start and end seemed to be on different strands
+# and so I adjusted bitscore, that adjusted bitscore used when comparing rows
+# generated with BLAST with genomic and coding
 #
 #
 #
@@ -348,7 +351,8 @@ def determine_rnl_details(df, seq_file_name, check_omega=True):
     inherited from elsewhere has ability to turn off that part but here it is
     part of purpose of script and so don't opt out.)
     '''
-    df = df[df.bitscore > 99]
+    bitscore_cutoff = 99
+    df = df[df.bitscore > bitscore_cutoff]
     start_pos = df['sstart'].iloc[df.qstart.idxmin]
     end_pos = df['send'].iloc[df.qend.idxmax]
 
@@ -375,7 +379,8 @@ def determine_rnl_details(df, seq_file_name, check_omega=True):
     # seemed to suggest that start and end on different strands and so trying
     # larger cutoff in such instances to see if go away.
     if strand_for_start_alignment != strand_for_end_alignment:
-        df = df[df.bitscore > 300]
+        bitscore_cutoff = 300
+        df = df[df.bitscore > bitscore_cutoff]
         start_pos = df['sstart'].iloc[df.qstart.idxmin]
         end_pos = df['send'].iloc[df.qend.idxmax]
         strand_for_start_alignment = extract_hit_strand(
@@ -461,7 +466,8 @@ def determine_rnl_details(df, seq_file_name, check_omega=True):
                 sys.exit(1)
         from check_for_omega_intron import check_for_omega_intron
         # Use the main function to check
-        omega_present = check_for_omega_intron(seq_file_name, df)
+        omega_present = check_for_omega_intron(
+            seq_file_name, df,bitscore_cutoff)
 
 
     
