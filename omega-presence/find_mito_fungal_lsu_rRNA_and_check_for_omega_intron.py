@@ -654,11 +654,11 @@ def find_mito_fungal_lsu_rRNA_and_check_for_omega_intron(seq_file_name,
         "file '{}'.\n".format(pkl_fn))
 
     if return_df:
+        sys.stderr.write("Returning a dataframe.\n")
         return df
     else:
-        sys.stderr.write("\n**DESPITE TEXT ABOVE SAYING `Returning a dataframe "
-        "with the information as well`,\n NO DATAFRAME RETURNED IN FINAL "
-        "OUTPUT HERE.**\n".)
+        sys.stderr.write("\n**DESPITE TEXT ABOVE SAYING,'Returning a dataframe'"
+            " with the information as well`,\nNO DATAFRAME RETURNED.**")
 
 
 
