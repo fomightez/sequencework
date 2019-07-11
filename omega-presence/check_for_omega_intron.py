@@ -63,7 +63,13 @@ __version__ = "0.1.0"
 
 #
 # To do:
-# - 
+# - add a way of passing of adjusted bitscore cutoff when calling `check_for_omega_intron()`
+# so that in the cases where calling from `find_mito_fungal_lsu_rRNA_and_check_for_omega_intron.py` 
+# that the adjusted bitscore could also be used in the present cutoff ---> `blast_df_forfull = blast_df_forfull[blast_df_forfull.bitscore > 99]`
+# Bitscore adjussting had been added to `find_mito_fungal_lsu_rRNA_and_check_for_omega_intron.py`  
+# to deal with the cases where the start and end seemed to be on different strands
+# and so I adjusted bitscore, that adjusted bitscore used when comparing rows
+# generated with BLAST with genomic and coding.
 #
 #
 #
@@ -281,7 +287,7 @@ import pandas as pd
 ###---------------------------HELPER FUNCTIONS-------------------------------###
 
     
-def determine_omega_presence(seq_file, df = None):
+def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
     '''
     Takes the following:
     `seq_file`, name of sequence file
@@ -331,7 +337,7 @@ def determine_omega_presence(seq_file, df = None):
         result = result.decode("utf-8") # so it isn't bytes
         from blast_to_df import blast_to_df
         df = blast_to_df(result)
-        df = df[df.bitscore > 99]
+        df = df[df.bitscore > bitscore_cutoff]
     
     # Determine if it contains omega intron. Do this by now checking with the 
     # full genomic sequence of cerevisiae 21S rRNA region and see if the matches
@@ -369,7 +375,8 @@ def determine_omega_presence(seq_file, df = None):
         "one from\nquery with full, intron-containing cerevisiae 21S rRNA was "
         "named to '{}'.\n".format("BLAST_pickled_df.pkl",
         "fullBLAST_pickled_df.pkl"))
-    blast_df_forfull = blast_df_forfull[blast_df_forfull.bitscore > 99]
+    blast_df_forfull = (
+        blast_df_forfull[blast_df_forfull.bitscore > bitscore_cutoff])
     if len(blast_df_forfull) < len(df):
         omega_present = True
 
@@ -405,7 +412,7 @@ def py2_run(*popenargs, **kwargs):
 #*******************************************************************************
 ###------------------------'main' function of script--------------------------##
 
-def check_for_omega_intron(seq_file, df = None):
+def check_for_omega_intron(seq_file, df = None, bitscore_cutoff = 99):
     '''
     Takes the following:
     `seq_file`, name of sequence file
@@ -509,7 +516,7 @@ def check_for_omega_intron(seq_file, df = None):
     # Check for omega intron in provided sequence
     #---------------------------------------------------------------------
     #
-    omega_present = determine_omega_presence(seq_file,df)
+    omega_present = determine_omega_presence(seq_file,df,bitscore_cutoff)
 
 
 
