@@ -300,7 +300,7 @@ def determine_omega_presence(seq_file, df = None):
     sense to repeat.
     '''
     if df is None:
-        # Meed to do BLAST query with coding sequence of S. cerevisiae S228C 
+        # Need to do BLAST query with coding sequence of S. cerevisiae S228C 
         # first to make the dataframe other scripts may already have made.
         #
         # Need to store 'cer_rnl' as a file so BLAST can use it.
@@ -331,6 +331,7 @@ def determine_omega_presence(seq_file, df = None):
         result = result.decode("utf-8") # so it isn't bytes
         from blast_to_df import blast_to_df
         df = blast_to_df(result)
+        df = df[df.bitscore > 99]
     
     # Determine if it contains omega intron. Do this by now checking with the 
     # full genomic sequence of cerevisiae 21S rRNA region and see if the matches
