@@ -364,8 +364,7 @@ def determine_omega_presence(seq_file, df = None):
     mv("BLAST_pickled_df.pkl", "fullBLAST_pickled_df.pkl")
     mv("origBLAST_pickled_df.pkl", "BLAST_pickled_df.pkl")
     sys.stderr.write("\n**DESPITE TEXT ABOVE SAYING `Returning a dataframe "
-        "with the information as well`,\n NO DATAFRAME RETURNED IN FINAL "
-        "OUTPUT HERE.**.")
+        "with the information as well`,\nNO DATAFRAME RETURNED YET.**.")
     sys.stderr.write("\nFirst pickled dataframe file remains '{}' and the new "
         "one from\nquery with full, intron-containing cerevisiae 21S rRNA was "
         "named to '{}'.\n".format("BLAST_pickled_df.pkl",
