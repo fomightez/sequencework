@@ -370,6 +370,18 @@ def determine_rnl_details(df, seq_file_name, check_omega=True):
         df['frames'].iloc[df.qstart.idxmin])
     strand_for_end_alignment = extract_hit_strand(
         df['frames'].iloc[df.qend.idxmax])
+    # I was seeing some where `bitscore > 99` alone was producing cases where
+    # a still poorly scoring segment was being assigned as `end` and result
+    # seemed to suggest that start and end on different strands and so trying
+    # larger cutoff in such instances to see if go away.
+    if strand_for_start_alignment != strand_for_end_alignment:
+        df = df[df.bitscore > 300]
+        start_pos = df['sstart'].iloc[df.qstart.idxmin]
+        end_pos = df['send'].iloc[df.qend.idxmax]
+        strand_for_start_alignment = extract_hit_strand(
+            df['frames'].iloc[df.qstart.idxmin])
+        strand_for_end_alignment = extract_hit_strand(
+            df['frames'].iloc[df.qend.idxmax])
     # for now triggering an error but would be nice to make so it can be fixed
     # if there is a pattern to most of the cases. (I could imagine this could 
     # happen if rnl spanned start and end of arbitraily placed mito chromosome
@@ -413,7 +425,7 @@ def determine_rnl_details(df, seq_file_name, check_omega=True):
     # calculate a score for quality
     qual_score = 0.0
     for row in df.itertuples():
-        qual_score += row.pident * (row.length/length_cer_rnl_coding)
+        qual_score += row.pident * (row.length/float(length_cer_rnl_coding))
 
     # fix quality if it is over 100% because it is meant to be 100 or less. In
     # theory of the quality is really high and there is some overlap/ repeats it
