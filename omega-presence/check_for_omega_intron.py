@@ -9,7 +9,7 @@ __version__ = "0.1.0"
 # ver 0.1
 #
 #*******************************************************************************
-# Verified compatible with both Python 2.7 and Python 3.6; written initially in 
+# Verified compatible with both Python 2.7 and Python 3.7; written initially in 
 # Python 3. 
 #
 #
@@ -22,13 +22,15 @@ __version__ = "0.1.0"
 # yeast. It should help determine that by using with the Shen et al 2018 data 
 # for genomes of 332 budding yeast.
 #
-# The code for this check was originally built in 
-# `fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot.py`, but it laso 
+# The code for this check was originally built in as part of
+# `fix_lsu_rRNA_annotation_in_gff_resulting_from_mfannot.py`, but it also 
 # could simply be applied when looking at the sequences when you have a 
 # previously identified fungal large ribosomal subunit RNA gene or when you are 
 # in the process of trying to find them from sequence alone and might want to 
-# check intron-harboring status. For those reasons I moved it out to its own
-# script so that other scripts can use it by importing it.
+# check intron-harboring status (the latter now being done in 
+# `find_mito_fungal_lsu_rRNA_and_check_for_omega_intron.py`). For those reasons 
+# I moved it out to its own script so that other scripts can use it by importing 
+# it.
 # 
 # Script requires BLAST+ to be already intalled in environment. An option is
 # available at https://github.com/fomightez/blast-binder; go there and click
@@ -61,7 +63,7 @@ __version__ = "0.1.0"
 
 #
 # To do:
-# - verify works with Python 2 (can use https://github.com/fomightez/mcscan-blast-binder )
+# - 
 #
 #
 #
@@ -276,7 +278,7 @@ import subprocess
 import pandas as pd
 
 
-###---------------------------HELPER FUNCTIONS---------------------------------###
+###---------------------------HELPER FUNCTIONS-------------------------------###
 
     
 def determine_omega_presence(seq_file, df = None):
@@ -298,14 +300,28 @@ def determine_omega_presence(seq_file, df = None):
     sense to repeat.
     '''
     if df is None:
-        # need to do BLAST query with coding sequence of S. cerevisiae S228C 
-        # first to make the dataframe other scripts may already have made
+        # Meed to do BLAST query with coding sequence of S. cerevisiae S228C 
+        # first to make the dataframe other scripts may already have made.
+        #
+        # Need to store 'cer_rnl' as a file so BLAST can use it.
+        cer_rnl_fn = "cer_rnl_coding.fa"
+        with open(cer_rnl_fn, "w") as q_file:
+            q_file.write(cer_rnl_coding)
         sys.stderr.write("Checking hits against just coding portion of 21S rRNA"
             "...\n")
         cmd="makeblastdb -in {} -dbtype nucl".format(seq_file)
-        subprocess.run(cmd, shell=True) # based on 
-            # https://docs.python.org/3/library/subprocess.html#using-the-subprocess-module
-            # and https://stackoverflow.com/a/18739828/8508004
+        try:
+            subprocess.run(cmd, shell=True) # based on 
+                # https://docs.python.org/3/library/subprocess.html#using-the-subprocess-module
+                # and https://stackoverflow.com/a/18739828/8508004
+                # NOTE THAT subprocess.run is in Python 3 and not 2, so this 
+                # `try` and `except` is to handle Python 2. see 
+                # https://stackoverflow.com/a/40590445/8508004
+        except AttributeError:
+            subprocess.run = py2_run
+            subprocess.run(cmd, shell=True) # based on 
+            # https://stackoverflow.com/a/40590445/8508004 and 
+            # https://github.com/jotyGill/openpyn-nordvpn/issues/82#issue-286134642
         cmd = ('blastn -query {} -db {} -outfmt "6 qseqid sseqid '
             'stitle pident qcovs length mismatch gapopen qstart qend sstart '
             'send qframe sframe frames evalue bitscore qseq '
@@ -346,9 +362,13 @@ def determine_omega_presence(seq_file, df = None):
     # finish shuffle now that have new pickled file and restore original
     mv("BLAST_pickled_df.pkl", "fullBLAST_pickled_df.pkl")
     mv("origBLAST_pickled_df.pkl", "BLAST_pickled_df.pkl")
+    sys.stderr.write("\n**DESPITE TEXT ABOVE SAYING `Returning a dataframe "
+        "with the information as well`,\n NO DATAFRAME RETURNED IN FINAL "
+        "OUTPUT HERE.**.")
     sys.stderr.write("\nFirst pickled dataframe file remains '{}' and the new "
         "one from\nquery with full, intron-containing cerevisiae 21S rRNA was "
-        "named to '{}'.\n".format("BLAST_pickled_df.pkl","fullBLAST_pickled_df.pkl"))
+        "named to '{}'.\n".format("BLAST_pickled_df.pkl",
+        "fullBLAST_pickled_df.pkl"))
     blast_df_forfull = blast_df_forfull[blast_df_forfull.bitscore > 99]
     if len(blast_df_forfull) < len(df):
         omega_present = True
@@ -357,14 +377,33 @@ def determine_omega_presence(seq_file, df = None):
     return omega_present
 
 
+def py2_run(*popenargs, **kwargs):
+    '''
+    backport of `subprocess.run()` to Python 2
+    see https://stackoverflow.com/a/40590445/8508004
+
+    Despite being clearly listed at https://stackoverflow.com/a/40590445/8508004 
+    and https://github.com/jotyGill/openpyn-nordvpn/issues/82 , the presence of
+    `input=None, check=False,` caused issues, and so I removed those
+    and corresponding code in the function and then it seemed to work when I
+    started a fresh Python console in Jupyter session.
+    '''
+    process = subprocess.Popen(*popenargs, **kwargs)
+    try:
+        stdout, stderr = process.communicate(input)
+    except:
+        process.kill()
+        process.wait()
+        raise
+    retcode = process.poll()
+    return retcode, stdout, stderr
 
 
-
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
+###--------------------------END OF HELPER FUNCTIONS-------------------------###
+###--------------------------END OF HELPER FUNCTIONS-------------------------###
 
 #*******************************************************************************
-###------------------------'main' function of script---------------------------##
+###------------------------'main' function of script--------------------------##
 
 def check_for_omega_intron(seq_file, df = None):
     '''
