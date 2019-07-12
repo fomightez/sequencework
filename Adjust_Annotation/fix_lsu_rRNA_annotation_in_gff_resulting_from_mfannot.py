@@ -405,8 +405,21 @@ def determine_rnl_start_end(df, seq_file_name, check_omega=True):
         df['frames'].iloc[df.qstart.idxmin])
     strand_for_end_alignment = extract_hit_strand(
         df['frames'].iloc[df.qend.idxmax])
-    # for now triggering an error but would be nice to make so it can be fixed
-    # if there is a pattern to most of the cases. (I could imagine this could 
+    # I was seeing some where `bitscore > 99` alone was producing cases where
+    # a still poorly scoring segment was being assigned as `end` and result
+    # seemed to suggest that start and end on different strands and so trying
+    # larger cutoff in such instances to see if go away.
+    if strand_for_start_alignment != strand_for_end_alignment:
+        bitscore_cutoff = 300
+        df = df[df.bitscore > bitscore_cutoff]
+        start_pos = df['sstart'].iloc[df.qstart.idxmin]
+        end_pos = df['send'].iloc[df.qend.idxmax]
+        strand_for_start_alignment = extract_hit_strand(
+            df['frames'].iloc[df.qstart.idxmin])
+        strand_for_end_alignment = extract_hit_strand(
+            df['frames'].iloc[df.qend.idxmax])
+    # Beyond that attempt to fix, for now triggering an error but would be nice 
+    # to fix more if I see a pattern to new cases. (I could imagine this could 
     # happen if rnl spanned start and end of arbitraily placed mito chromosome
     # and then could be reported back so the chromosomes and gff3 could be 
     # adjusted to new start sites, see my circular permuation of mito genomes 
@@ -430,7 +443,7 @@ def determine_rnl_start_end(df, seq_file_name, check_omega=True):
     # calculate a score for quality
     qual_score = 0.0
     for row in df.itertuples():
-        qual_score += row.pident * (row.length/length_cer_rnl_coding)
+        qual_score += row.pident * (row.length/float(length_cer_rnl_coding))
 
     # fix quality if it is over 100% because it is meant to be 100 or less. In
     # theory of the quality is really high and there is some overlap/ repeats it
@@ -466,7 +479,8 @@ def determine_rnl_start_end(df, seq_file_name, check_omega=True):
                 sys.exit(1)
         from check_for_omega_intron import check_for_omega_intron
         # Use the main function to check
-        omega_present = check_for_omega_intron(seq_file_name, df)
+        omega_present = check_for_omega_intron(
+        	seq_file_name, df,bitscore_cutoff)
 
 
     if check_omega:
