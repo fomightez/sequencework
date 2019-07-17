@@ -129,6 +129,7 @@ suffix_for_file_name = "_rnl_info"
 # to get 'genomic' (S288C_Q0158_21S_RRNA_genomic.fsa) and then to get 'coding' 
 # (S288C_Q0158_21S_RRNA_coding.fsa), the latter being without the omega intron
 # harboring I-SceI .           This is S. cereivise S288C rnl.
+# 4439 bp
 cer_rnl  = '''>21S_RRNA Q0158 SGDID:S000007288, chrMito:58009..62447
 GTAAAAAGTAGAATAATAGATTTGAAATATTTATTATATAGATTTAAAGAGATAATCATG
 GAGTATAATAATTAAATTTAATAAATTTAATATAACTATTAATAGAATTAGGTTACTAAT
@@ -207,6 +208,7 @@ TAATAAAATACTAATTTATCAGTTATCTATATAATATCTAATCTATTATTCTATATACT
 '''
 
 # VERSION WITHOUT INTRON, I.E. 'coding'. I added 'coding' to description line
+# 3295 bps
 cer_rnl_coding  = '''>21S_RRNAcoding Q0158 SGDID:S000007288
 GTAAAAAGTAGAATAATAGATTTGAAATATTTATTATATAGATTTAAAGAGATAATCATG
 GAGTATAATAATTAAATTTAATAAATTTAATATAACTATTAATAGAATTAGGTTACTAAT
@@ -264,7 +266,8 @@ TTAATCTGATAATTTTATACTAAAATTAATAATTATAGGTTTTATATATTATTTATAAAT
 AAATATATTATAATAATAATAATTATTATTATTAATAAAAAATATTAATTATAATATTAA
 TAAAATACTAATTTATCAGTTATCTATATAATATCTAATCTATTATTCTATATACT
 '''
-length_cer_rnl_coding = 3295 #length in bp of 21S_rRNA without introns
+length_cer_rnl_coding = 3295 #length in bp of 21S_rRNA without introns; with
+# introns in S288C, it is 4439 bp
 
 
 #*******************************************************************************
@@ -387,8 +390,8 @@ def determine_rnl_details(df, seq_file_name, check_omega=True):
             df['frames'].iloc[df.qstart.idxmin])
         strand_for_end_alignment = extract_hit_strand(
             df['frames'].iloc[df.qend.idxmax])
-    # for now triggering an error but would be nice to make so it can be fixed
-    # if there is a pattern to most of the cases. (I could imagine this could 
+    # Beyond that attempt to fix, for now triggering an error but would be nice 
+    # to fix more if I see a pattern to new cases. (I could imagine this could 
     # happen if rnl spanned start and end of arbitraily placed mito chromosome
     # and then could be reported back so the chromosomes and gff3 could be 
     # adjusted to new start sites, see my circular permuation of mito genomes 
