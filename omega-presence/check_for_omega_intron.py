@@ -342,8 +342,10 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
         df = df[df.bitscore > bitscore_cutoff]
     
     # Determine if it contains omega intron. Do this by now checking with the 
-    # full genomic sequence of cerevisiae 21S rRNA region and see if the matches
-    # are less in number
+    # full genomic sequence of cerevisiae 21S rRNA region, exlcude lengths of 
+    # sequences of the same size matched in both, and see if the length of any 
+    # remaining segment increased by a substantial size (arbitrarily use 20% of 
+    # the intron size or `len(cer_rnl)-len(cer_rnl_coding) * 0.2` ). 
     omega_present = False
     cer_rnl_fn = "cer_rnl.fa"
     with open(cer_rnl_fn, "w") as q_file:
@@ -379,7 +381,17 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
         "fullBLAST_pickled_df.pkl"))
     blast_df_forfull = (
         blast_df_forfull[blast_df_forfull.bitscore > bitscore_cutoff])
-    if len(blast_df_forfull) < len(df):
+    # now to remove matches seen in both and then see if a substantial length
+    # increase has happened
+    omega_intron_size = len(cer_rnl)-len(cer_rnl_coding)
+    substantial_increase_in_matches_cutoff = omega_intron_size * 0.2
+    full_unique_match_sizes = [x for x in blast_df_forfull.length.to_list(
+        ) if x not in df.length.to_list()] # based on 
+    # https://stackoverflow.com/a/30040183/8508004
+    coding_unique_match_sizes = [x for x in df.length.to_list(
+        ) if x not in blast_df_forfull.length.to_list()] 
+    if max(full_unique_match_sizes) >= max(
+        coding_unique_match_sizes) + substantial_increase_in_matches_cutoff:
         omega_present = True
 
 
