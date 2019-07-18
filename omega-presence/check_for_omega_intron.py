@@ -390,9 +390,10 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
     # https://stackoverflow.com/a/30040183/8508004
     coding_unique_match_sizes = [x for x in df.length.to_list(
         ) if x not in blast_df_forfull.length.to_list()] 
-    if max(full_unique_match_sizes) >= max(
-        coding_unique_match_sizes) + substantial_increase_in_matches_cutoff:
-        omega_present = True
+    if full_unique_match_sizes and coding_unique_match_sizes:
+        if max(full_unique_match_sizes) > max(
+            coding_unique_match_sizes) + substantial_increase_in_matches_cutoff:
+            omega_present = True
 
 
     return omega_present
