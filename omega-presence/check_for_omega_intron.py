@@ -273,8 +273,12 @@ TTAATCTGATAATTTTATACTAAAATTAATAATTATAGGTTTTATATATTATTTATAAAT
 AAATATATTATAATAATAATAATTATTATTATTAATAAAAAATATTAATTATAATATTAA
 TAAAATACTAATTTATCAGTTATCTATATAATATCTAATCTATTATTCTATATACT
 '''
-length_cer_rnl_coding = 3295 #length in bp of 21S_rRNA without introns; with
-# introns in S288C, it is 4439 bp
+length_cer_rnl_coding = 3295 #<--length in bp of 21S_rRNA without introns; with
+# introns in S288C, it is 4439 bp; S288C omega intron size 1144 bp
+near_junction = 2706 #not using last actual base of first exon, 2716, because 
+#observed with S. paradoxus CBS432 that because of the limited variety of DNA
+# it had 2716 include as the start of a match to the last section of the coding
+# sequence, specifically `2716  3296`. 
 
 #*******************************************************************************
 #*******************************************************************************
@@ -341,11 +345,15 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
         df = blast_to_df(result)
         df = df[df.bitscore > bitscore_cutoff]
     
-    # Determine if it contains omega intron. Do this by now checking with the 
-    # full genomic sequence of cerevisiae 21S rRNA region, exlcude lengths of 
-    # sequences of the same size matched in both, and see if the length of any 
-    # remaining segment increased by a substantial size (arbitrarily use 20% of 
-    # the intron size or `len(cer_rnl)-len(cer_rnl_coding) * 0.2` ). 
+    # Determine if it contains omega intron. Doing this by now checking with the 
+    # full genomic sequence of cerevisiae 21S rRNA region, exlcuding matches that
+    # start above a site near the 5'-exon-into junction, and then examining if 
+    # the hits containing that site increase substantially in size. For defining
+    # a substantial size increase I am arbitrarily using 20% of 
+    # the intron size (1144 bp) or `len(cer_rnl)-len(cer_rnl_coding) * 0.2` ). 
+    # Using 5'-end because that part is the largest segment that matches other 
+    # omega introns even if homing endonuclease is absent. The part after 
+    # I-SceI is much smaller, and thus harder to detect well.
     omega_present = False
     cer_rnl_fn = "cer_rnl.fa"
     with open(cer_rnl_fn, "w") as q_file:
@@ -381,19 +389,46 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
         "fullBLAST_pickled_df.pkl"))
     blast_df_forfull = (
         blast_df_forfull[blast_df_forfull.bitscore > bitscore_cutoff])
-    # now to remove matches seen in both and then see if a substantial length
-    # increase has happened
+    # now to remove matches that start above the `near_junction` site because
+    # I want the information for the matches that would span into what would
+    # be the 5'-end of the intron, if intron present.
+    blast_df_forfull =blast_df_forfull[blast_df_forfull.qstart < near_junction]
+    df = df[df.qstart < near_junction]
+    # because I chose the segments that begin less than but closest to the 
+    # potential 5'-junction to check, it is possible the segments I am checking
+    # don't span into the intron actuall. 
+    row_of_interest_for_full = abs(
+        blast_df_forfull['qstart'] - near_junction).idxmin()
+    row_of_interest_for_coding = abs(df['qstart'] - near_junction).idxmin()
     omega_intron_size = len(cer_rnl)-len(cer_rnl_coding)
     substantial_increase_in_matches_cutoff = omega_intron_size * 0.2
+    if (blast_df_forfull.loc[row_of_interest_for_full].length >= 
+        df.loc[row_of_interest_for_coding].length + 
+        substantial_increase_in_matches_cutoff):
+        omega_present = True
+
+    #Previous approach
+    '''
+    # Determine if it contains omega intron. Doing this by now checking with the 
+    # full genomic sequence of cerevisiae 21S rRNA region, exlcude lengths of 
+    # sequences of the same size matched in both, and see if the length of any 
+    # remaining segment increased by a substantial size (arbitrarily use 20% of 
+    # the intron size (1144 bp) or `len(cer_rnl)-len(cer_rnl_coding) * 0.2` ). 
+    ...
+    # now to remove matches seen in both and then see if a substantial length
+    # increase has happened
+    ...
     full_unique_match_sizes = [x for x in blast_df_forfull.length.to_list(
         ) if x not in df.length.to_list()] # based on 
     # https://stackoverflow.com/a/30040183/8508004
     coding_unique_match_sizes = [x for x in df.length.to_list(
         ) if x not in blast_df_forfull.length.to_list()] 
     if full_unique_match_sizes and coding_unique_match_sizes:
-        if max(full_unique_match_sizes) > max(
+        if max(full_unique_match_sizes) >= max(
             coding_unique_match_sizes) + substantial_increase_in_matches_cutoff:
             omega_present = True
+
+    '''
 
 
     return omega_present
