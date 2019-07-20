@@ -86,6 +86,12 @@ If you are gathering some details or other information related to the sequences,
 
 See `drafting_extracting_mito_chr_function.py`. 
 
+[`get_chromosomal_coordinates_as_FASTA.py` in my 'YeastMine' code repository](https://github.com/fomightez/yeastmine) actually gets subsequences from the full genomic sequence of S. cerevisiae S288C sequences. See also these where a subsequences is retrived provided id info for the gene/protein:
+
+* [`get_protein_seq_as_FASTA.py` in my 'YeastMine' code repository](https://github.com/fomightez/yeastmine)
+* [`get_gene_genomic_seq_as_FASTA.py` in my 'YeastMine' code repository](https://github.com/fomightez/yeastmine)
+)
+
 ## Scripts / Resources by others
 
 - >"Fastest way to extract some seqs from a BIG fasta file based on header?" - SOURCE: https://twitter.com/macmanes/status/1045659290919481344
