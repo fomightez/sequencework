@@ -155,6 +155,11 @@ TAAATGAAAACATGCATCTTTATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 - I should work on switching them over to the Accession.Version system. 
 
 # Related scripts by me
+For retrieving S. cerevisiae S288C sequences via YeastMine, see the following:
+
+* [`get_protein_seq_as_FASTA.py` in my 'YeastMine' code repository](https://github.com/fomightez/yeastmine)
+* [`get_gene_genomic_seq_as_FASTA.py` in my 'YeastMine' code repository](https://github.com/fomightez/yeastmine)
+* [`get_chromosomal_coordinates_as_FASTA.py` in my 'YeastMine' code repositor](https://github.com/fomightez/yeastmine)
 
 For retrieving/extracting sequences from 'local' sources (meaning where I supply most of sequences themselves), see:
 
