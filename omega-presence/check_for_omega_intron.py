@@ -268,7 +268,7 @@ AAATATATTATAATAATAATAATTATTATTATTAATAAAAAATATTAATTATAATATTAA
 TAAAATACTAATTTATCAGTTATCTATATAATATCTAATCTATTATTCTATATACT
 '''
 length_cer_rnl_coding = 3295 #<--length in bp of 21S_rRNA without introns; with
-# introns in S288C, it is 4439 bp; S288C omega intron size 1144 bp
+# introns in S288C, it is 4439 bp; S288C omega intron size 1143 bp
 near_junction = 2706 #not using last actual base of first exon, 2716, because 
 #observed with S. paradoxus CBS432 that because of the limited variety of DNA
 # it had 2716 include as the start of a match to the last section of the coding
@@ -344,7 +344,7 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
     # start above a site near the 5'-exon-into junction, and then examining if 
     # the hits containing that site increase substantially in size. For defining
     # a substantial size increase I am arbitrarily using 20% of 
-    # the intron size (1144 bp) or `len(cer_rnl)-len(cer_rnl_coding) * 0.2` ). 
+    # the intron size (1143 bp) or `len(cer_rnl)-len(cer_rnl_coding) * 0.2` ). 
     # Using 5'-end because that part is the largest segment that matches other 
     # omega introns even if homing endonuclease is absent. The part after 
     # I-SceI is much smaller, and thus harder to detect well.
@@ -407,7 +407,7 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
     # full genomic sequence of cerevisiae 21S rRNA region, exlcude lengths of 
     # sequences of the same size matched in both, and see if the length of any 
     # remaining segment increased by a substantial size (arbitrarily use 20% of 
-    # the intron size (1144 bp) or `len(cer_rnl)-len(cer_rnl_coding) * 0.2` ). 
+    # the intron size (1143 bp) or `len(cer_rnl)-len(cer_rnl_coding) * 0.2` ). 
     ...
     # now to remove matches seen in both and then see if a substantial length
     # increase has happened
