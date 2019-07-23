@@ -113,6 +113,11 @@ The original intention was to align the entire length of provided sequences but 
 RELATED:  
 see about Torsten Seemann's `snp-dists` below.
 
+Future ideas: PROPOSAL FOR SCRIPT RELATED TO `roughly_score_relationships_to_subject_seq_pairwise_premsa.py`:  
+Karin Lagesen [asked](https://twitter.com/karinlag/status/1153676961690071040), "Is my google fu completely off today? Are there no simple, easy to use tools for finding the number of differences between all pairwise comparisons of sequences in a multifasta file?". She was directed to Torsten Seemann's [`snp-dists`](https://github.com/tseemann/snp-dists) which indeed seems to do that for sequences already aligned. She seemed happy with that one, but I had first thought she meant for unaligned sequences to do a pair-wise check and score number of differences. To do that would only take some minor adjusting of `roughly_score_relationships_to_subject_seq_pairwise_premsa.py` and would be informative for deciding how to arrange submissions to alignment tools where the order of the input is preserved in the default as it seems with some aligning tools. The output from Torsten Seemann's `snp-dists`is similar to what the output from such a tool script should be; however, I'd prefer it came out as a dataframe table. (It could even be also made in styled heat-map form, or at least an additional function to do that could be shown in the demo notebook associated with it. Demo should be some short sequences not long ones like I was using for `roughly_score_relationships_to_subject_seq_pairwise_premsa.py`).
+
+
+
 Related utilities in my other repositories
 ------------------------------------------
 
