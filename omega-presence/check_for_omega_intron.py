@@ -18,7 +18,7 @@ __version__ = "0.1.0"
 # to the omega intron of S. cerevisiae. Because it uses S. cerevisiae S288C 
 # mitochondrial large ribosomal subunit RNA for this effort, I say it is for 
 # fungal mitochondrial large ribosomal subunit RNA but depending on 
-# conservation, it may be limited to abudding yeast or sub-classes of budding 
+# conservation, it may be limited to budding yeast or sub-classes of budding 
 # yeast. It should help determine that by using with the Shen et al 2018 data 
 # for genomes of 332 budding yeast.
 #
@@ -527,7 +527,7 @@ def check_for_omega_intron(seq_file, df = None, bitscore_cutoff = 99):
         result = result.decode("utf-8") # so it isn't bytes
         if "blastn:" in result:
             pass
-            #sys.stderr.write("Detected '{}'.\n".format(result.replace("\n","")))
+            #sys.stderr.write("Detected '{}'.".format(result.replace("\n","")))
     except CalledProcessError:
         sys.stderr.write("\nblastn not detected. Please install BLAST+ or "
         "run in an\nenvironment launched from "
