@@ -60,6 +60,9 @@ This ranks the individual sequences of a multipe sequence alignment for how well
 
 See related script, `score_sequences_in_clustal_msa_favoring_top_line.py`.
 
+RELATED:
+see about Torsten Seemann's `snp-dists` below.
+
 
 * score_sequences_in_clustal_msa_favoring_top_line.py 
 > multiple sequence alignment (clustal) ---> dataframe of the id and assessment score of each sequence where emphasis given to matches to top line of alignment
@@ -69,6 +72,10 @@ Takes a multiple seuence alignment (MSA) in clustal format and  generates a quic
 Mainly meant to be a rough guide to replace (or confirm) visual inspection to identify what is supposedly 'aligned' doesn't really match up. This situation can arise when looking at small sections from much larger alignments, say for a region from a chromosome or genome alignment. In some regions, the sequence available to align doesn't really match up, but an attempt to align will be made by the aligning software. This script should be useful for recognizing weak scoring sequences from those that appear more reasonable, i.e., represent homologs.
 
 See related script `score_sequences_in_clustal_msa.py`.
+
+RELATED:  
+see about Torsten Seemann's `snp-dists` below.
+
 
 * categorize_residues_based_on_conservation_relative_consensus_line.py
 > multiple sequence alignment (clustal with consensus symbols) ---> listings of the positions categorized by conservation for a sequence in the alignment
@@ -103,6 +110,9 @@ There is a [demo notebook for this script in this repo](https://github.com/fomig
 CAVEAT:  
 The original intention was to align the entire length of provided sequences but for moderate- or large-sized sequences (>5 kb) this is not possible unless you have a substantial amount of computing power due to demanding memory resources from Biopython's aligmnet algorithmn (see [here](https://github.com/biopython/biopython/pull/1655)). Thus, it was modified to sample what seems to work when using the script in Jupyter sessions launched from MyBinder.org via [here](https://github.com/fomightez/blast-binder). Therefore, the reported score may not represent the entire range of the provided sequences but that is reported back if that is the case.
 
+RELATED:  
+see about Torsten Seemann's `snp-dists` below.
+
 Related utilities in my other repositories
 ------------------------------------------
 
@@ -127,6 +137,9 @@ Utilities by others
 I have several listed [here](http://proteopedia.org/wiki/index.php/User:Wayne_Decatur/Sequence_analysis_tools) such as those that interconvert/reformat alignments in various forms. Just search `align` on that page to step through examining them. In particular note:
 
 - Under 'Installable software for fine-tuning sequence alignments' there, I discuss using SEQOTRON on my work Mac and  `cons` alignment consensus program and many others at EMBOSS explorer website to put in conservation. Along the way it looks like it adds numbering similar to Mview where it is just numbering for total number on line INCLUDING GAPS. (Not to self, see my `edited t-coffee alignment for true XXXXX XXXXX.md` for example.)
+
+- [snp-dists](https://github.com/tseemann/snp-dists) - Pairwise SNP distance matrix from a FASTA sequence alignment. 
+>"Convert a FASTA alignment to SNP distance matrix."    <--- related to my scripts `roughly_score_relationships_to_subject_seq_pairwise_premsa.py`,`score_sequences_in_clustal_msa.py`, and `score_sequences_in_clustal_msa_favoring_top_line.py`..
 
 Somewhat related:  
 
