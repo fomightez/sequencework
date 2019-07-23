@@ -63,13 +63,7 @@ __version__ = "0.1.0"
 
 #
 # To do:
-# - add a way of passing of adjusted bitscore cutoff when calling `check_for_omega_intron()`
-# so that in the cases where calling from `find_mito_fungal_lsu_rRNA_and_check_for_omega_intron.py` 
-# that the adjusted bitscore could also be used in the present cutoff ---> `blast_df_forfull = blast_df_forfull[blast_df_forfull.bitscore > 99]`
-# Bitscore adjussting had been added to `find_mito_fungal_lsu_rRNA_and_check_for_omega_intron.py`  
-# to deal with the cases where the start and end seemed to be on different strands
-# and so I adjusted bitscore, that adjusted bitscore used when comparing rows
-# generated with BLAST with genomic and coding.
+# - 
 #
 #
 #
