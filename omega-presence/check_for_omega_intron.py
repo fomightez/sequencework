@@ -209,7 +209,7 @@ TAATAAAATACTAATTTATCAGTTATCTATATAATATCTAATCTATTATTCTATATACT
 '''
 
 # VERSION WITHOUT INTRON, I.E. 'coding'. I added 'coding' to description line
-# 3295 bps
+# 3296 bps
 cer_rnl_coding  = '''>21S_RRNAcoding Q0158 SGDID:S000007288
 GTAAAAAGTAGAATAATAGATTTGAAATATTTATTATATAGATTTAAAGAGATAATCATG
 GAGTATAATAATTAAATTTAATAAATTTAATATAACTATTAATAGAATTAGGTTACTAAT
@@ -267,8 +267,11 @@ TTAATCTGATAATTTTATACTAAAATTAATAATTATAGGTTTTATATATTATTTATAAAT
 AAATATATTATAATAATAATAATTATTATTATTAATAAAAAATATTAATTATAATATTAA
 TAAAATACTAATTTATCAGTTATCTATATAATATCTAATCTATTATTCTATATACT
 '''
-length_cer_rnl_coding = 3295 #<--length in bp of 21S_rRNA without introns; with
-# introns in S288C, it is 4439 bp; S288C omega intron size 1143 bp
+length_cer_rnl_coding = len(stringFASTA2seq(cer_rnl_coding)) #= 3296<--length 
+# in bp of 21S_rRNA without introns; with introns in S288C, it is 4439 bp; 
+# S288C omega intron size 1143 bp (Can't just use length of the `cer_rnl_coding` 
+# because not read in yet as FASTA and so string includes the description line 
+# and line endings.)
 near_junction = 2706 #not using last actual base of first exon, 2716, because 
 #observed with S. paradoxus CBS432 that because of the limited variety of DNA
 # it had 2716 include as the start of a match to the last section of the coding
@@ -344,7 +347,8 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
     # start above a site near the 5'-exon-into junction, and then examining if 
     # the hits containing that site increase substantially in size. For defining
     # a substantial size increase I am arbitrarily using 20% of 
-    # the intron size (1143 bp) or `len(cer_rnl)-len(cer_rnl_coding) * 0.2` ). 
+    # the intron size (1143 bp) or 
+    # `length(cer_rnl SEQUENCE)-length(cer_rnl_coding SEQUENCE) * 0.2` ). 
     # Using 5'-end because that part is the largest segment that matches other 
     # omega introns even if homing endonuclease is absent. The part after 
     # I-SceI is much smaller, and thus harder to detect well.
@@ -394,7 +398,7 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
     row_of_interest_for_full = abs(
         blast_df_forfull['qstart'] - near_junction).idxmin()
     row_of_interest_for_coding = abs(df['qstart'] - near_junction).idxmin()
-    omega_intron_size = len(cer_rnl)-len(cer_rnl_coding)
+    omega_intron_size = len(stringFASTA2seq(cer_rnl)) - length_cer_rnl_coding
     substantial_increase_in_matches_cutoff = omega_intron_size * 0.2
     if (blast_df_forfull.loc[row_of_interest_for_full].length >= 
         df.loc[row_of_interest_for_coding].length + 
@@ -426,6 +430,16 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
 
 
     return omega_present
+
+
+def stringFASTA2seq(s):
+    '''
+    Takes a FASTA file contents that are currently as a Python string and 
+    converts it to the sequence string. In other words, it removes the 
+    description line and the line breaks and just makes a sequence string.
+    '''
+    l = s.split("\n")
+    return "".join(l[1:])
 
 
 def py2_run(*popenargs, **kwargs):
