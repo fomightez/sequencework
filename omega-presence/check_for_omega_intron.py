@@ -267,6 +267,14 @@ TTAATCTGATAATTTTATACTAAAATTAATAATTATAGGTTTTATATATTATTTATAAAT
 AAATATATTATAATAATAATAATTATTATTATTAATAAAAAATATTAATTATAATATTAA
 TAAAATACTAATTTATCAGTTATCTATATAATATCTAATCTATTATTCTATATACT
 '''
+def stringFASTA2seq(s):
+    '''
+    Takes a FASTA file contents that are currently as a Python string and 
+    converts it to the sequence string. In other words, it removes the 
+    description line and the line breaks and just makes a sequence string.
+    '''
+    l = s.split("\n")
+    return "".join(l[1:])
 length_cer_rnl_coding = len(stringFASTA2seq(cer_rnl_coding)) #= 3296<--length 
 # in bp of 21S_rRNA without introns; with introns in S288C, it is 4439 bp; 
 # S288C omega intron size 1143 bp (Can't just use length of the `cer_rnl_coding` 
@@ -431,15 +439,6 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
 
     return omega_present
 
-
-def stringFASTA2seq(s):
-    '''
-    Takes a FASTA file contents that are currently as a Python string and 
-    converts it to the sequence string. In other words, it removes the 
-    description line and the line breaks and just makes a sequence string.
-    '''
-    l = s.split("\n")
-    return "".join(l[1:])
 
 
 def py2_run(*popenargs, **kwargs):
