@@ -284,6 +284,10 @@ near_junction = 2706 #not using last actual base of first exon, 2716, because
 #observed with S. paradoxus CBS432 that because of the limited variety of DNA
 # it had 2716 include as the start of a match to the last section of the coding
 # sequence, specifically `2716  3296`. 
+beyond_insertion_point = 2717 # added a way to check cases where coding 
+# (without intron) produces better match than anything to genomic case and 
+# checking if greater than a point beyond the junction point (intron insertion 
+# point) will make it more stringent. So need such a site defined too.
 
 #*******************************************************************************
 #*******************************************************************************
@@ -408,7 +412,32 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
     row_of_interest_for_coding = abs(df['qstart'] - near_junction).idxmin()
     omega_intron_size = len(stringFASTA2seq(cer_rnl)) - length_cer_rnl_coding
     substantial_increase_in_matches_cutoff = omega_intron_size * 0.2
-    if (blast_df_forfull.loc[row_of_interest_for_full].length >= 
+    # I was seeing an example from the 1011 cerevisiae collection for CAV_4 
+    # where it seemed not to have omega intron but it was showing an apparent
+    # increase in the size of the so-called hits of interest near the junction 
+    # because not comparing same region in the rows of interest.  Instead, the 
+    # set of hits (FILTERED by bitscore) from that query (see my file 
+    # `Looking at Mexican agave clade of 1011 set relative omega intron.md`) 
+    # showed no match spanning the intron insertion site due to the intron 
+    # being there, and not matching well enough for long enough for the region 
+    # spanning the junction site to produce a hit with a reasonable bitscore. 
+    # And the hit of interest from versus the coding sequence was indeed 
+    # spanning the intron insertion site,and thus informing that there was a 
+    # good match TO NOT HAVING AN INTRON. So this next conditional is to allow 
+    # for the situation where the strong match to the sequence without the 
+    # intron and none among the filtered set to the genomic S288C seqeunce with 
+    # the omega intron.
+    full_match_spans_near_junction_val = (
+        blast_df_forfull.loc[row_of_interest_for_full].qend > 
+        beyond_insertion_point) # probably could just use `> near_junction` but 
+    # making it a little larger will make check even more robust/stringent.
+    coding_match_spans_near_junction_val = (
+        df.loc[row_of_interest_for_coding].qend > beyond_insertion_point)
+    if coding_match_spans_near_junction_val and (
+        not full_match_spans_near_junction_val):
+        omega_present = False
+    # the primary check for omega intron presence/absence state
+    elif (blast_df_forfull.loc[row_of_interest_for_full].length >= 
         df.loc[row_of_interest_for_coding].length + 
         substantial_increase_in_matches_cutoff):
         omega_present = True
