@@ -399,6 +399,14 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
         "fullBLAST_pickled_df.pkl"))
     blast_df_forfull = (
         blast_df_forfull[blast_df_forfull.bitscore > bitscore_cutoff])
+    # In order to avoid issues when checking sequences with lots of sequences 
+    # that may cause spurious signals, restrict dataframes to contig/sequences, 
+    # which are specified by `sseqid`, of best scoring matches.  
+    best_scoring_sequence_id = df.loc[df.bitscore.idxmax()].sseqid # best match
+    # to the 21S sequence without the intron will specify 21S-containing id. 
+    blast_df_forfull = (
+        blast_df_forfull[blast_df_forfull.sseqid == best_scoring_sequence_id])
+    df = (df[df.sseqid == best_scoring_sequence_id])
     # now to remove matches that start above the `near_junction` site because
     # I want the information for the matches that would span into what would
     # be the 5'-end of the intron, if intron present.
@@ -406,7 +414,13 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
     df = df[df.qstart < near_junction]
     # because I chose the segments that begin less than but closest to the 
     # potential 5'-junction to check, it is possible the segments I am checking
-    # don't span into the intron actuall. 
+    # don't span into the intron actually and I tried to build some testing
+    # for that into below.
+    # This is also in part why I restricted to the best scoring sequence earlier
+    # as well. When I searched against entire genome assembly I was getting hits
+    # closer to the junction with scores barely above the cut-off but closer
+    # than those in the best scoring contigs/sequences and causing incorrect 
+    # calls.
     row_of_interest_for_full = abs(
         blast_df_forfull['qstart'] - near_junction).idxmin()
     row_of_interest_for_coding = abs(df['qstart'] - near_junction).idxmin()
