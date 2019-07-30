@@ -284,7 +284,7 @@ near_junction = 2706 #not using last actual base of first exon, 2716, because
 #observed with S. paradoxus CBS432 that because of the limited variety of DNA
 # it had 2716 include as the start of a match to the last section of the coding
 # sequence, specifically `2716  3296`. 
-beyond_insertion_point = 2717 # added a way to check cases where coding 
+beyond_insertion_point = 2720 # added a way to check cases where coding 
 # (without intron) produces better match than anything to genomic case and 
 # checking if greater than a point beyond the junction point (intron insertion 
 # point) will make it more stringent. So need such a site defined too.
@@ -407,6 +407,11 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
     blast_df_forfull = (
         blast_df_forfull[blast_df_forfull.sseqid == best_scoring_sequence_id])
     df = (df[df.sseqid == best_scoring_sequence_id])
+    # Before restricting dataframes to sequences spanning in front of the 
+    # insertion site, store rawer dfs can use them in case no sequences span the 
+    # intron insertion site and need to look at the hits to the intron sequences
+    unsubset_blast_df_forfull = blast_df_forfull.copy()
+    unsubset_df = df.copy()
     # now to remove matches that start above the `near_junction` site because
     # I want the information for the matches that would span into what would
     # be the 5'-end of the intron, if intron present.
@@ -450,13 +455,48 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
     if coding_match_spans_near_junction_val and (
         not full_match_spans_near_junction_val):
         omega_present = False
-    # the primary check for omega intron presence/absence state
+    # This next `elif` is to handy cases like CRI_2 of 1011 cerevisiae where 
+    # there are no hits spanning insertion site coding (without intron) sequence
+    # but there is a hit spanning the intron insertion site for the genomic
+    # sequence with full omega intron. So instead of comparing length of hit for
+    # the two rows of interest since not a valid comparison. I just see if
+    # the hit spanning the insertion site is at least greater than 18% of the 
+    # intron size.
+    elif (not coding_match_spans_near_junction_val) and (
+        full_match_spans_near_junction_val):
+        if (blast_df_forfull.loc[row_of_interest_for_full].length >= 
+            omega_intron_size * 0.18):
+            omega_present = True
+    # I was seeing some rare cases (YDJ, BSR_4, and GAT of the 1011 collection) 
+    # where no well-scoring hits spanning intron insertion site but very well 
+    # scoring hits that include intron segment in genomic as part of a hit 
+    # spanning the 3'end of the intron. This is to deal with them by looking for 
+    # cases where there are no spanning hits but where if you apply a
+    # more stringent bitscore cutoff, the size of hits against genomic that 
+    # aren't mirrored by coding increase. And the size of the extra hit(s) is 
+    # substantial. (This is a variation of my simplisitc previous approach.)
+    elif (not coding_match_spans_near_junction_val) and (
+        not full_match_spans_near_junction_val):
+        blast_df_forfull = unsubset_blast_df_forfull.copy()
+        df = unsubset_df.copy()
+        blast_df_forfull = (
+            blast_df_forfull[blast_df_forfull.bitscore > 300])
+        df = (df[df.bitscore > 300])
+        full_unique_match_sizes = [x for x in blast_df_forfull.length.to_list(
+            ) if x not in df.length.to_list()] # based on 
+        # https://stackoverflow.com/a/30040183/8508004
+        if (max(full_unique_match_sizes) >= 
+            substantial_increase_in_matches_cutoff):
+            omega_present = True
+    # the PRIMARY check for omega intron presence/absence state
     elif (blast_df_forfull.loc[row_of_interest_for_full].length >= 
         df.loc[row_of_interest_for_coding].length + 
         substantial_increase_in_matches_cutoff):
         omega_present = True
 
     #Previous approach
+    # (a variant of this is now been incorporated into being used when no hits
+    # span the intron insertion site)
     '''
     # Determine if it contains omega intron. Doing this by now checking with the 
     # full genomic sequence of cerevisiae 21S rRNA region, exlcude lengths of 
@@ -622,6 +662,16 @@ def check_for_omega_intron(seq_file, df = None, bitscore_cutoff = 99):
 
     # Report on omega
     #---------------------------------------------------------------------
+
+    # Report on omega via feedback if called from command line
+    if omega_present and __name__ == "__main__":
+        sys.stderr.write("\n**Seems omega intron is present. Further "
+            "investigation is suggested.**")
+    elif (not omega_present) and __name__ == "__main__":
+        sys.stderr.write("\n**Simple examination for presence of omega "
+            "intron didn't indicate\nobvious presence. Further "
+            "investigation is suggested.**")
+
     if omega_present:
         return True
     else:
