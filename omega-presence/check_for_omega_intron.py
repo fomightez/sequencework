@@ -485,7 +485,7 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
         full_unique_match_sizes = [x for x in blast_df_forfull.length.to_list(
             ) if x not in df.length.to_list()] # based on 
         # https://stackoverflow.com/a/30040183/8508004
-        if (max(full_unique_match_sizes) >= 
+        if full_unique_match_sizes and (max(full_unique_match_sizes) >= 
             substantial_increase_in_matches_cutoff):
             omega_present = True
     # the PRIMARY check for omega intron presence/absence state
