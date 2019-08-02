@@ -122,7 +122,7 @@ By default it also produces a heatmap plot of the differences.
 The output should be informative for deciding how to arrange submissions to alignment tools where the order of the input is preserved in the default as it seems with some aligning tools. 
 
 Has some nice features for use in a notebook, too.  
-There is a [demo notebook for this script as part of my series of structurework-command line demos](https://github.com/fomightez/cl_demo-binder). You can launch the series from [here](https://github.com/fomightez/cl_demo-binder) and then selecting from the index to go to the 'Demo of script to calculate differences between sequenes in multiFASTA file' page. The direct link to a nicely-rendered, static version of that page is [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/Demo%20of%20script%20to%20calculate%20differences%20between%20sequenes%20in%20multiFASTA%20file.ipynb).
+There is a [demo notebook for this script as part of my series of structurework-command line demos](https://github.com/fomightez/cl_demo-binder). You can launch the series from [here](https://github.com/fomightez/cl_demo-binder) and then selecting from the index to go to the 'Demo of script to calculate differences between sequences in multiFASTA file' page. The direct link to a nicely-rendered, static version of that page is [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/Demo%20of%20script%20to%20calculate%20differences%20between%20sequenes%20in%20multiFASTA%20file.ipynb).
 
 RELATED:  
 see about Torsten Seemann's `snp-dists` below.
