@@ -325,7 +325,8 @@ class SequenceAlign:
 
 def score_differences_between_sequences_by_pairwise_alignment(
     seqs, block_len=default_block_length, return_df = True, 
-    save_text_of_df=True, generate_heatmap=True):
+    save_text_of_df=True, generate_heatmap=True, 
+    df_save_as_name = df_save_as_name):
     '''
     Main function of script. 
     sequences scored of number of differences between each.
@@ -339,6 +340,8 @@ def score_differences_between_sequences_by_pairwise_alignment(
     Jupyter notebook.
 
     Generates a heatmap optionally, the default being to make it.
+
+    Optionally a filename to save the data table as can be provided.
     '''
     # Read in the sequences
     records = []
