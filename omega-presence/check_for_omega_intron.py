@@ -324,7 +324,8 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
         # Need to do BLAST query with coding sequence of S. cerevisiae S228C 
         # first to make the dataframe other scripts may already have made.
         #
-        # Need to store 'cer_rnl' as a file so BLAST can use it.
+        # Need to store 'cer_rnl' and 'cer_rnl_coding' as files so BLAST can use 
+        # them.
         cer_rnl_fn = "cer_rnl_coding.fa"
         with open(cer_rnl_fn, "w") as q_file:
             q_file.write(cer_rnl_coding)
@@ -455,13 +456,15 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
     if coding_match_spans_near_junction_val and (
         not full_match_spans_near_junction_val):
         omega_present = False
-    # This next `elif` is to handy cases like CRI_2 of 1011 cerevisiae where 
+    # This next `elif` is to handle cases like CRI_2 of 1011 cerevisiae where 
     # there are no hits spanning insertion site coding (without intron) sequence
     # but there is a hit spanning the intron insertion site for the genomic
     # sequence with full omega intron. So instead of comparing length of hit for
     # the two rows of interest since not a valid comparison. I just see if
     # the hit spanning the insertion site is at least greater than 18% of the 
-    # intron size.
+    # intron size. (The original problem with CRI_2 may be, at least in part, 
+    # due to large chunks of ambiguous nucleotides in the intron. This came up 
+    # as an issue when I tried to use `check_for_omega_HEG.py` with this one.)
     elif (not coding_match_spans_near_junction_val) and (
         full_match_spans_near_junction_val):
         if (blast_df_forfull.loc[row_of_interest_for_full].length >= 
