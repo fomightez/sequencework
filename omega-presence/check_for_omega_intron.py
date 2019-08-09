@@ -413,7 +413,7 @@ def determine_omega_presence(seq_file, df = None, bitscore_cutoff = 99):
     # intron insertion site and need to look at the hits to the intron sequences
     unsubset_blast_df_forfull = blast_df_forfull.copy()
     unsubset_df = df.copy()
-    # now to remove matches that start above the `near_junction` site because
+    # Now to remove matches that start above the `near_junction` site because
     # I want the information for the matches that would span into what would
     # be the 5'-end of the intron, if intron present.
     blast_df_forfull =blast_df_forfull[blast_df_forfull.qstart < near_junction]
