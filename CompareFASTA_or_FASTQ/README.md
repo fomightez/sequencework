@@ -6,6 +6,14 @@ Repo for my own computational resources dealing with comparing sequences in FAST
 - `compare_organisms_in_two_files_of_fasta_entries.py`
 
   See my comparing lists resources for related items.
+  
+- `score_differences_between_sequences_by_pairwise_alignment.py`
+
+  This script takes sequences in FASTA format (single multi-FASTA file) and scores the different to each of the others. It makes a matrix of the differences.
+
+  This is located [here](https://github.com/fomightez/sequencework/tree/master/alignment-utilities) in my [alignment-utlities sub-repo](https://github.com/fomightez/sequencework/tree/master/alignment-utilities).
+
+  This script should probably be here in this sub-repo; however, I was thinking about it in context of comparing sequences in a rough manner prior to making a full sequence alignment and put it there.
 
 - `roughly_score_relationships_to_subject_seq_pairwise_premsa.py`
 
@@ -18,6 +26,14 @@ Repo for my own computational resources dealing with comparing sequences in FAST
 
 Related utilities in my other repositories
 ------------------------------------------
+- `score_differences_between_sequences_by_pairwise_alignment.py`
+
+  This script takes sequences in FASTA format (single multi-FASTA file) and scores the different to each of the others. It makes a matrix of the differences.
+
+  This is located [here](https://github.com/fomightez/sequencework/tree/master/alignment-utilities) in my [alignment-utlities sub-repo](https://github.com/fomightez/sequencework/tree/master/alignment-utilities).
+
+  This script should probably be here in this sub-repo; however, I was thinking about it in context of comparing sequences in a rough manner prior to making a full sequence alignment and put it there.
+
 
 - `roughly_score_relationships_to_subject_seq_pairwise_premsa.py`
 
