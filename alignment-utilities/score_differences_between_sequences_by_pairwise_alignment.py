@@ -103,7 +103,7 @@ __version__ = "0.1.0"
 # Issue `score_differences_between_sequences_by_pairwise_alignment.py.py -h` for details.
 # 
 # More examples from running from the command line are at the links below: 
-# https://git.io/????????
+# https://git.io/fjdXa
 #
 #
 #
@@ -120,7 +120,7 @@ __version__ = "0.1.0"
 #
 # A more in-depth series of examples of using this script within a notebook 
 # is found at:
-# https://git.io/????????
+# https://git.io/fjdXa
 #
 # 
 #
