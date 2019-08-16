@@ -5,7 +5,7 @@ __license__ = "MIT"
 __version__ = "0.1.0"
 
 
-# bscore_differences_between_sequences_by_pairwise_alignment.py by Wayne Decatur
+# score_differences_between_sequences_by_pairwise_alignment.py by Wayne Decatur
 # ver 0.1
 #
 #*******************************************************************************
@@ -64,14 +64,9 @@ __version__ = "0.1.0"
 # small chromosome? Actually when sequence is longer than double the limit, I 
 # edited the code to do two passes, one at the start of all the sequences 
 # spanning up to the size limit and one back from the end the same size. 
-
+#
 #
 # 
-# NOTE ON OTHER APPROACH TO LIMIT MEMORY REQUIREMENTS:
-# To save time, no alignment data is actually produced. 
-# "This improves memory usage and speed., see 
-# https://github.com/berrisfordjohn/adding_stats_to_mmcif/blob/master/adding_stats_to_mmcif/pairwise_align.py
-# and July 11, 2018 Biopython User's list email.
 #
 #
 #
