@@ -100,7 +100,7 @@ __version__ = "0.1.0"
 # Issue `roughly_score_relationships_to_subject_seq_pairwise_premsa.py.py -h` for details.
 # 
 # More examples from running from the command line are at the links below: 
-# https://git.io/????????
+# https://git.io/???????? <-- for when make a demo
 #
 #
 #
@@ -117,7 +117,7 @@ __version__ = "0.1.0"
 #
 # A more in-depth series of examples of using this script within a notebook 
 # without need to save file intermediates is found at:
-# https://git.io/????????
+# https://git.io/???????? <-- for when make a demo
 #
 # 
 #
