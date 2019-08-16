@@ -5,7 +5,7 @@ __license__ = "MIT"
 __version__ = "0.1.0"
 
 
-# broughly_score_relationships_to_subject_seq_pairwise_premsa.py by Wayne Decatur
+# roughly_score_relationships_to_subject_seq_pairwise_premsa.py by Wayne Decatur
 # ver 0.1
 #
 #*******************************************************************************
@@ -66,7 +66,7 @@ __version__ = "0.1.0"
 # To save time, no alignment data is actually produced. 
 # "This improves memory usage and speed., see 
 # https://github.com/berrisfordjohn/adding_stats_to_mmcif/blob/master/adding_stats_to_mmcif/pairwise_align.py
-# and July 11, 2018 Bipython User's list email.
+# and July 11, 2018 Biopython User's list email.
 #
 #
 #
@@ -86,6 +86,7 @@ __version__ = "0.1.0"
 
 #
 # To do:
+# - 
 #
 #
 #
@@ -301,7 +302,8 @@ def roughly_score_relationships_to_subject_seq_pairwise_premsa(
     Main function of script. 
     sequences scored of how similar the sequences are to first one in provided
     sequence file.
-    based on  
+    based on using 
+    https://github.com/berrisfordjohn/adding_stats_to_mmcif/blob/master/adding_stats_to_mmcif/pairwise_align.py
 
     Optionally also returns a dataframe of the results data, meant for use in a
     Jupyter notebook.
