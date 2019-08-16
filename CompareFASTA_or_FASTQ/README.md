@@ -43,3 +43,12 @@ Related utilities in my other repositories
 
   This script should probably be here in this sub-repo; however, I was thinking about it in context of comparing sequences in a rough manner prior to making a full sequence alignment and put it there.
   
+  
+- `report_diff_between_two_seq_strings.py`
+
+  This script directly compares two Python strings using an approach meant for aligning biological strings. This is like a single, direct version of my script `score_differences_between_sequences_by_pairwise_alignment.py`.
+  
+  This is located [here](https://github.com/fomightez/sequencework/tree/master/Compare_biological_seq_strings) in my [compare_biological_seq_strings utilities sub-repo](https://github.com/fomightez/sequencework/tree/master/Compare_biological_seq_strings).
+  
+  Put there because this sub-repo is meant for when sequences already in FASTA or FASTQ format and I had occaision to need to compare sequences that are strings in dataframe cells that were pulled out has hits by PatMatch.
+  
