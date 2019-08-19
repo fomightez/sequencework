@@ -162,8 +162,17 @@ I have several listed [here](http://proteopedia.org/wiki/index.php/User:Wayne_De
 
 - Under 'Installable software for fine-tuning sequence alignments' there, I discuss using SEQOTRON on my work Mac and  `cons` alignment consensus program and many others at EMBOSS explorer website to put in conservation. Along the way it looks like it adds numbering similar to Mview where it is just numbering for total number on line INCLUDING GAPS. (Not to self, see my `edited t-coffee alignment for true XXXXX XXXXX.md` for example.)
 
+- [The Newick Utilities](https://github.com/tjunier/newick_utils/wiki) 
+>"Here's a useful package for working with Newick style #tree files: Newick utilities!
+https://github.com/tjunier/newick_utils/wiki
+I've used this extensively to prepare files for ASTRAL-III. 
+Will incorporate new functions to automate nw utils in next PIrANHA release." (Source: [here](https://twitter.com/justincbagley/status/1163496265100824576)
+
 - [snp-dists](https://github.com/tseemann/snp-dists) - Pairwise SNP distance matrix from a FASTA sequence alignment. 
 >"Convert a FASTA alignment to SNP distance matrix."    <--- related to my scripts `roughly_score_relationships_to_subject_seq_pairwise_premsa.py`,`score_sequences_in_clustal_msa.py`, and `score_sequences_in_clustal_msa_favoring_top_line.py`..
+
+- [GToTree](https://github.com/AstrobioMike/GToTree/wiki/What-is-GToTree%3F)
+>"GToTree is a program that aims to give more researchers the capability to generate phylogenomic trees to help guide their work. At its heart it just takes in genomes and outputs an alignment and phylogenomic tree based on the specified single-copy gene set."
 
 Somewhat related:  
 
