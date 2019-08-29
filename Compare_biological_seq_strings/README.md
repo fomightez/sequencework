@@ -22,3 +22,9 @@ See:
 It does what the script `report_diff_between_two_seq_strings.py` does in calculating differences but it does it between every FASTA sequence entry in a mult-entry FASTA sequence.
 
 - the contents of [my CompareFASTA_or_FASTQ sub-repo](https://github.com/fomightez/sequencework/tree/master/CompareFASTA_or_FASTQ). There the seqeucnes are in FASTA/Q format. In this sub-repo, I am just considering Python strings.
+
+
+Related utilities by others
+---------------------------
+
+- There are other ways to score alignments. For now I have been using simplistic assessments based on differences. This can be done much fancier based on probability models, with different scores for sections in between the gaps as well. See [How sequence alignment scores correspond to probability models. Martin C Frith. Bioinformatics, btz576, https://doi.org/10.1093/bioinformatics/btz576](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz576/5536873) for recent coverage of this, although I don't see an implementation linked to there on my cursory examination.
