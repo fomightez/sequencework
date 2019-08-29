@@ -177,3 +177,5 @@ Will incorporate new functions to automate nw utils in next PIrANHA release." (S
 Somewhat related:  
 
 - [pyani](https://github.com/widdowquinn/pyani) for calculating average nucleotide identity (ANI) and related measures for whole genome comparisons, and rendering relevant graphical summary output.
+
+- There are other ways to score alignments. For now I have been using simplistic assessments based on differences. This can be done much fancier based on probability models, with different scores for sections in between the gaps as well. See [How sequence alignment scores correspond to probability models. Martin C Frith. Bioinformatics, btz576, https://doi.org/10.1093/bioinformatics/btz576](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz576/5536873) for recent coverage of this, although I don't see an implementation linked to there on my cursory examination.
