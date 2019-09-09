@@ -12,6 +12,9 @@ Example output:
 ![plot_sites_example_plot](plot_sites_example_plot.png)
 
 
+* plot_sites_position_relative_genes.py
+>information about sites and genes/features --> plot of sites relative genes features
+
 # Related items by me
 
 - [Collection of scripts to find sequence elements in sequence data](https://github.com/fomightez/sequencework/tree/master/FindSequence)
