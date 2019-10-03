@@ -26,7 +26,7 @@ Repo for my own computational resources dealing with comparing sequences in FAST
 
 Related utilities in my other repositories
 ------------------------------------------
--`matches_a_patmatch_pattern.py`
+- `matches_a_patmatch_pattern.py`
 
   This script can take a sequence in FASTA format or as a text string and tell if it contains a match to a pattern in PatMatch syntaz. *It doesn't expect multi-FASTA file entries though.* Just reports if matches or not. Really meant to compare a general pattern in PatMatch syntax.  
    This is located [here](https://github.com/fomightez/sequencework/tree/master/patmatch-utilities) in my [patmatch-utlities sub-repo](https://github.com/fomightez/sequencework/tree/master/patmatchutilities).
