@@ -55,6 +55,11 @@ When I used PatMatch with the megagenome of pine sugar on Cyverse, it was includ
 It probably is issuing a warning so you know that it may not show a match if it happens to match where the split was chosen. They way I dealt with this was to remove the warnings from the input to `patmatch_results_to_df.py` or `patmatch_results_to_df()`, see example [here](https://github.com/fomightez/ptmbr-accompmatz/blob/master/notebooks/PatMatch%20use%20on%20the%20largest%20genome%20project%20to%20date.ipynb), because otherwise the warnings cause errors when the lines are processed as typical output. There error is caused because there are no start or end coordinates to extract. However, instead of having `patmatch_results_to_df.py` recognize the warning and handle it, I thought it best the user has to deal with the warnings so they are aware.
 
 
+* matches_a_patmatch_pattern.py
+> pattern in PatMatch syntax and a sequence --> report if they match
+
+Takes pattern in PatMatch syntax and a sequence in text or FAST format and reports if they match.
+
 Related
 -------
 
