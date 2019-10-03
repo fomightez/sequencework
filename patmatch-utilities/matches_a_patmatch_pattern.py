@@ -61,8 +61,6 @@ __version__ = "0.1.0"
 #
 #
 #
-# Meant to be used intially in classifying many sequences obtained in some 
-# searches where often nearby sequence elements were used in searching.
 #
 #
 #
