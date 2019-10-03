@@ -60,7 +60,48 @@ It probably is issuing a warning so you know that it may not show a match if it 
 
 Takes pattern in PatMatch syntax and a sequence in text or FAST format and reports if they match.
 
-There is a [demo notebook for this script that runs in my patmatch-binder](https://github.com/fomightez/patmatch-binder). You can launch the series from [here](https://github.com/fomightez/patmatch-binder) and then selecting from the list at the bottom of the index page undert 'Additional topics: Technicall' to go to the 'Demo of script to check for a match to a sequence pattern in PatMatch syntax' page. The direct link to a nicely-rendered, static version of that page is [here](https://nbviewer.jupyter.org/github/fomightez/ptmbr-accompmatz/blob/master/notebooks/Demo%20of%20script%20to%20check%20for%20a%20match%20to%20a%20sequence%20pattern%20in%20PatMatch%20syntax.ipynb).
+There is a [demo notebook for this script that runs in my patmatch-binder](https://github.com/fomightez/patmatch-binder). You can launch the series from [here](https://github.com/fomightez/patmatch-binder) and then selecting from the list at the bottom of the index page undert 'Additional topics: Technical' to go to the 'Demo of script to check for a match to a sequence pattern in PatMatch syntax' page. The direct link to a nicely-rendered, static version of that page is [here](https://nbviewer.jupyter.org/github/fomightez/ptmbr-accompmatz/blob/master/notebooks/Demo%20of%20script%20to%20check%20for%20a%20match%20to%20a%20sequence%20pattern%20in%20PatMatch%20syntax.ipynb).
+
+*Details*: Takes a sequence pattern in PatMatch syntax, and checks if a provided sequence (file name for sequence in FASTA format or string text can be  provided) contains a match. It reports True or False depending on that
+assessment. Optionally, it can be restricted to checking if the provided 
+sequence is a match to a sequence pattern. Note that the point, i.e., 
+checking that the provided sequence matches entirely to the pattern and is 
+therefore a specific instance of the more general pattern, was the 
+original impetus for writing this script. However, it seemed I might write a
+more general script and then include an option to do that.
+When the residue type is nucleic, both strands will be searched.
+Only concerned with first sequence if a multi-sequence file is provided. Loop
+over sequences and then call script with each if you need to do multiple.
+
+Currently, designed with comparing short sequence strings in mind. For 
+PatMatch syntax, see https://www.yeastgenome.org/nph-patmatch#examples .
+For those familiar with prepration of files for use with PatMatch, you don't 
+have to apply `unjustify.pl` yourself to your sequences. That preparation of 
+removing line endings will all be handled internally meaning 
+STANDARD FASTA FILE FORMAT IS ACCEPTABLE. 
+
+Note that with 'match_over_entirety', the pattern itself must be same length 
+in characters as the expected matching sequence, and therefore it is 
+recommended to avoid using it with fancier patterns using symbols as such 
+patterns will likely cause this not to work correctly. If using such fancier 
+search patterns, you'll want to screen the length of the sequence realtive the 
+possible outcomes prior and combine the results of the assessment of match 
+into your interpretation of what the report means. Or you'd need to edit the 
+script.
+
+Meant to be a 'yes' or 'no' answer. If you want to know about the location of 
+the match or matches you'll want to use `patmatch_results_to_df.py` from 
+https://github.com/fomightez/sequencework/tree/master/patmatch-utilities
+It actually uses that script to do the work here.
+
+Note this is conceptually, vaguely related to my script 
+`find_sequence_element_occurrences_in_sequence.py` found in 
+https://github.com/fomightez/sequencework/tree/master/FindSequence except that
+handles Regular Expression (REGEX) syntax, and here I want to be able to 
+handle more biological contexts without having to add many sets to the regex 
+code. By using PatMatch, I get the biological context without having to 
+re-implement it.
+
 
 
 Related
