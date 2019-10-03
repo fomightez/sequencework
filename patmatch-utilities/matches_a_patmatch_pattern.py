@@ -33,6 +33,15 @@ __version__ = "0.1.0"
 # removing line endings will all be handled internally meaning 
 # STANDARD FASTA FILE FORMAT IS ACCEPTABLE. 
 #
+# Note that with 'match_over_entirety', the pattern itself must be same length 
+# in characters as the expected matching sequence, and therefore it is 
+# recommended to avoid using it with fancier patterns using symbols as such 
+# patterns will likely cause this not to work correctly. If using such fancier 
+# search patterns, you'll want to screen the length of the sequence realtive the 
+# possible outcomes prior and combine the results of the assessment of match 
+# into your interpretation of what the report means. Or you'd need to edit the 
+# script.
+#
 # Meant to be a 'yes' or 'no' answer. If you want to know about the location of 
 # the match or matches you'll want to use `patmatch_results_to_df.py` from 
 # https://github.com/fomightez/sequencework/tree/master/patmatch-utilities
@@ -182,8 +191,12 @@ def matches_a_patmatch_pattern( pattern, sequence, residue_type,
     Takes a sequence pattern in PatMatch syntax, and checks if a provided 
     sequence (provided as a file_name of a FASTA file or string text of 
     sequence) contains a match. It reports True or False depending on 
-    that assessment. Optionally, it can be restricted to checking if the 
-    provided sequence is a match to a sequence pattern.
+    that assessment. Optionally, with 'match_over_entirety' it can be restricted 
+    to checking if the provided sequence is a match to a sequence pattern. Note 
+    that with 'match_over_entirety', the pattern itself must be same length in 
+    characters as the expected matching sequence, and therefore avoid using it 
+    with fancier patterns using symbols as such patterns will likely cause this 
+    not to work right.
 
     Also need to specify residue type of sequence provided. Nucleic or protein.
     When the residue type is nucleic, both strands will be searched.
@@ -481,7 +494,11 @@ if __name__ == "__main__":
     parser.add_argument("-moe", "--match_over_entirety",help=
         "add this flag to force the match test to have the sequence have to \
         match over an entirety to the pattern. In other words, force testing \
-        if the sequences is a specific example of the pattern.",
+        if the sequence is a specific example of the pattern. **CAUTION: The \
+        pattern itself must be same length in characters as the expected \
+        matching sequence, and therefore it is recommended you not use this \
+        with fancier patterns using symbols as it will likely cause this not \
+        to work correctly.**",
         action="store_true")
 
 
