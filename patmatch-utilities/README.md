@@ -74,7 +74,7 @@ Only concerned with first sequence if a multi-sequence file is provided. Loop
 over sequences and then call script with each if you need to do multiple.
 
 Currently, designed with comparing short sequence strings in mind. For 
-PatMatch syntax, see https://www.yeastgenome.org/nph-patmatch#examples .
+PatMatch syntax, see [here](https://www.yeastgenome.org/nph-patmatch#examples).
 For those familiar with prepration of files for use with PatMatch, you don't 
 have to apply `unjustify.pl` yourself to your sequences. That preparation of 
 removing line endings will all be handled internally meaning 
@@ -90,17 +90,20 @@ into your interpretation of what the report means. Or you'd need to edit the
 script.
 
 Meant to be a 'yes' or 'no' answer. If you want to know about the location of 
-the match or matches you'll want to use `patmatch_results_to_df.py` from 
-https://github.com/fomightez/sequencework/tree/master/patmatch-utilities
+the match or matches you'll want to use `patmatch_results_to_df.py` from [this same sub-repo](
+https://github.com/fomightez/sequencework/tree/master/patmatch-utilities)
 It actually uses that script to do the work here.
 
 Note this is conceptually, vaguely related to my script 
-`find_sequence_element_occurrences_in_sequence.py` found in 
-https://github.com/fomightez/sequencework/tree/master/FindSequence except that
+`find_sequence_element_occurrences_in_sequence.py` found [here]( 
+https://github.com/fomightez/sequencework/tree/master/FindSequence) except that
 handles Regular Expression (REGEX) syntax, and here I want to be able to 
 handle more biological contexts without having to add many sets to the regex 
 code. By using PatMatch, I get the biological context without having to 
 re-implement it.
+
+Note on PatMatch syntax:  
+The letters themselves match IUPAC ambiguity codes, see 'Nucleotide ambiguity code' list [here](https://www.dnabaser.com/articles/IUPAC%20ambiguity%20codes.html). However, pattern syntax for PatMatch goes beyond that as it can handle broader constraints than just the letters, as shown [here](https://www.yeastgenome.org/nph-patmatch#examples). See [here](https://www.biostars.org/p/264212/#264218) for a discussion of alignment tools that also allow the IUPAC codes. 
 
 
 
