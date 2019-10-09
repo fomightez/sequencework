@@ -54,6 +54,15 @@ __version__ = "0.1.0"
 # handle more biological contexts without having to add many sets to the regex 
 # code. By using PatMatch, I get the biological context without having to 
 # re-implement it.
+# Note on PatMatch syntax: The letters themselves match IUPAC ambiguity codes, 
+# see 'Nucleotide ambiguity code' list at 
+# https://www.dnabaser.com/articles/IUPAC%20ambiguity%20codes.html . However,
+# pattern syntax for PatMatch goes beyond that as it can handle broader 
+# constraints than just the letters. See 
+# https://www.biostars.org/p/264212/#264218 for a discussion of alignment tools 
+# that also allow the IUPAC codes. (Exonerate & BWBBLE & perhaps the Biostrings 
+# Bioconductor package seems like much of the extent of it.)
+#
 #
 #
 #
@@ -202,6 +211,13 @@ def matches_a_patmatch_pattern( pattern, sequence, residue_type,
     Only concerned with first sequence if a multi-sequence file is provided. 
     Loop over sequences and then call this function with each if you need to 
     examine multiple sequences.
+
+    Note on PatMatch syntax:
+    The letters themselves match IUPAC ambiguity codes, see 
+    'Nucleotide ambiguity code' list at 
+    https://www.dnabaser.com/articles/IUPAC%20ambiguity%20codes.html . However,
+    pattern syntax for PatMatch goes beyond that as it can detail a broader 
+    range of constraints beyond just the letters.
     '''
 
     # Quick check if the `match_over_entirety` option is used
