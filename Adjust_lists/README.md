@@ -280,16 +280,11 @@ Small sampling of sme answers that intrguided me:
   2. Rank the pathways.
   3. Extract MR in each of those pathways.
   MR can be also via Motif analysis to obtain TFBS. One can also obtain network hubs & rank them based on disease prioritization/drug response signatures."
-  >"If the tools or packages are not narrowed down. I will suggest to take a look at 
-  @MaayanLab
-   website for their amazing resources to use.
-  http://labs.icahn.mssm.edu/maayanlab/resources/
-  And in regulon or MR space I am biased with VIPER https://bioconductor.org/packages/release/bioc/vignettes/viper/inst/doc/viper.pdf 
-  + scRNASeq GRNs if cell type info is needed"
+  >"If the tools or packages are not narrowed down. I will suggest to take a look at @MaayanLab website for their amazing resources to use.http://labs.icahn.mssm.edu/maayanlab/resources/  And in regulon or MR space I am biased with VIPER https://bioconductor.org/packages/release/bioc/vignettes/viper/inst/doc/viper.pdf + scRNASeq GRNs if cell type info is needed"  
   >"I would define a set scoring function that would reward the individual importance of each gene but penalize the similarity (similarity could be defined based on shared pathways, GO semantic similarity, etc) and then use the greedy algorithm with that scoring function.1/2"
-  >"We used a similiar idea here: https://arxiv.org/abs/1812.02497 ) and here: https://dx.doi.org/10.1109/TCBB.2019.2935437  but the selection is not on genes.  2/2"
-  >"Cc @jmschreiber91 use Jacob's submodular optimization tool that allows you to do exactly that"
-  >"Here is the tool https://github.com/jmschrei/apricot . It's a general method for selecting optimal representative subsets"
-  >"Take 30 random. If your orininal set, as you seem to suspect, is very redundaut then you are probably ok . Once you have your 30 you use the remaining time allocated to this task to do some due diligence on them and perhaps replace some obvious redundancies."
-  >"I’d pick  @XDarzacq’s idea for the quick&dirty first pass. However, ideal method would be something akin to @ilyakorsunsky ’s suggestion; find the 30 genes least correlated to others in the set, THEN swap out any that had little/no prior knowledge."
+  >"We used a similiar idea here: https://arxiv.org/abs/1812.02497 ) and here: https://dx.doi.org/10.1109/TCBB.2019.2935437  but the selection is not on genes.  2/2"  
+  >"Cc @jmschreiber91 use Jacob's submodular optimization tool that allows you to do exactly that"  
+  >"Here is the tool https://github.com/jmschrei/apricot . It's a general method for selecting optimal representative subsets"  
+  >"Take 30 random. If your orininal set, as you seem to suspect, is very redundaut then you are probably ok . Once you have your 30 you use the remaining time allocated to this task to do some due diligence on them and perhaps replace some obvious redundancies."  
+  >"I’d pick  @XDarzacq’s idea for the quick&dirty first pass. However, ideal method would be something akin to @ilyakorsunsky ’s suggestion; find the 30 genes least correlated to others in the set, THEN swap out any that had little/no prior knowledge."  
 
