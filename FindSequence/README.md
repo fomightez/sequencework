@@ -26,6 +26,8 @@ Additional **tips for using `find_sequence_element_occurrences_in_sequence.py`**
 
 - If you want to delete sequence following a match to a sequence, you want the [AdjustFASTA_or_FASTQ](https://github.com/fomightez/sequencework/tree/master/AdjustFASTA_or_FASTQ) directory in this repo
 
+- If you just want the coordinates spanned / position of a matched sequence, you may want to use `report_coordinates_for_seq_within_FASTA.py` script in my [collection of scripts to Extract Details or Annotations](https://github.com/fomightez/sequencework/tree/master/Extract_Details_or_Annotation) sub-repo. This potentially complements `find_sequence_element_occurrences_in_sequence.py`.
+
 
 # Related items by others where I have added some utilities for associating the data with Python
 
