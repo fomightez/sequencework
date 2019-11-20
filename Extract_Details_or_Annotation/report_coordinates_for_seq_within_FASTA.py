@@ -183,7 +183,8 @@ def get_start_n_ends_for_match_to_pattern(pattern_obj,a_string):
     the provided string.
     
     Returns a list of tuples where first value is the start and
-    second is the end of the span of the pattern match.
+    second is the end of the span of the pattern match.<--actually it is the 
+    index of the first item not in the match, like slice notation.
     '''
     start_end_tuples = []
     for m in pattern_obj.finditer(a_string.lower()):
@@ -262,7 +263,15 @@ def report_coordinates_for_seq_within_FASTA(
             "have been returned.".format(len(match_locations)))
     if match_locations:
         start = match_locations[0][0]+1 #`+1` hides zero-index behind-the-scenes
-        end = match_locations[0][1]+1 #`+1` hides zero-index behind-the-scenes
+        end = match_locations[0][1] #`+1`is not necessary here to hide 
+        # zero-index that behind-the-scenes b/c second value `span()` seems to
+        # return seems to be the 'stop' position index like Python slices where
+        # it is up to but not including the `stop` index despite it just saying
+        # start and end index are returned at
+        # https://stackoverflow.com/a/250306/8508004 . You can see it in the
+        # example there, the 'm' in 'message' is at the fourth position in the
+        # string analyzed but the 'e' at the end is at the tenth position and 
+        # not the 11th, but `span` returns (4,11). So `+1` already built in.
         return "{}\t{}".format(start, end)
     else:
         sys.stderr.write("***NO MATCHES FOUND. RETURNING EMPTY STRING.***** "
