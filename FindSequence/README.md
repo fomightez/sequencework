@@ -30,7 +30,8 @@ Additional **tips for using `find_sequence_element_occurrences_in_sequence.py`**
 # Related items by others where I have added some utilities for associating the data with Python
 
 - The venerable PatMatch allows much more flexibility beyond exact matches to nucleotide and protein sequences and motifs (and is easier to use than regular expression-based search terms because tailored to residues), and although it doesn't directly play well with Python, I have made a utility script that helps with that.  
-See about the command line-based version and links to online implementations at [my repo, patmatch-binder](https://github.com/fomightez/patmatch-binder). It includes active demonstrations in launchable Jupyter notebooks of running the command line-based version and getting the data into Python. Go [there](https://github.com/fomightez/patmatch-binder) and click `launch binder` for that.
+See about the command line-based version and links to online implementations at [my repo, patmatch-binder](https://github.com/fomightez/patmatch-binder). It includes active demonstrations in launchable Jupyter notebooks of running the command line-based version and getting the data into Python. Go [there](https://github.com/fomightez/patmatch-binder) and click `launch binder` for that.  
+Related to this, are the scripts I have placed in my [patmatch-utilities](https://github.com/fomightez/sequencework/tree/master/patmatch-utilities) sub-repo.
 
 
 # Related items by others
