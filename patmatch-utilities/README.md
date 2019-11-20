@@ -91,7 +91,7 @@ script.
 
 Meant to be a 'yes' or 'no' answer. If you want to know about the location of 
 the match or matches you'll want to use `patmatch_results_to_df.py` from [this same sub-repo](
-https://github.com/fomightez/sequencework/tree/master/patmatch-utilities)
+https://github.com/fomightez/sequencework/tree/master/patmatch-utilities).
 It actually uses that script to do the work here.
 
 Note this is conceptually, vaguely related to my script 
