@@ -337,7 +337,7 @@ def main():
     # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
     kwargs = {}
-    kwargs['restrict_to_given_strand'] = restrict_to_given_strand
+    kwargs['restrict_to_given_strand'] = args.restrict_to_given_strand
     result = report_coordinates_for_seq_within_FASTA(
         sequence_file, record_id, seq_to_find,**kwargs)
     # using https://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/#calling-a-function
