@@ -45,11 +45,21 @@ __version__ = "0.1.0"
 # as it will be ignored. This makes the script more flexible in cases where 
 # sequence files aren't complex as the user doesn't need to provide an actual 
 # record id.
+#
+# By default if no match to the provided seq pattern is among the string of
+# bases in the provided sequence file, the reverse complement of the pattern 
+# will also be searched and any match in the provided sequence treated as a 
+# match. You can force this default behavior to be overriden and only consider 
+# matches of the pattern within the provided sequence and not the reverse 
+# complement strand by specifying the option `restrict_to_given_strand`. This 
+# might be useful if the input pattern or the provided sequence file (or both) 
+# don't correspond to typical double-stranded DNA.(**ATYPICAL**)
 # 
 # It is designed to handle/filter gaps ('dashes') in the provided sequence 
 # patterns. The idea being that the known sequence ends may be manually 
 # extracted from sequence alignments. This way the user is not wasting time 
 # removing the gap indications / dashes from the collected text lines.
+# 
 #
 # Note that why some aspects of this script may seem redundant with my scripts 
 # `find_sequence_element_occurrences_in_sequence.py` and `blast_to_df.py` that 
@@ -168,6 +178,8 @@ import os
 import re
 from Bio import SeqIO
 from Bio.Seq import Seq 
+from Bio.SeqRecord import SeqRecord 
+from Bio.Alphabet import generic_dna
 
 
 
@@ -200,7 +212,8 @@ def get_start_n_ends_for_match_to_pattern(pattern_obj,a_string):
 ###------------------------'main' function of script--------------------------##
 
 def report_coordinates_for_seq_within_FASTA(
-    sequence_file, record_id, seq_to_find, filter_dashes = True):
+    sequence_file, record_id, seq_to_find, filter_dashes = True,
+    restrict_to_given_strand=False):
     '''
     Main function of script.
     Takes a sequence string, a sequence file (FASTA-format), and a record id and 
@@ -210,6 +223,15 @@ def report_coordinates_for_seq_within_FASTA(
     multi-FASTA, i.e., multiple sequences in the provided file, although it 
     definitely doesn't have to be. In case it is only a single sequence, the 
     record id becomes moot and users can provide anything for this parameter. 
+
+    By default if no match to the provided seq pattern is among the string of 
+    bases in the provided sequence file, the reverse complement of the pattern 
+    will also be searched and any match in the provided sequence treated as a 
+    match. You can force this default behavior to be overriden and only consider 
+    matches of the pattern within the provided sequence and not the reverse 
+    complement strand by pecifying the option `restrict_to_given_strand` as 
+    True. This might be useful if the input pattern or the provided sequence 
+    file (or both) don't correspond to typical double-stranded DNA.(**ATYPICAL**)
 
     A sequence string of the specified length will be returned.
     '''
@@ -257,6 +279,19 @@ def report_coordinates_for_seq_within_FASTA(
     # Now search the record and return the coordinates of the match.
     match_locations = get_start_n_ends_for_match_to_pattern(
                 pat_obj,str(record_to_search.seq))
+    if not restrict_to_given_strand and not match_locations:
+        # in case no match of sequence pattern found within provided sequence, 
+        # search for reverse complement of provided sequence pattern in the 
+        # provided sequence. First convert sequence pattern that is in the form 
+        # of a Python string, to a biopython sequence so can do reverse 
+        # complement via biopython method.
+        seq_to_find_seq = SeqRecord(Seq(seq_to_find, generic_dna), 
+            id="seq_pattern", description="  ")
+        seq_to_find_rev_compl = seq_to_find_seq.reverse_complement(
+            id=True,description=True)
+        pat_obj_rc = re.compile(str(seq_to_find_rev_compl.seq).lower())
+        match_locations = get_start_n_ends_for_match_to_pattern(
+                pat_obj_rc,str(record_to_search.seq))
     if len(match_locations) > 1:
         sys.stderr.write("{} matches to the sequence found in the specified "
             "sequence. The coordinates\nof the match encountered first "
@@ -302,6 +337,7 @@ def main():
     # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
     kwargs = {}
+    kwargs['restrict_to_given_strand'] = restrict_to_given_strand
     result = report_coordinates_for_seq_within_FASTA(
         sequence_file, record_id, seq_to_find,**kwargs)
     # using https://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/#calling-a-function
@@ -354,6 +390,15 @@ if __name__ == "__main__" and '__file__' in globals():
         are accepted here; however any information about case will be ignored \
         as the provided sequence pattern and sequence will both be converted \
         to lower case to check for a match.", metavar="PATTERN")
+    parser.add_argument("-rgs", "--restrict_to_given_strand",help=
+        "Add this flag you want to limit the search for the sequence pattern \
+        to the represented strand of the sequence file. (Might be useful if \
+        one, or both, pattern and sequence provided correspond to \
+        single-stranded RNA.**ATYPICAL**) Otherwise, if there is no match to \
+        the pattern in the provided sequence, the reverse complement of the \
+        pattern will also be searched in the sequence and matching coordinates \
+        returned.",
+        action="store_true")
 
 
 
