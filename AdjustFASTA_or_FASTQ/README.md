@@ -32,6 +32,42 @@ remove_seq_from_multiFASTA_with_match_in_description.py takes a sequence file in
 ***SCRIPT NEEDS TO BE TESTED***  
 ***DOCUMENTATION NEEDS TO BE COMPLETED***
 
+- permute_seq_within_FASTA_an_amount.py
+> FASTA file -->  circular sequence in FASTA file start breakpoint permuted to position specified
+
+Takes a sequence file (FASTA-format) & a record id (unless single 
+sequence in file) of a circular sequence such as a plasmid or mitochondrial 
+genome, and moves the specified distance in bps the start/end (breakppoint) of
+that sequence within the specified FASTA record. In other words, the so the 
+position that is the specified amount from the original 'start' becomes the 
+new 'start' position.
+(The FASTA-formatted sequence file in which to act is assumed by default 
+to be a multi-FASTA, i.e., multiple sequences in the provided file, although it 
+definitely doesn't have to be. In case it is only a single sequence, the
+record id becomes moot, see below.) 
+Nothing is returned when using this on the command line. A file will be saved
+of the permuted sequence. In the case of importing and using the main funcion,
+by default the name of the saved file is returned. Optionally, when calling 
+the function, returning the name of the permuted file can be disabled.
+Note that if there is only one record in the specified sequence file, the 
+record id is moot and you can instead provide any string for that parameter 
+as it will be ignored. This makes the script more flexible in cases where 
+sequence files aren't complex as the user doesn't need to provide an actual 
+record id.
+
+A good reference for the use of the term 'breakpoint' for the arbitrary and 
+artificial location of the 'start'/'end' of circular sequence is at 
+https://software.broadinstitute.org/gatk/blog?id=23598 .
+
+Typical use cases for this script include:
+1) Permuting a circular sequence to match the published or 'standard' sequence 
+for ease in comparison. Or vice versa. For example if you have 
+experimentally-determined sequence that spans the artifical start/end 
+breakpoint and you want to compare.
+2) For a circular sequence, if you don't find an expected sequence, you may 
+wish to permute to see if possible the sequence happens to fall across the
+artificial start/end (end/start) breakpoint.
+
 
 - add_source_organism_info_to_FASTA.py
 > FASTA file -->  FASTA file with organism info injected in text
