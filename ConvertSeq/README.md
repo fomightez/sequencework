@@ -118,6 +118,9 @@ I tend to use Biopython's sequence object with the `.reverse_complement()` metho
 
 - [ranking code for making reverse complements - "What is the fastest way to get the reverse complement of a DNA sequence in python?"](https://bioinformatics.stackexchange.com/questions/3583/what-is-the-fastest-way-to-get-the-reverse-complement-of-a-dna-sequence-in-pytho?rq=1), leads to an nice repo with the data [here](https://github.com/conchoecia/fastest_rc_python)
 
+- https://twitter.com/zevkronenberg/status/1202652155401736192     December 2019
+( I think most with codes are R-based because poster seems to mention R in thread)
+
 - [any2fasta](https://github.com/tseemann/any2fasta)
 >"Can't remember how to convert your sequence file into FASTA?
 Just use "any2fasta" !
