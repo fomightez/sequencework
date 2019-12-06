@@ -47,3 +47,10 @@ library(Biostrings)
 library(BSgenome.Hsapiens.UCSC.hg19)
 vmatchPattern("GCGATCGC", Hsapiens)
 ```
+https://twitter.com/BQPMalfoy/status/1202902187174707200     December 2019
+>"Finaly reverse complement grep exist !"
+[rcgrep: Search text files for DNA sequences and their reverse complements](https://github.com/dib-lab/rcgrep)  <--- this is from DIBs lab when traced back and must be what was I was thinking of when I thought screen migth have it
+
+
+
+
