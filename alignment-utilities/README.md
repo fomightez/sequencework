@@ -147,7 +147,7 @@ Related utilities in my other repositories
   
  - `report_diff_between_two_seq_strings.py`
 
-    This script directly compares two Python strings using an approach meant for aligning biological strings. This is like a single, direct version of my script `score_differences_between_sequences_by_pairwise_alignment.py`, which resides in this sub-repo.  
+    This script directly compares two Python strings using an approach meant for aligning biological strings. This is like a simple, direct version of my script `score_differences_between_sequences_by_pairwise_alignment.py`, which resides in this sub-repo.  
   This script is located [here](https://github.com/fomightez/sequencework/tree/master/Compare_biological_seq_strings) in my [compare_biological_seq_strings utilities sub-repo](https://github.com/fomightez/sequencework/tree/master/Compare_biological_seq_strings).
   
 
