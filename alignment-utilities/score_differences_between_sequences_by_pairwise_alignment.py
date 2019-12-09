@@ -200,7 +200,7 @@ from Bio.SubsMat import MatrixInfo as matlist
 # this comes straight from https://github.com/berrisfordjohn/adding_stats_to_mmcif/blob/master/adding_stats_to_mmcif/pairwise_align.py
 
 class SequenceAlign:
-    # this is modified to get mininum difference of residue numer for the 
+    # this is modified to get mininum number of residue differences for the 
     # pairwise alignmnet from
     # https://github.com/berrisfordjohn/adding_stats_to_mmcif/blob/master/adding_stats_to_mmcif/pairwise_align.py
 
