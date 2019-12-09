@@ -19,7 +19,7 @@ Related utilities in my other repositories
 See:  
 
 - `score_differences_between_sequences_by_pairwise_alignment.py` in [my alignment-utilities sub-repo](https://github.com/fomightez/sequencework/tree/master/alignment-utilities).
-It does what the script `report_diff_between_two_seq_strings.py` does in calculating differences but it does it between every FASTA sequence entry in a mult-entry FASTA sequence.
+It does what the script `report_diff_between_two_seq_strings.py` does in calculating differences but it does it between every FASTA sequence entry in a multi-entry FASTA sequence.
 
 - the contents of [my CompareFASTA_or_FASTQ sub-repo](https://github.com/fomightez/sequencework/tree/master/CompareFASTA_or_FASTQ). There the seqeucnes are in FASTA/Q format. In this sub-repo, I am just considering Python strings.
 
