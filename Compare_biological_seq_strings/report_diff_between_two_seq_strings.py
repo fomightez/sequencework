@@ -5,7 +5,7 @@ __license__ = "MIT"
 __version__ = "0.1.0"
 
 
-# breport_diff_between_two_seq_strings.py by Wayne Decatur
+# report_diff_between_two_seq_strings.py by Wayne Decatur
 # ver 0.1
 #
 #*******************************************************************************
@@ -185,6 +185,7 @@ from Bio import SeqIO
 from Bio import Align
 from Bio import pairwise2
 from Bio.SubsMat import MatrixInfo as matlist
+from collections import defaultdict
 
 
 
@@ -201,7 +202,7 @@ from Bio.SubsMat import MatrixInfo as matlist
 # this comes straight from https://github.com/berrisfordjohn/adding_stats_to_mmcif/blob/master/adding_stats_to_mmcif/pairwise_align.py
 
 class SequenceAlign:
-    # this is modified to get mininum difference of residue numer for the 
+    # this is modified to get mininum number of residue differences for the 
     # pairwise alignmnet from
     # https://github.com/berrisfordjohn/adding_stats_to_mmcif/blob/master/adding_stats_to_mmcif/pairwise_align.py
 
@@ -262,6 +263,9 @@ class SequenceAlign:
         # aligner.mismatch = -1
         alignments = aligner.align(self.sequence1, self.sequence2)
         differences_list = []
+        alignments_by_differences = defaultdict(list) #keys are number of 
+        # differences and values are a list of all alignmnets matching that 
+        # number of differences
         for alignment in sorted(alignments):
             split_alignment = str(alignment).split()
             assert len(split_alignment) % 3 == 0, "should be divisible by three"
@@ -280,10 +284,13 @@ class SequenceAlign:
             gaps = symbolic_alignment_summary.count("-")
             differences = unaligned + gaps
             differences_list.append(differences)
+            alignments_per_differences = (
+                alignments_by_differences[differences].append(alignment))
         align_score = aligner.score(self.sequence1, self.sequence2)
         self.score = align_score
         self.differences = min(differences_list)
-
+        self.alignments_w_min_differences = (
+            alignments_by_differences[self.differences])
     """
     def do_alignment_emboss(self):
         needle_cline.asequence = "asis:" + self.sequence1
@@ -310,7 +317,7 @@ class SequenceAlign:
             len(self.sequence1),len(self.sequence2))
         self.pairwise_aligner()
         if self.do_sequences_align():
-            return True, '', self.differences
+            return True, '', self.differences, self.alignments_w_min_differences
         return False, 'sequences do not align', max(
             len(self.sequence1),len(self.sequence2))
 ###--------------------------END OF WORK HORSE CLASS-------------------------###
@@ -320,7 +327,7 @@ class SequenceAlign:
 ###------------------------'main' function of script---------------------------##
 
 def report_diff_between_two_seq_strings(
-    seq_string1, seq_string2, report_len_diff = False, 
+    seq_string1, seq_string2, report_len_diff = False, report_alignment = False,
     block_len=default_block_length):
     '''
     Main function of script. 
@@ -332,15 +339,21 @@ def report_diff_between_two_seq_strings(
     length difference of the two unaligned strings as well. The size difference
     will be returned second.
 
+    Setting `report_alignment` to True is to be used when you want to report the 
+    alignments corresponding to the reported differences.
+
     `block_len` is for dealing with large sequences and hopefully isn't 
     necessary if sticking with small ones as intended right now. (See 
     `roughly_score_relationships_to_subject_seq_pairwise_premsa.py` for more 
     about that)
 
-    Returns either one or two items:
+    Returns either one,two, or three items:
     The first item returned is always the amount of differences.
     If `report_len_diff` is True, the unaligned size difference will be returned
-    second.
+    following the number of differences.
+    If `report_report_alignment` is True, formatted text strings of the 
+    alignment(s) associated with the minimal number of differences will be 
+    returned last.
     '''
     # Compare unaligned if `report_len_diff` True
     if report_len_diff:
@@ -358,16 +371,36 @@ def report_diff_between_two_seq_strings(
 
     #Pairwise comparison for the sequence pair
     sa = SequenceAlign(sequence1=seq_string1, sequence2=seq_string2)
-    aligned, error, differences = sa.do_sequence_alignment()
+    aligned, error, differences, alignments_w_min_differences = (
+        sa.do_sequence_alignment())
     #print(differences)  # for debugging/ development
+    #print(alignments_per_differences)  # for debugging/ development
+
+    '''
+    # Set up for reporting alignment(s), if needed
+    if report_alignment:
+        formatted_alignments = format_alignments(differences,
+            alignments_w_min_differences)
+    '''
 
 
     # Reporting and saving(?)/feedback
     #---------------------------------------------------------------------------
     if report_len_diff and (not __name__ == "__main__"):
-        return differences,len_diff
+        to_return = (differences,len_diff)
     elif not __name__ == "__main__":
-        return differences
+        to_return = (differences,) # see 
+        # https://wiki.python.org/moin/TupleSyntax for creating single-item 
+        # tuple because "the essential element here is the trailing comma". 
+        # Otherwise `to_return = (differences)` results in `to_return` being an 
+        # int that cannot be iterated over for unpacking to possibly add more 
+        # later or return. (was considering what was better for building what to 
+        # return and read "I'd suggest that a keyed-access return value starts 
+        # making more sense than a tuple when there are more than about three 
+        # member" in https://softwareengineering.stackexchange.com/a/327761), 
+        # which would be good to keep in mind. (This all came up when I was
+        # refactoring to add returning POSSIBLY an additional item after coding 
+        # around only returning one or two items.)
     elif report_len_diff and __name__ == "__main__":
         # save a text file of the diff_score and len_diff?
         sys.stderr.write("\n\nReporting amount of differences and difference "
@@ -377,6 +410,22 @@ def report_diff_between_two_seq_strings(
         # save a text file of the diff_score?
         sys.stderr.write("\n\nReporting amount of differences...")
         print (differences)
+    if report_alignment and (not __name__ == "__main__"):
+        to_return = (
+            *to_return, [str(x) for x in alignments_w_min_differences])
+    elif report_alignment:
+        aln_txt_end = "ments"
+        if len(alignments_w_min_differences) == 1:
+            aln_txt_end = "ment"
+        sys.stderr.write(
+            f"\nReporting align{aln_txt_end} with {differences} differences...")
+        print(f"Align{aln_txt_end} displaying {differences} differences:\n")
+        print(*alignments_w_min_differences,sep='\n') # based on 
+        # https://stackoverflow.com/a/52097312/8508004
+
+    # once what to return is built entirely, return it
+    if (not __name__ == "__main__"):
+        return to_return
 
 
 ###--------------------------END OF MAIN FUNCTION----------------------------###
@@ -400,6 +449,7 @@ def main():
     # assigned multiple times depending how many scripts imported/pasted in.
     kwargs = {}
     kwargs['report_len_diff'] = report_len_diff
+    kwargs['report_alignment'] = report_alignment
     report_diff_between_two_seq_strings(args.seq_string1, 
         args.seq_string2, **kwargs)
     # using https://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/#calling-a-function
@@ -435,6 +485,9 @@ if __name__ == "__main__":
     "Add this flag to report the length difference of the unaligned sequences \
     additionally following the amount of differences.",
     action="store_true")
+    parser.add_argument("-ra", "--report_alignment",help=
+    "Add this flag to report the alignment(s) associated with the minimal \
+    number of differences.", action="store_true")
 
 
 
@@ -445,6 +498,7 @@ if __name__ == "__main__":
         sys.exit(1)
     args = parser.parse_args()
     report_len_diff = args.report_len_diff
+    report_alignment = args.report_alignment
 
 
     main()
