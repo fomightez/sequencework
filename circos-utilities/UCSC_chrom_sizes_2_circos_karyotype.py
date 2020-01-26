@@ -132,7 +132,7 @@ chr -   Sc-chrM chrM    0   85779   black
 # url = "http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
 # UCSC_chrom_sizes_2_circos_karyotype(url)
 #
-#(`species_code_hardcoded` and `output_file_name `can be assigned in a cell 
+#(`species_code` and `output_file_name `can be assigned in a cell 
 # before calling the function as well.)
 #
 # Note that `url` is actually not needed if you are using the yeast one because 
@@ -259,9 +259,9 @@ def extract_species_code_fromUCSC_URL(url):
 
 #*******************************************************************************
 ###------------------------'main' function of script---------------------------##
-# This switch below about `species_code_hardcoded` added here so that above the 
+# This switch below about `species_code` added here so that above the 
 # user can see they can edit it under 'END USER ADJUSTABLE VARIABLES' to make it 
-# a string, but I want it tp default to `False` when not set to make checking 
+# a string, but I want it to default to `False` when not set to make checking 
 # status easier.
 if species_code == "None":
     species_code = False
