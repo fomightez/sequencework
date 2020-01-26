@@ -130,7 +130,7 @@ chr -   Sc-chrM chrM    0   85779   black
 # To use this after pasting or loading into a cell in a Jupyter notebook, in
 # the next cell define the URL and then call the main function similar to below:
 # url = "http://hgdownload.cse.ucsc.edu/goldenPath/sacCer3/bigZips/sacCer3.chrom.sizes"
-# UCSC_chrom_sizes_2_circos_karyotype(species_code)
+# UCSC_chrom_sizes_2_circos_karyotype(url)
 #
 #(`species_code_hardcoded` and `output_file_name `can be assigned in a cell 
 # before calling the function as well.)
