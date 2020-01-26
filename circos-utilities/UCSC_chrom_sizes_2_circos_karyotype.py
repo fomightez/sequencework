@@ -273,7 +273,7 @@ def UCSC_chrom_sizes_2_circos_karyotype(url=url, species_code=species_code):
     Saves the file as tab-separated values with the extension `.tab`, by
     default, to be consistent with what Circos ecosystem seems to use.
 
-    Default url is the yeast one if calling function from inside Juputer or
+    Default url is the yeast one if calling function from inside Jupyter or
     IPyhon.
 
     Optionally a string can be provided in the call to the function to be used
