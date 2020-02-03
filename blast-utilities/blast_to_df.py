@@ -77,7 +77,7 @@ __version__ = "0.1.0"
 # Examples,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# python blast_to_df.py -RESULTS_FILE
+# python blast_to_df.py RESULTS_FILE
 #-----------------------------------
 # Issue `blast_to_df.py -h` for details.
 # 
