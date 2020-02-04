@@ -190,7 +190,7 @@ def bendit_standalone_results_to_df(results, also_reported, return_df = True,
         sequence_string == "NONE_WAS_PROVIDED"):
         col_names = ['Position', 'Predicted_curvature', also_reported]
     else:
-        col_names = ['Sequence','Position','Predicted_curvature', also_reported]
+        col_names = ['Position','Sequence','Predicted_curvature', also_reported]
     # If provided, bring in the sequence from the sequence file
     if sequence_string == "NONE_WAS_PROVIDED" and (sequence_file != "NONE_WAS_PROVIDED"):
         from pyfaidx import Fasta
@@ -250,8 +250,8 @@ def bendit_standalone_results_to_df(results, also_reported, return_df = True,
                     # <---output seems zero-indexed in output from bendit 
                     # server, & so output from bendit alone likely same and so 
                     # no need to adjust because Python also zero-indexed.
-                    new_line = ("{}\t{}\t{}\t{}\n)".format(
-                        line_components[0],corresponding_nt,
+                    new_line = ("{}\t{}\t{}\t{}\n".format(
+                        (line_components[0]),corresponding_nt,
                         line_components[1],line_components[2]))
                     growing_string_to_save += new_line
                 else:
