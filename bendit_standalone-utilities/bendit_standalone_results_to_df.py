@@ -335,19 +335,19 @@ def bendit_standalone_results_to_df(results, also_reported, return_df = True,
         "was not stored for use\nelsewhere "
         "because `no_pickling` was specified.\n")
     else:
-        df[i].to_pickle(df_save_as_names[i])
+        df[i].to_pickle(df_save_as_name)
         # Let user know
         sys.stderr.write("\n\nA dataframe of the data "
         "has been saved as a file\nin a manner where other "
         "Python programs can access it (pickled form).\n"
         "RESULTING DATAFRAME is stored as ==> '{}'".format(
-            df_save_as_names[i] ))
-        df[i].to_csv(text_save_as_names[i] , sep='\t',index = False) 
+            df_save_as_name ))
+        df[i].to_csv(text_save_as_name , sep='\t',index = False) 
         # Let user know
         sys.stderr.write("\n\nA text table of the data "
         "has been saved as a file\nin tab-delimited form.\n"
         "RESULTING TAB-SEPARATED TEXT FILE is stored as ==> '{}'\n".format(
-            df_save_as_names[i] ))
+            df_save_as_name ))
 
     
     # Return dataframe (optional)
