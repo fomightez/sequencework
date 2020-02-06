@@ -13,9 +13,9 @@ __version__ = "0.1.0"
 # Python 3. 
 #
 #
-# PURPOSE: Takes output from command line-based standalone version of bendIt & 
-# brings it into Python as a Pandas dataframe and saves a file of that dataframe 
-# for use elsewhere. 
+# PURPOSE: Takes raw output from command line-based standalone version of bendIt 
+# & brings it into Python as a Pandas dataframe and saves a file of that 
+# dataframe for use elsewhere. 
 # Optionally, it can also return that dataframe for use inside a Jupyter 
 # notebook.
 #
@@ -159,12 +159,12 @@ def bendit_standalone_results_to_df(results, also_reported, return_df = True,
     sequence_file = "NONE_WAS_PROVIDED"):
     '''
     Main function of script. 
-    bendit standalone version results to Pandas dataframe(s).
+    raw bendit standalone version results to a Pandas dataframe.
 
-    It will take a text file of results from standalone verison of bendIt and 
+    It will take a text file of raw results from standalone verison of bendIt & 
     make a dataframe that will be more useful with Python or Juputer contexts.
 
-    Optionally also returns a dataframe(s) of the results data. Meant for use in 
+    Optionally also returns a dataframe of the results data. Meant for use in 
     a Jupyter notebook.
 
     There are two OPTIONAL ways to provide a sequence as discussed in the next 
@@ -182,8 +182,16 @@ def bendit_standalone_results_to_df(results, also_reported, return_df = True,
     The option to provide a sequence as a FASTA file is meant for when using 
     the script as script, i.e.m when calling with `%run ...` or `python ...`. 
 
-    By default, the dataframe(s) are pickled but this can be opted out of as 
+    By default, the dataframe is pickled but this can be opted out of as 
     well.
+
+    The astute user will have noted the raw output from the standalone version 
+    of the bendIt software includes two sets of the same results for each 
+    position. At present, I don't know why the results are repeated in the 
+    output. The documentation for the standalone version of bendIt is very 
+    sparse, and I haven't combed through the code to see if any reason is noted
+    there. Whatever, the reason, this script verifies that both versions are 
+    indeed the same and uses the first one.
     '''
     import pandas as pd
     if sequence_file == "NONE_WAS_PROVIDED" and (
@@ -264,6 +272,23 @@ def bendit_standalone_results_to_df(results, also_reported, return_df = True,
     for i,f in enumerate(temp_files_for_passing_data):
         df[i] = pd.read_csv(f, sep='\t', header=0)
 
+    # Test the two sets of data the standalone version of bendIt reports in the
+    # output file are the same
+    assert df[0].equals(df[1]), ("The two dataframes are different. NOT SEEN "
+    "BEFORE. What is different?")
+    # Seems to be the case that they are always the same so making it an assert
+    # because it would be BIG if not! Since now assuming are AND ONLY PASSING
+    # FIRST BACK.
+    '''
+    if not df[0].equals(df[1]):
+        sys.stderr.write("***WARNING: The two sets of data in the results file "
+            "are different. Maybe an issue?")
+    '''
+    i = 0 # use first
+    # FROM NOW ON, THIS SCRIPT WILL USE THE FIRST SET OF RESULTS bendIt GIVES.
+
+
+
     # feedback
     sys.stderr.write("Provided results read and converted to a dataframe...")
 
@@ -282,6 +307,7 @@ def bendit_standalone_results_to_df(results, also_reported, return_df = True,
     #sys.stderr.write(df.to_string())
 
     # Handle pickling the dataframe
+    ''' # COMMENTED OUT THE PICKLING AND SAVING AS TEXT OF BOTH DATAFRAMES SINCE CHECKING A LOT SUGGEST THEY ARE ALWAYS THE SAME
     df_save_as_names = [df_save_as_name,"second_"+df_save_as_name]
     text_save_as_names = [text_save_as_name,"second_"+text_save_as_name]
     for i,f in enumerate(temp_files_for_passing_data):
@@ -303,6 +329,25 @@ def bendit_standalone_results_to_df(results, also_reported, return_df = True,
             "has been saved as a file\nin tab-delimited form.\n"
             "RESULTING TAB-SEPARATED TEXT FILE is stored as ==> '{}'\n".format(
                 df_save_as_names[i] ))
+    '''
+    if pickle_df == False:
+        sys.stderr.write("\n\nA dataframe of the data "
+        "was not stored for use\nelsewhere "
+        "because `no_pickling` was specified.\n")
+    else:
+        df[i].to_pickle(df_save_as_names[i])
+        # Let user know
+        sys.stderr.write("\n\nA dataframe of the data "
+        "has been saved as a file\nin a manner where other "
+        "Python programs can access it (pickled form).\n"
+        "RESULTING DATAFRAME is stored as ==> '{}'".format(
+            df_save_as_names[i] ))
+        df[i].to_csv(text_save_as_names[i] , sep='\t',index = False) 
+        # Let user know
+        sys.stderr.write("\n\nA text table of the data "
+        "has been saved as a file\nin tab-delimited form.\n"
+        "RESULTING TAB-SEPARATED TEXT FILE is stored as ==> '{}'\n".format(
+            df_save_as_names[i] ))
 
     
     # Return dataframe (optional)
@@ -310,7 +355,7 @@ def bendit_standalone_results_to_df(results, also_reported, return_df = True,
     if return_df:
         sys.stderr.write("\n\nReturning a dataframe with the information "
                 "as well.")
-        return df[0],df[0]
+        return df[0]
 
 ###--------------------------END OF MAIN FUNCTION----------------------------###
 ###--------------------------END OF MAIN FUNCTION----------------------------###
@@ -364,8 +409,8 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(prog='bendit_standalone_results_to_df.py',
         description="bendit_standalone_results_to_df.py \
-        Takes output from command line-based standalone version of bendIt & \
-        brings it into Python as a dataframe and saves a file of that \
+        Takes raw output from command line-based standalone version of bendIt \
+        & brings it into Python as a dataframe and saves a file of that \
         Pandas dataframe for use elsewhere. \
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
