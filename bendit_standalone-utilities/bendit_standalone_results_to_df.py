@@ -216,6 +216,8 @@ def bendit_standalone_results_to_df(results, also_reported, return_df = True,
     # bendIt, parsing each set to separate temporary file for comparison:
     # 1. `results_parsing_temp1.tsv`
     # 2. `results_parsing_temp2.tsv`
+    # (Being able to review those myslf is why I went with a file intermediate & 
+    # didn't use stringio to hold the contents in memory instead)
     gnuplot_instruction_header_passed = False
     gnuplot_header_line_starts = ("set","plot","unset","#", "replot", "splot") # 
     # I added more beyond `set` & `plot` that I saw in examples from running 
