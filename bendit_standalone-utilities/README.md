@@ -3,7 +3,7 @@ Utilities for working with the standalone verion of bendIt
 
 The standalone version of bendIt, which is already installed and working in the Jupyter instances launchable [here](https://github.com/fomightez/bendit-binder).
 
-That version is available from the authors [here](http://pongor.itk.ppke.hu/dna/bend_it.html#/bendit_standalone). A ready
+That version is available from the authors [here](http://pongor.itk.ppke.hu/dna/bend_it.html#/bendit_standalone). 
 
 
 # The scripts
