@@ -11,7 +11,7 @@ That version is available from the authors [here](http://pongor.itk.ppke.hu/dna/
 * bendit_standalone_results_to_df.py
 > standalone bendIt results --> dataframe of data for use in Python
 
-Takes output from tandalone version of bendIt and makes a dataframe from it for use with Python.
+Takes output from standalone version of bendIt and makes a dataframe from it for use with Python.
 
 Verified compatible with both Python 2.7 and Python 3.7.
 
