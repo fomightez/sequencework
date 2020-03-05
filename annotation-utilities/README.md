@@ -9,6 +9,11 @@ Scripts
 
 There is a [demo notebook for this script in this repo](https://github.com/fomightez/cl_sq_demo-binder). Launch a binder session from there and select 'Demo of script to get intergenic gap sizes from annotation file' to run it actively.  The particular notebook can be viewed statically, nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/Demo%20of%20script%20to%20get%20intergenic%20gap%20sizes%20from%20annotation%20file.ipynb).
 
+Utilities by others
+-------------------
+
+[Extract 3'UTR, 5'UTR, CDS, Promoter, Genes, Introns, Exons from GTF files](https://github.com/saketkc/gencode_regions#confused-about-exons-and-utrs) - Even has several yeast examples, such as [sacCerR64.ipynb](https://github.com/saketkc/gencode_regions/blob/master/notebooks/sacCerR64.ipynb) [S_cerevisiae-BY4741-stanford.ipynb](https://github.com/saketkc/gencode_regions/blob/master/notebooks/S_cerevisiae-BY4741-stanford.ipynb), besides other organisms.
+
 See also
 -------
 
