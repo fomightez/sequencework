@@ -173,6 +173,8 @@ Will incorporate new functions to automate nw utils in next PIrANHA release." (S
 - [GToTree](https://github.com/AstrobioMike/GToTree/wiki/What-is-GToTree%3F)
 >"GToTree is a program that aims to give more researchers the capability to generate phylogenomic trees to help guide their work. At its heart it just takes in genomes and outputs an alignment and phylogenomic tree based on the specified single-copy gene set."
 
+- [for selecting only differing residues based on an alignment for identifying differences to feed Chimera](https://gist.github.com/idyoung/266427969f99f869bf9aaaf684a1497e)
+
 Somewhat related:  
 
 - [pyani](https://github.com/widdowquinn/pyani) for calculating average nucleotide identity (ANI) and related measures for whole genome comparisons, and rendering relevant graphical summary output.
