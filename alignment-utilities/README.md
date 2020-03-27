@@ -170,6 +170,10 @@ Will incorporate new functions to automate nw utils in next PIrANHA release." (S
 - [snp-dists](https://github.com/tseemann/snp-dists) - Pairwise SNP distance matrix from a FASTA sequence alignment. 
 >"Convert a FASTA alignment to SNP distance matrix."    <--- related to my scripts `roughly_score_relationships_to_subject_seq_pairwise_premsa.py`,`score_sequences_in_clustal_msa.py`, and `score_sequences_in_clustal_msa_favoring_top_line.py`..
 
+-  [HamHeat: Hamming distance calculation from multiple sequence data for heatmap visualization](https://github.com/alexeyrakov/HamHeat)   <--- related to my scripts `score_differences_between_sequences_by_pairwise_alignment.py` and `roughly_score_relationships_to_subject_seq_pairwise_premsa.py`
+
+    >"The script was applied to the real Salmonella allelic data of our recently published paper Rakov et al., 2019. Figure S1 (additional file 5) from this publication shows the heatmap for 70 virulence factors alleles for 500 Salmonella genomes. For this figure, the HamHeat results for each of the 70 alleles were combined in one file to be used as the input file for the [Morpheus matrix visualization software](https://software.broadinstitute.org/morpheus/)."
+
 - [GToTree](https://github.com/AstrobioMike/GToTree/wiki/What-is-GToTree%3F)
 >"GToTree is a program that aims to give more researchers the capability to generate phylogenomic trees to help guide their work. At its heart it just takes in genomes and outputs an alignment and phylogenomic tree based on the specified single-copy gene set."
 
