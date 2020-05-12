@@ -170,7 +170,7 @@ For retrieving/extracting sequences from 'local' sources (meaning where I supply
 
 I have coded several for extracting various sequences or subsequences from FASTA files using biopython. For example, see `drafting_extracting_mito_chr_function.py`. 
 
-# Related scripts by others
+# Related scripts/APIs by others
 
 - Haibao Tang's jcvi/MCscan software, see [here for links and info](https://github.com/fomightez/mcscan-binder), contains a script that
 collect sequennces matching features annotated in gff3 files:
@@ -188,3 +188,13 @@ Maybe useful stuff or better? See [here](https://twitter.com/widdowquinn/status/
 
 
 - [pyani](https://github.com/widdowquinn/pyani) has a script called `genbank_get_genomes_by_taxon.py` that  enables download of genomes from NCBI, specified by taxon ID.
+
+- [genomepy](https://github.com/vanheeringen-lab/genomepy) See [here](https://twitter.com/svheeringen/status/1260085341198913538).
+
+        >"Want a way to easily download genomes from Ensembl, UCSC, NCBI or any specific URL? Automatic installation of annotation? Easy access of genome files and accompanying files via Python API?"
+        >"Get version 0.8.1 via conda or pip! Use in your pipelines! Recommend it to your colleagues if you like it! Let us know what could be improved: https://github.com/vanheeringen-lab/genomepy/issues! Lots of work behind the scenes, the majority of the codebase is now covered by tests."
+        >"Visible changes include:
+        White heavy check markImproved download (and sanity checking) of annotations.
+        White heavy check markSearch by NCBI taxonomy ID.
+        White heavy check markCleaner search output, which now includes assembly accessions.
+        White heavy check markMore complete metadata in the genome README."
