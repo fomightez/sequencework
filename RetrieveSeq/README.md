@@ -197,4 +197,6 @@ Maybe useful stuff or better? See [here](https://twitter.com/widdowquinn/status/
         White heavy check markImproved download (and sanity checking) of annotations.
         White heavy check markSearch by NCBI taxonomy ID.
         White heavy check markCleaner search output, which now includes assembly accessions.
-        White heavy check markMore complete metadata in the genome README."
+        White heavy check markMore complete metadata in the genome README."  
+  There's also a snamkemake wrapper for genomepy, see [here](https://twitter.com/svheeringen/status/1300664254840950784)   August 2020
+    >"Download genomes and annotation as part of your snakemake workflow with the genomepy wrapper! https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/genomepy.html "
