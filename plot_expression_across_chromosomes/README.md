@@ -157,7 +157,7 @@ optional arguments:
 
 ### EXAMPLE INPUT
 
-The script requires a genome annotation file, typicall `GTF` or `GFF` format in addition to the data. A good source of such files for several organisms is Illumina's iGenomes page described [here in the documentation for mock_expression_ratio_generator.py](https://github.com/fomightez/simulated_data/tree/master/gene_expression). Below is the first few lines of the yeast file:
+The script requires a genome annotation file, typically `GTF` or `GFF` format in addition to the data. A good source of such files for several organisms is Illumina's iGenomes page described [here in the documentation for mock_expression_ratio_generator.py](https://github.com/fomightez/simulated_data/tree/master/gene_expression). Below is the first few lines of the yeast file:
 ```
 I	ensembl	CDS	335	646	.	+	0	exon_number "1"; gene_biotype "protein_coding"; gene_id "YAL069W"; gene_name "YAL069W"; gene_source "ensembl"; gene_version "1"; p_id "P3634"; protein_id "YAL069W"; protein_version "1"; transcript_biotype "protein_coding"; transcript_id "YAL069W"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS1129";
 I	ensembl	exon	335	649	.	+	.	exon_id "YAL069W.1"; exon_number "1"; exon_version "1"; gene_biotype "protein_coding"; gene_id "YAL069W"; gene_name "YAL069W"; gene_source "ensembl"; gene_version "1"; p_id "P3634"; transcript_biotype "protein_coding"; transcript_id "YAL069W"; transcript_source "ensembl"; transcript_version "1"; tss_id "TSS1129";
@@ -272,7 +272,7 @@ See example section [here](https://github.com/fomightez/simulated_data/tree/mast
 The implemented plotting approach and other aspects borrow from Brent Pedersen's awesome
 `manhattan-plot.py` script [here](https://github.com/brentp/bio-playground/blob/master/plots/manhattan-plot.py). (Many thanks to him for sharing that!)
 This script should produce a plot similar to a combination of Brent Pedersen's
-`manhattan-plot` that can be seen [here](https://github.com/brentp/bio-playground/tree/master/plots) and the plot in Figure 5B from Thorburn et al. 2013 (PMID: 23468524) that can be seen [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3639041/).
+`manhattan-plot` that can be seen [here](https://github.com/brentp/bio-playground/tree/master/plots) and the plot in Figure 5B from Thorburn et al. 2013 (PMID: 23468524) that can be seen [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3639041/). In [this Twitter post from September 2020](https://twitter.com/yeastgenome/status/1305597730044035073) I saw an image using DNA sequencing coverage data that is reminiscent of those produced here. Fortunately, the article [The Genome Sequence of the Jean-Talon Strain, an Archeological Beer Yeast from Québec, Reveals Traces of Adaptation to Specific Brewing Conditions by Fijarczyk et al](https://www.g3journal.org/content/10/9/3087) goes into determining ploidy per chromosome in Figure 1 and has the R accompanying code for making the figures [here](https://github.com/Landrylab/Fijarczyk2020_JeanTalon/tree/master/01_ploidy_spore_viability_aneuploidies) which includes Figure 1D that is reminiscent of what `plot_expression_across_chromosomes.py` and `plot_expression_across_chromosomes_direct.py` produce.
 
 There are several optional flags that can be supplied at the time of calling
 the script to control options. These are shown if you invoke with `help` 
