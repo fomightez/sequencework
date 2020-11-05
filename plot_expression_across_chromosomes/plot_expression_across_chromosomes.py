@@ -3,7 +3,7 @@
 # plot_expression_across_chromosomes.py by Wayne Decatur
 __author__ = "Wayne Decatur" #fomightez on GitHub
 __license__ = "MIT"
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 
 #*******************************************************************************
@@ -52,6 +52,13 @@ __version__ = "0.2.0"
 # VERSION HISTORY:
 # v.0.1. basic working version
 # v.0.2. refactored early part to speed up.
+# v.0.3. fixed column_types_for_gff and column_types_for_gtf so that 
+# `"seqname":'category',` now reads `"seqname":'object',`. Without that change
+# the aggregation step of min and max that is at the end of the line that begins
+# `genome_df = init_genome_df.groupby(` was not working. Luckily the same code
+# was working to aggregate that step in `mock_expression_ratio_generator.py` and
+# I findally looked at the dtypes of the dataframe and noticed the difference.
+#
 #
 # to do:
 # - make jupyter nb version <--- I think I mean that cabe imported & return a plot
@@ -63,6 +70,12 @@ __version__ = "0.2.0"
 # other? inspiration)
 # - add ability to supply chromsome data as BEd format? But then where does gene
 # location get supplied??
+# - possible to do would be to change the color cycling system to something more
+# similar to a generatory where define some good ones at start and then generate
+# random ones later with the idea being NONE repeat so every chromosomes/contig/
+# scaffold as separate color. See example of generator with similar approach in
+# `sequential_color_maps_generator()` for making donut plot colors with many
+# subgroups.
 #
 #
 #
@@ -94,7 +107,7 @@ genome_annotation_fields_for_gff = ("seqname", "source", "feature type", "start"
 genome_annotation_fields_for_bed = ("chrom", "chromStart", "chromEnd", "name", 
     "score", "strand", "thickStart", "thickEnd", "itemRgb", "blockCount", 
     "blockSizes", "blockStarts")
-column_types_for_gff  = {"seqname":'category',
+column_types_for_gff  = {"seqname":'object',
                 "source":'object',
                 "feature type":'object',
                 "start":'int64',
@@ -104,7 +117,7 @@ column_types_for_gff  = {"seqname":'category',
                 "frame":'object',
                 "group":'object',
                }
-column_types_for_gtf = {"seqname":'category',
+column_types_for_gtf = {"seqname":'object',
                 "source":'object',
                 "feature type":'object',
                 "start":'int64',
@@ -473,6 +486,7 @@ parser.add_argument('-cols', '--columns', action='store', type=str,
     you'd refer to the columns in natural language (no zero-indexing). ") 
     # based on
     # https://stackoverflow.com/questions/15753701/argparse-option-for-passing-a-list-as-option
+    # ; specifically, https://stackoverflow.com/a/24866869/8508004
 parser.add_argument("-l", "--lines",help=
     "add this flag to plot the expression level ratio value as lines \
     extending from the x-axis rather than points in space. (The resulting \
@@ -487,6 +501,7 @@ parser.add_argument('-chr', '--chrs', action='store', type=str,
     Default when this optional flag is not called is to plot that data for all \
     chromosomes or scaffolds. ") # based on
     # https://stackoverflow.com/questions/15753701/argparse-option-for-passing-a-list-as-option
+    # ; specifically, https://stackoverflow.com/a/24866869/8508004
 parser.add_argument("-nl", "--no_log",help=
     "add this flag to keep the expression level ratio to be plotted in the \
     common base 10 instead of converting to log2.",
@@ -535,11 +550,11 @@ parser.add_argument("-ndh", "--no_data_header",help=
     resulting plot.",
     action="store_true")
 parser.add_argument('-ac', '--advance_color', action='store', type=int, 
-    default= '0', help="**FOR ADVANCED USE.*** Allows for advancing the color \
+    default= '0', help="**FOR ADVANCED USE.** Allows for advancing the color \
     selection iterator the specified number of times. The idea is it allows \
     the ability to control the color of the chromosome when specifying \
     a chromosome or scaffolds to plot so you could make the color match the \
-    one used when all chromsome plotted if needed. Supply the number to \
+    one used when all chromosome plotted if needed. Supply the number to \
     advance after the flag on the command line. For example, `-ac 4`.") 
 
 #I would also like trigger help to display if no arguments provided because need at least one input file
@@ -996,6 +1011,7 @@ else:
     # plt.savefig(output_file_name[:-4]+".svg")
     # sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name[:-4]+".svg"))
     # plt.savefig(output_file_name[:-4]+".pdf", orientation='landscape') # UNFORTUNATELY DOES NOT PRODUCE VECTOR GRAPHICS, unlike ReportLab's pdf output; USE SVG for that and the make PDF later.
+    # For PDFs see https://twitter.com/michaelwaskom/status/1123259902837891072
     #plt.show()
 
 
