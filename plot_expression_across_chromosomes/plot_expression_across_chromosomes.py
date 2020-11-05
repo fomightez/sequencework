@@ -61,6 +61,16 @@ __version__ = "0.3.0"
 #
 #
 # to do:
+# - When I ran this again Novemeber 2020, I was seeing the following and it 
+# seems to tell what to do to remove warnings:
+'''
+/srv/conda/lib/python3.6/site-packages/matplotlib/axes/_base.py:3604: MatplotlibDeprecationWarning: 
+The `ymin` argument was deprecated in Matplotlib 3.0 and will be removed in 3.2. Use `bottom` instead.
+  alternative='`bottom`', obj_type='argument')
+/srv/conda/lib/python3.6/site-packages/matplotlib/axes/_base.py:3610: MatplotlibDeprecationWarning: 
+The `ymax` argument was deprecated in Matplotlib 3.0 and will be removed in 3.2. Use `top` instead.
+  alternative='`top`', obj_type='argument')
+'''
 # - make jupyter nb version <--- I think I mean that cabe imported & return a plot
 #(display mock data in it so don't need to have our real data out there?) which should be easy using the ipython based testing code version to get a hard coded one fast.(sort of did with little change needed) BUT NEED BETTER WAY FOR HANDLING HARDCODING OF FILENAMES STILL.
 # - add supplying arguments to basic jupyter nb one where first hardcoded
