@@ -48,11 +48,6 @@ __version__ = "0.1.0"
 #
 #
 # To do:
-# - use chunking of 70 to save the FASTA sequence as multiline and not just
-# one long line. (see gist for worked out code.) RERUN THE DEMO, EDIT/ADJUST 
-# LAST part where say `Note that we get two sequences even though I listed 
-# using `-n 4` there because description lines and sequence each separate line`
-#  to reflect new siutation, AND SAVE NEW VERSION.
 # - use what I did in `get_seq_following_seq_from_FASTA.py` to add ability
 # to use regex in provided search text
 # - Would I have need for multiple matches?
@@ -163,6 +158,31 @@ def generate_output_file_name(file_name,text_to_match, suffix_for_saving):
     '''
     return "seq" + suffix_for_saving + text_to_match + ".fa"
 
+def generate_seq_chunks(seq_string, chunk_size = 70):
+    '''
+    This takes a sequence as a sting and breaks it up into list of strings of
+    set length with graceful handling of the last line that will most likely
+    not be full length. 
+    The list of sequence strings gets returned
+
+    `chunk_size = 70` sets residues per line to have in FASTA; note this 
+    #chunking to multiple lines is the opposite of what PatMatch's 
+    # `unjustify_fasta.pl` does. 
+
+    Note `chunk_size` defaults to 70 here but optionally a different one
+    can be provided.
+
+    I believe my chunking code is based on 
+    https://stackoverflow.com/a/13673133/8508004 or 
+    https://stackoverflow.com/a/9475354/8508004 , see my gist 
+    https://gist.github.com/fomightez/ef7583919dde51f3569731ca1c5247ba for some 
+    notes on it and more related.
+    '''
+    return [seq_string[i:i+chunk_size] for i in range(
+        0, len(seq_string),chunk_size)]
+
+
+    prot_seq_fa = ">" + prot_descr + "\n"+ "\n".join(prot_seq_chunks)
 
 
 ###--------------------------END OF HELPER FUNCTIONS-------------------------###
@@ -199,17 +219,21 @@ def get_seq_from_multiFASTA_with_match_in_description(sequence, text_to_match,
     for record in records:
         if case_sensitive:
             if text_to_match in record.long_name:
-                seq_fa = ">" + record.long_name + "\n"+str(record)
+                seq_fa = ">" + record.long_name + "\n"+"\n".join(
+                    generate_seq_chunks(str(record)))
                 break
         else:
             if text_to_match.lower() in record.long_name.lower():
-                seq_fa = ">" + record.long_name + "\n"+str(record)
+                seq_fa = ">" + record.long_name + "\n"+"\n".join(
+                    generate_seq_chunks(str(record)))
                 break
     if seq_fa == "NOT_ANY_FOUND":
         sys.stderr.write("**ERROR:No match to provided text found in "
             "description line "
             "for ANY sequence record.  ***ERROR*** \nEXITING.\n")
         sys.exit(1)
+
+
 
 
 
