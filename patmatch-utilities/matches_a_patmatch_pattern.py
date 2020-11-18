@@ -56,12 +56,19 @@ __version__ = "0.1.0"
 # re-implement it.
 # Note on PatMatch syntax: The letters themselves match IUPAC ambiguity codes, 
 # see 'Nucleotide ambiguity code' list at 
-# https://www.dnabaser.com/articles/IUPAC%20ambiguity%20codes.html . However,
+# https://www.dnabaser.com/articles/IUPAC%20ambiguity%20codes.html . (or see 
+# https://www.bioinformatics.org/sms/iupac.html ) However,
 # pattern syntax for PatMatch goes beyond that as it can handle broader 
 # constraints than just the letters. See 
 # https://www.biostars.org/p/264212/#264218 for a discussion of alignment tools 
 # that also allow the IUPAC codes. (Exonerate & BWBBLE & perhaps the Biostrings 
-# Bioconductor package seems like much of the extent of it.)
+# Bioconductor package seems like much of the extent of it.) For small sequences
+# it looks like from https://www.biostars.org/p/107922/#115103 that primerTree's
+# primer_search command can. And looks like from documentation on BioStrings I 
+# learned of from MingTang (see 
+# https://twitter.com/tangming2005/status/1187753238545629184) that it does as 
+# well. That is one I have listed under alternatives to PatMatch at 
+# https://github.com/fomightez/cyverse-talkPatMatchCircosVICE/blob/master/README.md
 #
 #
 #
