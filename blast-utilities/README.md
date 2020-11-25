@@ -58,6 +58,6 @@ See [here](https://git.io/vh8M7) and for notebooks demonstrating use within a Ju
 Related
 -------
 
-- About a month before I made my `blast_to_df.py`, Noam Harel in Adi Stern's Labarotary made one shown [here](https://github.com/taliaku/SternLab/commit/68abf4f05bd3d44923e365e7cdb6ca2ecb1d19ca). They have a script entitled `blast_utilities.py` [here](https://github.com/taliaku/SternLab/blob/master/blast_utilities.py).
+- About a month before I made my `blast_to_df.py`, Noam Harel in Adi Stern's Labarotary made one shown [here](https://github.com/taliaku/SternLab/commit/68abf4f05bd3d44923e365e7cdb6ca2ecb1d19ca) that uses the hit table in CSV form as input. They have a script entitled `blast_utilities.py` [here](https://github.com/taliaku/SternLab/blob/master/blast_utilities.py).
 
 - However, I probably lifted the name / idea from something I vaguely recalled from Titus Brown's Lamprey work, see [here](https://github.com/dib-lab/2013-lamprey/blob/7493710399a05433989e25b3d01b962e6cab3553/notebooks/analyses/Lamprey_E_Protein_Analysis.ipynb). Unfortunately the reference to `peasoup` which imports the `BLAST` methods seems defunct [here](https://github.com/dib-lab/2013-lamprey/tree/7493710399a05433989e25b3d01b962e6cab3553) and so I haven't entirely tracked it back to put a link to the code here yet. (Maybe [Camille Scott's stuff?](https://github.com/dib-lab/2013-lamprey/blob/7493710399a05433989e25b3d01b962e6cab3553/notebooks/analyses/petmar-gtf-overlap.ipynb)?)
