@@ -191,7 +191,7 @@ def blast_to_df(results, return_df = True, pickle_df=True):
     col_names = ['qseqid', 'sseqid', 'stitle', 'pident', 'qcovs', 'length',
     'mismatch', 'gapopen', 'qstart', 'qend', 'sstart', 'send', 'qframe',
     'sframe', 'frames', 'evalue', 'bitscore', 'qseq', 'sseq']
-    # Bring in the necessary data and mke collected results into dataframe:
+    # Bring in the necessary data and make collected results into dataframe:
     #---------------------------------------------------------------------------
     # df = pd.read_csv(results, sep='\t', header=None, names=col_names)
     # AT FIRST I HAD ABOVE, because I mistakenly though documentation said
