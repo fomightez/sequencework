@@ -14,16 +14,15 @@ Verified compatible with both Python 2.7 and Python 3.8.
 Written to run from command line or pasted/loaded inside a Jupyter notebook cell.  
 The main ways to run the script are demonstrated in [a series of notebooks found here](https://github.com/fomightez/hhsuite3-binder). They can be run actively by pressing the `launch binder` button [there](https://github.com/fomightez/hhsuite3-binder). (https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/blast-utilities/demo_blast2df_in_python2.ipynb) in Python 2.)
 
-Assumes BLAST is run with the flag below:
-```
--outfmt "6 qseqid sseqid stitle pident qcovs length mismatch gapopen qstart qend sstart send qframe sframe frames evalue bitscore qseq sseq"
-```
-Example `hhblits` command to make the results needed by `hhsuite3_results_to_df.py`:
+
+Example `hhblits` command to make an HH-suite3 results file in `.hhr` format needed as input by `hhsuite3_results_to_df.py`:
 ```
 hhblits ...
 ```
 
-See [HH-suite3 dcoumentation](https://github.com/soedinglab/hh-suite/wiki) for more on generating results files.
+See [HH-suite3 dcoumentation](https://github.com/soedinglab/hh-suite/wiki) for more on generating results files on the command line.
+
+Alternatively, you can use the HHpred webserver to make these result files. For example, go to [HHpred site here](https://toolkit.tuebingen.mpg.de/tools/hhpred) and paste in a protein sequence. Feel free to adjust the search options if you'd like before hitting the `Submit` button in the bottom right.
 
 
 Example calls to run the `hhsuite3_results_to_df.py` script from command line:
