@@ -22,7 +22,7 @@ hhblits ...
 
 See [HH-suite3 dcoumentation](https://github.com/soedinglab/hh-suite/wiki) for more on generating results files on the command line.
 
-Alternatively, you can use the HHpred webserver to make these result files. For example, go to [HHpred site here](https://toolkit.tuebingen.mpg.de/tools/hhpred) and paste in a protein sequence. Feel free to adjust the search options if you'd like before hitting the `Submit` button in the bottom right.
+Alternatively, you can use the HHpred webserver to make these result files using your favorite web browser. For example, go to [HHpred site here](https://toolkit.tuebingen.mpg.de/tools/hhpred) and paste in a protein sequence. Feel free to adjust the search options if you'd like before hitting the 'Submit' button in the bottom right. After the submitted job finishes, from the 'Results' tab, you can select 'Download HHR' to retrieve a HH-suite3 results file in `.hhr` format to your local machine. You can upload that to a running session launched from [here](https://github.com/fomightez/hhsuite3-binder) and edit some of the examples in the series of notebooks there to use the hhsuite3_results_to_df.py script on your data present in your downloaded `.hhr` file.
 
 
 Example calls to run the `hhsuite3_results_to_df.py` script from command line:
@@ -47,7 +47,7 @@ To use this script after pasting or loading into a cell in a Jupyter notebook, i
 ```
 df = hhsuite3_results_to_df("results_file.hhr")
 ```
-See [here](????) and for notebooks demonstrating use within a Jupyter notebook; click `luanch binder` to launch the notebooks from there.
+See [here](https://github.com/fomightez/hhsuite3-binder) for notebooks demonstrating use within a Jupyter notebook; click `launch binder` to launch a session that will allow you to us the notebooks from there.
 
 
 Related
