@@ -52,7 +52,7 @@ To use this script after pasting or loading into a cell in a Jupyter notebook, i
 ```
 df = blast_to_df("results_file.txt")
 ```
-See [here](https://git.io/vh8M7) and for notebooks demonstrating use within a Jupyter notebook; click `luanch binder` to launch the notebooks from there.
+See [here](https://git.io/vh8M7) for notebooks demonstrating use within a Jupyter notebook; click `launch binder` to launch a session that will allow you to use the notebooks from there.
 
 
 Related
