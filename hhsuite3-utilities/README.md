@@ -47,7 +47,7 @@ To use this script after pasting or loading into a cell in a Jupyter notebook, i
 ```
 df = hhsuite3_results_to_df("results_file.hhr")
 ```
-See [here](https://github.com/fomightez/hhsuite3-binder) for notebooks demonstrating use within a Jupyter notebook; click `launch binder` to launch a session that will allow you to us the notebooks from there.
+See [here](https://github.com/fomightez/hhsuite3-binder) for notebooks demonstrating use within a Jupyter notebook; click `launch binder` to launch a session that will allow you to use the notebooks from there.
 
 
 Related
