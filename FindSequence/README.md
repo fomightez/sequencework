@@ -52,5 +52,5 @@ https://twitter.com/BQPMalfoy/status/1202902187174707200     December 2019
 [rcgrep: Search text files for DNA sequences and their reverse complements](https://github.com/dib-lab/rcgrep)  <--- this is from DIBs lab when traced back and must be what was I was thinking of when I thought screen migth have it
 
 
-
+[Cool R script to colorfully annotate adapter sequences in a sequence - could be useful to adapt for displaying PCR primers, etc](https://twitter.com/clintcodesbio/status/1339947174239612929); R script [here](https://gitlab.com/gringer/bioinfscripts/-/blob/master/read_annotator.r) that highlights subseqeunces
 
