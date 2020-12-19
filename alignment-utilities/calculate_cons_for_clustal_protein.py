@@ -21,8 +21,8 @@ __version__ = "0.1.0"
 # Good for replacing absent information in alignments. Or good
 # for replacing outdated /lost information in alignments upon hand-editing with 
 # Seqotron on a Mac. Better than `cons` in EMBOSS suite because makes format 
-# that matches t-coffee more so no hand editing, plus adds conserved substitions
-# as colons and periods depending if weak or strongly similar, see
+# that matches t-coffee more so no hand editing, plus adds conserved 
+# substitutions as colons and periods depending if weak or strongly similar, see
 # https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Bioinformatics+Tools+FAQ#BioinformaticsToolsFAQ-WhatdoconsensussymbolsrepresentinaMultipleSequenceAlignment?
 # 
 # Also useful in conjunction with Kalign (https://www.ebi.ac.uk/Tools/msa/kalign/) 
