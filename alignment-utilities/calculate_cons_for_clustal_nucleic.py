@@ -21,8 +21,9 @@ __version__ = "0.1.0"
 # Good for replacing absent information in alignments. Or good
 # for replacing outdated /lost information in alignments upon hand-editing with 
 # Seqotron on a Mac. Better than `cons` in EMBOSS suite because makes format 
-# that matches t-coffee more so no hand editing, plus adds conserved substitions
-# as periods (, vaguely similar to what is described for proteins at 
+# that matches t-coffee more so no hand editing, plus adds conserved 
+# substitutions as periods (, vaguely similar to what is described for proteins 
+# at 
 # https://www.ebi.ac.uk/seqdb/confluence/display/THD/Help+-+Clustal+Omega+FAQ#Help-ClustalOmegaFAQ-Whatdotheconsensussymbolsmeaninthealignment?;
 #  I kept as periods to not imply strongly similar).
 # See `edited t-coffee alignment for true mitochondrial orgins.md` for first use. 
