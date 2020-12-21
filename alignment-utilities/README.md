@@ -155,6 +155,11 @@ Related utilities in my other repositories
 Utilities by others
 ------------------
 
+- [alnvu](https://github.com/nhoffman/alnvu - Python package to reformat and condense multiple sequence alignments to highlight variability
+>"alnvu makes a multiple alignment of biological sequences more easily readable by condensing it and highlighting variability.
+Produces formatted multiple alignments in plain text, html, and pdf."  
+Related to my scripts `score_columns_in_clustal_msa.py`, `calculate_cons_for_clustal_nucleic.py`, `calculate_cons_for_clustal_protein.py`, `mview_to_CLUSTAL.py`, and `score_sequences_in_clustal_msa.py`.
+
 - [Adding unaligned sequences into an existing alignment using MAFFT and LAST](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3516148/)
 
 I have several listed [here](http://proteopedia.org/wiki/index.php/User:Wayne_Decatur/Sequence_analysis_tools) such as those that interconvert/reformat alignments in various forms. Just search `align` on that page to step through examining them. In particular note:
