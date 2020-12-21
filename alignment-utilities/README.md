@@ -85,7 +85,7 @@ Meant to be run once you have a multiple sequence alignment and want to use the 
 Takes an multiple sequence alignment (in CLUSTAL format) that has a consensus line, produced from, say, [MUSCLE](https://www.ebi.ac.uk/Tools/msa/muscle/) , and for a specific sequence in the alignment categorizes the residues that are identical, strongly, similar, or 
 weakly similar in the alignment.  Plus also categorizes unconserved, while at it. Importantly, residue positions in the results are in common terms where first residue is number one.
 
-There is a [demo notebook for this script as part of my series of structurework-command line demos](https://github.com/fomightez/cl_demo-binder). You can launch the series from [here](https://github.com/fomightez/cl_demo-binder) and then selecting from the index to go to the 'Categorize conservation in a MSA and use that to generate molvis commands' page. The direct link to a nicely-rendered, static version of that page is [here](https://nbviewer.jupyter.org/github/fomightez/cl_demo-binder/blob/master/cl_demo-binder%20Categorize%20conservation%20in%20a%20MSA%20and%20use%20that%20to%20generate%20molvis%20commands.ipynb). Usage of the script is illustrated there because this script is ideal for bridging sequence analysis to molecular structure analysis and I had an idea for a good illustration of that bridging concept. That demo also has a function fuller accounting of documentation for this script as well.
+There is a [demo notebook for this script as part of my series of structurework-command line demos](https://github.com/fomightez/cl_demo-binder). You can launch the series from [here](https://github.com/fomightez/cl_demo-binder) and then selecting from the index to go to the 'Categorize conservation in a MSA and use that to generate molvis commands' page. The direct link to a nicely-rendered, static version of that page is [here](https://nbviewer.jupyter.org/github/fomightez/cl_demo-binder/blob/master/notebooks/Categorize%20conservation%20in%20a%20MSA%20and%20use%20that%20to%20generate%20molvis%20commands.ipynb). Usage of the script is illustrated there because this script is ideal for bridging sequence analysis to molecular structure analysis and I had an idea for a good illustration of that bridging concept. That demo also has a function fuller accounting of documentation for this script as well.
 
 * mview_to_CLUSTAL.py 
 > MView output of an alignment with few 'bells-n-whistles' ---> alignment in CLUSTAL format
@@ -155,10 +155,10 @@ Related utilities in my other repositories
 Utilities by others
 ------------------
 
-- [alnvu](https://github.com/nhoffman/alnvu - Python package to reformat and condense multiple sequence alignments to highlight variability
+- [alnvu](https://github.com/nhoffman/alnvu) - Python package to reformat and condense multiple sequence alignments to highlight variability
 >"alnvu makes a multiple alignment of biological sequences more easily readable by condensing it and highlighting variability.
 Produces formatted multiple alignments in plain text, html, and pdf."  
-Related to my scripts `score_columns_in_clustal_msa.py`, `calculate_cons_for_clustal_nucleic.py`, `calculate_cons_for_clustal_protein.py`, `mview_to_CLUSTAL.py`, and `score_sequences_in_clustal_msa.py`.
+Related to my scripts `score_columns_in_clustal_msa.py`, `calculate_cons_for_clustal_nucleic.py`, `calculate_cons_for_clustal_protein.py`, `mview_to_CLUSTAL.py`, `categorize_residues_based_on_conservation_relative_consensus_line.py`, and `score_sequences_in_clustal_msa.py`. 
 
 - [Adding unaligned sequences into an existing alignment using MAFFT and LAST](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3516148/)
 
