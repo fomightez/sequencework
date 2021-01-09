@@ -599,7 +599,7 @@ if __name__ == "__main__" and '__file__' in globals():
         saves a file of that dataframe for use elsewhere. Optionally, it can \
         also return that dataframe for use inside a Jupyter notebook. \
         Meant to be a utility script for working \
-        with command HH-suite3 and Python.\
+        with HH-suite3 and Python.\
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
     parser.add_argument("results_file", help="Name of file of .hhr results \
