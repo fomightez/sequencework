@@ -461,8 +461,8 @@ def determine_rnl_details(df, seq_file_name, check_omega=True):
                 "master/omega-presence/check_for_omega_intron.py")
             # verify that worked & ask for it to be done manually if fails
             if not os.path.isfile(file_needed):
-                github_link = ("https://github.com/fomightez/sequencework/blob/"
-                    "master/omega-presence/")
+                github_link = ("https://github.com/fomightez/sequencework/tree"
+                    "/master/omega-presence")
                 sys.stderr.write("\n'check_for_omega_intron.py' not found. "
                     "Please add it to your current working\ndirectory from {}"
                 ".\n**EXITING !!**.\n".format(github_link))
