@@ -117,7 +117,7 @@ prot_df
 ##################################
 #
 
-## Settings and options for output plot 
+## Settings and options for output dataframe-as-file 
 df_save_as_name = 'patmatch_pickled_df.pkl' # name for saving pickled dataframe
 
 #
