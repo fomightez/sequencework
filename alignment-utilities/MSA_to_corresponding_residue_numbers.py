@@ -189,8 +189,8 @@ def get_equivalents(ref_seq_to_here, ref_offset, query_to_here, query_offset):
 def end_of_match_block(current_set,next_set):
     '''
     Takes current matching residues and the next set of matching residues 
-    and determines if there is  a 'break' next because element for either chain is 
-    not the next consecutive position for each relative current.
+    and determines if there is  a 'break' next because element for either chain 
+    is not the next consecutive position for each relative current.
 
     Return True if that match block is the end of that accumulating block of 
     positions for both chains or false if accumulation of block of matches is to 
@@ -236,13 +236,13 @@ def make_intervals(lizt_o_lists):
     return flat_list
     
 
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
+###--------------------------END OF HELPER FUNCTIONS-------------------------###
+###--------------------------END OF HELPER FUNCTIONS-------------------------###
 
 
 
 #*******************************************************************************
-###------------------------'main' function of script---------------------------##
+###------------------------'main' function of script--------------------------##
 
 def MSA_to_corresponding_residue_numbers(
     alignment, ref_id, supplied_start_pos = None, return_dfs = False):
@@ -327,7 +327,8 @@ def MSA_to_corresponding_residue_numbers(
         if record.id == ref_id:
             ref_seq = record.seq
             sys.stderr.write(
-                "{} reference sequence collected from alignment...".format(ref_id))
+                "{} reference sequence collected from "
+                "alignment...".format(ref_id))
             # track position of reference sequence among the records so if 
             # any start position information will get associated.
             ref_index_among_records = indx
@@ -343,8 +344,8 @@ def MSA_to_corresponding_residue_numbers(
         sys.stderr.write("\n***    ERROR    ***   ERROR   ***\nCAUSE OF ERROR:")
         sys.stderr.write("\nNo matches to provided identifier were found in "
             "the multiple sequence alignment.\nUser specified id of "
-            "reference: {}\n"
-            "Identifiers in the provided alignment: {}.\n".format(id_, repr(msa_ids)))
+            "reference: {}\nIdentifiers in the provided "
+            "alignment: {}.\n".format(id_, repr(msa_ids)))
         sys.stderr.write("***  END OF ERROR DESCRIPTION ***\n")
         sys.exit(1)
 
@@ -381,7 +382,8 @@ def MSA_to_corresponding_residue_numbers(
     #---------------------------------------------------------------------------
     query_matches_by_id = {} # a dictionary where id of query alignment is the 
     # key and values are a lit of tuples the matched residues with reference 
-    # sequence position listed first and corresponding query position listed second.
+    # sequence position listed first and corresponding query position listed 
+    # second.
     for id_ in query_seqs:
         # Using the squence associated with the current id as the current 
         # query, step through each character listed in reference sequence and 
@@ -610,12 +612,12 @@ if __name__ == "__main__" and '__file__' in globals():
     # provide arguments when prototyping a full script in the notebook.
     # For 'nargs', see https://stackoverflow.com/a/15753721/8508004 for where
     # use of `nargs='*'` allows specifying zero or more in the list.
-    ###-----------------for parsing command line arguments-----------------------###
+    ###-----------------for parsing command line arguments-------------------###
     import argparse
     parser = argparse.ArgumentParser(prog=
         'MSA_to_corresponding_residue_numbers.py',
         description="MSA_to_corresponding_residue_numbers.py \
-        takes akes a multiple sequence alignment in Clustal format and \
+        takes a multiple sequence alignment in Clustal format and \
         determines the corresponding residue numbers for aligned residues for \
         a specified reference sequence in the alignment and the pairing of it \
         with every other aligned sequence in the multiple sequence alignment. \
