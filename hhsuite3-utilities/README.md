@@ -9,7 +9,7 @@ Utility scripts for working with command line-based [HH-suite3](https://github.c
 
 Takes output in the form of `.hhr` results files from command line HH-suite3 programs and makes a dataframe from it for use with Python.
 
-Verified compatible with both Python 2.7 and Python 3.8.
+Intended to be compatible with both Python 2.7 and Python 3.8. (Not yet verified though. **UPDATE WHEN VERIFIED**)
 
 Written to run from command line or pasted/loaded inside a Jupyter notebook cell.  
 The main ways to run the script are demonstrated in [a series of notebooks found here](https://github.com/fomightez/hhsuite3-binder). They can be run actively by pressing the `launch binder` button [there](https://github.com/fomightez/hhsuite3-binder). (https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/blast-utilities/demo_blast2df_in_python2.ipynb) in Python 2.)
