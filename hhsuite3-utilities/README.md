@@ -32,7 +32,7 @@ python hhsuite3_results_to_df.py results_file.hhr
 
 (Alternatively, upload the script to a Jupyter environment and use `%run hhsuite3_results_to_df.py results_file.hhr` in a Python-backed notebook to run the example.)
 
-**Note:** This script keeps each hit as a separate entry in the resulting dataframe. The biopython hhsuite parser also demonstrated in the notebook NAME & LINK GOES HERE,  that demonstrates this script, makes a text table that combines 'high-scoring segment pair' or 'high-scoring pair' (hsp) that correspond to the same accession identifier. You could always use Panda's `groupby` in a downstream step to achieve a similar accounting with `hhsuite3_results_to_df.py`. <== **TBD: add demo of that to the demo notebook.**
+**Note:** This script keeps each hit as a separate entry in the resulting dataframe. The biopython hhsuite parser also demonstrated in the notebook NAME & LINK GOES HERE,  that demonstrates this script, makes a text table that combines 'high-scoring segment pair' or 'high-scoring pair' (hsp) that correspond to the same accession identifier. You could always use Panda's `groupby` in a downstream step to achieve a similar accounting with `hhsuite3_results_to_df.py`.
 
 **The pickle format ending in extension `.pkl` was chosen as the default output, despite not being human-readable, in order to store data efficiently since searches of entire gemomes has the potential to generate a lot of data files.** If you need to convert to a text-readable form, you can do the following with Jupyter or IPython where the pickled data has been saved to save it as tab separated text:
 
