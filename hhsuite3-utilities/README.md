@@ -32,7 +32,7 @@ python hhsuite3_results_to_df.py results_file.hhr
 
 (Alternatively, upload the script to a Jupyter environment and use `%run hhsuite3_results_to_df.py results_file.hhr` in a Python-backed notebook to run the example.)
 
-**Note:** This script keeps each hit as a separate entry in the resulting dataframe. The biopython hhsuite parser also demonstrated in the notebook NAME & LINK GOES HERE,  that demonstrates this script, makes a text table that combines 'high-scoring segment pair' or 'high-scoring pair' (hsp) that correspond to the same accession identifier. You could always use Panda's `groupby` in a downstream step to achieve a similar accounting with `hhsuite3_results_to_df.py`.
+**Note:** This script keeps each hit as a separate entry in the resulting dataframe. The biopython hhsuite parser also demonstrated in the notebook 'Using Python to examine HH-suite3 results.ipynb' & LINK GOES HERE,  that demonstrates this script, makes a text table that combines 'high-scoring segment pair' or 'high-scoring pair' (hsp) that correspond to the same accession identifier. You could always use Panda's `groupby` in a downstream step to achieve a similar accounting with the dataframe made by `hhsuite3_results_to_df.py`.
 
 **The pickle format ending in extension `.pkl` was chosen as the default output, despite not being human-readable, in order to store data efficiently since searches of entire gemomes has the potential to generate a lot of data files.** If you need to convert to a text-readable form, you can do the following with Jupyter or IPython where the pickled data has been saved to save it as tab separated text:
 
@@ -40,6 +40,8 @@ python hhsuite3_results_to_df.py results_file.hhr
     df = pd.read_pickle("hhr_derived_df.pkl")
     df.to_csv('hhr_results.tsv', sep='\t',index = False) 
 
+
+**CAVEAT**: For now, this script fails if the hit identifier and the indentifier on the line of the alignment block don't agree, for example [hhsearch_q9bsu1_uniclust_w_ss_pfamA_30.hhr](https://github.com/biopython/biopython/blob/master/Tests/HHsuite/hhsearch_q9bsu1_uniclust_w_ss_pfamA_30.hhr). (Contrast that with the details and alignment blocks [here](https://github.com/biopython/biopython/blob/master/Tests/HHsuite/2uvo_hhblits.hhr).) I had thought there was a relationship when developing the script and used that as a way to extract the hit identifier ('hid') and relate lines of the alignment. Since I am unsure if this is because some of the biopython stuff is hh-suite format version 2 because it refers to that and not version 3, I am reluctant to spend much time on this now. The easiet way until I decide to change it would be to build in a pre-processing step upstream of the use `hhsuite3_results_to_df.py`( and then possibly build that same step into `hhsuite3_results_to_df.py` later) that would detect the situation and make it more like the convention seen elsewhere. 
 
 
 #### For running in a Jupyter notebook:
