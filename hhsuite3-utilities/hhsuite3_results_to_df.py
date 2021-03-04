@@ -323,12 +323,14 @@ def tablicize_hhr(hhr_file_content):
         # appropriate key.
         # the collected text once collected
         # Note that if the secondary structure wasn't added to the query or the 
-        # values in the database, itseems the alignmnet section for each record 
+        # values in the database, it seems the alignmnet section for each record 
         # will lack `Q ss_pred` & `T ss_pred` lines. So determine if that is the 
         # case and parse the alignment section appropriately. Some examples of 
         # this are the hhr files from the hits against the custom database.
         # Also the `Confidence` line can also be optional and IMPORTANTLY it can
         # be avilable for top ranked hits and not in the ones further below!!!
+        # I found a similar thing for the `ss_dssp` where low ranked hits could
+        # lack it.
         # For these three, determine if they are present and adjust the key
         # values and collection of data appropriately.
         # The `alignment_section_label_relator` will assist in this process by
@@ -341,10 +343,12 @@ def tablicize_hhr(hhr_file_content):
             'Q Consensus':'qconsensus',
             'T Consensus':'hconsensus',
             'Confidence':'aln_confidence',
-            f'Q {qid}':'qseq',
-            f'T {hid}':'hseq',
+            f'Q {qid[:14]}':'qseq',
+            f'T {hid[:14]}':'hseq',
             'Q ss_pred':'qss_pred',
             'T ss_pred':'hss_pred',
+            'Q ss_dssp':'qss_dssp',
+            'T ss_dssp':'hss_dssp',
             }
         # In each pairwise HMM alignment chunk there will be a line in the
         # middle that doesn't have a label, this will be the column score 
@@ -421,8 +425,7 @@ def tablicize_hhr(hhr_file_content):
     # `generalized_labels_from_alignment_section` to easily handle those labels 
     # since I've seen them differ from different `hhr` files, for exmaple 
     # depending on if there are `Q ss_pred`/`T ss_pred` lines or `Confidence` 
-    # lines in the pairwise alignments section.
-    # Remember that
+    # lines in the pairwise alignments section. Or  `ss_dssp` lines, too.
     columns_to_make_after_hit_num = (
         ['qid','qtitle','query_length','hid','htitle','hit_length'] + 
         metrics + ['size_diff'] + 
@@ -439,6 +442,9 @@ def tablicize_hhr(hhr_file_content):
                 table_str += "{}\t".format(hit_dict[row_no][l])
             except KeyError:
                 if l == 'aln_confidence':
+                    import numpy as np
+                    table_str += "{}\t".format(np.nan)
+                elif l == 'hss_dssp':
                     import numpy as np
                     table_str += "{}\t".format(np.nan)
                 else:
