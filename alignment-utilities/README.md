@@ -47,11 +47,15 @@ Meant to add a consensus symbol line for cases where alignment produced doesn't 
 info here. 
 (Keep in mind [MView](https://www.ebi.ac.uk/Tools/msa/mview/) good if just need visual representation, albeit not as concise as this script makes or MUSCLE outputs.)
 
+
+
 * calculate_cons_for_clustal_protein.py
 > protein alignment without consensus line ---> alignment with consensus symbols line
 
 Meant to add a consensus symbol line for cases where alignment produced doesn't have it (e.g., Clustal output from Stretcher or extracted I-TASSER thread template listing or exported from aligned templates at SWISS-MODEL) or it has been lost. Consensus symbols line it produces is similar to the Clustal style consensus symbols MUSCLE adds below each reside of the alignment.  
 (Keep in mind [MView](https://www.ebi.ac.uk/Tools/msa/mview/) good if just need visual representation, albeit not as concise, suitable for saving, or machine-parseable as this script makes or MUSCLE outputs.)
+
+The script `calculate_cons_for_clustal_protein.py` is demonstrated in MyBinder sessions you can launch from [here](https://github.com/fomightez/cl_sq_demo-binder).  To see the script in action, go [here](https://github.com/fomightez/cl_sq_demo-binder) and click on `launch binder`. Once the session spins up, select 'Use biopython to make valid CLUSTAL formatted MSAs, check sequence of manually edited alignment, and add consensus line' from the list of available notbeooks. The section with use of `calculate_cons_for_clustal_protein.py` is towards the bottom of the Jupyter notebook.  You can see the Jupyter notebook statically [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/Use%20biopython%20to%20make%20valid%20CLUSTAL%20formatted%20MSAs%2C%20check%20sequence%20of%20manually%20edited%20alignment%2C%20and%20add%20consensus%20line.ipynb).
 
 * score_sequences_in_clustal_msa.py 
 > multiple sequence alignment (clustal) ---> dataframe of the id and assessment score of each sequence 
