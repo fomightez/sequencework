@@ -132,6 +132,14 @@ RELATED:
 see about Torsten Seemann's `snp-dists` below.
 
 
+- Conversion of MSA in FASTA format to clustal.ipynb
+>Conversion of a multiple sequence alignment (MSA) in one format to another based on section 'File Format Conversion' at https://biopython.org/wiki/AlignIO .
+
+[Conversion of MSA in FASTA format to clustal using Biopython](https://nbviewer.jupyter.org/github/fomightez/cl_demo-binder/blob/master/notebooks/Conversion%20of%20FASTA%20alignment%20format%20to%20clustal%20using%20Biopython.ipynb)
+
+This notbeook is available and can be run by going [here](https://github.com/fomightez/cl_demo-binder), clicking on `launch binder`, and then selecting 'Convert MSA in FASTA format to clustal format using Bioython' from the index listing available notebooks.
+
+
 
 
 Related utilities in my other repositories
