@@ -20,7 +20,7 @@ Example `hhblits` command to make an HH-suite3 results file in `.hhr` format nee
 hhblits ...
 ```
 
-See [HH-suite3 dcoumentation](https://github.com/soedinglab/hh-suite/wiki) for more on generating results files on the command line.
+See [HH-suite3 documentation](https://github.com/soedinglab/hh-suite/wiki) for more on generating results files on the command line.
 
 Alternatively, you can use the HHpred webserver to make these result files using your favorite web browser. For example, go to [HHpred site here](https://toolkit.tuebingen.mpg.de/tools/hhpred) and paste in a protein sequence. Feel free to adjust the search options if you'd like before hitting the 'Submit' button in the bottom right. After the submitted job finishes, from the 'Results' tab, you can select 'Download HHR' to retrieve a HH-suite3 results file in `.hhr` format to your local machine. You can upload that to a running session launched from [here](https://github.com/fomightez/hhsuite3-binder) and edit some of the examples in the series of notebooks there to use the hhsuite3_results_to_df.py script on your data present in your downloaded `.hhr` file.
 
@@ -51,6 +51,26 @@ To use this script after pasting or loading into a cell in a Jupyter notebook, i
 df = hhsuite3_results_to_df("results_file.hhr")
 ```
 See [here](https://github.com/fomightez/hhsuite3-binder) for notebooks demonstrating use within a Jupyter notebook; click `launch binder` to launch a session that will allow you to use the notebooks from there.
+
+
+
+* make_report_on_equivalents_of_interacting_residues.py
+> HH-suite3 hhr results file format using a sequence from a structure --> report on the equivalent of residues in the homolog that interact in the homologous structure. 
+
+Takes output in the form of `.hhr` results files from command line HH-suite3 programs, along with information on the structure of the sequence used in the  and makes a dataframe from it for use with Python. Requires using in conjuction with the notebook, 'Report if residues interacting with a specific chain have equivalent residues in an hhsuite-generated alignment.ipynb', that is meant to be used when you are studing a complex that contains at least two or more proteins because it is meant to generate a report on the residues of a protein chain of interest that interacts with another in a structure and tell you what parts of the chain of interest have equivalents in a remote homolog.
+
+Intended to be compatible with both Python 2.7 and Python 3.8. (Not yet verified though. **UPDATE WHEN VERIFIED**)
+
+Written to run from a Jupyter notebook cell where extra information needed has been defined earlier in the calling notebook.  
+The way to run this script is demonstrated in [a series of notebooks found here](https://github.com/fomightez/hhsuite3-binder). 
+
+Example:
+```
+%run -i make_report_on_equivalents_of_interacting_residues.py
+```
+
+
+
 
 
 Related
