@@ -192,14 +192,15 @@ def tablicize_hhr(hhr_file_content):
     # The simplified hit table will mostly be used to have a list of all the 
     # hits to mine out of the details section. The structure of the simplified 
     # hit table will also be used to collect the length of the sequence in the 
-    # hit as the value and in parantheses at the end seems to correspon to that.
+    # hit, as the value in parantheses at the end seems to correspond to that.
     # The simplified hit table contains many values redundant with those in the 
     # details section. Some of these redundant values could be used to verify
     # information; however, I haven't decided how much validation I want to 
     # perform using that information.
     # Most of the data will be mined from the third section as the names and
     # descriptions are not cut off and additional valuable data not present in 
-    # simplified table are also there such as `identity` and `similarity`.
+    # simplified table are also there such as `identity` and `similarity`. Plus
+    # start and end of where query sequence and hit sequence match up.
     simplified_hit_table_delimiter = " No Hit "
     details_section_delimiter = "No 1"
 
@@ -212,6 +213,7 @@ def tablicize_hhr(hhr_file_content):
     # data and colspecs example of a table starting with Keanu Reeves can be 
     # found 
     # https://github.com/birforce/vnpy_crypto/blob/b9bb23bb3302bf5ba47752e93f8b23e04a9a2b27/venv/lib/python3.6/site-packages/pandas/tests/io/parser/test_read_fwf.py#L279
+    # (I also added the code to my Useful Pandas Snippets)
     colspecs = ((0, 3), (4, 34), (35, 40), (41, 48), (49, 57), (58,64), (65,69), 
         (70,74), (75,84), (85,100))
     # `pd.read_fwf()` step to be done next should have been the following but 
@@ -252,13 +254,17 @@ def tablicize_hhr(hhr_file_content):
     # `qid`: query id
     # `qtitle` : query title
     # 'query_length' : query length
+    # 'qstart' : position in query sequence where aligned sequence begins
+    # 'qend' : position in query sequence where aligned sequence ends
     # `hid` : hit id
     # `htitle` : hit title
     # 'hit_section' : text of extracted section for that hit record
     # 'hit_length' : total length in amino acids of that hit
+    # 'hstart' : position in hit sequence where aligned sequence begins
+    # 'hend' : position in hit sequence where aligned sequence ends
     # 
     generalized_labels_from_alignment_section = [] # intialize a list to collect
-    # all the generlized labels collected as a result of the alignment section.
+    # all the generalized labels collected as a result of the alignment section.
     # I assume all these will be the same for each hit but this allows for that
     # not to be the case by collecting them all and then filtering down to 
     # unique ones when go to make header labels. This allows variation I see in
@@ -287,11 +293,19 @@ def tablicize_hhr(hhr_file_content):
         hit_dict[row.No]['query_length'] = (int(
             header_text.split("Match_columns ")[1].split("\n",1)[0].strip()))
         hit_dict[row.No]['hit_section'] = hit_section
+        qstart = hit_section.split(f'Q {qid[:14]}',1)[1].split()[0].strip()
+        hit_dict[row.No]['qstart'] = qstart
+        qend = hit_section.rsplit(f'Q {qid[:14]}',1)[1].split()[2].strip()
+        hit_dict[row.No]['qend'] = qend 
         hit_dict[row.No]['hit_length'] = row.hit_total_length
         hid = hit_section.split(">")[1].split()[0]
         hit_dict[row.No]['hid'] = hid
         hit_dict[row.No]['htitle'] = (
             hit_section.split(">")[1].split('Probab')[0].strip())
+        hstart = hit_section.split(f'T {hid[:14]}',1)[1].split()[0].strip()
+        hit_dict[row.No]['hstart'] = hstart
+        hend = hit_section.rsplit(f'T {hid[:14]}',1)[1].split()[2].strip()
+        hit_dict[row.No]['hend'] = hend 
         # interate over the extracted text and record the value for each metric
         for metric in metrics: 
             hit_dict[row.No][metric] = (
@@ -337,7 +351,7 @@ def tablicize_hhr(hhr_file_content):
         # determining what labels the pairwise HMM alignments section has that 
         # correspond to what general categories of output labels. For example 
         # `Q Consensus` will be `qconsensus` in the output dataframe later. That
-        # is reminiscent of some of the BLAST labels used exept I am using `h` 
+        # is reminiscent of some of the BLAST labels used except I am using `h` 
         # for `hit` here instead of `s` for `subject`.
         alignment_section_label_relator = {
             'Q Consensus':'qconsensus',
@@ -427,7 +441,8 @@ def tablicize_hhr(hhr_file_content):
     # depending on if there are `Q ss_pred`/`T ss_pred` lines or `Confidence` 
     # lines in the pairwise alignments section. Or  `ss_dssp` lines, too.
     columns_to_make_after_hit_num = (
-        ['qid','qtitle','query_length','hid','htitle','hit_length'] + 
+        ['qid','qtitle','query_length','qstart','qend',
+        'hid','htitle','hit_length','hstart','hend'] + 
         metrics + ['size_diff'] + 
         list(set(generalized_labels_from_alignment_section)))
     header_line = "hit_num\t" + "\t".join(columns_to_make_after_hit_num)
