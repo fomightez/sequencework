@@ -189,7 +189,7 @@ from collections import Counter
 
 
 
-###---------------------------HELPER FUNCTIONS---------------------------------###
+###---------------------------HELPER FUNCTIONS-------------------------------###
 
 def get_aln_index_and_real_pos(sequence):
     '''
@@ -239,8 +239,8 @@ def any_first_words_occur_three_times(repeated_words_list):
         # https://stackoverflow.com/a/6987358/8508004
     return num_most_common >= 3
 
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
+###--------------------------END OF HELPER FUNCTIONS-------------------------###
+###--------------------------END OF HELPER FUNCTIONS-------------------------###
 
 
 
@@ -248,7 +248,7 @@ def any_first_words_occur_three_times(repeated_words_list):
 
 
 #*******************************************************************************
-###------------------------'main' function of script---------------------------##
+###------------------------'main' function of script--------------------------##
 
 def calculate_cons_for_clustal_nucleic(
     alignment, 
