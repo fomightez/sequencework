@@ -159,17 +159,17 @@ suffix_for_saving = "_plusCONS" #to be used for naming the output automatically
 strongly_similar_aa_tuples = [("S","T","A"), ("N","E","Q","K"), 
 ("N","H","Q","K"), ("N","D","E","Q"), ("Q","H","R","K"), ("M","I","L","V"),
 ("M","I","L","F"),("H","Y"),("F","Y","W")] #used to decide if
-# conservative substition (strongly similar) in case where not all identical.
+# conservative substitution (strongly similar) in case where not all identical.
 # Based on
-# https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Bioinformatics+Tools+FAQ#BioinformaticsToolsFAQ-WhatdoconsensussymbolsrepresentinaMultipleSequenceAlignment? will be 
+# https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Bioinformatics+Tools+FAQ#BioinformaticsToolsFAQ-WhatdoconsensussymbolsrepresentinaMultipleSequenceAlignment?
 
 weakly_similar_aa_tuples = [("C","C","A"), ("A","T","V"), ("S","A","G"), 
 ("S","T","N","K"), ("S","T","P","A"), ("S","G","N","D"), 
 ("S", "N", "D", "E","Q","K"), ("N", "D", "E", "Q","H","K"),
 ("N", "E", "H", "Q","R","K"), ("F", "V", "I", "L","M"), ("H","F","Y")] #used to 
-# decide if conservative substition (weakly similar) in case where not identical.
+# decide if conservative substitution (weakly similar) in case where not identical.
 # Based on
-# https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Bioinformatics+Tools+FAQ#BioinformaticsToolsFAQ-WhatdoconsensussymbolsrepresentinaMultipleSequenceAlignment? will be 
+# https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Bioinformatics+Tools+FAQ#BioinformaticsToolsFAQ-WhatdoconsensussymbolsrepresentinaMultipleSequenceAlignment?
 
 
 #
@@ -199,7 +199,7 @@ from collections import Counter
 
 
 
-###---------------------------HELPER FUNCTIONS---------------------------------###
+###-------------------------HELPER FUNCTIONS---------------------------------###
 
 def get_aln_index_and_real_pos(sequence):
     '''
@@ -249,8 +249,8 @@ def any_first_words_occur_three_times(repeated_words_list):
         # https://stackoverflow.com/a/6987358/8508004
     return num_most_common >= 3
 
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
+###--------------------------END OF HELPER FUNCTIONS-------------------------###
+###--------------------------END OF HELPER FUNCTIONS-------------------------###
 
 
 
@@ -258,7 +258,7 @@ def any_first_words_occur_three_times(repeated_words_list):
 
 
 #*******************************************************************************
-###------------------------'main' function of script---------------------------##
+###------------------------'main' function of script--------------------------##
 
 def calculate_cons_for_clustal_protein(
     alignment, 
