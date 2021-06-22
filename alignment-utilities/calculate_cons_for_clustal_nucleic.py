@@ -160,7 +160,7 @@ suffix_for_saving = "_plusCONS" #to be used for naming the output automatically
 # when running script from command line to act on an input file
 
 conserved_nt_tuples = [("A","G"), ("T","C"), ("U","C")] #used to decide if
-# conservative substition made in case where not all identical
+# conservative substitution made in case where not all identical
 
 #
 #*******************************************************************************
