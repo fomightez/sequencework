@@ -160,7 +160,7 @@ def generate_output_file_name(file_name,text_to_match, suffix_for_saving):
 
 def generate_seq_chunks(seq_string, chunk_size = 70):
     '''
-    This takes a sequence as a sting and breaks it up into list of strings of
+    This takes a sequence as a string and breaks it up into list of strings of
     set length with graceful handling of the last line that will most likely
     not be full length. 
     The list of sequence strings gets returned
@@ -177,6 +177,13 @@ def generate_seq_chunks(seq_string, chunk_size = 70):
     https://stackoverflow.com/a/9475354/8508004 , see my gist 
     https://gist.github.com/fomightez/ef7583919dde51f3569731ca1c5247ba for some 
     notes on it and more related.
+    There's a related code in my script 
+    `similarities_in_proteinprotein_interactions.py` inside my repo 
+    structurework/pdbsum-utilities/  and in 
+    `Searching for homologs among deduced proteins from a genome using BLAST and Python.ipynb`
+    & `Searching for coding sequences in genomes using BLAST and Python.ipynb`
+    & `notebooks/GSD/GSD Rpb1_orthologs_in_1011_genomes.ipynb` inside my repo 
+    blast-binder.
     '''
     return [seq_string[i:i+chunk_size] for i in range(
         0, len(seq_string),chunk_size)]
@@ -206,7 +213,9 @@ def get_seq_from_multiFASTA_with_match_in_description(sequence, text_to_match,
 
     Has `return_record_as_string` option so it can be imported and used in
     IPython or Jupyter notebook and the result used directly without need to
-    access generated file.
+    access generated file. Plus, this then can be used for more flexible output 
+    FASTA file naming or making combined multi-sequene FASTA files, see the demo
+    in my cl_sq_demo-binder.
     '''
 
     # get fasta records using pyfaidx
