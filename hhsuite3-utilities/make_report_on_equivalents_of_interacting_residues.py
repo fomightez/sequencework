@@ -30,10 +30,7 @@ __version__ = "0.1.0"
 #
 #
 #
-# to do: 
-# - decide if need dataframe makeing stuff in 
-# `GET NECESSARY COMPANION SCRIPTS AND IMPORT FUNCTIONS` and if not, 
-# comment out BUT KEEP HERE BECAUSE MAY NEED FOR SNAKEMAKE worflow!!!
+
 
 import os
 import sys
@@ -264,48 +261,8 @@ weakly_similar_aa_tuples = [("C","C","A"), ("A","T","V"), ("S","A","G"),
 #spinner = Halo(text='Processing...', spinner='dots',color = 'magenta')
 #spinner.start()
 
-# GET NECESSARY COMPANION SCRIPTS AND IMPORT FUNCTIONS:
-#------------------------------------------------------------------------------#
-### WAIT! DATAversionFRAMES SHOULD BE MADE IN NOTEBOOK UNLESS I CHANGE SO NOT NEEDED?!?!
-file_needed = "pdbsum_prot_interactions_list_to_df.py"
-if not os.path.isfile(file_needed):
-    sys.stderr.write("\nObtaining script containing a function to use to parse "
-        "the data files from PDBsum "
-        "...\n")
-  # based on http://amoffat.github.io/sh/
-    from sh import curl
-    curl("-OL",
-        "https://raw.githubusercontent.com/fomightez/structurework/master"
-        "/pdbsum-utilities/"+file_needed)
-    # verify that worked & ask for it to be done manually if fails
-    if not os.path.isfile(file_needed):
-        github_link = ("https://github.com/fomightez/structurework/tree"
-            "/master/pdbsum-utilities")
-        sys.stderr.write("\n'+file_needed+' not found. "
-            "Please add it to your current working\ndirectory from {}"
-            ".\n**EXITING !!**.\n".format(github_link))
-        sys.exit(1)
-from pdbsum_prot_interactions_list_to_df import pdbsum_prot_interactions_list_to_df
-
-file_needed = "hhsuite3_results_to_df.py"
-if not os.path.isfile(file_needed):
-    sys.stderr.write("\nObtaining script containing a function to use to parse "
-        "the data files from .hhr files made by HH-suite3 software "
-        "...\n")
-  # based on http://amoffat.github.io/sh/
-    from sh import curl
-    curl("-OL",
-        "https://raw.githubusercontent.com/fomightez/sequencework/master"
-        "/hhsuite3-utilities/"+file_needed)
-    # verify that worked & ask for it to be done manually if fails
-    if not os.path.isfile(file_needed):
-        github_link = ("https://github.com/fomightez/sequencework/tree"
-            "/master/hhsuite3-utilities")
-        sys.stderr.write("\n'+file_needed+' not found. "
-            "Please add it to your current working\ndirectory from {}"
-            ".\n**EXITING !!**.\n".format(github_link))
-        sys.exit(1)
-from hhsuite3_results_to_df import hhsuite3_results_to_df
+# GETTING NECESSARY COMPANION SCRIPTS AND IMPORTING CORRESPONDING FUNCTIONS is 
+# handled in the report-generating notebooks.
 
 
 # IDENTIFY THE RESIDUE NUMBERS OF CHAIN #1 THAT INTERACT WITH OTHER CHAINS:
