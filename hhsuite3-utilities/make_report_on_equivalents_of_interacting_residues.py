@@ -524,7 +524,8 @@ if interacting_res_nums_without_data:
     "therefore without further work in the form of extending the alignment, "
     "cannot say anything further about "
     "these:".format(structure_chain1,structure_chain2))
-    sys.stderr.write("\n{}".format(interacting_res_nums_without_data.join(",")))
+    sys.stderr.write("\n{}".format(", ".join(str(
+        x) for x in sorted(interacting_res_nums_without_data))))
     sys.stderr.write("\n\n*END OF NOTE***END OF NOTE**END OF NOTE***END OF NOTE"
         "*******\n")
 sys.stderr.write("\nThe following percent of chain {} residues interacting "
