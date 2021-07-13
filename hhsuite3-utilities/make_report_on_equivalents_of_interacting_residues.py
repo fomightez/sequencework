@@ -609,7 +609,8 @@ if details_for_those_without_equivalents:
     sys.stderr.write("\n\nDETAILS for chain {} residues interacting with chain "
     "{} residues\nthat LACK equivalents in the other aligned "
     "sequence:".format(structure_chain1,structure_chain2))
-    for res,details in sorted(interacting_res_nums_without_equivs_details):
+    for res,details in sorted(
+        interacting_res_nums_without_equivs_details.items()):
         sys.stderr.write("\n\nresidue #{} of chain {}:".format(
             res,structure_chain1))
         sys.stderr.write("\n{}".format(details["seq_details"]))
