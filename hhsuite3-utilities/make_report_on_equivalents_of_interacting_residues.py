@@ -61,105 +61,6 @@ def suppress_stdout_stderr():
         with redirect_stderr(fnull) as err, redirect_stdout(fnull) as out:
             yield (err, out)
 
-def res_tuple_simple(items):
-    '''
-    takes columns with Atom#1 residue number and chain designation along with
-    Atom#2 residue number and chain designation
-    and returns a tuple of residue number 1 position number first followed by 
-    residue number 2 position number.
-    '''
-    # check for 'empty' dataframe using `np.isnan(items[0])`, based on https://stackoverflow.com/a/29528160/8508004 ; allows rest of script to run
-    # gracefully if there were no interactions between the two chains examined
-    # for one of the sturctures and thus 'empty' dataframe produced from PDBsum
-    # data
-    if np.isnan(items[0]):
-        return ("0","0")
-    return ("{}".format(items[0]),"{}".format(items[2]))
-def res_tuple(items):
-    '''
-    takes columns with Atom#1 residue number and chain designation along with
-    Atom#2 residue number and chain designation
-    and returns a tuple of residue#1 information first followed by 
-    residue#2 information.
-    Uses Jmol/Jsmol convention where `161:B` means residue #161 of chain B.
-    '''
-    # check for 'empty' dataframe using `np.isnan(items[0])`, based on https://stackoverflow.com/a/29528160/8508004 ; allows rest of script to run
-    # gracefully if there were no interactions between the two chains examined
-    # for one of the sturctures and thus 'empty' dataframe produced from PDBsum
-    # data
-    if np.isnan(items[0]):
-        return ("0:NA","0:NA")
-    return ("{}:{}".format(items[0],items[1]),"{}:{}".format(items[2],items[3]))
-
-def write_string_to_file(s, fn):
-    '''
-    Takes a string, `s`, and a name for a file & writes the string to the file.
-    '''
-    with open(fn, 'w') as output_file:
-        output_file.write(s)
-
-def out2_stderr_n_log(s,log_file_text):
-    '''
-    Takes a string as input and sends it to the stderr as well as to a building
-    string that will everntually get saved as a Log file.
-    Also needs the Log file to be sent in because gets assigned within the
-    function in order to add to it. Returns the modified `log_file_text`.
-    '''
-    sys.stderr.write(s)
-    log_file_text += s
-    return log_file_text
-
-
-import time
-from IPython.display import display, Javascript
-import hashlib
-def save_notebook(file_path):
-    '''
-    Function to save a notebook from 
-    https://stackoverflow.com/a/57814673/8508004
-
-    IMPORTANTLY, this won't work in the JupyterLab interface for notebooks!
-    See https://github.com/jupyterlab/jupyterlab/issues/7627
-    '''
-    start_md5 = hashlib.md5(open(file_path,'rb').read()).hexdigest()
-    display(Javascript('IPython.notebook.save_checkpoint();'))
-    current_md5 = start_md5
-    while start_md5 == current_md5:
-        time.sleep(1)
-        current_md5 = hashlib.md5(open(file_path,'rb').read()).hexdigest()
-
-
-
-def chunk_string(string, chunk_size):
-    """Return a list of n-sized chunks from string of letters."""
-    return [string[i:i+chunk_size] for i in range(0, len(string),chunk_size)] 
-
-
-def strip_off_first_line(fn,set_name,character_to_mark_set_name_end):
-    '''
-    This takes a name of a file & then uses the shell to remove the first line.
-    In order to leave the input file intact, a new multi-sequence FASTA file
-    is made and that is used in place of the one where the label was the first
-    line. The set sample name extracted gets added to the file name.
-    Removing first line based on 
-    https://unix.stackexchange.com/questions/96226/delete-first-line-of-a-file
-    '''
-    name_for_f_without_first_line = (
-        f"{set_name}{character_to_mark_set_name_end}set.fa")
-    #!tail -n +2 {fn} >{name_for_f_without_first_line} 
-    os.system(f"tail -n +2 {fn} >{name_for_f_without_first_line}")
-    return name_for_f_without_first_line
-
-
-def percent_GCcalc(items):
-    '''
-    takes a list of three and calculates percentage of sum of first
-    two itemswithin total (second item)
-
-    Taken from 
-    `GSD Adding_percentGC_to_nt_counts_for_mito_genomes_from_1011_collection.ipynb`
-    '''
-    return (items[0] + items[1])/items[2]
 
 def calculate_end_position(start_pos,aligned_sequence):
     '''
@@ -202,6 +103,23 @@ def get_aln_index_and_real_pos(sequence):
         # getting first character when index is set to zero
         indx+=1
 
+
+
+def calc_percent_with_handling_division_by_zero(dividend, divisor):
+    '''
+    returns the percent as zero (specifically, 0.0) if the divisor is zero and 
+    would otherwise result in a 'division by zero' error if calculated directly.
+    OTHERWISE returns the result of the calculation of the 'dividend' divided 
+    by the 'divisor'
+
+    see https://docs.python.org/3/tutorial/errors.html for examples handling
+    'division by zero' errors
+
+    '''
+    try:
+        return dividend/float(divisor)
+    except ZeroDivisionError:
+        return 0.0
 
 #######------------------END OF HELPER FUNCTIONS--------------------------######
 ################################################################################
@@ -325,8 +243,8 @@ for res_num in interacting_res_nums_with_data:
     # Need to determine location corresponding to position of the residue 
     # contiguous sequence in the alignment, disregarding gaps. Will use a
     # generator `get_aln_index_and_real_pos()` I've used in the past that gives 
-    # both the current index in thesequence being scanned and the real position 
-    # of the sequence at that point if you disregard the gaps.
+    # both the current index in the sequence being scanned and the real position 
+    # of the sequence at that point disregarding the gaps.
     # In seeing if that real position matches the interacting residue, also need
     # to take into account the sequences don't necessarily start at the first 
     # position depending on how much is spanned by the aligned sequence.
@@ -384,11 +302,11 @@ for res_num in interacting_res_nums_with_data:
         "equivalent_at_position":equivalent_at_position,
         "seq_details": indicator_line + "\n" + q_ind + q_d + "\n" + h_ind + h_d
                                     }
-percent_without_equivalents = len(
-    interacting_res_nums_without_equivs)/float(
+percent_without_equivalents = calc_percent_with_handling_division_by_zero(
+    len(interacting_res_nums_without_equivs),
     len(interacting_res_nums_with_data))
-percent_with_equivalents = len(
-    interacting_res_nums_with_equivs)/float(len(interacting_res_nums_with_data))
+percent_with_equivalents = calc_percent_with_handling_division_by_zero(
+    len(interacting_res_nums_with_equivs),len(interacting_res_nums_with_data))
 assert round(percent_without_equivalents + percent_with_equivalents) ==1,("The "
     "percent_without_equivalents and percent_with_equivalents for the residues "
     "with information in the current alignment should sum to 100% and they "
@@ -445,17 +363,18 @@ if interacting_res_nums_with_equivs_details:
 
 assert len(interacting_res_nums_with_equivs_details) == len(
     interacting_res_nums_with_equivs)
-percent_with_equivalents_identical = len(identical_equivalents)/float(
-    len(interacting_res_nums_with_equivs))
-percent_with_equivalents_strongly_conserved = len(
-    different_equivs_strongly_conserved)/float(
-    len(interacting_res_nums_with_equivs))
-percent_with_equivalents_weakly_conserved = len(
-    different_equivs_weakly_conserved)/float(
-    len(interacting_res_nums_with_equivs))
-percent_with_equivalents_not_conserved = len(
-    different_equivs_not_conserved)/float(
-    len(interacting_res_nums_with_equivs))
+percent_with_equivalents_identical = (
+    calc_percent_with_handling_division_by_zero(
+    len(identical_equivalents),len(interacting_res_nums_with_equivs)))
+percent_with_equivalents_strongly_conserved = (
+    calc_percent_with_handling_division_by_zero(len(
+    different_equivs_strongly_conserved),len(interacting_res_nums_with_equivs)))
+percent_with_equivalents_weakly_conserved = (
+    calc_percent_with_handling_division_by_zero(len(
+    different_equivs_weakly_conserved),len(interacting_res_nums_with_equivs)))
+percent_with_equivalents_not_conserved = (
+    calc_percent_with_handling_division_by_zero(len(
+    different_equivs_not_conserved),len(interacting_res_nums_with_equivs)))
 '''
 for k in interacting_res_nums_with_equivs_details:
     print(interacting_res_nums_with_equivs_details[k])
