@@ -70,6 +70,13 @@ Example:
 ```
 
 
+* core_reduction_dataframe_steps_for_ECIIIL_genome.py
+> input data derived from .hhr files > table about size reduction for orthologs
+
+Takes output in the form of `.hhr` results files from command line HH-suite3 programs and table about size reduction for orthologs.  
+Meant to be used in particular notebooks where already defined the other variables and input. See the first few lines of the script for pointers to those notebooks.
+
+This one is hard coded for dealing with 'ECIIIL genome' for locus column; however, that coloumn could be dropped or the handling altered for other, future versions of this utility.
 
 
 
