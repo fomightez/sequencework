@@ -32,4 +32,5 @@ def extract_locus(items):
     return ("chr {}:{}-{} ({})".format(chr,start,end,frame))
 df.insert(6, 'hit_locus (strand)', df.apply(extract_locus, axis=1))
 df = df.drop('htitle', axis=1)
-df
+from IPython.display import display
+display(df)
