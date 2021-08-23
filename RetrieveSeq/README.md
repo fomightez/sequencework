@@ -180,6 +180,10 @@ collect sequennces matching features annotated in gff3 files:
         $ gff.py load athaliana.gff athaliana.fa --parents mRNA --children CDS"
 
     It can be called with `!python2 -m jcvi.formats.gff load` in a Jupyter envioronment with jcvi/MCscan installed (easily launched from [here](https://github.com/fomightez/mcscan-binder)). Use that command alone to get 'help' information/usage from which that quote above i taken.
+    
+- [genomepy](https://github.com/vanheeringen-lab/genomepy)
+>"Install and use genomes & gene annotations the easy way!  
+genomepy is designed to provide a simple and straightforward way to download and use genomic data. This includes (1) searching available data, (2) showing the available metadata, (3) automatically downloading, preprocessing and matching data and (4) generating optional aligner indexes. All with sensible, yet controllable defaults. Currently, genomepy supports UCSC, Ensembl and NCBI." - Includes an S. cerevisiae example.
 
 - I came across someone else's (Leighton Pritchard) take on getting coding sequences for proteins with the protein sequence in early 2018:
 Maybe useful stuff or better? See [here](https://twitter.com/widdowquinn/status/963148471334158336)
