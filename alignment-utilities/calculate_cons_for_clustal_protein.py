@@ -54,7 +54,10 @@ __version__ = "0.1.0"
 # Biopython's related method shown at 
 # http://biopython.org/DIST/docs/api/Bio.Align.AlignInfo.SummaryInfo-class.html
 #
-#
+# September 2021, just verified it STILL gives same result as T-coffee at 
+# https://www.ebi.ac.uk/Tools/services/rest/tcoffee/ by removing the 
+# conservation symbols from a result I had from there yesterday and running this
+# script on the edited file.
 #
 #
 #
