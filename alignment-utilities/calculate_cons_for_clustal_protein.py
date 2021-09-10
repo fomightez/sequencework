@@ -24,6 +24,8 @@ __version__ = "0.1.0"
 # that matches t-coffee more so no hand editing, plus adds conserved 
 # substitutions as colons and periods depending if weak or strongly similar, see
 # https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Bioinformatics+Tools+FAQ#BioinformaticsToolsFAQ-WhatdoconsensussymbolsrepresentinaMultipleSequenceAlignment?
+# under 'What do consensus symbols represent in a Multiple Sequence Alignment?'
+# 
 # 
 # Also useful in conjunction with Kalign (https://www.ebi.ac.uk/Tools/msa/kalign/) 
 # tool as that doesn't add asterisks indicating conservation. (Several others
@@ -165,6 +167,7 @@ strongly_similar_aa_tuples = [("S","T","A"), ("N","E","Q","K"),
 # conservative substitution (strongly similar) in case where not all identical.
 # Based on
 # https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Bioinformatics+Tools+FAQ#BioinformaticsToolsFAQ-WhatdoconsensussymbolsrepresentinaMultipleSequenceAlignment?
+# under 'What do consensus symbols represent in a Multiple Sequence Alignment?'
 
 weakly_similar_aa_tuples = [("C","C","A"), ("A","T","V"), ("S","A","G"), 
 ("S","T","N","K"), ("S","T","P","A"), ("S","G","N","D"), 
@@ -173,7 +176,7 @@ weakly_similar_aa_tuples = [("C","C","A"), ("A","T","V"), ("S","A","G"),
 # decide if conservative substitution (weakly similar) in case where not identical.
 # Based on
 # https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Bioinformatics+Tools+FAQ#BioinformaticsToolsFAQ-WhatdoconsensussymbolsrepresentinaMultipleSequenceAlignment?
-
+# under 'What do consensus symbols represent in a Multiple Sequence Alignment?'
 
 #
 #*******************************************************************************
