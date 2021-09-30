@@ -162,6 +162,10 @@ Related utilities in my other repositories
     This script directly compares two Python strings using an approach meant for aligning biological strings. This is like a simple, direct version of my script `score_differences_between_sequences_by_pairwise_alignment.py`, which resides in this sub-repo.  
   This script is located [here](https://github.com/fomightez/sequencework/tree/master/Compare_biological_seq_strings) in my [compare_biological_seq_strings utilities sub-repo](https://github.com/fomightez/sequencework/tree/master/Compare_biological_seq_strings).
   
+ - utility to reformat sequence alignment in result of TM-align structural alignment from all one long sequence to blocks of paired sequences
+
+    Notebook referenced [here in my TM-align-utilities sub-repo](https://github.com/fomightez/structurework/tree/master/tm-align-utilities) demonstrates code to take the alignment TM-align returns as part of its results page and reformats it into blocks of aligned sequences. The reformatted version fits better in other documents & reports and is easier to view & compare the N- and C-terminal sequences at the same time.  
+    The residue pairs come from a structural alignment and so this is truly a structure-related utility; however, since it involves involves an alignment featuring sequences I thought I'd leave a link to it here.
 
 
 Utilities by others
