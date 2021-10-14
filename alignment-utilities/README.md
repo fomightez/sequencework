@@ -59,6 +59,12 @@ Meant to add a consensus symbol line for cases where alignment produced doesn't 
 
 The script `calculate_cons_for_clustal_protein.py` is demonstrated in MyBinder sessions you can launch from [here](https://github.com/fomightez/cl_sq_demo-binder).  To see the script in action, go [here](https://github.com/fomightez/cl_sq_demo-binder) and click on `launch binder`. Once the session spins up, select 'Use biopython to make valid CLUSTAL formatted MSAs, check sequence of manually edited alignment, and add consensus line' from the list of available notbeooks. The section with use of `calculate_cons_for_clustal_protein.py` is towards the bottom of the Jupyter notebook under the section 'Add a consensus symbol line to an MSA'.  You can see the Jupyter notebook statically and pertinent section [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/Use%20biopython%20to%20make%20valid%20CLUSTAL%20formatted%20MSAs%2C%20check%20sequence%20of%20manually%20edited%20alignment%2C%20and%20add%20consensus%20line.ipynb#Add-a-consensus-symbol-line-to-an-MSA).
 
+* check_seq_in_MSAclustal_consistent_with_FASTA.py
+> multiple sequence alignment (clustal) ----> whether or not the sequences in the alignment match sequence provided in FASTA format
+
+This is used to check nothing lost when hand-editing an alignment.   
+Demonstrated [here](https://nbviewer.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/Use%20biopython%20to%20make%20valid%20CLUSTAL%20formatted%20MSAs%2C%20check%20sequence%20of%20manually%20edited%20alignment%2C%20and%20add%20consensus%20line.ipynb#Check-sequence-of-manually-edited-alignment).
+
 * score_sequences_in_clustal_msa.py 
 > multiple sequence alignment (clustal) ---> dataframe of the id and assessment score of each sequence 
 
