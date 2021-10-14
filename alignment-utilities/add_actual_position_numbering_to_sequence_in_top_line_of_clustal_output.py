@@ -56,7 +56,6 @@ __version__ = "0.1.0"
 
 #
 # To do:
-# - FIX so that if consensus symbols present, they don't get shifted over to not line up.
 # - update so that it handles if the top line doesn't begin with residue number 
 # one. Do that similar to the approach used in 
 # `MSA_to_corresponding_residue_numbers.py` so that a number can be supplied 
@@ -257,7 +256,9 @@ def add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output(
             growing_ouput.append(line.strip())
             current_position = end_pos
         else:
-            growing_ouput.append(line.strip())
+            growing_ouput.append(line) # `line.strip()` messes up 
+            # alignments that have the conservation symbols/consesnus symbol 
+            # lines added. `line.rstrip()` should be good but is it even needed?
     output = "\n".join(growing_ouput)
 
         
