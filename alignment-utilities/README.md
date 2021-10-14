@@ -2,6 +2,8 @@
 
 Repo for my own computational resources dealing with aligning and alignments (both nucleic and protein), plus give me a place to reference other handy resources.
 
+**Description of the utlity scripts:**
+
 * add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py
 > alignment text --> alignment text with top sequence in alignment blocks annotated with numbering according to actual contiguous sequence (i.e., excluding gaps)
 
