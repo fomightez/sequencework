@@ -176,7 +176,6 @@ import os
 from collections import Counter
 from Bio import SeqIO
 from Bio import AlignIO
-from Bio.Alphabet import generic_dna 
 from Bio.Seq import Seq 
 from Bio.SeqRecord import SeqRecord 
 from Bio.Align import MultipleSeqAlignment 
@@ -486,6 +485,8 @@ def extract_regions_from_clustal_alignment(
         # in v.0.1
         # Added benefit of not including `generic_dna` in `SeqRecord()` calling 
         # is that I can use this same script with protein sequences.
+        # NOW  Bio.Alphabet and `generic_dna` has been REMOVED FROM BIOPYTHON!
+        # see https://biopython.org/wiki/Alphabet
         records.append(
             SeqRecord(aligned_segmnts_dict[id_], id_)) # based
         # on https://www.biostars.org/p/48797/
@@ -516,6 +517,8 @@ def extract_regions_from_clustal_alignment(
         # from when was using strings in v.0.1
         # Added benefit of not including `generic_dna` in `SeqRecord()` calling 
         # is that I can use this same script with protein sequences.
+        # NOW  Bio.Alphabet and `generic_dna` has been REMOVED FROM BIOPYTHON!
+        # see https://biopython.org/wiki/Alphabet
         records.append(
             SeqRecord(
             aligned_segmnts_dict[id_].ungap(
