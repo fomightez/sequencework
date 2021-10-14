@@ -16,6 +16,7 @@ __version__ = "0.1.0"
 #
 # PURPOSE: Takes a text document of an alignment in CLUSTAL format and generates
 # that same alignment but with composing sequences as reverse complements.
+# MEANT FOR DNA WHERE REVERSE COMPLEMENT IS BIOLOGICALLY RELEVANT.
 # 
 # Intended to be used after `extract_regions_from_clustal_alignment.py` for 
 # sequences on the other (a.k.a. reverse) strand because some might be on other 
@@ -147,7 +148,6 @@ import os
 from collections import Counter
 from Bio import SeqIO
 from Bio import AlignIO
-from Bio.Alphabet import generic_dna 
 from Bio.Seq import Seq 
 from Bio.SeqRecord import SeqRecord 
 from Bio.Align import MultipleSeqAlignment 
@@ -298,10 +298,14 @@ def reverse_complement_of_clustal_alignment(
     # worked in `extract_regions_from_clustal_alignment.py`
     records = []
     for seq_n_id in seq_n_id_list:
-        records.append(
-            SeqRecord(Seq(str(seq_n_id[0]), generic_dna), seq_n_id[1])) # based
+        #records.append(
+        #    SeqRecord(Seq(str(seq_n_id[0]), generic_dna), seq_n_id[1])) # based
         # on https://www.biostars.org/p/48797/ and worked in 
         # `extract_regions_from_clustal_alignment.py`
+        # NOW  Bio.Alphabet and `generic_dna` has been REMOVED FROM BIOPYTHON!
+        # see https://biopython.org/wiki/Alphabet
+        records.append(
+            SeqRecord(Seq(str(seq_n_id[0])), seq_n_id[1]))
     align = MultipleSeqAlignment(records)
     out_alignment_name = generate_output_file_name(file_name,suffix_for_saving)
     AlignIO.write(align, out_alignment_name, "clustal") # based on 
@@ -338,7 +342,7 @@ def reverse_complement_of_clustal_alignment(
             corrspnd_description=ids_n_descriptions[seq_n_id[1]]
             ungapped_records.append(
                 SeqRecord(
-                Seq(str(seq_n_id[0]), generic_dna).ungap(
+                Seq(str(seq_n_id[0])).ungap(
                 gap_indicator), seq_n_id[1], description=corrspnd_description))# 
             # basedon https://www.biostars.org/p/48797/ and `.ungap()` method, 
             # see https://github.com/biopython/biopython/issues/1511 , and 
@@ -347,7 +351,7 @@ def reverse_complement_of_clustal_alignment(
         else:
             ungapped_records.append(
                 SeqRecord(
-                Seq(str(seq_n_id[0]), generic_dna).ungap(
+                Seq(str(seq_n_id[0])).ungap(
                 gap_indicator), seq_n_id[1], description=""))# based
             # on https://www.biostars.org/p/48797/ and `.ungap()` method, see
             # https://github.com/biopython/biopython/issues/1511 , and 
