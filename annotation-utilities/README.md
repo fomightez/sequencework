@@ -16,6 +16,10 @@ Utilities by Others
 
 [Cool R script to colorfully annotate adapter sequences in a sequence - could be useful to adapt for displaying PCR primers, etc](https://twitter.com/clintcodesbio/status/1339947174239612929); R script [here](https://gitlab.com/gringer/bioinfscripts/-/blob/master/read_annotator.r)
 
+[annotables: R data package for annotating/converting Gene IDs](https://github.com/stephenturner/annotables)
+>"Provides tables for converting and annotating Ensembl Gene IDs."
+Learned of it from [this discussion](https://twitter.com/tangming2005/status/1450802521837084675) "human mitochondrial genes start with ^MT, what about mouse mitochondrial genes? ^Mt" (Later replies may have other resources, possibly.) [This reply](https://twitter.com/kieranrcampbell/status/1450804048047771656) has nice example of use of `annotables`.
+
 See also
 -------
 
