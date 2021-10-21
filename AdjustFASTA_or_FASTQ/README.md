@@ -91,4 +91,4 @@ Since sequence manipulations are at the heart of many of my computational endeav
 Related scripts by others
 ------------------------
 
-?
+[SeqKit - a cross-platform and ultrafast toolkit for FASTA/Q file manipulation](https://github.com/shenwei356/seqkit) by shenwei356 has categories 'edit' and 'ordering' that seem to allow adjusting FASTA or FASTQ files. See [here](https://github.com/shenwei356/seqkit#subcommands) for subcommands listing.
