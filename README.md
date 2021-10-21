@@ -45,7 +45,7 @@ Related resources by others
 genomepy is designed to provide a simple and straightforward way to download and use genomic data. This includes (1) searching available data, (2) showing the available metadata, (3) automatically downloading, preprocessing and matching data and (4) generating optional aligner indexes. All with sensible, yet controllable defaults. Currently, genomepy supports UCSC, Ensembl and NCBI." - Includes an S. cerevisiae example.
 - [rna-tools (previously rna-pdb-tools): a toolbox to analyze sequences, structures and simulations of RNA](https://github.com/mmagnus/rna-tools/blob/master/index-of-tools.md)
 - ['seqrequester', a tool for summarizing, extracting, generating and modifying DNA sequences.](https://github.com/marbl/seqrequester). Perl-based.
-- [SeqKit - a cross-platform and ultrafast toolkit for FASTA/Q file manipulation](https://github.com/shenwei356/seqkit) by shenwei356 has some excellent utilities for handling FASTA or FASTQ files. See [here](https://github.com/shenwei356/seqkit#subcommands) for subcommands listing.
+- [SeqKit - a cross-platform and ultrafast toolkit for FASTA/Q file manipulation](https://github.com/shenwei356/seqkit) by shenwei356 has some excellent utilities for handling FASTA or FASTQ files. See [here](https://github.com/shenwei356/seqkit#subcommands) for subcommands listing. [Documentation](https://bioinf.shenwei.me/seqkit/).
 
 See also
 -------
