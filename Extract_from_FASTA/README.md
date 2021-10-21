@@ -97,3 +97,5 @@ See `drafting_extracting_mito_chr_function.py`.
 - >"Fastest way to extract some seqs from a BIG fasta file based on header?" - SOURCE: https://twitter.com/macmanes/status/1045659290919481344
 
   Good folks with lots of ideas in that response thread.
+  
+[SeqKit - a cross-platform and ultrafast toolkit for FASTA/Q file manipulation](https://github.com/shenwei356/seqkit) by shenwei356 has under category 'basic', the commands 'subseq', 'sliding', and 'faidx' that look related. There's also 'Searching', 'amplicon' that is somewhat related. See [here](https://github.com/shenwei356/seqkit#subcommands) for subcommands listing.
