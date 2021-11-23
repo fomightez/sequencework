@@ -129,6 +129,8 @@ Related items by others
 See [here](https://twitter.com/ewjwallace/status/1310896446829457408) for alternatives to `plot_coverage.py` among the great answers listed in response to the question:
 >"RNA-seq pileup plots for publication: bedgraph/gene features/etc: what is your favourite solution? I use IGV day-to-day but for publication it looks not so great. I have some ggplot code that works, just. Is there a better way (with clean vector-format graphics?) #Bioinformatics"
 
+Related to `plot_coverage.py` I'm curious about the answer to [this Biostars post ](https://www.biostars.org/p/9498724/#9498724).
+
 Not for high-throughput data, but for a different type of modern sequencing data:
 
 [NanoPack - NanoPlot and NanoStats and other Python scripts and modules for visualizing and processing Oxford Nanopore sequencing data](https://github.com/wdecoster/nanopack)
