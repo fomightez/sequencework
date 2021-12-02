@@ -15,7 +15,7 @@ Additional **tips for using `find_sequence_element_occurrences_in_sequence.py`**
   !sed -i '371s/.*/    #/' find_sequence_element_occurrences_in_sequence.py  
   !sed -i '372s/.*/    #/' find_sequence_element_occurrences_in_sequence.py
 
-(That replacement works with [this version](https://github.com/fomightez/sequencework/commit/effaf12354468c9b0288f5c3eca129192f70d350).Unfortunately once I change the lines this will break!!)
+(That replacement works with [this version](https://github.com/fomightez/sequencework/commit/effaf12354468c9b0288f5c3eca129192f70d350). Unfortunately once I change the lines this will break!!)
 - If you know regular expression format you can indeed use the script `find_sequence_element_occurrences_in_sequence.py` by supplying it text strings formatted in that form to search in the sequence. For example, I was able to use `element = "F[ST]P.*?G.[LF].*?[ST].Y"` for using the imported main function
 
 # Related
