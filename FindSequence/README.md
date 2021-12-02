@@ -5,7 +5,7 @@
 * find_sequence_element_occurrences_in_sequence.py
 > smaller sequence and large sequence --> occurrences of EXACT matches of small sequence in larger one
 
-See [the demo notebook](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/FindSequence/demo%20find_sequence_element_occurrences_in_sequence%20script.ipynb) for use. (That notebook can easily be uploaded and actively run once you launch a binder instance by pressing the `launch binder` button [here](https://github.com/fomightez/qgrid-notebooks).)
+See [the demo notebook](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/FindSequence/demo%20find_sequence_element_occurrences_in_sequence%20script.ipynb) for use. (That notebook can easily be uploaded and actively run once you launch a binder instance by pressing the `launch binder` button [here](https://github.com/fomightez/cl_sq_demo-binder).  To upload the notebook easily, enter `!curl -OL https://raw.githubusercontent.com/fomightez/sequencework/master/FindSequence/demo%20find_sequence_element_occurrences_in_sequence%20script.ipynb` in a Jupyter notebook cell and run it. I originally developped it using sessions launched from [here](https://github.com/fomightez/qgrid-notebooks), and so that is also an alternative source of active sessions.)
 
 For searching for ambiguous sequences/motifs or mismatches, see [below](#related-items-by-others-where-i-have-added-some-utilities-for-associating-the-data-with-python) about [PatMatch](https://github.com/fomightez/patmatch-binder). However, if you know regular expression format you can indeed use the script `find_sequence_element_occurrences_in_sequence.py` by supplying it text strings formatted in that form to search in the sequence.
 
