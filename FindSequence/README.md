@@ -56,6 +56,6 @@ https://twitter.com/BQPMalfoy/status/1202902187174707200     December 2019
 
 [Cool R script to colorfully annotate adapter sequences in a sequence - could be useful to adapt for displaying PCR primers, etc](https://twitter.com/clintcodesbio/status/1339947174239612929); R script [here](https://gitlab.com/gringer/bioinfscripts/-/blob/master/read_annotator.r) that highlights subseqeunces
 
-- EMBOSS [dreg](http://emboss.sourceforge.net/apps/cvs/emboss/apps/dreg.html), learned of it [here, Biostars: How to find sequence patterns in genome?](https://www.biostars.org/p/173760/#173886), but notice it mentions [there](https://www.biostars.org/p/173760/#173886) doesn't know about biological 'ambiguity codes' (looks like it knows REGEX though); I think PatMatch is a better choice for that reason.
+EMBOSS [dreg](http://emboss.sourceforge.net/apps/cvs/emboss/apps/dreg.html), learned of it [here, Biostars: How to find sequence patterns in genome?](https://www.biostars.org/p/173760/#173886), but notice it mentions [there](https://www.biostars.org/p/173760/#173886) doesn't know about biological 'ambiguity codes' (looks like it knows REGEX though); I think PatMatch is a better choice for that reason.
 
 
