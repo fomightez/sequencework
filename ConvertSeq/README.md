@@ -126,3 +126,5 @@ I tend to use Biopython's sequence object with the `.reverse_complement()` metho
 Just use "any2fasta" !
 Supports gff, gbk, embl, clw, etc and .gz .bz2 automatically.
 Install using #bioconda or @brew_sci" from [Torsten Seemann](https://twitter.com/torstenseemann/status/1146209691560640512)
+
+- There's a command line-based software `sreformat` that is a part of HMMer's squid library, I demonstratrate installing and using in a reply [here](https://www.biostars.org/p/9500884/#9501124) to convert what I think is Genbank format concatenated to FASTA format concatenated, i.e., multi-sequence FASTA file. There's also a pure python script to do that [there](https://www.biostars.org/p/9500884/#9500990) that I added to the demo notebook, too.
