@@ -185,6 +185,9 @@ Utilities by others
 Produces formatted multiple alignments in plain text, html, and pdf."  
 Related to my scripts `score_columns_in_clustal_msa.py`, `calculate_cons_for_clustal_nucleic.py`, `calculate_cons_for_clustal_protein.py`, `mview_to_CLUSTAL.py`, `categorize_residues_based_on_conservation_relative_consensus_line.py`, and `score_sequences_in_clustal_msa.py`. 
 
+- From a [Biostars reply by Mensur Dlakic to 'Tool to visualize alignment comparisons / Alignment diff'](https://www.biostars.org/p/9505294/#9505319) where OP wanted to quickly visualize the differences between multiple resulting MSAs of the same sequences from different aligners:
+>"There is a tool called hhalign from the hh-suite that takes multiple alignments and aligns them into a master alignment."
+
 - [Adding unaligned sequences into an existing alignment using MAFFT and LAST](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3516148/)
 
 I have several listed [here](http://proteopedia.org/wiki/index.php/User:Wayne_Decatur/Sequence_analysis_tools) such as those that interconvert/reformat alignments in various forms. Just search `align` on that page to step through examining them. In particular note:
@@ -202,7 +205,7 @@ Will incorporate new functions to automate nw utils in next PIrANHA release." (S
 
 -  [HamHeat: Hamming distance calculation from multiple sequence data for heatmap visualization](https://github.com/alexeyrakov/HamHeat)   <--- related to my scripts `score_differences_between_sequences_by_pairwise_alignment.py` and `roughly_score_relationships_to_subject_seq_pairwise_premsa.py`
 
-    >"The script was applied to the real Salmonella allelic data of our recently published paper Rakov et al., 2019. Figure S1 (additional file 5) from this publication shows the heatmap for 70 virulence factors alleles for 500 Salmonella genomes. For this figure, the HamHeat results for each of the 70 alleles were combined in one file to be used as the input file for the [Morpheus matrix visualization software](https://software.broadinstitute.org/morpheus/)."
+    >"The script (HamHeat) was applied to the real Salmonella allelic data of our recently published paper Rakov et al., 2019. Figure S1 (additional file 5) from this publication shows the heatmap for 70 virulence factors alleles for 500 Salmonella genomes. For this figure, the HamHeat results for each of the 70 alleles were combined in one file to be used as the input file for the [Morpheus matrix visualization software](https://software.broadinstitute.org/morpheus/)."
 
 - [GToTree](https://github.com/AstrobioMike/GToTree/wiki/What-is-GToTree%3F)
 >"GToTree is a program that aims to give more researchers the capability to generate phylogenomic trees to help guide their work. At its heart it just takes in genomes and outputs an alignment and phylogenomic tree based on the specified single-copy gene set."
