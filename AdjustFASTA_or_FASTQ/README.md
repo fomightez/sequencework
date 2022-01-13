@@ -8,11 +8,11 @@ Sequence Adjusters
 **Description of each script**
 
 - add_source_organism_info_to_FASTA.py
-> sequence(s) in FASTA file without organism name   --->  equence(s) in FASTA file without organism name  
+> FASTA file -->  FASTA file with organism name info injected into description line / header
 
 
 Purpose:  
-Adds source organism information in brackets to end of descrption line of each
+Takes a sequence file in FASTA format anddds source organism information in brackets to end of descrption line of each
 FASTA-formatted record for protein or nucleic acid in a file. The source
 organism information added will be the genus and species plus any other
 information such as strain and variety associated with that sequence entry.
@@ -115,14 +115,6 @@ wish to permute to see if possible the sequence happens to fall across the
 artificial start/end (end/start) breakpoint.
 
 &nbsp;<p></p>
-
-- add_source_organism_info_to_FASTA.py
-> FASTA file -->  FASTA file with organism info injected in text
-
-`add_source_organism_info_to_FASTA.py` takes a sequence file in FASTA format and ...  
-
-***DOCUMENTATION NEEDS TO BE COMPLETED***
-
 
 
 Related scripts
