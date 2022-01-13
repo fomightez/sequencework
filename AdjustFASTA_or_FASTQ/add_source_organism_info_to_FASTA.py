@@ -8,7 +8,7 @@
 # python add_source_organism_info_to_FASTA.py  --help
 #
 #*************************************************************************
-#USES Python 2.7
+#Originally written in Python 2.7; however, tested & works in 3.
 # Purpose:
 # Adds source organism information in brackets to end of descrption line of each
 # FASTA-formatted record for protein or nucleic acid in a file. The source
