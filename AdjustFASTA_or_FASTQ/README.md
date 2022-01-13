@@ -28,7 +28,7 @@ occuring between brackets as it assumes that is the source organism designation
 as is typical in many protein entry description lines of FASTA-formatted
 sequences at NCBI.
 
-An typical use case is to prepare sequence files to use with my associated script, `compare_organisms_in_two_files_of_fasta_entries.py`.
+An typical use case is to prepare sequence files to use with my associated script, `compare_organisms_in_two_files_of_fasta_entries.py`, that is found in [my CompareFASTA_or_FASTQ sub-repo](https://github.com/fomightez/sequencework/tree/master/CompareFASTA_or_FASTQ).
 
 
 
