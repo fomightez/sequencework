@@ -193,7 +193,7 @@ def extract_GI_number(string_fragment):
     based on http://biopython.org/pipermail/biopython/2010-January/006143.html
 
     CAVEAT:
-    ***NOTE SINCE AS POSTED AT ftp://ftp.ncbi.nih.gov/genbank/gbrel.txt GI numbers
+    ***NOTE SINCE AS POSTED AT https://ftp.ncbi.nlm.nih.gov/genbank/gbrel.txt GI numbers
     ARE BEING PHASED OUT, I IMAGINE USE NOT VIABLE LONG TERM.
     KEEP EYES OPEN. ***
     '''
@@ -218,7 +218,7 @@ def make_list_of_unique_identifiers (fasta_file):
     Genbank FASTA record, just easier to get from that.
 
     CAVEAT:
-    ***NOTE SINCE AS POSTED AT ftp://ftp.ncbi.nih.gov/genbank/gbrel.txt GI numbers
+    ***NOTE SINCE AS POSTED AT https://ftp.ncbi.nlm.nih.gov/genbank/gbrel.txt GI numbers
     ARE BEING PHASED OUT, I IMAGINE ELink MAY EVENUTALLY WORK WITH
     Accession.Version identifiers??? (Or does it already and I missed how?)
     KEEP EYES OPEN. ***
@@ -489,4 +489,3 @@ if __name__ == "__main__":
 
 #*******************************************************************************
 #*******************************************************************************
-
