@@ -23,12 +23,14 @@ based on the first sequence in the provided file. **Subsequently, the script
 will fail if the sequences in the file are a mix of protein and nucleic.**
 
 
-It will leave the description line untouched if it already has some text
+The script will leave the description line untouched if it already has some text
 occuring between brackets as it assumes that is the source organism designation
 as is typical in many protein entry description lines of FASTA-formatted
 sequences at NCBI.
 
 An typical use case is to prepare sequence files to use with my associated script, `compare_organisms_in_two_files_of_fasta_entries.py`, that is found in [my CompareFASTA_or_FASTQ sub-repo](https://github.com/fomightez/sequencework/tree/master/CompareFASTA_or_FASTQ).
+
+There is a notebook demonstrating this script available in sessions launched from [here](https://github.com/fomightez/cl_sq_demo-binder) by clicking the `launch binder` button. After the session launches select the notebook 'Demo of script to add organism names to records in FASTA file' from the list of available notebooks. Static version of the notebooks is [nicely rendered here](https://github.com/fomightez/cl_sq_demo-binder/blob/master/notebooks/demo%20add_source_organism_info_to_FASTA.ipynb).
 
 
 
