@@ -7,6 +7,50 @@ Sequence Adjusters
 
 **Description of each script**
 
+- add_source_organism_info_to_FASTA.py
+> sequence(s) in FASTA file without organism name   --->  equence(s) in FASTA file without organism name  
+
+
+Purpose:  
+Adds source organism information in brackets to end of descrption line of each
+FASTA-formatted record for protein or nucleic acid in a file. The source
+organism information added will be the genus and species plus any other
+information such as strain and variety associated with that sequence entry.
+
+**The sequences in the provided file must be all of the same kind, either all
+nucleic or all protein.** The script will try to detect which one
+based on the first sequence in the provided file. **Subsequently, the script
+will fail if the sequences in the file are a mix of protein and nucleic.**
+
+
+It will leave the description line untouched if it already has some text
+occuring between brackets as it assumes that is the source organism designation
+as is typical in many protein entry description lines of FASTA-formatted
+sequences at NCBI.
+
+An typical use case is to prepare sequence files to use with my associated script, `compare_organisms_in_two_files_of_fasta_entries.py`.
+
+
+
+To GET HELP/MANUAL, enter on command line:
+
+```python
+python add_source_organism_info_to_FASTA.py  --help
+```
+
+-or- if using in a Jupyter notebook:
+
+```python
+%run add_source_organism_info_to_FASTA.py  --help
+```
+
+Won't work once GI numbers phased out as detailed [here](https://ftp.ncbi.nlm.nih.gov/genbank/gbrel.txt).
+
+Originally written in Python 2.7; however, tested & works in 3.
+
+
+&nbsp;<p></p>
+
 
 - delete_seq_following_pattern_within_FASTA.py
 > sequence(s) in FASTA file and a pattern to match   --->  sequence deleted after match in derived FASTA file 
@@ -24,6 +68,8 @@ It is designed to handle/filter gaps ('dashes') in the provided sequence pattern
 
 
 There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/AdjustFASTA_or_FASTQ/demo%20delete_seq_following_pattern_within_FASTA.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/AdjustFASTA_or_FASTQ/demo%20delete_seq_following_pattern_within_FASTA.ipynb).
+
+&nbsp;<p></p>
 
 - remove_seq_from_multiFASTA_with_match_in_description.py
 > sequence(s) in FASTA file and a pattern to match   --->  sequences without any that have match in description line 
@@ -68,6 +114,7 @@ breakpoint and you want to compare.
 wish to permute to see if possible the sequence happens to fall across the
 artificial start/end (end/start) breakpoint.
 
+&nbsp;<p></p>
 
 - add_source_organism_info_to_FASTA.py
 > FASTA file -->  FASTA file with organism info injected in text
