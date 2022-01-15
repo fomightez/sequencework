@@ -46,6 +46,7 @@ genomepy is designed to provide a simple and straightforward way to download and
 - [rna-tools (previously rna-pdb-tools): a toolbox to analyze sequences, structures and simulations of RNA](https://github.com/mmagnus/rna-tools/blob/master/index-of-tools.md)
 - ['seqrequester', a tool for summarizing, extracting, generating and modifying DNA sequences.](https://github.com/marbl/seqrequester). Perl-based.
 - [SeqKit - a cross-platform and ultrafast toolkit for FASTA/Q file manipulation](https://github.com/shenwei356/seqkit) by shenwei356 has some excellent utilities for handling FASTA or FASTQ files. See [here](https://github.com/shenwei356/seqkit#subcommands) for subcommands listing. [Documentation](https://bioinf.shenwei.me/seqkit/).
+- [Example uses Biopython to make a Pandas dataframe from FASTA sequences](https://www.biostars.org/p/9505933/#9505933)
 
 See also
 -------
