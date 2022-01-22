@@ -24,7 +24,7 @@ info here
 * extract_regions_from_clustal_alignment.py
 > alignment of large region ---> alignment of a portion, plus saves sequence of ungapped corresponding block as well
 
-Intended to be used then aligning the entire chromosome along full length, end-to-end to insure corresponding sub-regions best aligned (assuming no rearrangements). Under 'Whole genome alignment', about 4/5 through set of slides, [here](http://www.utdallas.edu/~pradiptaray/teaching/1_mult_seq_align.pdf) refers to this method as '• Identify “collinear” (orthologous) regions or blocks and perform piecewise alignment'.)
+Intended to be used when aligning the entire chromosome along full length, end-to-end to insure corresponding sub-regions best aligned (assuming no rearrangements). Under 'Whole genome alignment', about 4/5 through set of slides, [here](http://www.utdallas.edu/~pradiptaray/teaching/1_mult_seq_align.pdf) refers to this method as '• Identify “collinear” (orthologous) regions or blocks and perform piecewise alignment'.)
 
 info here.
 
