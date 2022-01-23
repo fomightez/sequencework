@@ -9,6 +9,11 @@ Repo for my own computational resources dealing with aligning and alignments (bo
 
 info here
 
+* MSA_to_corresponding_residue_numbers.py
+> alignment --> information about individual aligning positions from the MSA
+
+There is a [demo notebook for this script as part of my series of structurework-command line demos](https://github.com/fomightez/cl_demo-binder). You can launch the series from [here](https://github.com/fomightez/cl_demo-binder) and then selecting from the index to go to the 'Determine residues that match to a reference from MSA and use to construct fit commands' page. The direct link to a nicely-rendered, static version of that page is [here](https://nbviewer.org/github/fomightez/cl_demo-binder/blob/master/notebooks/Determine%20residues%20that%20match%20to%20a%20reference%20from%20MSA%20and%20use%20to%20construct%20fit%20commands.ipynb). Usage of the script is illustrated there because this script is ideal for bridging sequence analysis to molecular structure analysis and I had an idea for a good illustration of that bridging concept. That demo also has a functional, fuller accounting of documentation for this script as well.
+
 * BIOALIGNAMER (* NOT HERE YET BUT BELONGS HERE*)
 >alignment text with cryptic identifiers for organisms --> alignment text with common names as ids
 
