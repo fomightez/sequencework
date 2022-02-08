@@ -28,3 +28,6 @@ Related utilities by others
 ---------------------------
 
 - There are other ways to score alignments. For now I have been using simplistic assessments based on differences. This can be done much fancier based on probability models, with different scores for sections in between the gaps as well. See [How sequence alignment scores correspond to probability models. Martin C Frith. Bioinformatics, btz576, https://doi.org/10.1093/bioinformatics/btz576](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz576/5536873) for recent coverage of this, although I don't see an implementation linked to there on my cursory examination.
+
+- [FastANI](https://github.com/ParBLiSS/FastANI) - FastANI is developed for fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI)  
+>"FastANI rapidly compares fasta sequences and will output global identity. It is meant only for relatively similar genomes, and will not create any output if identity is below 75-80%." - from Mensur Dlakic's Biostars answer [here](https://www.biostars.org/p/9509271/#9509767)
