@@ -67,3 +67,9 @@ Related utilities in my other repositories
   
   Put there because this sub-repo is meant for when sequences already in FASTA or FASTQ format and I had occaision to need to compare sequences that are strings in dataframe cells that were pulled out has hits by PatMatch.
   
+  
+Related utilities by others
+----------------------------
+
+- [FastANI](https://github.com/ParBLiSS/FastANI) - FastANI is developed for fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI)  
+>"FastANI rapidly compares fasta sequences and will output global identity. It is meant only for relatively similar genomes, and will not create any output if identity is below 75-80%." - from Mensur Dlakic's Biostars answer [here](https://www.biostars.org/p/9509271/#9509767)
