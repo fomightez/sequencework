@@ -512,3 +512,6 @@ For use with targeted sequencing to look for CNVs:
 I listed some other related resources [here](https://www.biostars.org/p/183822/#253097).
 
 There's some related resources in replies to [this post at Biostars](https://www.biostars.org/p/9501962/#9501962). I especially like the binning idea this one suggests. Maybe that would be a better way to plot the human chromosome data in the demo????
+
+- [gos: (epi)genomic visualization in python](https://gosling-lang.github.io/gos/)
+	>"gos is a declarative (epi)genomics visualization library for Python. It is built on top of the Gosling JSON specification, providing an simplified interface for authoring interactive genomic visualizations."
