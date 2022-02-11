@@ -512,7 +512,7 @@ Related items by others
     - Examples https://github.com/etal/cnvkit-examples …
     - Tutorial https://www.youtube.com/watch?v=JGOIXYoLG6w&feature=youtu.be
 
-= I listed some other related resources [here](https://www.biostars.org/p/183822/#253097).
+- I listed some other related resources [here](https://www.biostars.org/p/183822/#253097).
 
 - There's some related resources in replies to [this post at Biostars](https://www.biostars.org/p/9501962/#9501962). I especially like the binning idea this one suggests. Maybe that would be a better way to plot the human chromosome data in the demo????
 
