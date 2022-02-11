@@ -123,14 +123,16 @@ Specifically, the script [`shepherds_read_starts_at_start_of_origins_thru_to_plo
 Related items by others
 -----------------------
 
-[karyoploteR](https://bernatgel.github.io/karyoploter_tutorial/)
->"karyoploteR is an R package to create karyoplots, that is, representations of whole genomes with arbitrary data plotted on them. ... The aim of karyoploteR is to offer the user an easy way to plot data along the genome to get broad genome-wide view to facilitate the identification of genome wide relations and distributions."
+- [karyoploteR](https://bernatgel.github.io/karyoploter_tutorial/)
+    >"karyoploteR is an R package to create karyoplots, that is, representations of whole genomes with arbitrary data plotted on them. ... The aim of karyoploteR is to offer the user an easy way to plot data along the genome to get broad genome-wide view to facilitate the identification of genome wide relations and distributions."
 
-See [here](https://twitter.com/ewjwallace/status/1310896446829457408) for alternatives to `plot_coverage.py` among the great answers listed in response to the question:
->"RNA-seq pileup plots for publication: bedgraph/gene features/etc: what is your favourite solution? I use IGV day-to-day but for publication it looks not so great. I have some ggplot code that works, just. Is there a better way (with clean vector-format graphics?) #Bioinformatics"
+- See [here](https://twitter.com/ewjwallace/status/1310896446829457408) for alternatives to `plot_coverage.py` among the great answers listed in response to the question:
+    >"RNA-seq pileup plots for publication: bedgraph/gene features/etc: what is your favourite solution? I use IGV day-to-day but for publication it looks not so great. I have some ggplot code that works, just. Is there a better way (with clean vector-format graphics?) #Bioinformatics"
 
-Related to `plot_coverage.py` I'm curious about the answer to [this Biostars post ](https://www.biostars.org/p/9498724/#9498724).
+- Related to `plot_coverage.py` I'm curious about the answer to [this Biostars post ](https://www.biostars.org/p/9498724/#9498724).
 
-Not for high-throughput data, but for a different type of modern sequencing data:
+- [gos: (epi)genomic visualization in python](https://gosling-lang.github.io/gos/)
+	>"gos is a declarative (epi)genomics visualization library for Python. It is built on top of the Gosling JSON specification, providing an simplified interface for authoring interactive genomic visualizations."
 
-[NanoPack - NanoPlot and NanoStats and other Python scripts and modules for visualizing and processing Oxford Nanopore sequencing data](https://github.com/wdecoster/nanopack)
+- Not for high-throughput data, but for a different type of modern sequencing data:
+    [NanoPack - NanoPlot and NanoStats and other Python scripts and modules for visualizing and processing Oxford Nanopore sequencing data](https://github.com/wdecoster/nanopack)
