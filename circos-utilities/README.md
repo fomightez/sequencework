@@ -99,4 +99,8 @@ See [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/maste
 Related
 -------
 
-[circos-binder](https://github.com/fomightez/circos-binder) - for running Circos in your browser without need for downloads, installations, or maintenance.
+- [circos-binder](https://github.com/fomightez/circos-binder) - for running Circos in your browser without need for downloads, installations, or maintenance.
+
+- ### Related 
+
+- [gos: (epi)genomic visualization in python](https://gosling-lang.github.io/gos/) looks to circos-like images, see that page in the link for representative examples in the image at the top. [The Example Gallery](https://gosling-lang.github.io/gos/gallery/index.html) has a link to a Circos-style example under the 'Others' heading; it includes code [here](https://gosling-lang.github.io/gos/gallery/circos.html).
