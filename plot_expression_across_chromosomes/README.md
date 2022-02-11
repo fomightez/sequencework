@@ -496,12 +496,15 @@ Additionally, I have made a script for generating simulated data files where you
 Related items by others
 -----------------------
 
-[karyoploteR](https://bernatgel.github.io/karyoploter_tutorial/)
->"karyoploteR is an R package to create karyoplots, that is, representations of whole genomes with arbitrary data plotted on them. ... The aim of karyoploteR is to offer the user an easy way to plot data along the genome to get broad genome-wide view to facilitate the identification of genome wide relations and distributions." For example, see 'Rainfall plots' [here](https://bernatgel.github.io/karyoploter_tutorial/#Examples).
+- [karyoploteR](https://bernatgel.github.io/karyoploter_tutorial/)
+	>"karyoploteR is an R package to create karyoplots, that is, representations of whole genomes with arbitrary data plotted on them. ... The aim of karyoploteR is to offer the user an easy way to plot data along the genome to get broad genome-wide view to facilitate the identification of genome wide relations and distributions." For example, see 'Rainfall plots' [here](https://bernatgel.github.io/karyoploter_tutorial/#Examples).
 
-R code to plot expression across chromosomes in Jupyter notebooks looks to be demonstrated [here](https://twitter.com/ODiogoSilva/status/898241229250605056) by Diogo Silva for an organism with 12 chromosomes, but I haven't found the actual code yet.
+- R code to plot expression across chromosomes in Jupyter notebooks looks to be demonstrated [here](https://twitter.com/ODiogoSilva/status/898241229250605056) by Diogo Silva for an organism with 12 chromosomes, but I haven't found the actual code yet.
 
-For use with targeted sequencing to look for CNVs:
+- [gos: (epi)genomic visualization in python](https://gosling-lang.github.io/gos/)
+	>"gos is a declarative (epi)genomics visualization library for Python. It is built on top of the Gosling JSON specification, providing an simplified interface for authoring interactive genomic visualizations."
+
+- For use with targeted sequencing to look for CNVs:
 [CNVkit: Copy number detection and visualization for targeted sequencing using off-target read.]
 
     - Preprint https://www.biorxiv.org/content/early/2018/09/04/408534?rss=1
@@ -509,9 +512,8 @@ For use with targeted sequencing to look for CNVs:
     - Examples https://github.com/etal/cnvkit-examples …
     - Tutorial https://www.youtube.com/watch?v=JGOIXYoLG6w&feature=youtu.be
 
-I listed some other related resources [here](https://www.biostars.org/p/183822/#253097).
+= I listed some other related resources [here](https://www.biostars.org/p/183822/#253097).
 
-There's some related resources in replies to [this post at Biostars](https://www.biostars.org/p/9501962/#9501962). I especially like the binning idea this one suggests. Maybe that would be a better way to plot the human chromosome data in the demo????
+- There's some related resources in replies to [this post at Biostars](https://www.biostars.org/p/9501962/#9501962). I especially like the binning idea this one suggests. Maybe that would be a better way to plot the human chromosome data in the demo????
 
-- [gos: (epi)genomic visualization in python](https://gosling-lang.github.io/gos/)
-	>"gos is a declarative (epi)genomics visualization library for Python. It is built on top of the Gosling JSON specification, providing an simplified interface for authoring interactive genomic visualizations."
+
