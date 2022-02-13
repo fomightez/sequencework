@@ -101,3 +101,6 @@ See `drafting_extracting_mito_chr_function.py`.
 - [SeqKit - a cross-platform and ultrafast toolkit for FASTA/Q file manipulation](https://github.com/shenwei356/seqkit) by shenwei356 has under category 'basic', the commands 'subseq', 'sliding', and 'faidx' that look related. There's also 'Searching', 'amplicon' that is somewhat related. See [here](https://github.com/shenwei356/seqkit#subcommands) for subcommands listing.
 
 - [Example uses Biopython to make a Pandas dataframe from FASTA sequences](https://www.biostars.org/p/9505933/#9505933)
+
+- https://twitter.com/bioinformatics/status/1492276865104592899  February 2022
+  >"What’s the current state of the art for sequence search on > 1TB FASTA files? Tips on storage and parallelisation would be lovely!"
