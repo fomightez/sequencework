@@ -14,6 +14,9 @@ Utilities by Others
 
 [gencode_regions - Extract 3'UTR, 5'UTR, CDS, Promoter, Genes, Introns, Exons from GTF files](https://github.com/saketkc/gencode_regions#confused-about-exons-and-utrs) - Even has several yeast examples, such as [sacCerR64.ipynb](https://github.com/saketkc/gencode_regions/blob/master/notebooks/sacCerR64.ipynb) [S_cerevisiae-BY4741-stanford.ipynb](https://github.com/saketkc/gencode_regions/blob/master/notebooks/S_cerevisiae-BY4741-stanford.ipynb), besides other organisms.
 
+https://twitter.com/michelebusby/status/1506626641417678853   March 2022
+>"If you need to parse a gtf file into a pandas dataframe this gtfparse is good.  https://github.com/openvax/gtfparse "
+
 [Cool R script to colorfully annotate adapter sequences in a sequence - could be useful to adapt for displaying PCR primers, etc](https://twitter.com/clintcodesbio/status/1339947174239612929); R script [here](https://gitlab.com/gringer/bioinfscripts/-/blob/master/read_annotator.r)
 
 [annotables: R data package for annotating/converting Gene IDs](https://github.com/stephenturner/annotables)
