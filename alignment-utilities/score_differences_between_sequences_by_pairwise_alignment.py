@@ -45,7 +45,7 @@ __version__ = "0.1.0"
 # SEQUENCES FOR LONG SEQUENCES (i.e., greater than 9151 bp): Won't work on long 
 # sequences (fails silently and just hangs), it seems, due to memory use and 
 # speed limitations. Even with just getting the score. See 
-# https://github.com/biopython/biopython/pull/1655 ACtually, I think it is the
+# https://github.com/biopython/biopython/pull/1655 Actually, I think it is the
 # reading in of all the sequences upfront that is compounding problems. However,
 # I don't think it is failing at the reading in step because when tell it to 
 # process less of sequences after that step, it works. So reading isn't the 
@@ -201,7 +201,7 @@ from Bio.SubsMat import MatrixInfo as matlist
 
 class SequenceAlign:
     # this is modified to get mininum number of residue differences for the 
-    # pairwise alignmnet from
+    # pairwise alignment from
     # https://github.com/berrisfordjohn/adding_stats_to_mmcif/blob/master/adding_stats_to_mmcif/pairwise_align.py
 
     def __init__(self, sequence1, sequence2):
@@ -515,7 +515,8 @@ if __name__ == "__main__" and '__file__' in globals():
         them in turn to each other sequence. The output is a matrix of the \
         differences. If your sequences are already aligned, just use  Torsten \
         Seemann's `snp-dists` software to make a matrix of the differences, \
-        see https://github.com/tseemann/snp-dists. However, if the sequence happens \
+        see https://github.com/tseemann/snp-dists. However, if the sequence \
+        happens \
         to be moderate- or large-sized (> 5 kb), by default it only samples \
         part of the sequence due to memory limitations. It scores the \
         alignments and \
