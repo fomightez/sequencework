@@ -219,6 +219,8 @@ Will incorporate new functions to automate nw utils in next PIrANHA release." (S
 
 - [for selecting only differing residues based on an alignment for identifying differences to feed Chimera](https://gist.github.com/idyoung/266427969f99f869bf9aaaf684a1497e)
 
+- [CIAlign]() - [Now availabele through bioconda](https://twitter.com/thekatybrown1/status/1521119123178246144). Also see there about, "And we've added an option to set a threshold proportion of sequences for the remove insertions function."
+
 Somewhat related:  
 
 - [pyani](https://github.com/widdowquinn/pyani) for calculating average nucleotide identity (ANI) and related measures for whole genome comparisons, and rendering relevant graphical summary output.
