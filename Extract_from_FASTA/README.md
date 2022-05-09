@@ -98,7 +98,7 @@ See `drafting_extracting_mito_chr_function.py`.
 
   Good folks with lots of ideas in that response thread.
   
-- [SeqKit - a cross-platform and ultrafast toolkit for FASTA/Q file manipulation](https://github.com/shenwei356/seqkit) by shenwei356 has under category 'basic', the commands 'subseq', 'sliding', and 'faidx' that look related. There's also 'Searching', 'amplicon' that is somewhat related. See [here](https://github.com/shenwei356/seqkit#subcommands) for subcommands listing.
+- [SeqKit - a cross-platform and ultrafast toolkit for FASTA/Q file manipulation](https://github.com/shenwei356/seqkit) by shenwei356 has under category 'basic', the commands 'subseq', 'sliding', and 'faidx' that look related. There's also 'Searching', 'amplicon' that is somewhat related. See [here](https://github.com/shenwei356/seqkit#subcommands) for subcommands listing. [This Biostars answer to 'Retrieving specific subsequences from multiple references on NCBI?'] uses `seqkit subseq`.
 
 - [Example uses Biopython to make a Pandas dataframe from FASTA sequences](https://www.biostars.org/p/9505933/#9505933)
 
