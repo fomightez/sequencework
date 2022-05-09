@@ -19,7 +19,9 @@ There is a [demo notebook for this script as part of my series of structurework-
 
 I'd need to see if it needs updating/fixing (for example, I think it is purely 2.7) but I have one of the more fleshed out Python scripts I wrote that corrects names in alignments to add the common name automagically. Created for facilating pipelines for submitting tasks to the GARLI webserver.
 I intended to put up a web-served version of it [here](http://fomightez.pythonanywhere.com/) but I recall I hadn't figured out how to get the toggles to work at the bottom at the time for controlling the command line parameters. (I know I got some text entry forms working later, for example see [here](http://fomightez.pythonanywhere.com/ammonium_screen/) and [here](http://fomightez.pythonanywhere.com/spartan_fixer/) and [here](http://fomightez.pythonanywhere.com/triplet_freq/), and so I probably could figure it out now.)  
-Related to this but more limited scope: [FungusNameCheck.R](https://github.com/Rowena-h/FungusNameCheck) by Rowena Hill (@Rowena-h) - "A script to check fungi names for the most up to date nomenclature according to [Species Fungorum](http://www.speciesfungorum.org/)."
+Something to explore related to this is if [ETE Toolkit:Dealing with the NCBI Taxonomy database](http://etetoolkit.org/docs/latest/tutorial/tutorial_ncbitaxonomy.html) is any easier to deal with than Entrez for getting the common names.  
+Related to my BIOALIGNNAMER but more limited scope: [FungusNameCheck.R](https://github.com/Rowena-h/FungusNameCheck) by Rowena Hill (@Rowena-h) - "A script to check fungi names for the most up to date nomenclature according to [Species Fungorum](http://www.speciesfungorum.org/)."
+
 
 * pretty_msa_maker_from_clustal_nucleic.py (* NOT HERE YET BUT SHOULD BE HERE*)
 > alignment in text form --> alignment fully annotated with features and numbers in vector graphics form
