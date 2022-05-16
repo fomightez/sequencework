@@ -131,6 +131,10 @@ Related items by others
 
 - Related to `plot_coverage.py` I'm curious about the answer to [this Biostars post ](https://www.biostars.org/p/9498724/#9498724).
 
+- Related to `plot_coverage.py` I'm curious about the answers to [this Twitter post ](https://twitter.com/michelebusby/status/1526237687291813888). Such as:
+   - >"SeqMonk from @babraham_bioinf does all the things (including this): https://bioinformatics.babraham.ac.uk/projects/seqmonk/ complete with [YouTube tutorial](https://www.youtube.com/watch?v=ul4IZEMsJKI&list=PL1F2BF3C688ABFFC4&t=3s) "
+   - >"Sounds like bamCoverage and computeMatrix from deepTools will do what you need. The former can give raw coverage for summarization. You can probably use mosdepth rather than bamCoverage if time is important, though you’d need to convert the results to bigWig."
+
 - [gos: (epi)genomic visualization in python](https://gosling-lang.github.io/gos/)
 	>"gos is a declarative (epi)genomics visualization library for Python. It is built on top of the Gosling JSON specification, providing an simplified interface for authoring interactive genomic visualizations."
 
