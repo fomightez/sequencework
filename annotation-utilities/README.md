@@ -31,3 +31,9 @@ The contents of [the Adjust_Annotation sub-repositor](https://github.com/fomight
 * makes_length_annotation_file.py
 
 See `check_for_omega_intron.py` under [the omega-presence sub-repository](https://github.com/fomightez/sequencework/tree/master/omega-presence). Technically that could be used to make annotations but it isn't presently, and doesn't rely on gff3 annoation file, and so placed in its own sub-directory for now.
+
+
+Related items by others
+-----------------------
+
+[oddgenes](https://github.com/cmdcolin/oddgenes) - "A list of weird gene annotations or things that break bioinformatics assumptions"
