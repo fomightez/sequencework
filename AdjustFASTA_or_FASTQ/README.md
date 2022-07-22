@@ -133,3 +133,5 @@ Related scripts by others
 ------------------------
 
 [SeqKit - a cross-platform and ultrafast toolkit for FASTA/Q file manipulation](https://github.com/shenwei356/seqkit) by shenwei356 has categories 'edit' and 'ordering' that seem to allow adjusting FASTA or FASTQ files. See [here](https://github.com/shenwei356/seqkit#subcommands) for subcommands listing.
+
+[Python code to remove sequences with non-amino acid residues or ambiguous residues from a multi-FASTA file, a.k.a. remove imperfect protein sequences](https://www.biostars.org/p/9531892/#9531906)
