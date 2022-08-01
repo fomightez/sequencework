@@ -58,4 +58,7 @@ https://twitter.com/BQPMalfoy/status/1202902187174707200     December 2019
 
 EMBOSS [dreg](http://emboss.sourceforge.net/apps/cvs/emboss/apps/dreg.html), learned of it [here, Biostars: How to find sequence patterns in genome?](https://www.biostars.org/p/173760/#173886), but notice it mentions [there](https://www.biostars.org/p/173760/#173886) doesn't know about biological 'ambiguity codes' (looks like it knows REGEX though); I think PatMatch is a better choice for that reason.
 
+"Search a FASTQ for specific ref & alt alleles with [fqgrep](https://github.com/fulcrumgenomics/fqgrep)" - https://twitter.com/nilshomer/status/1553822634143412224
+>"Search a pair of fastq files for reads that match a given ref or alt sequence."
+
 
