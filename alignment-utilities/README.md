@@ -201,7 +201,9 @@ I have several listed [here](http://proteopedia.org/wiki/index.php/User:Wayne_De
 
 - Under 'Installable software for fine-tuning sequence alignments' there, I discuss using SEQOTRON on my work Mac and  `cons` alignment consensus program and many others at EMBOSS explorer website to put in conservation. Along the way it looks like it adds numbering similar to Mview where it is just numbering for total number on line INCLUDING GAPS. (Not to self, see my `edited t-coffee alignment for true XXXXX XXXXX.md` for example.)
 
-- A MSA viewer for right in the terminal based on Rich/Textual:   
+- Series of tweets starting [here](https://twitter.com/althonos/status/1555500813279236098) introduce pyfamsa, "Cython bindings to FAMSA, a very fast algorithm for Multiple Sequence Alignment (MSA)" and show how to use it to create an alignment and extend it to trimming the sequence alignment using PytrimA.
+
+- A MSA viewer directly in the terminal based on Rich/Textual:   
   https://twitter.com/althonos/status/1524024017325371393   May 2022
   >"55 lines of #Python code to build a Multiple Sequence Alignment viewer for the terminal with the #Rich library (from @textualizeio) #bioinformatics"
   >"If you want to test it, here's a repository, I guess I'll release it to PyPI later on once I've added a few tests and documentation: https://github.com/althonos/rich-msa"
