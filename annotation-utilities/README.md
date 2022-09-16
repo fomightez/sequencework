@@ -37,3 +37,8 @@ Related items by others
 -----------------------
 
 [oddgenes](https://github.com/cmdcolin/oddgenes) - "A list of weird gene annotations or things that break bioinformatics assumptions"
+
+
+https://twitter.com/conchoecia/status/1570788182899425281.   September 2022
+>"For fellow biologists working on non-model organisms: 
+@lh3lh3's new tools miniprot is like minimap for proteins. You can easily map proteins from one species to another's genome. It also outputs GFF. This will be very nice for annotating new genomes! [Miniprot: Aligning proteins to genomes with splicing and frameshift](https://github.com/lh3/miniprot)"
