@@ -240,3 +240,8 @@ Somewhat related:
 - There are other ways to score alignments. For now I have been using simplistic assessments based on differences. This can be done much fancier based on probability models, with different scores for sections in between the gaps as well. See [How sequence alignment scores correspond to probability models. Martin C Frith. Bioinformatics, btz576, https://doi.org/10.1093/bioinformatics/btz576](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz576/5536873) for recent coverage of this, although I don't see an implementation linked to there on my cursory examination. Related to this see [calculation suggested in this post](https://www.biostars.org/p/9538070/#9538076) and reply by a.zielezinski naming it the 'Jaccard Index'. Also see my discussion of scoring snp-dists in this README as well.
 
 - [Cool R script to colorfully annotate adapter sequences in a sequence - could be useful to adapt for displaying PCR primers, etc](https://twitter.com/clintcodesbio/status/1339947174239612929); R script [here](https://gitlab.com/gringer/bioinfscripts/-/blob/master/read_annotator.r)
+
+- Protein-to-DNA alignment:  
+https://twitter.com/conchoecia/status/1570788182899425281.   September 2022
+>"For fellow biologists working on non-model organisms: 
+@lh3lh3's new tools miniprot is like minimap for proteins. You can easily map proteins from one species to another's genome. It also outputs GFF. This will be very nice for annotating new genomes! [Miniprot: Aligning proteins to genomes with splicing and frameshift](https://github.com/lh3/miniprot)"
