@@ -258,8 +258,9 @@ def delete_seq_following_pattern_within_FASTA(
     # Prepare the pattern to be searched for.
     if filter_dashes:
         seq_to_find = seq_to_find.replace("-","")
-    # make a pattern object since it could be used often if I change things to 
-    # search the file for multiple records instead of just the first one.
+    # make a pattern object since it could be used often if I change things (or 
+    # adapt this code for another purpuse) to search the file for multiple 
+    # records instead of just the one matching the `record_id`.
     pat_obj = re.compile(seq_to_find.lower())
     # It seemed it didn't (and wouldn't work) to use 
     # https://stackoverflow.com/a/12989308/8508004 to bring regular expression
