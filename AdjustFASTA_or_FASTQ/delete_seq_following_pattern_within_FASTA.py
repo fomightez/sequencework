@@ -171,9 +171,7 @@ import os
 import re
 from Bio import SeqIO
 from Bio.Seq import Seq 
-from Bio.SeqRecord import SeqRecord 
-from Bio.Alphabet import generic_dna
-
+from Bio.SeqRecord import SeqRecord
 
 
 
@@ -261,7 +259,7 @@ def delete_seq_following_pattern_within_FASTA(
     if filter_dashes:
         seq_to_find = seq_to_find.replace("-","")
     # make a pattern object since it could be used often if I change things to 
-    # search the file for multiple records instead of just one at a time
+    # search the file for multiple records instead of just the first one.
     pat_obj = re.compile(seq_to_find.lower())
     # It seemed it didn't (and wouldn't work) to use 
     # https://stackoverflow.com/a/12989308/8508004 to bring regular expression
@@ -299,8 +297,17 @@ def delete_seq_following_pattern_within_FASTA(
         modf_seq = str(record_to_search.seq[:end])
         # replace the appropriate record with the modified sequence, tagging
         # the description line
+        #------------------------------------------------------------------
+        #records[index_of_record] = SeqRecord(
+        #   Seq(modf_seq, generic_dna), 
+        #   id=record_id, description=record_description+" CLIPPED")#based
+        # on https://www.biostars.org/p/48797/ and `.ungap()` method, see
+        # https://github.com/biopython/biopython/issues/1511 , and `description`
+        # from what I've seen for `id` plus https://biopython.org/wiki/SeqIO
+        # NOW  Bio.Alphabet and `generic_dna` has been REMOVED FROM BIOPYTHON!
+        # see https://biopython.org/wiki/Alphabet
         records[index_of_record] = SeqRecord(
-            Seq(modf_seq, generic_dna), 
+            Seq(modf_seq), 
             id=record_id, description=record_description+" CLIPPED")#based
         # on https://www.biostars.org/p/48797/ and `.ungap()` method, see
         # https://github.com/biopython/biopython/issues/1511 , and `description`
