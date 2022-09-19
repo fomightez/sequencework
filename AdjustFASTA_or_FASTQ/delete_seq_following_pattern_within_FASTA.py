@@ -313,6 +313,9 @@ def delete_seq_following_pattern_within_FASTA(
         # on https://www.biostars.org/p/48797/ and `.ungap()` method, see
         # https://github.com/biopython/biopython/issues/1511 , and `description`
         # from what I've seen for `id` plus https://biopython.org/wiki/SeqIO
+        # (Note that as of release 1.79, `.ungap()` has been deprecated in place
+        # of using Python's string replace method, see 
+        # https://github.com/biopython/biopython/blob/cedce6fcfa26cf0ea7b07c65bea4f30c2c2a53d0/DEPRECATED.rst#bioseqsequngap )
         #print (records[indx]) # ONLY FOR DEBUGGING
     else:
         modf_seq = None
