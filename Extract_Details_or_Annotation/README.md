@@ -33,6 +33,13 @@ Returns a dataframe with the details for the mito features, now with yeast mitoc
 Intended to be used in conjuction with `mine_mito_features_from_transcriptome.py` and `mine_SUT_and merge_into_mito_transcripts_df.py`, specifically after `mine_SUT_and merge_into_mito_transcripts_df.py`.  
 Returns a dataframe with the details for the mito features, now with yeast mitochondrial XUTs added.
 
+* summarize_all_nts_even_ambiguous_present_in_FASTA.py
+> fasta multi-sequence to breakdown of all letters present in sequence 
+
+I found when dealing with sequenced *S. cerevisiae genomes from Peter et al 2018 that a lot of them had ambiguous/gap-representing residues beyond the usual A,T,G,C, or N and I counted them, for example see the 11 code cell [here](https://github.com/fomightez/cl_sq_demo-binder/blob/master/notebooks/GSD/GSD%20Assessing_ambiguous_nts_in_1011_collection_genomesALL.ipynb) for a lot of other letters in there and count. 
+
+Use alone or in conjuction with `replace_unusual_nts_within_FASTA.py`.
+
 * report_coordinates_for_seq_within_FASTA.py 
 > subsequence from a specific sequence in a FASTA file --->  coordinates of the match
 
