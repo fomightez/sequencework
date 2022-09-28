@@ -59,7 +59,6 @@ __version__ = "0.1.0"
 # v.0.1. basic working version. 
 #
 # To do:
-# - move all details in header to the argparse "usage/help" section
 # - verify compatible with Python 2.7
 #
 #
@@ -141,7 +140,13 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 import pandas as pd
 import collections
-from rich_dataframe import prettify
+try:
+    from rich_dataframe import prettify
+except ImportError:
+    sys.stderr.write("Run `pip install rich-dataframe` on your command line "
+        "or if\nusing in a Jupyter notebook, run `%pip install rich-dataframe`"
+        ", without the tick marks.")
+
 
 
 
@@ -420,15 +425,14 @@ if __name__ == "__main__" and '__file__' in globals():
     parser = argparse.ArgumentParser(prog=
         'summarize_all_nts_even_ambiguous_present_in_FASTA.py',
         description="summarize_all_nts_even_ambiguous_present_in_FASTA.py \
-        takes a sequence pattern string, a sequence file (FASTA-format), and a \
-        record id, and deletes any sequence following the sequence pattern. In \
-        other words it trims the specified sequence, to make the first match \
-        to the pattern the new end. (The FASTA-formatted sequence file is \
-        assumed by default to be a multi-FASTA, i.e., multiple sequences in \
-        the provided file, although it definitely doesn't have to be. In case \
-        it is only a single sequence, the record id becomes moot, see below.) \
-        In case of unusual nucleotides present, a copy of the FASTA sequence \
-        file with the unusual nucleotides replaced by  will be produced. \
+        takes a sequence file (FASTA-format) and summarizes the nts in the \
+        sequence(s). Assumes multi-FASTA, but single sequence entry is fine, \
+        too. When running on the command line, it will print out a summary \
+        table of counts of nucleotides and other character in each sequence \
+        and totals. When calling the main function it will, by default, return \
+        a dataframe with this information. Only valid for DNA sequences; \
+        script has no step checking for data type, and so you are responsible \
+        for verifying appropriate input. \
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
 
