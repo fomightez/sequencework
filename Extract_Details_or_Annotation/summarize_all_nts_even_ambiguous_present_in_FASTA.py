@@ -344,6 +344,8 @@ def summarize_all_nts_even_ambiguous_present_in_FASTA(
 
     
 
+    # SUMMARIZE LETTERS PRESENT IN SEQUENCES:
+    #--------------------------------------------------------------------------#
     # Go through each record and collect the counts on all the letters in the 
     # sequences. Also, if any sequences have anything other than A,T,G,C or N,
     # make new versions of the records where the characters that aren't 
@@ -366,6 +368,8 @@ def summarize_all_nts_even_ambiguous_present_in_FASTA(
     df = make_dataframe_accounting_of_nucleotides(dict_of_seq_letter_counts)
 
 
+    # HANDLE DISPLAY OR RETURN OF SUMMARY INFO:
+    #--------------------------------------------------------------------------#
     # display dataframe summary in terminal if using command line
     if display_text_of_dataframe_df:
         display_df_in_terminal(df)
