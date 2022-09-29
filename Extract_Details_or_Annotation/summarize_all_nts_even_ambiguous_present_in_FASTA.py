@@ -145,7 +145,8 @@ try:
 except ImportError:
     sys.stderr.write("Run `pip install rich-dataframe` on your command line "
         "or if\nusing in a Jupyter notebook, run `%pip install rich-dataframe`"
-        ", without the tick marks.")
+        ", without the tick marks.\n**EXITING.**.\n")
+    sys.exit(1)
 
 
 
