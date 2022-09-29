@@ -29,7 +29,9 @@ __version__ = "0.1.0"
 # 'Assessing_ambiguous_nts..' series of notebooks, which first was used to make the summarizing/accounting part of `replace_unusual_nts_within_FASTA.py`. However, 
 # since may want the summary/accounting of letters/nts without invoking 
 # making a file where anything is not A,T,G,C or N gets replaced, separated 
-# that portion out to this script.)
+# that portion out to this script.) There's a point in the code noted where you
+# can remove `.upper()` if you want lowercase and uppercase letters counted
+# separately.
 #
 #
 #
@@ -353,15 +355,16 @@ def summarize_all_nts_even_ambiguous_present_in_FASTA(
     dict_of_seq_letter_counts = {}
     for indx,record in enumerate(records):
         # allow for sequences with same record.id (I don't know if biopython 
-        # allows that) If it happens appending the sequence number in all 
-        # the entries will make it unique, and so if it gets through
-        # biopython, at least it will be handled.
+        # allows that) If it happens, then appending the position number of that
+        # record among all the entries will make it unique, and so if it gets 
+        # through biopython, at least it will be handled.
         if record.id in dict_of_seq_letter_counts:
             record_id = record.id+f"_{indx}"
         else:
             record_id = record.id
         dict_of_seq_letter_counts[record.id] = make_count_of_nucleotides(
-            str(record.seq).upper())
+            str(record.seq).upper()) # <== remove `.upper()` if you want to 
+            #distinguish lower case and upper case letters in summary
 
     # Now that everything has been analyzed, make summary of letter counts as a 
     # dataframe
