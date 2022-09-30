@@ -24,14 +24,16 @@ __version__ = "0.1.0"
 #
 # Only valid for DNA sequences; script has no step checking for data type, and 
 # so you are responsible for verifying appropriate input.
+# 
+# Case-insensitive by default; however, both main routes to use the script /
+# main function allow for setting it to 'case-sensitive' so that the numbers of
+# lowercase & uppercase letters are reported separately.
 #
 # (incorporates quantification code adapted from my 
 # 'Assessing_ambiguous_nts..' series of notebooks, which first was used to make the summarizing/accounting part of `replace_unusual_nts_within_FASTA.py`. However, 
 # since may want the summary/accounting of letters/nts without invoking 
 # making a file where anything is not A,T,G,C or N gets replaced, separated 
-# that portion out to this script.) There's a point in the code noted where you
-# can remove `.upper()` if you want lowercase and uppercase letters counted
-# separately.
+# that portion out to this script.) 
 #
 #
 #
@@ -62,6 +64,9 @@ __version__ = "0.1.0"
 #
 # To do:
 # - verify compatible with Python 2.7
+# - check if using case-sensitive setting necessary if have things like asterisk
+# or other symbols in a sequence, meaning does `.upper()` cause any issue for
+# when symbols are in sequence when run with default setting?
 #
 #
 #
@@ -142,6 +147,10 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 import pandas as pd
 import collections
+# Before built-in my customized version of rich-dataframe, this was how I was
+# handling import. Search 'CUSTOMIZED RICH-DATAFRAME' in this document to find
+# where added.
+'''
 try:
     from rich_dataframe import prettify
 except ImportError:
@@ -149,8 +158,7 @@ except ImportError:
         "or if\nusing in a Jupyter notebook, run `%pip install rich-dataframe`"
         ", without the tick marks.\n**EXITING.**.\n")
     sys.exit(1)
-
-
+'''
 
 
 ###---------------------------HELPER FUNCTIONS-------------------------------###
@@ -237,28 +245,49 @@ def percent_calc(items):
 
 def make_count_of_nucleotides(seq):
     '''
-    Take a sequence and return a dictionary of the counts of each letter in the
-    sequence.
+    Take a sequence and return a dictionary of the counts of each character in 
+    the sequence.
     '''
     return collections.Counter(seq)
 
-def make_dataframe_accounting_of_nucleotides(dict_of_seq_letter_counts):
+def make_dataframe_accounting_of_nucleotides(dict_of_seq_letter_counts,
+    case_sensitive=False):
     '''
     Take a dictonary of counts of letters in the sequences and returns a 
     dataframe putting the data for each sequence as a row with nice summary
     features with respect totals and %N.
     Quantification code adapted from my 'Assessing_ambiguous_nts..' series of 
     notebooks.
+    By default it is case-insensitive; however, the lowercase & uppercase 
+    letters will be tallied separately if `case_sensitive = True` in the call
+    to this function.
     '''
     nt_count_df = pd.DataFrame.from_dict(
         dict_of_seq_letter_counts, orient='index').fillna(0)
-    # Because high quality sequences won't necessarily have any N's, add a column
-    # including that so below `%N` can be caculated without triggering  
-    # `KeyError: "['N'] not in index"`.
+    # Because high quality sequences won't necessarily have any N's, add a 
+    # column including that so below `%N` can be caculated without triggering  
+    # `KeyError: "['N'] not in index"`. Do same for lowercase `n` in case of
+    # case-sensitivity setting.
     if 'N' not in nt_count_df.columns:
         nt_count_df['N'] = 0
+    if case_sensitive and 'n' not in nt_count_df.columns:
+        nt_count_df['n'] = 0
     nt_count_df["Total_nts"] = nt_count_df.sum(1).astype(dtype='int64') 
-    nt_count_df['% N'] = nt_count_df[['N','Total_nts']].apply(percent_calc, axis=1)
+    nt_count_df['% N'] = nt_count_df[['N','Total_nts']].apply(
+        percent_calc, axis=1)
+    if case_sensitive:
+        nt_count_df['% n'] = nt_count_df[['n','Total_nts']].apply(
+            percent_calc, axis=1)
+        extra_nt_count_df = nt_count_df[['N','n','Total_nts']].copy() # 
+        # make a separate dataframe for combining counts of `N` & `n` without 
+        # adding that column to main dataframe. The combined counts can then be
+        # used to calculate total percent if consider both lower and upper case 
+        # Ns as one. (Note that I added use of `.copy` to avoid 
+        # `SettingWithCopyWarning` as per https://www.dataquest.io/blog/settingwithcopywarning/
+        extra_nt_count_df['Nn'] = extra_nt_count_df[['N','n']].sum(
+            1).astype(dtype='int64') 
+        nt_count_df['% N&n'] = extra_nt_count_df[['Nn','Total_nts']].apply(
+            percent_calc, axis=1)
     nt_count_df.loc['TOTAL']= nt_count_df.sum().astype(dtype='int64') 
     return nt_count_df
 
@@ -301,7 +330,8 @@ def display_df_in_terminal(df):
 ###------------------------'main' function of script--------------------------##
 
 def summarize_all_nts_even_ambiguous_present_in_FASTA(
-    sequence_file, return_df = True, display_text_of_dataframe_df = False):
+    sequence_file, case_sensitive=False, return_df = True, 
+    display_text_of_dataframe_df = False):
     '''
     Main function of script.
     Takes a sequence string, a pattern, and a record id and 
@@ -314,6 +344,9 @@ def summarize_all_nts_even_ambiguous_present_in_FASTA(
     It also will count all the nucleotides in the data and produce a dataframe
     that can be printed in the terminal using rich-dataframe when called from
     the command line.
+    By default the counting of the letters will be case-insensitive; however,
+    setting case_sensitive to `True` will cause the numbers of lowercase &
+    uppercase letters to be tallied separately in the summary data table.
 
     A modified sequence file will be made.
     '''
@@ -362,13 +395,17 @@ def summarize_all_nts_even_ambiguous_present_in_FASTA(
             record_id = record.id+f"_{indx}"
         else:
             record_id = record.id
-        dict_of_seq_letter_counts[record.id] = make_count_of_nucleotides(
-            str(record.seq).upper()) # <== remove `.upper()` if you want to 
-            #distinguish lower case and upper case letters in summary
+        if case_sensitive: 
+            dict_of_seq_letter_counts[record.id] = make_count_of_nucleotides(
+            str(record.seq))
+        else:
+            dict_of_seq_letter_counts[record.id] = make_count_of_nucleotides(
+            str(record.seq).upper()) 
 
     # Now that everything has been analyzed, make summary of letter counts as a 
     # dataframe
-    df = make_dataframe_accounting_of_nucleotides(dict_of_seq_letter_counts)
+    df = make_dataframe_accounting_of_nucleotides(dict_of_seq_letter_counts, 
+        case_sensitive)
 
 
     # HANDLE DISPLAY OR RETURN OF SUMMARY INFO:
@@ -401,6 +438,7 @@ def main():
     # with a distinguishing name in Jupyter notebooks, where `main()` may get
     # assigned multiple times depending how many scripts imported/pasted in.
     kwargs = {}
+    kwargs['case_sensitive'] = case_sensitive
     kwargs['return_df'] = False #probably don't want dataframe returned if 
     # calling script from command line
     kwargs['display_text_of_dataframe_df'] = True # if calling script from 
@@ -440,7 +478,10 @@ if __name__ == "__main__" and '__file__' in globals():
         and totals. When calling the main function it will, by default, return \
         a dataframe with this information. Only valid for DNA sequences; \
         script has no step checking for data type, and so you are responsible \
-        for verifying appropriate input. \
+        for verifying appropriate input. By default, the summary is \
+        case-insensitive; however, a flag can be added at the time of calling \
+        the script so that it will tally the lowercase & uppercase letters \
+        separately in the summary data table. \
         **** Script by Wayne Decatur   \
         (fomightez @ github) ***")
 
@@ -448,6 +489,11 @@ if __name__ == "__main__" and '__file__' in globals():
         use as input. Must be FASTA format. Can be a \
         multi-FASTA file, i.e., multiple sequences in FASTA format in one \
         file.", metavar="SEQUENCE_FILE")
+
+    parser.add_argument('-cs', '--case_sensitive', help="Add this flag when \
+        calling the script if you want the numbers of lowercase & uppercase \
+        letters reported separately in the summary. \
+        ", action="store_true")
     
 
 
@@ -462,6 +508,217 @@ if __name__ == "__main__" and '__file__' in globals():
         sys.exit(1)
     args = parser.parse_args()
     sequence_file = args.sequence_file
+    case_sensitive = args.case_sensitive
+
+    ###--------------------CUSTOMIZED RICH-DATAFRAME--------------------------###
+    # Based, almost directly, on https://github.com/khuyentran1401/rich-dataframe 
+    # Building it in because it is small and hasn't been updated much in a while &
+    # most importantly because I want to customize how it handles the captioning.
+    # SPECIFIC CUSTOMIZATIONS:
+    #-------------------------
+    # I don't want the caption describing how many rows or cols shown unless number 
+    # of rows or columns is larger than how many are shown.
+    # Plus, adding note to install rich.
+    # Plus, removing the animation to the 'beat' because it causes weird spacing
+    # in Juputer and I had already turned the speed up so high because I wasn't
+    # interested in the animated aspect the default rich-dataframe makes.
+    #-------------------------
+    # Adding this in this section of my script so only need rich installed if
+    # using command line. Use of the main function directly wouldn't necessarily
+    # need the code handling printng the dataframe in the terminal and so best
+    # rich not required in such cases so not asking user to install something
+    # that isn't used.
+    import time
+    from contextlib import contextmanager
+    from rich import print
+    try:
+        from rich import print
+    except ImportError:
+        sys.stderr.write("Run `pip install rich` on your command line "
+            "or if\nusing in a Jupyter notebook, run `%pip install rich`"
+            ", without the tick marks.\n**EXITING.**.\n")
+        sys.exit(1)
+    from rich.box import MINIMAL, SIMPLE, SIMPLE_HEAD, SQUARE
+    from rich.columns import Columns
+    from rich.console import Console
+    from rich.live import Live
+    from rich.measure import Measurement
+    from rich.table import Table
+    console = Console()
+    COLORS = ["cyan", "magenta", "red", "green", "blue", "purple"]
+    class DataFramePrettify:
+        """Create animated and pretty Pandas DataFrame
+
+        Parameters
+        ----------
+        df : pd.DataFrame
+            The data you want to prettify
+        row_limit : int, optional
+            Number of rows to show, by default 20
+        col_limit : int, optional
+            Number of columns to show, by default 10
+        first_rows : bool, optional
+            Whether to show first n rows or last n rows, by default True. If this is set to False, show last n rows.
+        first_cols : bool, optional
+            Whether to show first n columns or last n columns, by default True. If this is set to False, show last n rows.
+        delay_time : int, optional
+            How fast is the animation, by default 5. Increase this to have slower animation.
+        clear_console: bool, optional
+             Clear the console before printing the table, by default True. If this is set to False the previous console input/output is maintained
+        """
+        def __init__(
+            self,
+            df: pd.DataFrame,
+            row_limit: int = 20,
+            col_limit: int = 10,
+            first_rows: bool = True,
+            first_cols: bool = True,
+            delay_time: int = 5,
+            clear_console: bool = True,
+        ) -> None:
+            self.df = df.reset_index().rename(columns={"index": ""})
+            self.table = Table(show_footer=False)
+            self.table_centered = Columns(
+                (self.table,), align="center", expand=True
+            )
+            self.num_colors = len(COLORS)
+            self.delay_time = delay_time
+            self.row_limit = row_limit
+            self.first_rows = first_rows
+            self.col_limit = col_limit
+            self.first_cols = first_cols
+            self.clear_console = clear_console
+            if first_cols:
+                self.columns = self.df.columns[:col_limit]
+            else:
+                self.columns = list(self.df.columns[-col_limit:])
+                self.columns.insert(0, "index")
+
+            if first_rows:
+                self.rows = self.df.values[:row_limit]
+            else:
+                self.rows = self.df.values[-row_limit:]
+            
+            if self.clear_console:
+                console.clear()
+
+        def _add_columns(self):
+            for col in self.columns:
+                self.table.add_column(str(col))
+        def _add_rows(self):
+            for row in self.rows:
+                if self.first_cols:
+                    row = row[: self.col_limit]
+                else:
+                    row = row[-self.col_limit :]
+                row = [str(item) for item in row]
+                self.table.add_row(*list(row))
+        def _move_text_to_right(self):
+            for i in range(len(self.table.columns)):
+                self.table.columns[i].justify = "right"
+        def _add_random_color(self):
+            for i in range(len(self.table.columns)):
+                self.table.columns[i].header_style = COLORS[
+                    i % self.num_colors
+                ]
+        def _add_style(self):
+            for i in range(len(self.table.columns)):
+                self.table.columns[i].style = (
+                    "bold " + COLORS[i % self.num_colors]
+                )
+        def _adjust_box(self):
+            for box in [SIMPLE_HEAD, SIMPLE, MINIMAL, SQUARE]:
+                self.table.box = box
+        def _dim_row(self):
+            self.table.row_styles = ["none", "dim"]
+        def _adjust_border_color(self):
+            self.table.border_style = "bright_yellow"
+        def _change_width(self):
+            original_width = Measurement.get(console, self.table).maximum
+            width_ranges = [
+                [original_width, console.width, 2],
+                [console.width, original_width, -2],
+                [original_width, 90, -2],
+                [90, original_width + 1, 2],
+            ]
+            for width_range in width_ranges:
+                for width in range(*width_range):
+                    self.table.width = width
+
+                self.table.width = None
+
+        def _add_caption(self):
+            if self.first_rows:
+                row_text = "first"
+            else:
+                row_text = "last"
+            if self.first_cols:
+                col_text = "first"
+            else:
+                col_text = "last"
+
+            if (len(self.df) > self.row_limit) and (len(self.df.columns) > self.col_limit):
+                self.table.caption = f"Only the [bold magenta not dim] {row_text} {self.row_limit} rows[/bold magenta not dim] and the [bold green not dim]{col_text} {self.col_limit} columns[/bold green not dim] are shown here."
+            elif len(self.df) > self.row_limit:
+                self.table.caption = f"Only the [bold magenta not dim] {row_text} {self.row_limit} rows[/bold magenta not dim] are shown here."
+            elif len(self.df.columns) > self.col_limit:
+                self.table.caption = f"Only  the [bold green not dim]{col_text} {self.col_limit} columns[/bold green not dim] are shown here."
+
+        def prettify(self):
+            with Live(
+                self.table_centered,
+                console=console,
+                refresh_per_second=self.delay_time,
+                vertical_overflow="ellipsis",
+            ):
+                self._add_columns()
+                self._add_rows()
+                self._move_text_to_right()
+                self._add_random_color()
+                self._add_style()
+                self._adjust_border_color()
+                self._add_caption()
+            return self.table
+    def prettify(
+        df: pd.DataFrame,
+        row_limit: int = 20,
+        col_limit: int = 10,
+        first_rows: bool = True,
+        first_cols: bool = True,
+        delay_time: int = 5,
+        clear_console: bool = True,
+    ):
+        """Create animated and pretty Pandas DataFrame
+
+        Parameters
+        ----------
+        df : pd.DataFrame
+            The data you want to prettify
+        row_limit : int, optional
+            Number of rows to show, by default 20
+        col_limit : int, optional
+            Number of columns to show, by default 10
+        first_rows : bool, optional
+            Whether to show first n rows or last n rows, by default True. If this is set to False, show last n rows.
+        first_cols : bool, optional
+            Whether to show first n columns or last n columns, by default True. If this is set to False, show last n rows.
+        delay_time : int, optional
+            How fast is the animation, by default 5. Increase this to have slower animation.
+        clear_console: bool, optional
+            Clear the console before priting the table, by default True. If this is set to false the previous console input/output is maintained
+        """
+        if isinstance(df, pd.DataFrame) or isinstance(df, pd.DataFrame):
+            DataFramePrettify(
+                df, row_limit, col_limit, first_rows, first_cols, delay_time,clear_console
+            ).prettify()
+
+        else:
+            # In case users accidentally pass a non-datafame input, use rich's print instead
+            print(df)
+    ###---------------END OF CUSTOMIZED RICH-DATAFRAME--------------------------###
+
+
+
 
 
 
