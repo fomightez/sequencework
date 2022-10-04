@@ -8,6 +8,10 @@ I sorely need to put an index here with links to better guide to the appropriate
 
 Descriptions of the scripts are found within `README.md` files in the sub folders.
 
+Several have demonstrations in sessions served by MyBinder.org [from my command line-sequence associated repo](https://github.com/fomightez/cl_sq_demo-binder); however, probably best to follow guide listed with individual scripts so that you quickly find the right location. If you already know where you are going, you can launch a session via this button:
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/fomightez/cl_sq_demo-binder/master?filepath=index.ipynb)
+
 
 Related 'Binderized' Utilities
 ----------------------------
