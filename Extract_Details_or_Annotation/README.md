@@ -40,7 +40,7 @@ Takes a sequence file (FASTA-format) and summarizes the nts in the sequence(s). 
 
 Only valid for DNA sequences; script has no step checking for data type, and so you are responsible for verifying appropriate input.
 
-There's a Jupyter notebook demonstrating this script accessible by [first clicking here](https://mybinder.org/v2/gh/fomightez/cl_sq_demo-binder/master?filepath=index.ipynb), and then select 'Demo of script to summarize all nts, even ambiguous, appearing in FASTA file' from the available notebooks listed in the page that comes up when the session starts.    
+There's **a Jupyter notebook demonstrating this script** accessible by [first clicking here](https://mybinder.org/v2/gh/fomightez/cl_sq_demo-binder/master?filepath=index.ipynb), and then select 'Demo of script to summarize all nts, even ambiguous, appearing in FASTA file' from the available notebooks listed in the page that comes up when the session starts.    
 [A static version of the demo can be seen here](https://nbviewer.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/demo%20summarize_all_nts_even_ambiguous_present_in_FASTA.ipynb).
 
 Impetus was from that I found when dealing with sequenced *S. cerevisiae* genomes from Peter et al 2018 that a lot of them had ambiguous/gap-representing residues beyond the usual A,T,G,C, or N and I counted them, for example see the 11 code cell [here](https://github.com/fomightez/cl_sq_demo-binder/blob/master/notebooks/GSD/GSD%20Assessing_ambiguous_nts_in_1011_collection_genomesALL.ipynb) for a lot of other letters in there and count. This script packages up the code I used there to be useful on command line or in Python. 
