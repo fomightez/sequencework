@@ -36,6 +36,9 @@ Returns a dataframe with the details for the mito features, now with yeast mitoc
 * summarize_all_nts_even_ambiguous_present_in_FASTA.py
 > fasta multi-sequence to breakdown of all letters present in sequence 
 
+There's a Jupyter notebook demonstrating this script accessible by [first clicking here](https://mybinder.org/v2/gh/fomightez/cl_sq_demo-binder/master?filepath=index.ipynb), and then select 'Demo of script to summarize all nts, even ambiguous, appearing in FASTA file' from the available notebooks listed in the page that comes up when the session starts.    
+[A static version of the demo can be seen here](https://nbviewer.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/demo%20summarize_all_nts_even_ambiguous_present_in_FASTA.ipynb).
+
 Takes a sequence file (FASTA-format) and summarizes the nts in the sequence(s). Assumes multi-FASTA, but single sequence entry is fine, too. When running on the command line, it will print out a summary table of counts of nucleotides and other character in each sequence and totals. When #calling the main function it will, by default, return a dataframe with this information.
 
 Only valid for DNA sequences; script has no step checking for data type, and so you are responsible for verifying appropriate input.
