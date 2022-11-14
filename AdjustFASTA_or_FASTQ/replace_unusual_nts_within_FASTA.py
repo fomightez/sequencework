@@ -386,15 +386,6 @@ def replace_unusual_nts_within_FASTA(
         case_sensitive)
 
 
-    # HANDLE DISPLAY OR RETURN OF SUMMARY INFO:
-    #--------------------------------------------------------------------------#
-    # display dataframe summary in terminal if using command line
-    if display_text_of_dataframe_df:
-        prettify(df, row_limit=100,col_limit=100, 
-           delay_time = 1, clear_console=False, mono=mono)
-    elif return_df:
-        return df
-
 
     # DETERMINE IF UNUSUAL LETTERs/NUCLEOTIDES ARE PRESENT:
     #--------------------------------------------------------------------------#
@@ -444,6 +435,19 @@ def replace_unusual_nts_within_FASTA(
         # the call here.
         sys.stderr.write("No unsual characters were found in the sequences in "
             "'{}';\nno substitutions were made.".format(sequence_file))
+
+
+    # HANDLE DISPLAY OR RETURN OF SUMMARY INFO:
+    #--------------------------------------------------------------------------#
+    # display dataframe summary in terminal if using command line
+    # This needs to be moved to end for use in 
+    # `replace_unusual_nts_within_FASTA.py` because if return dataframe, exits
+    # the main function before handling removing the unusual nts.
+    if display_text_of_dataframe_df:
+        prettify(df, row_limit=100,col_limit=100, 
+           delay_time = 1, clear_console=False, mono=mono)
+    elif return_df:
+        return df
         
 
     
