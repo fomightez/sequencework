@@ -116,6 +116,24 @@ breakpoint and you want to compare.
 wish to permute to see if possible the sequence happens to fall across the
 artificial start/end (end/start) breakpoint.
 
+
+
+
+- replace_unusual_nts_within_FASTA.py
+> sequence(s) in FASTA file --->  sequences with unusual nts replaced by a single character
+
+As it stands, you have to edit the script itself to change the character used in the substitution. Search for `character_for_subbing` in the 'USER ADJUSTABLE VALUES' section of the script.
+
+Takes a sequence file (FASTA-format) and replaces the unusual nts with a single character specified. It also summarizes the nts in the sequence(s). Assumes multi-FASTA, but single sequence entry is fine, too. When running on the command line, it will print out a summary table of counts of nucleotides and other character in each sequence and totals. When #calling the main function it will, by default, return a dataframe with this information.
+
+Only valid for DNA sequences; script has no step checking for data type, and so you are responsible for verifying appropriate input.
+
+There's **a Jupyter notebook demonstrating this script** accessible by [first clicking here](https://mybinder.org/v2/gh/fomightez/cl_sq_demo-binder/master?filepath=index.ipynb), and then when the session starts select 'Demo of script to replace unusual nts appearing in FASTA file' from the available notebooks listed.    
+[A static version of the demo can be seen here](https://nbviewer.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/demo%20replace_unusual_nts_within_FASTA.ipynb).
+
+This script makes use of the main function in my script `summarize_all_nts_even_ambiguous_present_in_FASTA.py` to summarize the nucleotdies to provide a better sense of the amount of unusual vs. normal nucleotdies. If it all goes right, it handles this all behind the scenes. I'm just pointing it out mainly so anyone reading about this script will see that summarizing functionality is available separate from the replacement steps. (Also, if fetching of `summarize_all_nts_even_ambiguous_present_in_FASTA.py` fails, it will ask to place that script in the same location with `replace_unusual_nts_within_FASTA.py` , and so it may be nice to know why it is asking that.)
+
+
 &nbsp;<p></p>
 
 
