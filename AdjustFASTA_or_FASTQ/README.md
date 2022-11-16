@@ -133,6 +133,8 @@ There's **a Jupyter notebook demonstrating this script** accessible by [first cl
 
 This script makes use of the main function in my script `summarize_all_nts_even_ambiguous_present_in_FASTA.py` to summarize the nucleotdies to provide a better sense of the amount of unusual vs. normal nucleotdies. If it all goes right, it handles this all behind the scenes. I'm just pointing it out mainly so anyone reading about this script will see that summarizing functionality is available separate from the replacement steps. (Also, if fetching of `summarize_all_nts_even_ambiguous_present_in_FASTA.py` fails, it will ask to place that script in the same location with `replace_unusual_nts_within_FASTA.py` , and so it may be nice to know why it is asking that.)
 
+Related code and suggestions by others [here](https://www.biostars.org/p/9479894/#9479894) and [here](https://www.biostars.org/p/9538916/#9538947).
+
 
 &nbsp;<p></p>
 
