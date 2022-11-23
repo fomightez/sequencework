@@ -85,3 +85,4 @@ Specific, related scripts to note here:
   # Related efforts by others
   
  - [Towards reliable named entity recognition in the biomedical domain](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz504/5520946) looks to be complex and use machine learning. Repo:[Saber (Sequence Annotator for Biomedical Entities and Relations) is a deep-learning based tool for information extraction in the biomedical domain](https://github.com/BaderLab/saber). This isn't placed in [my general texting mining repo](https://github.com/fomightez/text_mining) because targeted for biomedical domain.
+- In relation to `summarize_all_nts_even_ambiguous_present_in_FASTA.py`, see [Biostars post: Relative frequencies of the nucleotides in Fasta files](https://www.biostars.org/p/9462180/#9462180).
