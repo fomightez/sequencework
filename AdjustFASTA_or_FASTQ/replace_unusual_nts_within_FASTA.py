@@ -598,7 +598,7 @@ if __name__ == "__main__" and '__file__' in globals():
     # custom implementation:
     # Starting a MyBinder session from 
     # https://github.com/binder-examples/requirements and installing only `rich`
-    # and then runningan edited version of `example.py` from 
+    # and then running an edited version of `example.py` from 
     # https://github.com/fomightez/rich-dataframe allowed me to see I shouldn't 
     # need `rich-dataframe` installed to get run `%run example.py` to show the 
     # output in a JupyterLab cell. EDITS: `example.py` had the entire 
