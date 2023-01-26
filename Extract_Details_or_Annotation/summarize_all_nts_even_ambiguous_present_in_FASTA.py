@@ -209,7 +209,7 @@ def generate_output_file_name(file_name,suffix_for_saving):
     Specific example
     =================
     Calling function with
-        ("sequence.fa", "_subbed)
+        ("sequence.fa", "_subbed")
     returns
         "sequence_subbed.fa"
     '''
