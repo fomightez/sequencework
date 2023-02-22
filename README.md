@@ -59,6 +59,9 @@ See also
 
 [My simulated data repo](https://github.com/fomightez/simulated_data) has some useful scripts and resources for generating simulated (mock / fake) sequence data, gene expression data, or gene lists.
 
+[My structurework repo](https://github.com/fomightez/structurework/) - for utilities and code dealing with molecular structures
+
+[My proteomicswork repo](https://github.com/fomightez/roteomicswork/) - for utilities and code dealing with proteomicss analysis
 
 
 
