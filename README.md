@@ -61,7 +61,7 @@ See also
 
 [My structurework repo](https://github.com/fomightez/structurework/) - for utilities and code dealing with molecular structures
 
-[My proteomicswork repo](https://github.com/fomightez/roteomicswork/) - for utilities and code dealing with proteomicss analysis
+[My proteomicswork repo](https://github.com/fomightez/proteomicswork/) - for utilities and code dealing with proteomics analysis
 
 
 
