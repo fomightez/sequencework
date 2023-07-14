@@ -31,3 +31,11 @@ Related utilities by others
 
 - [FastANI](https://github.com/ParBLiSS/FastANI) - FastANI is developed for fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI)  
 >"FastANI rapidly compares fasta sequences and will output global identity. It is meant only for relatively similar genomes, and will not create any output if identity is below 75-80%." - from Mensur Dlakic's Biostars answer [here](https://www.biostars.org/p/9509271/#9509767)
+
+
+- If you are doing massive scales to compare non-rendundant sequences to get a sense of the degree of difference or increase in content of a databases since last time you checked, see this discussion:  
+https://twitter.com/BenLangmead/status/1679658259400077314    July 2023
+>"Genome folks: saw a tweet like this today? Can we do better than gzip as a way of measuring non-redundant sequence content & similarity, including between huge sequence collections, without gzip's windowing?  Super efficiently? See this by Jessica Bonnie: https://biorxiv.org/content/10.1101/2023.02.02.526837v1 "  
+https://twitter.com/jnalanko/status/1679843958229200896     July 2023  
+>"Twitter makes this thing sound super novel and creative. Actually, the concept of normalized compression distance (NCD) has been known at least since 2005 [1]. 🧵"  
+>"I played around with this for clustering metagenomic samples with Lempel-Ziv compression as a summer intern in 2015. While the initial results were okay, we abandoned the project because it was looking like just a hack to approximate more principled substring distances."
