@@ -83,4 +83,4 @@ This one is hard coded for dealing with 'ECIIIL genome' for locus column; howeve
 Related
 -------
 
-- ?
+- [ys2ec_snakefiles - snakefiles to process yeast to Ec homologs](https://github.com/fomightez/ys2ec_snakefiles)https://github.com/fomightez/ys2ec_snakefiles
