@@ -36,6 +36,13 @@ Related utilities by others
 - If you are doing massive scales (I need to see if maybe works at lower too?!?!) to compare non-rendundant sequences to get a sense of the degree of difference or increase in content of a databases since last time you checked, see this discussion:  
 https://twitter.com/BenLangmead/status/1679658259400077314    July 2023
 >"Genome folks: saw a tweet like this today? Can we do better than gzip as a way of measuring non-redundant sequence content & similarity, including between huge sequence collections, without gzip's windowing?  Super efficiently? See this by Jessica Bonnie: https://biorxiv.org/content/10.1101/2023.02.02.526837v1 "  
-https://twitter.com/jnalanko/status/1679843958229200896     July 2023  
->"Twitter makes this thing sound super novel and creative. Actually, the concept of normalized compression distance (NCD) has been known at least since 2005 [1]. 🧵"  
->"I played around with this for clustering metagenomic samples with Lempel-Ziv compression as a summer intern in 2015. While the initial results were okay, we abandoned the project because it was looking like just a hack to approximate more principled substring distances."
+https://twitter.com/jnalanko/status/1679843958229200896     July 2023
+
+
+
+Related resources by others
+---------------------------
+
+[Excellent set of slides on 'sketching techniques' used in conjunction with sequence bioinformatics that includes intro covering a great overview of sequence comparison algorithms and approaches](https://github.com/kamimrcht/webpage/blob/master/slides/journ%C3%A9e_r%C3%A9duction_dimension_ENS_Lyon.pdf) --- found from:  
+https://twitter.com/CamilleMrcht/status/1722994982296957131   November 2023   
+>"Sketching in sequence bioinformatics: that was my presentation today for a dimensionality reduction seminar in ENS Lyon. Slides available here: https://github.com/kamimrcht/webpage/blob/master/slides/journ%C3%A9e_r%C3%A9duction_dimension_ENS_Lyon.pdf 'Sketching in sequence bioinformatics methods and applications: Réduction de dimension pour l'apprentissage et la visualisation' by Camille Marchet"
