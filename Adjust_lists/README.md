@@ -256,7 +256,7 @@ Several other of my code repositories hold code related to the manipulation of g
 Related code by others
 ----------------------
 
-From [Ming Tang early 2019](https://twitter.com/tangming2005/status/1087776160463888384) using `awk` to creat a tx2gene file/`tx2gene.csv` from an ensembl gtf:
+From [Ming Tang early 2019](https://twitter.com/tangming2005/status/1087776160463888384) using `awk` to create a tx2gene file/`tx2gene.csv` from an ensembl gtf:
 
 >"create a tx2gene mapping file from ensemble gtf retaining the version number of genes and transcripts.
 awk -F "\t" '$3 == "transcript" { print $9 }' myensembl.gtf| tr -s ";" " "   | cut -d " " -f2,4|  sed 's/\"//g' | awk '{print $1"."$2}' > genes.txt"
