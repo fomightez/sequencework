@@ -512,6 +512,10 @@ Related items by others
     - Examples https://github.com/etal/cnvkit-examples …
     - Tutorial https://www.youtube.com/watch?v=JGOIXYoLG6w&feature=youtu.be
 
+- LocusZoom.js in Jupyter for gwas plotting of LD and recombination rate for geneomic region:
+  >"Proof of concept: LocusZoom.js but in Jupyter. Takes a DataFrame with associations, e.g. from plink2. LD, genes track, recombination via APIs. Is it useful beyond my own work?
+https://github.com/krassowski/jupyter-locuszoom #jupyterlab #gwas" - SOURCE: https://twitter.com/krassowski_m/status/1674452269213917185   January 2023
+
 - I listed some other related resources [here](https://www.biostars.org/p/183822/#253097).
 
 - There's some related resources in replies to [this post at Biostars](https://www.biostars.org/p/9501962/#9501962). I especially like the binning idea this one suggests. Maybe that would be a better way to plot the human chromosome data in the demo????
