@@ -512,7 +512,7 @@ Related items by others
     - Examples https://github.com/etal/cnvkit-examples …
     - Tutorial https://www.youtube.com/watch?v=JGOIXYoLG6w&feature=youtu.be
 
-- LocusZoom.js in Jupyter for gwas plotting of LD and recombination rate for geneomic region:
+- LocusZoom.js in Jupyter for gwas plotting of LD and recombination rate for a genomic region:
   >"Proof of concept: LocusZoom.js but in Jupyter. Takes a DataFrame with associations, e.g. from plink2. LD, genes track, recombination via APIs. Is it useful beyond my own work?
 https://github.com/krassowski/jupyter-locuszoom #jupyterlab #gwas" - SOURCE: https://twitter.com/krassowski_m/status/1674452269213917185   January 2023
 
