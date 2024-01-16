@@ -217,7 +217,7 @@ I've used this extensively to prepare files for ASTRAL-III.
 Will incorporate new functions to automate nw utils in next PIrANHA release." (Source: [here](https://twitter.com/justincbagley/status/1163496265100824576)
 
 - [snp-dists](https://github.com/tseemann/snp-dists) - Pairwise SNP distance matrix from a FASTA sequence alignment. 
->"Convert a FASTA alignment to SNP distance matrix."    <--- related to my scripts `roughly_score_relationships_to_subject_seq_pairwise_premsa.py`,`score_sequences_in_clustal_msa.py`, and `score_sequences_in_clustal_msa_favoring_top_line.py`..
+>"Convert a FASTA alignment to SNP distance matrix."    <--- related to my scripts `roughly_score_relationships_to_subject_seq_pairwise_premsa.py`,`score_sequences_in_clustal_msa.py`, and `score_sequences_in_clustal_msa_favoring_top_line.py`. (Converse-like measure may be looking at number of gaps / column occupancy metric, see ['How to quantify gaps in multiple sequence alignments' and reply about the column occupancy](https://www.biostars.org/p/9585116/#9585117). Plus see my own local markdown file concerning 'column occupancy metric' for more on that.)
 
 -  [HamHeat: Hamming distance calculation from multiple sequence data for heatmap visualization](https://github.com/alexeyrakov/HamHeat)   <--- related to my scripts `score_differences_between_sequences_by_pairwise_alignment.py` and `roughly_score_relationships_to_subject_seq_pairwise_premsa.py`
 
