@@ -70,3 +70,7 @@ GLGP--SYCSFSHNGSNQ------------------------------------------
 ## Related scripts by others
 
 - [pyani](https://github.com/widdowquinn/pyani) has a script called `genbank_get_genomes_by_taxon.py` that  enables download of genomes from NCBI, specified by taxon ID.
+
+## Related tools by others
+
+- [TaxonKit - A Practical and Efficient NCBI Taxonomy Toolkit](https://github.com/shenwei356/taxonkit) - A Practical and Efficient NCBI Taxonomy Toolkit, also supports creating NCBI-style taxdump files for custom taxonomies like GTDB/ICTV.
