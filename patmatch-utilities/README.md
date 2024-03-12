@@ -111,3 +111,9 @@ Related
 -------
 
 [patmatch-binder](https://github.com/fomightez/patmatch-binder) - for running command line-based PatMatch on sequences of your choice in your browser without need for downloads, installations, or maintenance.
+
+
+Related Utilities by Others
+---------------------------
+
+Go the other way .... [Biostars post 'Python3 or Ubuntu, not perl: Have Primers with Degenerate Bases, Need tool or way to List all Possible Nucleotide Sequences'](https://www.biostars.org/p/9589753/) containes resources to do the reverse. -- One of them is [Generate all the possible combinations of a Degenerate DNA/RNA sequence in FASTA format using Python - Degenerecy..py by Chamara Janaka Bandara](https://www.researchgate.net/publication/354451685_Generate_all_the_possible_combinations_of_a_Degenerate_DNARNA_sequence_in_FASTA_format_using_Python) (I haven't vetted the script yet myself by taking what it produces and seeing if all of them match according to PatMatch.
