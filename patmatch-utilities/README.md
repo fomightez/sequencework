@@ -58,7 +58,7 @@ It probably is issuing a warning so you know that it may not show a match if it 
 * matches_a_patmatch_pattern.py
 > pattern in PatMatch syntax and a sequence --> report if they match
 
-Takes pattern in PatMatch syntax and a sequence in text or FAST format and reports if they match.
+Takes pattern in PatMatch syntax and a sequence in text or FASTA format and reports if they match.
 
 There is a [demo notebook for this script that runs in my patmatch-binder](https://github.com/fomightez/patmatch-binder). You can launch the series from [here](https://github.com/fomightez/patmatch-binder) and then selecting from the list at the bottom of the index page undert 'Additional topics: Technical' to go to the 'Demo of script to check for a match to a sequence pattern in PatMatch syntax' page. The direct link to a nicely-rendered, static version of that page is [here](https://nbviewer.jupyter.org/github/fomightez/ptmbr-accompmatz/blob/master/notebooks/Demo%20of%20script%20to%20check%20for%20a%20match%20to%20a%20sequence%20pattern%20in%20PatMatch%20syntax.ipynb).
 
