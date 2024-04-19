@@ -497,8 +497,8 @@ Related items by others
 -----------------------
 
 - [karyoploteR](https://bernatgel.github.io/karyoploter_tutorial/)
-	>"karyoploteR is an R package to create karyoplots, that is, representations of whole genomes with arbitrary data plotted on them. ... The aim of karyoploteR is to offer the user an easy way to plot data along the genome to get broad genome-wide view to facilitate the identification of genome wide relations and distributions." For example, see 'Rainfall plots' [here](https://bernatgel.github.io/karyoploter_tutorial/#Examples).
- See about karyoploteR and CopyNumberPlots in [Biostarts post 'Copy number variation plot'](https://www.biostars.org/p/9593054/#9593054) and [Biostars post 'How to plot copy number variation profile in R?'](https://www.biostars.org/p/411705/#411885)
+	>"karyoploteR is an R package to create karyoplots, that is, representations of whole genomes with arbitrary data plotted on them. ... The aim of karyoploteR is to offer the user an easy way to plot data along the genome to get broad genome-wide view to facilitate the identification of genome wide relations and distributions." For example, see 'Rainfall plots' [here](https://bernatgel.github.io/karyoploter_tutorial/#Examples).  
+ See about karyoploteR and CopyNumberPlots in [Biostarts post 'Copy number variation plot'](https://www.biostars.org/p/9593054/#9593054) and [Biostars post 'How to plot copy number variation profile in R?'](https://www.biostars.org/p/411705/#411885). (I especially like the lines added to detail the steps in ploidy/copy number deviations across chromosome. They are reminiscent of the 'display a smoothing curve fit to the data points (LOWESS)' I included, and I'd be curious what they used.)
  
 
 - R code to plot expression across chromosomes in Jupyter notebooks looks to be demonstrated [here](https://twitter.com/ODiogoSilva/status/898241229250605056) by Diogo Silva for an organism with 12 chromosomes, but I haven't found the actual code yet.
