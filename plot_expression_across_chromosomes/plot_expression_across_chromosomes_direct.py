@@ -65,7 +65,12 @@ __version__ = "0.2.0"
 # v.0.2. refactored early part to speed up.
 #
 # to do:
-# 
+# - possible to do would be to change the color cycling system to something more
+# similar to a generatory where define some good ones at start and then generate
+# random ones later with the idea being NONE repeat so every chromosomes/contig/
+# scaffold as separate color. See example of generator with similar approach in
+# `sequential_color_maps_generator()` for making donut plot colors with many
+# subgroups.
 #
 #
 #
@@ -140,9 +145,9 @@ deviation_fraction = 0.51 #fraction of values for a chromosome or scaffold that
 # suggested when using `--smooth` flag
 
 
-plot_style = "seaborn" #try also `ggplot`,`default`, `bmh` or `grayscale`; use 
+plot_style = "seaborn-v0_8" #try also `ggplot`,`default`, `bmh` or `grayscale`; use 
 # `print(plt.style.available)` after appropriate imports to see others; 
-# illustrated at https://matplotlib.org/examples/style_sheets/style_sheets_reference.html
+# illustrated at https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html#sphx-glr-gallery-style-sheets-style-sheets-reference-py
 
 #colors = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9']
 # if using `ggplot` or `seaborn` style as coded in script than it has less than 
@@ -245,15 +250,15 @@ def extract_gene_ids(row):
     formatted in Ensembl format, for example Ensembl-formatted yeast genome from 
     ftp://igenome:G3nom3s4u@ussd-ftp.illumina.com/Saccharomyces_cerevisiae/Ensembl/R64-1-1/Saccharomyces_cerevisiae_Ensembl_R64-1-1.tar.gz
     Here the annotation file has been read in as a pandas dataframe and the 
-    `attributes` field is in column 9, specified by `row[8]` in the code.
-    Using that instead of the column name because not called attribures list
+    `attributes` field is in column 9, specified by `row.iloc[8]` in the code.
+    Using that instead of the column name because not called attributes list
     in the gff format but it has `group` field at same position.
 
     takes a row of a pandas dataframe derived from an annotation file
 
     returns a string of the systematic gene id
     '''
-    return row[8].split("gene_id")[1].split('"')[1].strip()
+    return row.iloc[8].split("gene_id")[1].split('"')[1].strip()
 
 def calculate_position(row):
     '''
@@ -709,7 +714,7 @@ sys.stderr.write("Information for {0} genes parsed...".format(len(genome_df)))
 # datafram produced to single index, where gene_id is the index, and the
 # 'seqname' gets moved from hierarchical index to a column.
 genome_df = init_genome_df.groupby(
-    ["gene_id","seqname"]).agg({'start': min,'end': max}) 
+    ["gene_id","seqname"]).agg({'start': 'min','end': 'max'}) 
 genome_df = genome_df.reset_index(level=['seqname']) #based on 
 # https://stackoverflow.com/a/20461206/8508004
 # provide feedback on number of unique genes identified
@@ -1086,6 +1091,7 @@ else:
     # plt.savefig(output_file_name[:-4]+".svg")
     # sys.stderr.write("\n\nPlot image saved to: {}\n".format(output_file_name[:-4]+".svg"))
     # plt.savefig(output_file_name[:-4]+".pdf", orientation='landscape') # UNFORTUNATELY DOES NOT PRODUCE VECTOR GRAPHICS, unlike ReportLab's pdf output; USE SVG for that and the make PDF later.
+    # For PDFs see https://twitter.com/michaelwaskom/status/1123259902837891072
     #plt.show()
 
 
