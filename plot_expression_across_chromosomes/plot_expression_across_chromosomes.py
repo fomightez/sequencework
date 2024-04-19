@@ -956,7 +956,7 @@ else:
     sys.stderr.write(
         "\n***Notice:***The {} points beyond the bounds of y-axis are drawn as open triangles at the edge; a limit was imposed to avoid extreme values compressing the typically important range; run with `--no_limits` or `--no_log` to see these accurately."
         .format(len(xs_out_of_bounds_hi) + len(xs_out_of_bounds_lo)))
-#if ymax is not None: plt.ylim(ymax=ymax)
+#if ymax is not None: plt.ylim(top=ymax)
 size_for_xlabels = 8.5
 longest_chr_or_scaffold = len(max(seqname_set, key=len))
 if limit_to_chrs is None:
