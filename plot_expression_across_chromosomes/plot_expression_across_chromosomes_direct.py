@@ -66,7 +66,7 @@ __version__ = "0.2.0"
 #
 # to do:
 # - possible to do would be to change the color cycling system to something more
-# similar to a generatory where define some good ones at start and then generate
+# similar to a generator where define some good ones at start and then generate
 # random ones later with the idea being NONE repeat so every chromosomes/contig/
 # scaffold as separate color. See example of generator with similar approach in
 # `sequential_color_maps_generator()` for making donut plot colors with many
@@ -1000,10 +1000,10 @@ else:
 plt.axis('tight')
 #plt.xlim(0, xs[-1])
 if no_log or no_limits or all(-y_cutoff <= n <= y_cutoff for n in ys):
-    #plt.ylim(ymin= None, ymax= None) # necessary?
+    #plt.ylim(bottom= None, top= None) # necessary?
     pass # see comment on above line
 else: 
-    plt.ylim(ymin=-y_cutoff, ymax=y_cutoff)
+    plt.ylim(bottom=-y_cutoff, top=y_cutoff)
     # catch out of bounds points for plotting in a manner to indicate out of 
     # bounds of limits used to avoid compressing important range. This approach
     # is styled on how DESeq2 plotMA handles out of bounds points.  Found to 
@@ -1036,7 +1036,7 @@ else:
     sys.stderr.write(
         "\n***Notice:***The {} points beyond the bounds of y-axis are drawn as open triangles at the edge; a limit was imposed to avoid extreme values compressing the typically important range; run with `--no_limits` or `--no_log` to see these accurately."
         .format(len(xs_out_of_bounds_hi) + len(xs_out_of_bounds_lo)))
-#if ymax is not None: plt.ylim(ymax=ymax)
+#if ymax is not None: plt.ylim(top=ymax)
 size_for_xlabels = 8.5
 longest_chr_or_scaffold = len(max(seqname_set, key=len))
 if limit_to_chrs is None:
