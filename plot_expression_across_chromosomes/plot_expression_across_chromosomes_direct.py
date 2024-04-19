@@ -711,7 +711,7 @@ for id in list(genome_df.index.values):
 sys.stderr.write("Information for {0} genes parsed...".format(len(genome_df)))
 '''
 # Use groupby and `.agg()` to get min and max. Then move the multi-index
-# datafram produced to single index, where gene_id is the index, and the
+# dataframe produced to single index, where gene_id is the index, and the
 # 'seqname' gets moved from hierarchical index to a column.
 genome_df = init_genome_df.groupby(
     ["gene_id","seqname"]).agg({'start': 'min','end': 'max'}) 
