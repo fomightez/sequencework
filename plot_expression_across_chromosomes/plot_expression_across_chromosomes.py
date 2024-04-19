@@ -61,17 +61,7 @@ __version__ = "0.3.0"
 #
 #
 # to do:
-# - When I ran this again Novemeber 2020, I was seeing the following and it 
-# seems to tell what to do to remove warnings:
-'''
-/srv/conda/lib/python3.6/site-packages/matplotlib/axes/_base.py:3604: MatplotlibDeprecationWarning: 
-The `ymin` argument was deprecated in Matplotlib 3.0 and will be removed in 3.2. Use `bottom` instead.
-  alternative='`bottom`', obj_type='argument')
-/srv/conda/lib/python3.6/site-packages/matplotlib/axes/_base.py:3610: MatplotlibDeprecationWarning: 
-The `ymax` argument was deprecated in Matplotlib 3.0 and will be removed in 3.2. Use `top` instead.
-  alternative='`top`', obj_type='argument')
-'''
-# - make jupyter nb version <--- I think I mean that cabe imported & return a plot
+# - make jupyter nb version <--- I think I mean that can be imported & return a plot
 #(display mock data in it so don't need to have our real data out there?) which should be easy using the ipython based testing code version to get a hard coded one fast.(sort of did with little change needed) BUT NEED BETTER WAY FOR HANDLING HARDCODING OF FILENAMES STILL.
 # - add supplying arguments to basic jupyter nb one where first hardcoded
 # - dream feature for jupyter nb version: interactive plot where gene id shows 
@@ -81,7 +71,7 @@ The `ymax` argument was deprecated in Matplotlib 3.0 and will be removed in 3.2.
 # - add ability to supply chromsome data as BEd format? But then where does gene
 # location get supplied??
 # - possible to do would be to change the color cycling system to something more
-# similar to a generatory where define some good ones at start and then generate
+# similar to a generator where define some good ones at start and then generate
 # random ones later with the idea being NONE repeat so every chromosomes/contig/
 # scaffold as separate color. See example of generator with similar approach in
 # `sequential_color_maps_generator()` for making donut plot colors with many
@@ -930,10 +920,10 @@ else:
 plt.axis('tight')
 #plt.xlim(0, xs[-1])
 if no_log or no_limits or all(-y_cutoff <= n <= y_cutoff for n in ys):
-    #plt.ylim(ymin= None, ymax= None) # necessary?
+    #plt.ylim(bottom= None, top= None) # necessary?
     pass # see comment on above line
 else: 
-    plt.ylim(ymin=-y_cutoff, ymax=y_cutoff)
+    plt.ylim(bottom=-y_cutoff, top=y_cutoff)
     # catch out of bounds points for plotting in a manner to indicate out of 
     # bounds of limits used to avoid compressing important range. This approach
     # is styled on how DESeq2 plotMA handles out of bounds points.  Found to 
