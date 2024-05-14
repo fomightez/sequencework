@@ -72,4 +72,8 @@ Related utilities by others
 ----------------------------
 
 - [FastANI](https://github.com/ParBLiSS/FastANI) - FastANI is developed for fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI)  
->"FastANI rapidly compares fasta sequences and will output global identity. It is meant only for relatively similar genomes, and will not create any output if identity is below 75-80%." - from Mensur Dlakic's Biostars answer [here](https://www.biostars.org/p/9509271/#9509767)
+   >"FastANI rapidly compares fasta sequences and will output global identity. It is meant only for relatively similar genomes, and will not create any output if identity is below 75-80%." - from Mensur Dlakic's Biostars answer [here](https://www.biostars.org/p/9509271/#9509767)
+
+- [degenotate - Annotate degeneracy of sites in coding regions of a genome](https://github.com/harvardinformatics/degenotate) Learned of it from [this Biostar's question seeking help to calculate degreee of degeneracy](https://www.biostars.org/p/9594758/#9594839).
+  >"degenotate takes as input either a genome FASTA file and a corresponding annotation file (GFF or GTF) OR file or directory of files that contain coding sequences in FASTA format and outputs a bed-like file that contains the degeneracy score (0-, 2-, 3-, or 4-fold) of every coding site."
+Vaguely related to my 'score' utilities featured on this page.
