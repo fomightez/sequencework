@@ -170,7 +170,7 @@ For retrieving/extracting sequences from 'local' sources (meaning where I supply
 
 I have coded several for extracting various sequences or subsequences from FASTA files using biopython. For example, see `drafting_extracting_mito_chr_function.py`. 
 
-# Related scripts/APIs by others
+# Related scripts/APIs/Tools by others
 
 - Haibao Tang's jcvi/MCscan software, see [here for links and info](https://github.com/fomightez/mcscan-binder), contains a script that
 collect sequennces matching features annotated in gff3 files:
@@ -204,3 +204,7 @@ Maybe useful stuff or better? See [here](https://twitter.com/widdowquinn/status/
         White heavy check markMore complete metadata in the genome README."  
   There's also a snamkemake wrapper for genomepy, see [here](https://twitter.com/svheeringen/status/1300664254840950784) 
     >"Download genomes and annotation as part of your snakemake workflow with the genomepy wrapper! https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/genomepy.html "
+
+- [`ffq` (Fetch FastQ)](https://github.com/pachterlab/ffq) is a command line tool for finding sequencing data from public databases. "ffq receives an accession and returns the metadata for that accession as well as the metadata for all downstream accessions following the connections between GEO, SRA, EMBL-EBI, DDBJ, and Biosample" - SOURCE: https://github.com/pachterlab/ffq
+
+- [iSeq](https://github.com/BioOmics/iSeq): An integrated tool to fetch public sequencing data and metadata. It is a BASH script installable by `conda`.
