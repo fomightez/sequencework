@@ -155,6 +155,12 @@ TAAATGAAAACATGCATCTTTATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 - I should work on switching them over to the Accession.Version system. 
 
 # Related scripts by me
+
+**IMPORTANT NOTE: As of July 1st 2024, Yeastmine is scehduled to be shut down July 15, 2024.**
+https://x.com/yeastgenome/status/1807832546027491641    July 2024
+>"YeastMine is closing July 15 due to ongoing funding cuts. For more info: https://community.alliancegenome.org/t/yeastmine-shutting-down-july-15/7720 #yeast"
+
+See note above concerning these next three!!!  
 For retrieving S. cerevisiae S288C sequences via YeastMine, see the following:
 
 * [`get_protein_seq_as_FASTA.py` in my 'YeastMine' code repository](https://github.com/fomightez/yeastmine)
