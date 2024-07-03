@@ -12,6 +12,10 @@ Several have demonstrations in sessions served by MyBinder.org [from my command 
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/fomightez/cl_sq_demo-binder/master?filepath=index.ipynb)
 
+Related gist by me
+------------------
+
+- [snippets for dealing with FASTA - `useful_FASTA_handling.py`](https://gist.github.com/fomightez/8cd6d9ba88f975b64e43eba562894dec) includes splitting
 
 Related 'Binderized' Utilities
 ----------------------------
