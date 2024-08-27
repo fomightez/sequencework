@@ -217,7 +217,7 @@ def generate_output_file_name(file_name, suffix):
     output file. The generated name is based on the original file
     name.
 
-    It also indicates in resulting file name name specific chromsomes or 
+    It also indicates in resulting file name name specific chromosomes or 
     scaffolds if plotting was limited to those.
 
     Specific example
@@ -573,7 +573,7 @@ parser.add_argument('-ac', '--advance_color', action='store', type=int,
     selection iterator the specified number of times. The idea is it allows \
     the ability to control the color of the chromosome when specifying \
     a chromosome or scaffolds to plot so you could make the color match the \
-    one used when all chromsome plotted if needed. Supply the number to \
+    one used when all chromosome plotted if needed. Supply the number to \
     advance after the flag on the command line. For example, `-ac 4`.") 
 
 #I would also like trigger help to display if no arguments provided because need at least one input file
@@ -862,7 +862,7 @@ if limit_to_chrs:
 genome_df.sort_values(["position"], inplace=True, ascending=True) 
 # sort by chromosome
 genome_df.sort_values(["chr_as_numeric","position"], inplace=True, ascending=True) # found `genome_df.sort_values(["chr_as_numeric"], inplace=True, ascending=True)` alone after previous sort didn't work but this seemed to result in what I wanted in end
-# make a dictionary of dictionaries with details of each chromsomes, 
+# make a dictionary of dictionaries with details of each chromosomes, 
 # specifically length(approximate based on genes/features) and midpoint
 # (to be used for tick marks later).
 # not all assigned variables for the chromosomes_specs dictionary used here but
