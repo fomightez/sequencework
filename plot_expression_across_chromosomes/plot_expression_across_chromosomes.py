@@ -68,7 +68,7 @@ __version__ = "0.3.0"
 # up when hover (and see 
 # https://moderndata.plot.ly/bioinformatics-plots-made-in-python-and-r/ for 
 # other? inspiration)
-# - add ability to supply chromsome data as BEd format? But then where does gene
+# - add ability to supply chromosome data as BEd format? But then where does gene
 # location get supplied??
 # - possible to do would be to change the color cycling system to something more
 # similar to a generator where define some good ones at start and then generate
@@ -221,7 +221,7 @@ def generate_output_file_name(file_name, suffix):
     output file. The generated name is based on the original file
     name.
 
-    It also indicates in resulting file name name specific chromsomes or 
+    It also indicates in resulting file name name specific chromosomes or 
     scaffolds if plotting was limited to those.
 
     Specific example
@@ -782,7 +782,7 @@ if limit_to_chrs:
 genome_df.sort_values(["position"], inplace=True, ascending=True) 
 # sort by chromosome
 genome_df.sort_values(["chr_as_numeric","position"], inplace=True, ascending=True) # found `genome_df.sort_values(["chr_as_numeric"], inplace=True, ascending=True)` alone after previous sort didn't work but this seemed to result in what I wanted in end
-# make a dictionary of dictionaries with details of each chromsomes, 
+# make a dictionary of dictionaries with details of each chromosomes, 
 # specifically length(approximate based on genes/features) and midpoint
 # (to be used for tick marks later).
 # not all assigned variables for the chromosomes_specs dictionary used here but
