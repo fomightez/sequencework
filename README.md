@@ -55,9 +55,16 @@ genomepy is designed to provide a simple and straightforward way to download and
 - ['seqrequester', a tool for summarizing, extracting, generating and modifying DNA sequences.](https://github.com/marbl/seqrequester). Perl-based.
 - [SeqKit - a cross-platform and ultrafast toolkit for FASTA/Q file manipulation](https://github.com/shenwei356/seqkit) by shenwei356 has some excellent utilities for handling FASTA or FASTQ files. See [here](https://github.com/shenwei356/seqkit#subcommands) for subcommands listing. [Documentation](https://bioinf.shenwei.me/seqkit/).
 - [SeqFu](https://telatin.github.io/seqfu2/) - an easy to use toolkit for FASTA and FASTQ manipulation and inspection on the commandline. Available from Bioconda as ‘seqfu’.
->"A general-purpose program to manipulate and parse information from FASTA/FASTQ files, supporting gzipped input files. Includes functions to interleave and de-interleave FASTQ files, to rename sequences and to count and print statistics on sequence lengths. SeqFu is available for Linux and MacOS. - A compiled program delivering high performance analyses - Supports FASTA/FASTQ files, also Gzip compressed    - A growing collection of handy utilities, also for quick inspection of the datasets."
-    - [Example uses Biopython to make a Pandas dataframe from FASTA sequences](https://www.biostars.org/p/9505933/#9505933)
+    >"A general-purpose program to manipulate and parse information from FASTA/FASTQ files, supporting gzipped input files. Includes functions to interleave and de-interleave FASTQ files, to rename sequences and to count and print statistics on sequence lengths. SeqFu is available for Linux and MacOS. - A compiled program delivering high performance analyses - Supports FASTA/FASTQ files, also Gzip compressed    - A growing collection of handy utilities, also for quick inspection of the datasets."
+        - [Example uses Biopython to make a Pandas dataframe from FASTA sequences](https://www.biostars.org/p/9505933/#9505933)
+- https://bsky.app/profile/robert.bio/post/3lbxcdesrwc2t
+  >"I made a little swiss army knife tool for quickly inspecting FASTA/FASTQ sequences, including GC content, codon analysis, reverse complement, and file format conversions:  
+ https://42basepairs.com/tools/sequence-analysis"  
+  >""I also have calculators for exploring:  
+  ➡️ FASTQ base quality: https://42basepairs.com/tools/fastq-base-quality  
+  ➡️ SAM flags: https://42basepairs.com/tools/sam-flag "  
 
+  
 See also
 -------
 
