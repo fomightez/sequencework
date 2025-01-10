@@ -28,6 +28,8 @@ Collection of links to launchable Jupyter environments where various sequence an
 
 - [blast-binder](https://github.com/fomightez/blast-binder) - launchable Jupyter sessions for running command line-based BLAST+ in Jupyter environment provided via Binder.
 
+- [Demonstration Jupyter Notebooks for My imporved version ofAdam Bessa's Fasta2Structure - Fasta2Structure-cli](https://github.com/fomightez/Fasta2Structure-cli) - To make it more convenient to use, I've modified the Fasta2Structure script to allow more ways to run it to produce improved_Fasta2Structure (a.k.a Fasta2Structure-cli).  It will run on the command line if you supply arguments specifying files as input or fallback to running on the command line if Tkinter cannot connect to a graphical display.  improved_Fasta2Structure (a.k.a Fasta2Structure-cli) - User-Friendly Tool for Converting Multiple Aligned FASTA Files to STRUCTURE Format, that is even more user-friendly because it doesn't need a user to select files in a GUI (Tkinter-based) and can thus run well anywhere, such as on a computer cluster or in Jupyter running remotely or in conjunction with software to make pipelines like Snakemake & NextFlow. For those reasons, the improved script is more user-friendly for those familiar with computation and allows scaling up.
+
 - [InterMine-binder](https://github.com/fomightez/intermine-binder) - 
 Intermine Web Services available in a Jupyter environment running via the Binder service. (See the [ guide to getting started with using Intermine sites and Jupyter using MyBinder-served Jupyter notebooks](https://github.com/fomightez/guide_to_intermine-binder).)
 
