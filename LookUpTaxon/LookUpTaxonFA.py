@@ -182,6 +182,7 @@ import os
 import sys
 from Bio import Entrez
 import urllib
+import requests
 import re
 from collections import Counter
 import time   #used for sleep
@@ -202,10 +203,24 @@ def SuggestReportBug():
     sys.stderr.write("\n         please paste in or attach your input file unless it is mammoth or super secret. Any output to console you can include would help too.")
     sys.stderr.write("\n         \n")
  
-def fetch_pdbheader(id):    #based on http://boscoh.com/protein/fetching-pdb-files-remotely-in-pure-python-code and http://www.pdb.org/pdb/static.do?p=download/http/index.html
-    url = 'http://www.rcsb.org/pdb/files/%s.pdb?headerOnly=YES' % id
+def NO_LONGER_BEST_fetch_pdbheader(id):    #based on http://boscoh.com/protein/fetching-pdb-files-remotely-in-pure-python-code and http://www.pdb.org/pdb/static.do?p=download/http/index.html BUT SHOULD USE NEWER API, SEE BELOW!!
+    url = 'http://www.rcsb.org/pdb/files/%s.pdb?headerOnly=YES' % id # USE NEWER API! SEE BELOW!
     return urllib.urlopen(url).read()
+def fetch_pdbheader(pdb_id):
+    """
+    Take a PDB accession code and return the PDB file header using RCSB's CORS-enabled REST API endpoint.
+    See https://data.rcsb.org/#data-api
+
+    Version of `fetch_pdbheader()` from above but with requests and better 
+    access endpoint that is more universal & works for outside of 
+    MyBinder-served sessions, even WASM! Both ipykernel & pyodide-compatible. 
+    """
  
+    url = f'https://files.rcsb.org/header/{pdb_id.upper()}.pdb'
+    response = requests.get(url, allow_redirects=True)
+    response.raise_for_status()  # Raise an exception for non-200 status codes
+    return response.text 
+
  
  
 def fetch_keypage(akey):
