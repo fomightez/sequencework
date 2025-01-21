@@ -208,11 +208,11 @@ def NO_LONGER_BEST_fetch_pdbheader(id):    #based on http://boscoh.com/protein/f
     return urllib.urlopen(url).read()
 def fetch_pdbheader(pdb_id):
     """
-    Take a PDB accession code and return the PDB file header using RCSB's CORS-enabled REST API endpoint.
-    See https://data.rcsb.org/#data-api
+    Take a PDB accession code and return the PDB file header using RCSB's Direct file access server with CORS headers
+    See https://www.wwpdb.org/ftp/pdb-ftp-sites
 
-    Version of `fetch_pdbheader()` from above but with requests and better 
-    access endpoint that is more universal & works for outside of 
+    Version of `fetch_pdbheader()` from above but with requests and because
+    happens to have CORS headers enabled is more universal & works for outside of 
     MyBinder-served sessions, even WASM! Both ipykernel & pyodide-compatible. 
     """
  
