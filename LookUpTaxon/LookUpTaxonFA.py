@@ -206,7 +206,7 @@ def SuggestReportBug():
 def NO_LONGER_BEST_fetch_pdbheader(id):    #based on http://boscoh.com/protein/fetching-pdb-files-remotely-in-pure-python-code and http://www.pdb.org/pdb/static.do?p=download/http/index.html BUT SHOULD USE NEWER API, SEE BELOW!!
     url = 'http://www.rcsb.org/pdb/files/%s.pdb?headerOnly=YES' % id # USE NEWER API! SEE BELOW!
     return urllib.urlopen(url).read()
-def fetch_pdbheader(pdb_id):
+def BETTER_fetch_pdbheader(pdb_id):
     """
     Take a PDB accession code and return the PDB file header using RCSB's Direct file access server with CORS headers
     See https://www.wwpdb.org/ftp/pdb-ftp-sites
@@ -214,14 +214,54 @@ def fetch_pdbheader(pdb_id):
     Version of `fetch_pdbheader()` from above but with requests and because
     happens to have CORS headers enabled is more universal & works for outside of 
     MyBinder-served sessions, even WASM! Both ipykernel & pyodide-compatible. 
+    But fails for headers from large PDB records, like 4DQO for some reason. Better for those is `fetch_pdb_headerURLLIB3`
     """
  
     url = f'https://files.rcsb.org/header/{pdb_id.upper()}.pdb'
     response = requests.get(url, allow_redirects=True)
     response.raise_for_status()  # Raise an exception for non-200 status codes
     return response.text 
+ def fetch_pdb_headerURLLIB3(pdb_id, chunk_size=64):
+    '''
+    This should hopefully work for even headers from large structure files 
+    because when this script is run on MyBinder where 
+    `fetch_pdbheader_using_requests()` fails with a `ChunkedEncodingError` for 
+    headers for large files.
+    Also works on JupyterLite!
 
- 
+    Returns the collected text and the number of chunks used to collect the 
+    text.
+    '''
+    import urllib3
+    import certifi
+    url = f'https://files.rcsb.org/header/{pdb_id.upper()}.pdb'
+    http = urllib3.PoolManager(
+        cert_reqs='CERT_REQUIRED',
+        ca_certs=certifi.where(),
+        retries=urllib3.Retry(
+            total=3,
+            backoff_factor=0.1,
+            status_forcelist=[500, 502, 503, 504]
+        )
+    )
+    try:
+        response = http.request('GET', url, preload_content=False)
+        collected = ''
+        chunk_count = 0
+        while True:
+            chunk = response.read(chunk_size)
+            if not chunk:
+                break
+            chunk_count += 1
+            collected += chunk.decode(errors='ignore')
+        response.release_conn()
+        return collected, chunk_count
+    except urllib3.exceptions.ChunkedEncodingError as ex:
+        print(f"Specific ChunkedEncodingError: {ex}")
+        return collected, chunk_count
+    except Exception as ex:
+        print(f"General error: {ex}")
+        return None, 0
  
 def fetch_keypage(akey):
     #first pause so don't cause site to be slammed when I have a lot to get
@@ -671,7 +711,7 @@ if len(ListofPDBIds)>0:
         #sys.stderr.write(".")
         PDBScientificName="" #Resetting so no bleed through during loops
         PDBCommonName="" #Resetting so no bleed through during loops
-        PDBhandler = fetch_pdbheader(PDBid)
+        PDBhandler = fetch_pdb_headerURLLIB3(PDBid)
         #print PDBhandler[0:2800]
         #PDBPageList.append(PDBhandler) #DECIDED I DIDN'T NEED #couldn't pass each to a list entry with Full entries from NCBI because read in in batches so would add more than one anyway
         if 'ORGANISM_SCIENTIFIC:' in PDBhandler:
