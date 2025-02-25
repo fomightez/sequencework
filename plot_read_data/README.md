@@ -129,6 +129,8 @@ Related items by others
 - See [here](https://twitter.com/ewjwallace/status/1310896446829457408) for alternatives to `plot_coverage.py` among the great answers listed in response to the question:
     >"RNA-seq pileup plots for publication: bedgraph/gene features/etc: what is your favourite solution? I use IGV day-to-day but for publication it looks not so great. I have some ggplot code that works, just. Is there a better way (with clean vector-format graphics?) #Bioinformatics"
 
+- See [lovis4u's 'Visualisation of genomic signal tracks from sequencing experiments'](https://art-egorov.github.io/lovis4u/Gallery/gallery/)
+
 - Related to `plot_coverage.py` I'm curious about the answer to [this Biostars post ](https://www.biostars.org/p/9498724/#9498724).
 
 - Related to `plot_coverage.py` I'm curious about the answers to [this Twitter post ](https://twitter.com/michelebusby/status/1526237687291813888). Such as:
