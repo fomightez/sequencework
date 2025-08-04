@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # This is meant to use with `uv` to run. 
 # First install `uv` with `pip install uv` then run `!uv run {script_url} {fastq_file}, with the path for you FASTQ-formatted file and `script_url` already defined prior.
-# Or use `!uv run https://github.com/fomightez/sequencework/blob/master/CountFastaFastq/count_fastq_entries.py my_fastq.fastq`, substituting your FASTQ-formatted file for `my_fastq.fastq`.
+# Or use `!uv run https://raw.githubusercontent.com/fomightez/sequencework/refs/heads/master/CountFastaFastq/count_fastq_entries.py my_fastq.fastq`, substituting your FASTQ-formatted file for `my_fastq.fastq`.
 #-------------------------------------------------------------#
 # Wayne's script `count_fastq_entries.py`.
 #-------------------------------------------------------------#
@@ -39,7 +39,7 @@ def count_fastq_entries(fastq_file_path):
             # Just count instead of filtering
             reads_counted += 1
     
-    print(f"Total reads in {fastq_file_path}: {reads_counted:,}")
+    print(f"Total reads in '{fastq_file_path}': {reads_counted:,}")
     return reads_counted
 count = count_fastq_entries(fastq_file)
 #print(count)
