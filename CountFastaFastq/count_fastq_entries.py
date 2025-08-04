@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # This is meant to use with `uv` to run. 
-# First install `uv` with `pip install uv` then run `!uv run {script_url} my_fasta.fa`, substituting your FASTA-formatted file for `my_fasta.fa`, and `script_url` already defined prior.
+# First install `uv` with `pip install uv` then run `!uv run {script_url} {fasta_file}, with the path for you FASTA-formatted file and `script_url` already defined prior.
+# Or use `!uv run https://github.com/fomightez/sequencework/blob/master/CountFastaFastq/count_fastq_entries.py my_fasta.fa`, substituting your FASTA-formatted file for `my_fasta.fa`.
 #-------------------------------------------------------------#
 # Wayne's script `count_fastq_entries.py`.
 #-------------------------------------------------------------#
