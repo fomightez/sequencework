@@ -214,7 +214,7 @@ def BETTER_fetch_pdbheader(pdb_id):
     Version of `fetch_pdbheader()` from above but with requests and because
     url used happens to have CORS headers enabled is more universal & works for outside of 
     MyBinder-served sessions, even WASM! Both ipykernel & pyodide/JupyterLite-compatible. 
-    (Try `import requests; function code, BETTER_fetch_pdbheader('1d66')` in JupyterLite.)
+    (Try `import requests; <the function code `BETTER_fetch_pdbheader()` next>; BETTER_fetch_pdbheader('1d66')` in JupyterLite.)
     But fails for headers from large PDB records, like 4DQO for some reason. Better for those is `fetch_pdb_headerURLLIB3`
     """
  
