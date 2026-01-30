@@ -22,6 +22,8 @@ Typical example command:
 python extract_subsequence_from_FASTA.py SK1.genome.fa chrIII 101-200
 ```
 
+Keep in mind, that you can use `blastdbcmd` to extract FASTA-formatted sequences and sequence ranges from the BLAST databases, see ['Extract different sequence ranges from the BLAST databases' in 'Extracting data from BLAST databases with blastdbcmd'](https://www.ncbi.nlm.nih.gov/books/NBK569853/). This could prove handy as **a possible alternative to `extract_subsequence_from_FASTA.py`** if you learned of the sequence you are trying to extract via BLAST.
+
 * get_seq_from_multiFASTA_with_match_in_description.py
 > sequences and a text pattern to match   ---> first sequence that has a match in description
 
@@ -104,3 +106,5 @@ See `drafting_extracting_mito_chr_function.py`.
 
 - https://twitter.com/bioinformatics/status/1492276865104592899  February 2022
   >"What’s the current state of the art for sequence search on > 1TB FASTA files? Tips on storage and parallelisation would be lovely!"
+
+- Keep in mind, that you can use `blastdbcmd` to extract FASTA-formatted sequences and sequence ranges from the BLAST databases, see ['Extract different sequence ranges from the BLAST databases' in 'Extracting data from BLAST databases with blastdbcmd'](https://www.ncbi.nlm.nih.gov/books/NBK569853/). This could prove handy if you learned of the sequence or sequence ranges you are trying to extract via BLAST.
