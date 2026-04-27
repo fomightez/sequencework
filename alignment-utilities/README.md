@@ -157,6 +157,14 @@ This notbeook is available and can be run by going [here](https://github.com/fom
 
 
 
+* extract_mismatch_positions_from_blast_alignment.py
+> BLAST results for two sequences compared to each other via BLAST, i.e. BLAST-generated alignment  --> positions with mimatches
+
+Assumes there are no gaps (no deletions or insertions), so only good for very similar strains and limited sequence size. 
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/alignment-utilities/demo%20BLAST-generated%20alignment%20to%20positions%20with%20mismatches.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/alignment-utilities/emo%20BLAST-generated%20alignment%20to%20positions%20with%20mismatches.ipynb).
+
+
+
 
 Related utilities in my other repositories
 ------------------------------------------
