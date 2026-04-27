@@ -45,7 +45,6 @@ python blast_to_df.py results_file.txt
     df.to_csv('patmatch_data.tsv', sep='\t',index = False) 
 
 
-
 #### For running in a Jupyter notebook:
 
 To use this script after pasting or loading into a cell in a Jupyter notebook, in the next cell define the URL and then call the main function similar to below:
@@ -53,6 +52,13 @@ To use this script after pasting or loading into a cell in a Jupyter notebook, i
 df = blast_to_df("results_file.txt")
 ```
 See [here](https://git.io/vh8M7) for notebooks demonstrating use within a Jupyter notebook; click `launch binder` to launch a session that will allow you to use the notebooks from there.
+
+
+* extract_mismatch_positions_from_blast_alignment.py
+> BLAST results for two sequences compared to each other via BLAST --> positions with mimatches
+
+Assumes there are no gaps (no deletions or insertions), so only good for very similar strains and limited sequence size. Really an 'alignment-utility' as needs BLAST produced alignment from when you toggle on 'Align two or more sequences', and see find this amoung the scripts in [alignment-utilities](https://github.com/fomightez/sequencework/edit/master/alignment-utilities).
+
 
 
 Related
