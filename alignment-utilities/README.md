@@ -161,7 +161,7 @@ This notbeook is available and can be run by going [here](https://github.com/fom
 > BLAST results for two sequences compared to each other via BLAST, i.e. BLAST-generated alignment  --> positions with mimatches
 
 Simplistic script that ssumes there are no gaps (no deletions or insertions), and so only good for very similar strains and limited sequence size. 
-There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/alignment-utilities/demo%20BLAST-generated%20alignment%20to%20positions%20with%20mismatches.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/alignment-utilities/emo%20BLAST-generated%20alignment%20to%20positions%20with%20mismatches.ipynb).  
+There is a [demo notebook for this script in this repo](https://github.com/fomightez/sequencework/blob/master/alignment-utilities/demo%20BLAST-generated%20alignment%20to%20positions%20with%20mismatches.ipynb) that can be viewed nicely displayed [here](https://nbviewer.jupyter.org/github/fomightez/sequencework/blob/master/alignment-utilities/emo%20BLAST-generated%20alignment%20to%20positions%20with%20mismatches.ipynb). (That notebook even works in JupyterLite at this time.)    
 Very useful when you are trying to design qPCR primer and probes for two strains using IDT's Primer Quest Tool, and so want to target where there is identity.
 
 
