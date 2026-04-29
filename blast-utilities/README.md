@@ -57,7 +57,8 @@ See [here](https://git.io/vh8M7) for notebooks demonstrating use within a Jupyte
 * extract_mismatch_positions_from_blast_alignment.py
 > BLAST results for two sequences compared to each other via BLAST --> positions with mimatches
 
-Simplistic script that assumes there are no gaps (no deletions or insertions), and so only good for very similar strains and limited sequence size. Really an 'alignment-utility' as needs BLAST produced alignment from when you toggle on 'Align two or more sequences', and see find this amoung the scripts in [alignment-utilities](https://github.com/fomightez/sequencework/edit/master/alignment-utilities).
+Simplistic script that assumes there are no gaps (no deletions or insertions), and so only good for very similar strains and limited sequence size. Really an 'alignment-utility' as needs BLAST produced alignment from when you toggle on 'Align two or more sequences', and see find this amoung the scripts in [alignment-utilities](https://github.com/fomightez/sequencework/edit/master/alignment-utilities).  
+Very useful when you are trying to design qPCR primer and probes for two strains using IDT's Primer Quest Tool, and so want to target where there is identity.
 
 
 
