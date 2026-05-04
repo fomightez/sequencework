@@ -40,6 +40,8 @@ __version__ = "0.1.0"
 # artificial location of the 'start'/'end' of circular sequence is at 
 # https://software.broadinstitute.org/gatk/blog?id=23598 (now findable at https://web.archive.org/web/20190919043931/https://software.broadinstitute.org/gatk/blog?id=23598 ).
 #
+# (My understanding is Plasmidsaurus does this rotation with [dnappler](https://github.com/gbouras13/dnaapler), see [Plasmidsaurs' 'Whole Genome Technical Documentation'](https://plasmidsaurus.com/technical-documentation/genome).)
+#
 # Typical use cases for this script include:
 # 1) Permuting a circular sequence to match the published or 'standard' sequence 
 # for ease in comparison. Or vice versa. For example if you have 
