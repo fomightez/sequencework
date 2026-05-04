@@ -105,7 +105,7 @@ record id.
 
 A good reference for the use of the term 'breakpoint' for the arbitrary and 
 artificial location of the 'start'/'end' of circular sequence is at 
-https://software.broadinstitute.org/gatk/blog?id=23598 .
+https://software.broadinstitute.org/gatk/blog?id=23598 (now at https://web.archive.org/web/20190919043931/https://software.broadinstitute.org/gatk/blog?id=23598).
 
 Typical use cases for this script include:
 1) Permuting a circular sequence to match the published or 'standard' sequence 
