@@ -83,7 +83,7 @@ remove_seq_from_multiFASTA_with_match_in_description.py takes a sequence file in
 - permute_seq_within_FASTA_an_amount.py
 > FASTA file -->  circular sequence in FASTA file start breakpoint permuted to position specified
 
-(My understanding is Plasmidsaurus does this with [dnappler](https://github.com/gbouras13/dnaapler), see [Plasmidsaurs' 'Whole Genome Technical Documentation'](https://plasmidsaurus.com/technical-documentation/genome).)
+(My understanding is Plasmidsaurus does this rotation with [dnappler](https://github.com/gbouras13/dnaapler), see [Plasmidsaurs' 'Whole Genome Technical Documentation'](https://plasmidsaurus.com/technical-documentation/genome).)
 Takes a sequence file (FASTA-format) & a record id (unless single 
 sequence in file) of a circular sequence such as a plasmid or mitochondrial 
 genome, and moves the specified distance in bps the start/end (breakppoint) of
