@@ -168,7 +168,8 @@ import re
 from Bio import SeqIO
 from Bio.Seq import Seq 
 from Bio.SeqRecord import SeqRecord 
-from Bio.Alphabet import generic_dna
+# from Bio.Alphabet import generic_dna # remove as it has now been deprecated; 
+# and wasn't being used here originally.
 
 
 
