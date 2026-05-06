@@ -7,16 +7,21 @@ Repo for my own computational resources dealing with aligning and alignments (bo
 * add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py
 > alignment text --> alignment text with top sequence in alignment blocks annotated with numbering according to actual contiguous sequence (i.e., excluding gaps)
 
-info here
+There is an example use of a highly related script, `add_pairwise_numbering_to_clustal_pair_matched_output.py` (see below) in A NB IN MY PLASMIDSAURUS repo <---- UPDATE THEN POSTED!!!
+
+<More info to be placed here, like example output.>
 
 * add_pairwise_numbering_to_clustal_pair_matched_output.py
 > alignment text --> alignment text with top & bottom sequence in pairwise alignment blocks annotated with numbering according to actual contiguous sequence (i.e., excluding gaps)
 
-Like `add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py` but for when you have just two sequences & adds numbering to both sequences in the pairwise alignment that is in Clustal format.
+This is a special use case based on `add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py`. 
+When you have just two sequences, you might as well add the numbering relevant to each of the sequences in the pairwise alignment that is in Clustal format.
 
 Moves the symbols indicating identity to the middle, between the two, aligned sequences.
 
-info here
+There is an example use of this A NB IN MY PLASMIDSAURUS repo <---- UPDATE THEN POSTED!!!
+
+<More info to be placed here, like example output.>
 
 * MSA_to_corresponding_residue_numbers.py
 > alignment --> information about individual aligning positions from the MSA
