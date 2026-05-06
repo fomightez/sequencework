@@ -12,6 +12,8 @@ info here
 * add_pairwise_numbering_to_clustal_pair_matched_output.py
 > alignment text --> alignment text with top & bottom sequence in pairwise alignment blocks annotated with numbering according to actual contiguous sequence (i.e., excluding gaps)
 
+Like `add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py` but for when you have just two sequences & adds numbering to both sequences in the pairwise alignment that is in Clustal format.
+
 info here
 
 * MSA_to_corresponding_residue_numbers.py
