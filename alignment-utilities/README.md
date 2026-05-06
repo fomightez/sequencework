@@ -14,7 +14,7 @@ info here
 
 Like `add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py` but for when you have just two sequences & adds numbering to both sequences in the pairwise alignment that is in Clustal format.
 
-Places symbols indicating identity to the middle between the two, aligned sequences.
+Moves the symbols indicating identity to the middle, between the two, aligned sequences.
 
 info here
 
