@@ -9,6 +9,11 @@ Repo for my own computational resources dealing with aligning and alignments (bo
 
 info here
 
+* add_pairwise_numbering_to_clustal_pair_matched_output.py
+> alignment text --> alignment text with top & bottom sequence in pairwise alignment blocks annotated with numbering according to actual contiguous sequence (i.e., excluding gaps)
+
+info here
+
 * MSA_to_corresponding_residue_numbers.py
 > alignment --> information about individual aligning positions from the MSA
 
