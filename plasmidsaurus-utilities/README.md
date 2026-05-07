@@ -3,7 +3,7 @@ Plasmidsaurus-utilities
 
 My collection of items to help with sequencing using the Plasmidsaurus service.
 
-Dealing with things when you get your BAC sequences back from Plasmidsaurus
+Dealing with things when you get your 'Huge Plasmid'/BAC sequences back from Plasmidsaurus
 --------------------------
 
 Plasmidsaurus' related info is at ['Whole Genome Technical Documentation'](https://plasmidsaurus.com/technical-documentation/genome)
