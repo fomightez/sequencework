@@ -5,10 +5,12 @@ __license__ = "MIT"
 __version__ = "0.1.0"
 
 # add_pairwise_numbering_to_clustal_pair_matched_output.py
-# Based on add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py
-# by Wayne Decatur (fomightez on GitHub)
+# Based on `add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py`
+# For special case where have just two sequences & adds numbering to both sequences in 
+# the pairwise alignment that is in Clustal format. Places symbols indicating 
+# identity to the middle between the two, aligned sequences.
 #
-# PURPOSE: Takes a text document of a PAIRWISE alignment in CLUSTAL format and:
+# DETAILS: Takes a text document of a PAIRWISE alignment in CLUSTAL format and:
 #   1. Adds position numbering above the top (first) sequence, as in the 
 #      original script.
 #   2. Moves the conservation symbol line (****) to between the two sequences.
