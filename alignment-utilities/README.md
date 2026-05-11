@@ -7,7 +7,7 @@ Repo for my own computational resources dealing with aligning and alignments (bo
 * add_actual_position_numbering_to_sequence_in_top_line_of_clustal_output.py
 > alignment text --> alignment text with top sequence in alignment blocks annotated with numbering according to actual contiguous sequence (i.e., excluding gaps)
 
-There is an example use of a highly related script, `add_pairwise_numbering_to_clustal_pair_matched_output.py` (see below) in A NB IN MY PLASMIDSAURUS repo <---- UPDATE THEN POSTED!!!
+There is an example use of a highly related script, `add_pairwise_numbering_to_clustal_pair_matched_output.py` (see below) in the notebook 'Rotate SLASH Permute the sequences to match your favorite Huge Plasmid or BAC.ipynb' located [my 'Plasmidsaurus-utilities' sub-repo](https://github.com/fomightez/sequencework/tree/master/plasmidsaurus-utilities) under the heading 'Dealing with things when you get your 'Huge Plasmid'/BAC sequences back from Plasmidsaurus'.
 
 <More info to be placed here, like example output.>
 
@@ -19,7 +19,7 @@ When you have just two sequences, you might as well add the numbering relevant t
 
 Moves the symbols indicating identity to the middle, between the two, aligned sequences.
 
-There is an example use of this A NB IN MY PLASMIDSAURUS repo <---- UPDATE THEN POSTED!!!
+There is an example use of this script in the notebook 'Rotate SLASH Permute the sequences to match your favorite Huge Plasmid or BAC.ipynb' located [my 'Plasmidsaurus-utilities' sub-repo](https://github.com/fomightez/sequencework/tree/master/plasmidsaurus-utilities) under the heading 'Dealing with things when you get your 'Huge Plasmid'/BAC sequences back from Plasmidsaurus'.
 
 <More info to be placed here, like example output.>
 
