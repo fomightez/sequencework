@@ -25,7 +25,7 @@ If you are an advanced user and just want a more basic session with biopython an
 - (I'm not sure launches from the seemingly more appropriate [repo 'cl_sq_demo-binder'](https://github.com/fomightez/cl_sq_demo-binder) are presently 
 failing.)
 
-JupyterLab interface with Biopython already installed:   
+Jupyter interfaces with Biopython already installed:   
 JupyterLab interface: [![Binder](https://mybinder.org/v2/gh/fomightez/sequencework/HEAD?urlpath=%2Flab%2Ftree%2Fplasmidsaurus-utilities%2FRotate%20SLASH%20Permute%20the%20sequences%20to%20match%20your%20favorite%20Huge%20Plasmid%20or%20BAC.ipynb)  
 Jupyter Notebook 7+:  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/fomightez/sequencework/HEAD?urlpath=%2Ftree%2Fplasmidsaurus-utilities%2FRotate%20SLASH%20Permute%20the%20sequences%20to%20match%20your%20favorite%20Huge%20Plasmid%20or%20BAC.ipynb)
 
