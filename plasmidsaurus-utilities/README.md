@@ -18,7 +18,7 @@ I have, though, set up things so that you can launch using the following launch 
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/fomightez/sequencework/HEAD?urlpath=%2Flab%2Ftree%2Fplasmidsaurus-utilities%2FRotate%20SLASH%20Permute%20the%20sequences%20to%20match%20your%20favorite%20Huge%20Plasmid%20or%20BAC.ipynb)
 
-Please use that badge or [click here to directly launch the recommended session](https://mybinder.org/v2/gh/fomightez/sequencework/HEAD?urlpath=%2Flab%2Ftree%2Fplasmidsaurus-utilities%2FRotate%20SLASH%20Permute%20the%20sequences%20to%20match%20your%20favorite%20Huge%20Plasmid%20or%20BAC.ipynb) to get things going in the easiest way possible.
+Please use that badge or [click here to directly launch the recommended session](https://mybinder.org/v2/gh/fomightez/sequencework/HEAD?urlpath=%2Flab%2Ftree%2Fplasmidsaurus-utilities%2FRotate%20SLASH%20Permute%20the%20sequences%20to%20match%20your%20favorite%20Huge%20Plasmid%20or%20BAC.ipynb) to get started with that notebook in the easiest way possible.
 
 If you are an advanced user and just want a more basic session with biopython and are comfortbale having to get & place the ancillary in the running session yourself, then here are some additional options where Biopython is installed and working:  
 - [my cl_demo-binder) here](https://github.com/fomightez/cl_demo-binder)
@@ -26,7 +26,7 @@ If you are an advanced user and just want a more basic session with biopython an
 failing.)
 
 Jupyter interfaces with Biopython already installed:   
-JupyterLab interface:  [![Binder](https://mybinder.org/v2/gh/fomightez/sequencework/HEAD?urlpath=%2Flab%2Ftree%2Fplasmidsaurus-utilities%2FRotate%20SLASH%20Permute%20the%20sequences%20to%20match%20your%20favorite%20Huge%20Plasmid%20or%20BAC.ipynb)  
+JupyterLab interface:  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/fomightez/sequencework/HEAD?urlpath=%2Flab%2Ftree%2Fplasmidsaurus-utilities%2FRotate%20SLASH%20Permute%20the%20sequences%20to%20match%20your%20favorite%20Huge%20Plasmid%20or%20BAC.ipynb)  
 Jupyter Notebook 7+:  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/fomightez/sequencework/HEAD?urlpath=%2Ftree%2Fplasmidsaurus-utilities%2FRotate%20SLASH%20Permute%20the%20sequences%20to%20match%20your%20favorite%20Huge%20Plasmid%20or%20BAC.ipynb)
 
 **(Still to explore: Is JupyterLite also an option for running the demo notebook?)**
