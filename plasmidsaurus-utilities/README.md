@@ -6,7 +6,7 @@ My collection of items to help with sequencing using the Plasmidsaurus service.
 Dealing with things when you get your 'Huge Plasmid'/BAC sequences back from Plasmidsaurus
 --------------------------
 
-### Fixing the start point & assigning genes and elements
+### Fixing the start point & assigning genes and elements (FEATURES)
 
 
 Plasmidsaurus' related info is at ['Whole Genome Technical Documentation'](https://plasmidsaurus.com/technical-documentation/genome)
