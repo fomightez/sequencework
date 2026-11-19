@@ -514,6 +514,11 @@ Related items by others
     - Docs https://cnvkit.readthedocs.io/en/stable/ 
     - Examples https://github.com/etal/cnvkit-examples …
     - Tutorial https://www.youtube.com/watch?v=JGOIXYoLG6w&feature=youtu.be
+- qqman by Stephen Turner:
+    https://bsky.app/profile/stephenturner.us/post/3n2o6yt2bg22u    November 2026. 
+		>"Fable: “make it a web app that runs completely in the browser, no R, no shiny” https://qqman.stephenturner.us/ "  
+		>"Source: https://github.com/stephenturner/qqman 
+		CRAN: https://cran.r-project.org/web/packages/qqman/ #Rstats   2/2 "
 
 - LocusZoom.js in Jupyter for gwas plotting of LD and recombination rate for a genomic region:
   >"Proof of concept: LocusZoom.js but in Jupyter. Takes a DataFrame with associations, e.g. from plink2. LD, genes track, recombination via APIs. Is it useful beyond my own work?
